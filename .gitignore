@@ -20,7 +20,7 @@ bin/
 **/src/main/resources/dist
 
 application-db.properties
-application-jwt.propertiesgit 
+application-jwt.properties
 application-oauth.properties
 
 ### IntelliJ IDEA ###
