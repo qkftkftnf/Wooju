@@ -31,6 +31,10 @@ public class SsafyUserDetails implements UserDetails {
     public User getUser() {
     		return this.user;
     }
+    
+    public int getUserId() {
+    	return this.user.getId();
+    }
 	@Override
 	public String getPassword() {
 		return null;
