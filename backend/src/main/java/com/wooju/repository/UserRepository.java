@@ -9,6 +9,6 @@ import com.wooju.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{	
-	Optional<User> findByEmailAndUserType(String email,String usertype);
+	Optional<User> findByEmailAndUsertype(String email,String usertype);
 
 }
