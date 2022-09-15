@@ -23,6 +23,7 @@
       document.documentElement.style.setProperty('--main-bg-color', '#161b27');
       document.documentElement.style.setProperty('--frame-color', '#23283c');
       document.documentElement.style.setProperty('--text-color', '#f4f4f4');
+      document.documentElement.style.setProperty('--card-bg-color', '#282B37');
 
       document.querySelector("#mode-icon").classList.add('fa-sun')
       document.querySelector("#mode-icon").classList.remove('fa-moon')
@@ -32,6 +33,7 @@
       document.documentElement.style.setProperty('--main-bg-color', '#fff');
       document.documentElement.style.setProperty('--frame-color', '#fff');
       document.documentElement.style.setProperty('--text-color', '#000');
+      document.documentElement.style.setProperty('--card-bg-color', '#fff');
 
       document.querySelector("#mode-icon").classList.add('fa-moon')
       document.querySelector("#mode-icon").classList.remove('fa-sun')

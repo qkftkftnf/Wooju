@@ -3,6 +3,7 @@
   margin: 0 auto;
   font-family: 'Spoqa Han Sans', 'Sans-serif';
   color: var(--text-color);
+  transition: background-color 0.55s ease, color 0.45s ease;
 }
 
 img {
@@ -32,6 +33,7 @@ img {
   position: fixed;
   top: 0;
   background-color: var(--frame-color);
+  z-index: 100000000;
 }
 
 .header-container .logo {
@@ -55,6 +57,7 @@ img {
   bottom: 0;
   background-color: var(--frame-color);
   border-top: 1px solid #eee;
+  z-index: 100000000;
 }
 
 .menu-container .menu-div {
