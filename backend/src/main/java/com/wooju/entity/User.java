@@ -1,5 +1,7 @@
 package com.wooju.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,5 +29,14 @@ public class User {
 	private String email;
 	
 	@Column(name = "usertype", nullable = false)
-	private String userType;
+	private String usertype;
+	
+	@Column(name = "nickname", nullable = false)
+	private String nickname;
+	
+	@Column(name = "birthdate", nullable = false)
+	private LocalDate birthdate;
+	
+	@Column(name = "gender", nullable = false)
+	private String gender;
 }
