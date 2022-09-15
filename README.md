@@ -22,11 +22,11 @@
 
 ## 우~주 팀원 소개
 
-- 김우창 - 팀장, Data, Infra
-- 박상수 - Back , Infra
-- 안현모 - Front
-- 장한나 - Front
-- 황태희 - Data
+- 🎤김우창 - 팀장, Data, Infra
+- 💊박상수 - Backend , Infra
+- 🍔안현모 - Frontend
+- 🪐장한나 - Frontend
+- 🐢황태희 - Data
 
 
 
@@ -108,7 +108,7 @@
 <details>
 <summary>Git Commit Message Rule</summary>
 
-### Format: 개인 이모지 [ type ] commit message
+### Format: 개인 이모지 [ TYPE ] commit message
 
 * **feat** : 새로운 기능에 대한 커밋 
 * **fix** : 버그 수정에 대한 커밋 
