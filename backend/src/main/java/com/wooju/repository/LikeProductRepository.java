@@ -10,5 +10,6 @@ import com.wooju.entity.LikeProduct;
 @Repository
 public interface LikeProductRepository extends JpaRepository<LikeProduct, Integer>{	
 	Long countByProductIdAndUserId(int productid,int userid);
+	void deleteByProductIdAndUserId(int productid,int userid);
 
 }

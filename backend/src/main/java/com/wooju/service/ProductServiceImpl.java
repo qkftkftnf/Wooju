@@ -2,6 +2,8 @@ package com.wooju.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class ProductServiceImpl implements ProductService{
 	ProductRepository productRepository;
 	
 	@Override
+	@Transactional
 	public void addLike(int product_id, User user) throws Exception {
 		long check =likeProductRepository.countByProductIdAndUserId(product_id, user.getId());
 		if(check != 0) throw new Exception();
@@ -29,6 +32,17 @@ public class ProductServiceImpl implements ProductService{
 					.product(product.get())
 					.build();
 		likeProductRepository.save(likeproduct);
+	}
+
+	@Override
+	@Transactional
+	public void deleteLike(int product_id, User user) throws Exception {
+		long check = likeProductRepository.countByProductIdAndUserId(product_id, user.getId());
+		if(check == 0 )throw new Exception();
+		Optional<Product> product= productRepository.findById(product_id);
+		if(!product.isPresent()) throw new Exception();
+		likeProductRepository.deleteByProductIdAndUserId(product_id, user.getId());
+		
 	}
 
 
