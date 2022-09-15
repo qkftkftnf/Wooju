@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0 auto;
+  font-family: 'Spoqa Han Sans', 'Sans-serif';
+  color: var(--text-color);
+}
+
+img {
+  width: 100%;
+}
+
+.app-container {
+  min-width: 500px;
+  max-width: 500px;
+  height: 100vh;
+  /* background-color: #eef; */
+  position: relative;
+}
+
+.container {
+  background-color: var(--main-bg-color);
+  box-shadow: 0 4px 4px rgb(0 23 80 / 1%), 0 1px 6px rgb(0 23 80 / 2%), 0 8px 8px rgb(0 23 80 / 1%), 0 16px 16px rgb(0 23 80 / 1%), 8px 32px 32px rgb(0 23 80 / 2%), 8px 64px 64px rgb(0 23 80 / 2%);
+}
+
+
+/* header */
+
+.header-container {
+  width: 500px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  background-color: var(--frame-color);
+}
+
+.header-container .logo {
+  width: 100px;
+  margin-top: 13.5px;
+}
+
+#mode-icon {
+  color: var(--main-color);
+  font-size: 1.4rem;
+  line-height: 40px;
+}
+
+
+
+/* menu */
+.menu-container {
+  width: 500px;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--frame-color);
+  border-top: 1px solid #eee;
+}
+
+.menu-container .menu-div {
+  margin: 10px 15px;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+}
+
+.menu-container .my-page .icon {
+  font-size: 2rem;
+  display: block;
+  margin: 0 auto;
+  color: var(--main-color);
+}
+
+.menu-container .my-page .menu-title {
+  font-size: 12px;
+}
