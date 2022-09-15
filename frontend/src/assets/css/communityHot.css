@@ -1,0 +1,27 @@
+.reviews {
+    width: 100%;
+
+}
+
+.review-body .review-text {
+    margin: 10px 0px 10px 0px;
+    
+}
+.review-body .review-writer {
+    display: flex;
+    margin: 10px 0px 10px 0px;
+}
+
+.review-body .review-writer .profile-box {
+    width: 75px;
+    height: 75px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.review-body .review-writer .profile-img {
+    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
