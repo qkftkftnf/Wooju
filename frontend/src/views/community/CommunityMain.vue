@@ -15,13 +15,13 @@
         <div class="category-title">
           핫 리뷰
         </div>
-      </div>
-      <div class="category-intro">
-        <span class="comment">지금 하트를 많이 받은 리뷰를 만나보세요</span>
         <div class="more"> 
           <!-- linkTo -->
           더보기 <i class="fas fa-chevron-right"></i>
         </div>
+      </div>
+      <div class="category-intro">
+        지금 하트를 많이 받은 리뷰를 만나보세요
       </div>
       <div class="category-carousel">
         <el-scrollbar>

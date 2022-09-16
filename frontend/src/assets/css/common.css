@@ -10,12 +10,62 @@ img {
   width: 100%;
 }
 
-.app-container {
-  min-width: 500px;
-  max-width: 500px;
-  height: 100vh;
-  /* background-color: #eef; */
-  position: relative;
+@media (min-width: 500px) {
+  .app-container {
+    width: 500px;
+    height: 100vh;
+    position: relative;
+  }
+
+  .header-container {
+    width: 500px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    background-color: var(--frame-color);
+    z-index: 100000000;
+  }
+
+  .menu-container {
+    width: 500px;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--frame-color);
+    border-top: 1px solid #eee;
+    z-index: 100000000;
+    display: flex;
+    justify-content: space-evenly;
+  }  
+}
+
+@media (max-width: 500px) {
+  .app-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .header-container {
+    width: 100vw;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    background-color: var(--frame-color);
+    z-index: 100000000;
+  }
+  
+  .menu-container {
+    width: 100vw;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--frame-color);
+    border-top: 1px solid #eee;
+    z-index: 100000000;
+    display: flex;
+    justify-content: space-evenly;
+  }  
 }
 
 .container {
@@ -26,15 +76,6 @@ img {
 
 
 /* header */
-
-.header-container {
-  width: 500px;
-  height: 60px;
-  position: fixed;
-  top: 0;
-  background-color: var(--frame-color);
-  z-index: 100000000;
-}
 
 .header-container .logo {
   width: 100px;
@@ -50,19 +91,9 @@ img {
 
 
 /* menu */
-.menu-container {
-  width: 500px;
-  height: 80px;
-  position: fixed;
-  bottom: 0;
-  background-color: var(--frame-color);
-  border-top: 1px solid #eee;
-  z-index: 100000000;
-}
-
 .menu-container .menu-div {
-  margin: 10px 15px;
-  width: 60px;
+  padding-top: 10px;
+  width: 15%;
   height: 60px;
   display: inline-block;
 }

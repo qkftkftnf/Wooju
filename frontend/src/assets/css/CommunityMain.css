@@ -3,9 +3,8 @@
 }
 
 .community-header .title {
-  margin: 50px 0;
-  padding-left: 30px;
-  width: 100%;
+  margin: 50px 0 50px 30px;
+  width: calc(100% - 30px);
   height: 80px;
   font-size: 2.3rem;
   font-weight: 800;
@@ -30,8 +29,8 @@
   width: 100%;
   height: 40px;
   position: absolute;
-  top: 15%;
-  font-size: 1.3rem;
+  top: 10%;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
@@ -41,16 +40,29 @@
 
 .community-category .category-header {
   margin-bottom: 10px;
+  width: 100%;
+  height: 50px;
+  text-align: left;
 }
 
 .community-category .category-header .category-title {
   padding-left: 30px;
+  width: calc(80% - 30px);
   height: 50px;
   font-size: 2.3rem;
   font-weight: 800;
   line-height: 50px;
   color: var(--main-color);
   text-align: left;
+  display: inline-block;
+}
+
+.community-category .category-header .more {
+  width: 20%;
+  height: 50px;
+  line-height: 30px;
+  font-size: 0.9rem;
+  display: inline-block;
 }
 
 .community-category .category-intro {
@@ -59,17 +71,8 @@
   /* padding: 0 30px; */
   text-align: left;
   position: relative;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 30px;
-}
-
-.community-category .category-intro .more {
-  height: 30px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  line-height: 30px;
-  font-size: 0.9rem;
 }
 
 .community-category .category-carousel {
@@ -80,7 +83,7 @@
 
 .community-category .category-carousel .carousel-container {
   margin-left: 10px;
-  width: 200%;
+  width: 875px;
   text-align: left;
 }
 
@@ -93,6 +96,7 @@
   overflow: hidden;
   border: 0.5px solid #ddd;
   display: inline-block;
+  text-align: left;
 }
 
 .category-carousel .review-card .image {
