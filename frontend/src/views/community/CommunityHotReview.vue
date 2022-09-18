@@ -2,20 +2,34 @@
 
 
   <div class="container">
-    <h1>모든 핫 리뷰</h1>
-    <div class="review-body">
-        <div class="review-writer">
-            <div class="profile-box">
+    <h1 class="hot-review-title">모든 핫 리뷰</h1>
+      <div class="review-body" v-for="i in 2">
+          <div class="review-header">
+            <div class="profile">
+              <div class="profile-box">
                 <img class="profile-img" src="@/assets/images/profile_img_1.jpg" alt="">
+              </div>
+              <div class="review-writer">
+                <div class="review-nickname">hanssss</div>
+                <div class="review-level">레벨 153</div>
+              </div>
             </div>
-
-        </div>
-        <img src="@/assets/images/pic3.jpg"/>
-        <p class="review-text">
+            <span class="review-date">2022.09.16</span> 
+          </div>
+          <img src="@/assets/images/pic3.jpg"/>
+          <div class="review-content">
+            <div class="wooju">
+              만강에 비친 달
+            </div>
+            <div class="rate">
+              <i class="fas fa-star star"></i> 4.5
+            </div>
+            <p class="review-text">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi modi reiciendis aspernatur similique, officiis sit tenetur mollitia eius qui fugit?
-        </p>
-        <hr align="center"  width="70%">
-    </div>
+            </p>
+          </div>
+          <hr align="center" width="100%">
+      </div>
     <img src="@/assets/images/pic2.jpg"/>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis unde nulla cum voluptatum nemo praesentium dolor facilis harum labore illum, neque sint tempora in. Corrupti vel fuga amet illo provident!
@@ -43,14 +57,5 @@
 </script>
 
 <style>
-h1 {
-    padding: 25px;
-    margin: 25px;
-    color: var(--main-color);
-}
-
-.review-body {
-    margin: 10px 0px 10px 0px;
-}
 
 </style>
