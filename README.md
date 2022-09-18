@@ -31,11 +31,12 @@
 
 
 
+## ERD
+![image](https://user-images.githubusercontent.com/97646054/190908181-43b4281b-3c09-4707-9c2e-bd429b39976b.png)
 
-
-
-
-
+## Sequence diagram
+![image](https://user-images.githubusercontent.com/97646054/190909022-241ded87-c789-463c-9a43-356ed56984bc.png)
+![image](https://user-images.githubusercontent.com/97646054/190909056-35624b74-9ea6-4e35-b7ea-e091a4242de6.png)
 
 
 ---
