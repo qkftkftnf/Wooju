@@ -36,8 +36,7 @@
 
 ## Sequence diagram
 ![image](https://user-images.githubusercontent.com/97646054/190909022-241ded87-c789-463c-9a43-356ed56984bc.png)
-![image](https://user-images.githubusercontent.com/97646054/190909056-35624b74-9ea6-4e35-b7ea-e091a4242de6.png)
-
+![image](https://user-images.githubusercontent.com/97646054/190910739-5ff77f41-abf8-4fdc-b993-6035de8917f9.png)
 
 ---
 ## 시스템 아키텍쳐
