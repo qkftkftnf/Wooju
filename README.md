@@ -39,6 +39,9 @@
 
 
 ---
+## 시스템 아키텍쳐
+![image](https://user-images.githubusercontent.com/97646054/190904702-fe9b78fa-056e-47f9-a371-8ff0b9292d8b.png)
+
 
 ## 개발 환경 및 기술 스택
 
