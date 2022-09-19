@@ -1,12 +1,14 @@
 package com.wooju.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,4 +44,7 @@ public class User {
 	
 	@Column(name = "gender", nullable = false)
 	private String gender;
+	
+	@OneToMany(mappedBy = "user")
+	private List<LikeProduct> likeproducts;
 }

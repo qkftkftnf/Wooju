@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wooju.auth.SsafyUserDetails;
+import com.wooju.dto.ProfileDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
 import com.wooju.dto.response.FirstLoginResponseDto;
 import com.wooju.dto.response.LoginResponseDto;
+import com.wooju.dto.response.ProfileResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.OauthService;
 import com.wooju.service.S3upload;
@@ -53,10 +55,8 @@ public class UserController {
        String email = oauthService.createGoogleUser(accessToken);
        try {
     	   User user = userService.getUserByEmail(email,"google");
-    	   System.out.println(user.getEmail());
     	   return ResponseEntity.status(200).body(LoginResponseDto.of(200, "Success", JwtTokenUtil.getToken(user)));
        } catch (Exception e) {
-    	   System.out.println("Failed "+email);
     	   return ResponseEntity.status(201).body(FirstLoginResponseDto.of(201, "Signup Required", email, "google"));
        }
     }
@@ -67,10 +67,8 @@ public class UserController {
        String email = oauthService.createNaverUser(accessToken);
        try {
     	   User user = userService.getUserByEmail(email,"naver");
-    	   System.out.println(user.getEmail());
     	   return ResponseEntity.status(200).body(LoginResponseDto.of(200, "Success", JwtTokenUtil.getToken(user)));
        } catch (Exception e) {
-    	   System.out.println("Failed "+email);
     	   return ResponseEntity.status(201).body(FirstLoginResponseDto.of(201, "Signup Required", email, "naver"));
        }
     }
@@ -97,8 +95,10 @@ public class UserController {
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
 		User user=userDetails.getUser();
 		
+		ProfileDto dto = userService.getProfile(user.getId()); 
 		
-		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
+		
+		return ResponseEntity.status(200).body(ProfileResponseDto.of(200, "Success",dto));
 	}
 	
 }
