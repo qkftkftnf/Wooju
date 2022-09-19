@@ -23,10 +23,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void SignupUser(SignUpRequestDto signUpInfo,String img) {
+	public void SignupUser(SignUpRequestDto signUpInfo) {
 		User user=User.builder()
 				.email(signUpInfo.getEmail())
-				.img(img)
+				.img(signUpInfo.getImg())
 				.usertype(signUpInfo.getUsertype())
 				.nickname(signUpInfo.getNickname())
 				.birthdate(signUpInfo.getBirthdate())

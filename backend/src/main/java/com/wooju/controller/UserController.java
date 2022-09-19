@@ -5,11 +5,14 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
@@ -75,9 +78,8 @@ public class UserController {
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<BaseResponseDto> SignUp(@ApiParam(value="회원 가입 정보", required=true) SignUpRequestDto signUpInfo) throws IOException{
-		String img= s3upload.upload(signUpInfo.getImg());
-		userService.SignupUser(signUpInfo,img);
+	public ResponseEntity<BaseResponseDto> SignUp(@RequestBody  @ApiParam(value="회원 정보", required=true)SignUpRequestDto signUpInfo) throws IOException{
+		userService.SignupUser(signUpInfo);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 		
 	}

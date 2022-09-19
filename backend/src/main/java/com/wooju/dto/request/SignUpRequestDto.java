@@ -4,6 +4,7 @@ package com.wooju.dto.request;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.annotations.ApiModel;
@@ -20,7 +21,7 @@ public class SignUpRequestDto {
 	String email;
 	
 	@ApiModelProperty(name="img")
-	MultipartFile img;
+	String img;
 	
 	@ApiModelProperty(name="usertype", example="google")
 	String usertype;
