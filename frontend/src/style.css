@@ -10,18 +10,19 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --main-color: #f05555;
-  --main-bg-color: #fff;
-  --frame-color: #fff;
+  --main-color: #FFD634;
+  --main-bg-color: #FFFAE8;
+  --highlight-bg-color: #FFD634;
+  --menu-color: #fafafa;
   --text-color: #000;
-  --text-highlight-color: #f05555;
+  --text-highlight-color: #FF9314;
+  --selected-color: #FDCC93;
   --card-bg-color: #fff;
-  --reversal-color: #ffd524;
-  --border-color: #eee;
+  --border-color: #E8E8E8;
 
   /* --dark-main-color: #ffd524;
   --dark-main-bg-color: #161b27;
-  --dark-frame-color: #23283c; */
+  --dark-menu-color: #23283c; */
 }
 
 body {
