@@ -45,6 +45,7 @@ img {
   color: var(--main-color);
   font-size: 1.4rem;
   line-height: 40px;
+  color: var(--reversal-color);
 }
 
 

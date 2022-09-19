@@ -24,9 +24,12 @@
       document.documentElement.style.setProperty('--frame-color', '#23283c');
       document.documentElement.style.setProperty('--text-color', '#f4f4f4');
       document.documentElement.style.setProperty('--card-bg-color', '#282B37');
+      document.documentElement.style.setProperty('--reversal-color', '#f05555');      
+      document.documentElement.style.setProperty('--border-color', '#282B37');
 
       document.querySelector("#mode-icon").classList.add('fa-sun')
       document.querySelector("#mode-icon").classList.remove('fa-moon')
+
     } else {
       toggleValue.value = !toggleValue.value
       document.documentElement.style.setProperty('--main-color', '#f05555');    
@@ -34,9 +37,12 @@
       document.documentElement.style.setProperty('--frame-color', '#fff');
       document.documentElement.style.setProperty('--text-color', '#000');
       document.documentElement.style.setProperty('--card-bg-color', '#fff');
-
+      document.documentElement.style.setProperty('--reversal-color', '##ffd524');
+      document.documentElement.style.setProperty('--border-color', '#ddd');
+      
       document.querySelector("#mode-icon").classList.add('fa-moon')
       document.querySelector("#mode-icon").classList.remove('fa-sun')
+
     }
   }
 </script>
