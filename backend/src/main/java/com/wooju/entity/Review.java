@@ -34,6 +34,9 @@ public class Review {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
+	@Column(name = "img")
+	private String img;
+	
 	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
 	private String content;
 	
