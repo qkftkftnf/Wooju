@@ -4,6 +4,8 @@ package com.wooju.dto.request;
 
 import java.time.LocalDate;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -16,12 +18,19 @@ public class SignUpRequestDto {
 
 	@ApiModelProperty(name="email", example="ssafy@gmail.com")
 	String email;
+	
+	@ApiModelProperty(name="img")
+	MultipartFile img;
+	
 	@ApiModelProperty(name="usertype", example="google")
 	String usertype;
+	
 	@ApiModelProperty(name="nickname", example="닉네임이에여")
 	String nickname;
+	
 	@ApiModelProperty(name="birthdate", example="2000-01-01")
 	LocalDate birthdate;
+	
 	@ApiModelProperty(name="gender", example="F")
 	String gender;
 }

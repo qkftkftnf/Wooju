@@ -17,6 +17,7 @@ import com.wooju.dto.response.FirstLoginResponseDto;
 import com.wooju.dto.response.LoginResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.OauthService;
+import com.wooju.service.S3upload;
 import com.wooju.service.UserService;
 import com.wooju.util.JwtTokenUtil;
 
@@ -36,6 +37,9 @@ public class UserController {
 	
 	@Autowired
 	OauthService oauthService;
+	
+	@Autowired
+	S3upload s3upload;
 
 	@GetMapping("/login-google")
     public ResponseEntity<? extends BaseResponseDto> googleCallback(@RequestParam String code) throws IOException {
@@ -71,9 +75,9 @@ public class UserController {
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<BaseResponseDto> SignUp(@RequestBody @ApiParam(value="회원 가입 정보", required=true) SignUpRequestDto signUpInfo){
-		
-		userService.SignupUser(signUpInfo);
+	public ResponseEntity<BaseResponseDto> SignUp(@ApiParam(value="회원 가입 정보", required=true) SignUpRequestDto signUpInfo) throws IOException{
+		String img= s3upload.upload(signUpInfo.getImg());
+		userService.SignupUser(signUpInfo,img);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 		
 	}
