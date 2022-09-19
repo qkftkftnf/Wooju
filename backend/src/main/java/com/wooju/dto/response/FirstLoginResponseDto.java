@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@ApiModel("UserLoginPostResponse")
+@ApiModel("FirstLoginResponse")
 public class FirstLoginResponseDto extends BaseResponseDto{
 	
 	@ApiModelProperty(name="유저의 이메일", example="ssafy@ssafy.com")
