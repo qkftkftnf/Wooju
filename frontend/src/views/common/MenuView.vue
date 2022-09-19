@@ -9,7 +9,7 @@
       <span class="menu-title">오늘의 추천</span>
     </div>
     <div class="my-page menu-div">
-      <i class="fas fa-users icon"></i>
+      <i class="fas fa-users icon is-active"></i>
       <span class="menu-title">커뮤니티</span>
     </div>
     <div class="my-page menu-div">

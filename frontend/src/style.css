@@ -11,10 +11,12 @@
   -webkit-text-size-adjust: 100%;
 
   --main-color: #FFD634;
-  --main-bg-color: #FFFAE8;
+  /* --main-bg-color: #FFFAE8; */
+  --main-bg-color: #f9f9f9;
   --highlight-bg-color: #FFD634;
   --menu-color: #fafafa;
   --text-color: #000;
+  --text-sub-color: #666;
   --text-highlight-color: #FF9314;
   --selected-color: #FDCC93;
   --card-bg-color: #fff;
