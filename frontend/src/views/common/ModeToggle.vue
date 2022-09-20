@@ -19,11 +19,13 @@ const toggleFunc = () => {
     toggleValue.value = !toggleValue.value
     document.documentElement.style.setProperty('--main-color', '#ffd524');
     document.documentElement.style.setProperty('--main-bg-color', '#1d222e');
+    document.documentElement.style.setProperty('--main-header-color', '#1d222e');
     document.documentElement.style.setProperty('--highlight-bg-color', '#091022');
     document.documentElement.style.setProperty('--menu-color', '#23283c');
     document.documentElement.style.setProperty('--text-color', '#f4f4f4');
     document.documentElement.style.setProperty('--card-bg-color', '#282B37');
     document.documentElement.style.setProperty('--border-color', '#282B37');
+    document.documentElement.style.setProperty('--review-body-color', '#091022');
 
     document.documentElement.style.setProperty("--shadow-color", "rgba(255, 0, 0, 0.4)")
     console.log(document.documentElement.style)
@@ -40,11 +42,13 @@ const toggleFunc = () => {
     toggleValue.value = !toggleValue.value
     document.documentElement.style.setProperty('--main-color', '#FFD634');    
     document.documentElement.style.setProperty('--main-bg-color', '#f9f9f9');
+    document.documentElement.style.setProperty('--main-header-color', '#FFD634');
     document.documentElement.style.setProperty('--highlight-bg-color', '#FFD634');
     document.documentElement.style.setProperty('--menu-color', '#fafafa');
     document.documentElement.style.setProperty('--text-color', '#000');
     document.documentElement.style.setProperty('--card-bg-color', '#fff');
     document.documentElement.style.setProperty('--border-color', '#E8E8E8');
+    document.documentElement.style.setProperty('--review-body-color', '#fff');
     
     document.querySelector("#mode-icon").classList.add('fa-moon')
     document.querySelector("#mode-icon").classList.remove('fa-sun')

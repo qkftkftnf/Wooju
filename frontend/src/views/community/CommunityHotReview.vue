@@ -17,19 +17,25 @@
           </div>
           <!-- <img src="@/assets/images/pic3.jpg"/> -->
           <div class="block text-center" m="t-4">
-            <el-carousel trigger="click" height="250px" indicator-position="outside" autoplay="false">
+            <el-carousel trigger="click" height="250px" indicator-position="outside" :autoplay="false">
               <el-carousel-item v-for="i in 4" :key="i">
                 <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
                 <!-- <img :src="`@/assets/images/pic${i}.jpg`" alt=""> -->
                 <img src="@/assets/images/pic1.jpg" alt="pic">
               </el-carousel-item>
+              <span class="like">
+                <i class="fas fa-heart icon"></i> 73
+              </span>              
             </el-carousel>
           </div>          
           <div class="review-content">
             <div class="wooju">
-              만강에 비친 달
+              <span class="wooju-name">술 이름 : </span>
+              만강에 비친 달 
+              <i class="fas fa-chevron-right"></i>
             </div>
             <div class="rate">
+              <span class="wooju-star">별점  </span>
               <i class="fas fa-star star"></i> 4.5
             </div>
             <p class="review-text">
