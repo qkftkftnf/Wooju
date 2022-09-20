@@ -54,7 +54,7 @@ img {
     position: fixed;
     top: 0;
     background-color: var(--main-color);
-    z-index: 100000000;
+    z-index: 100;
   }
   
   .menu-container {
@@ -63,10 +63,7 @@ img {
     position: fixed;
     bottom: 0;
     background-color: var(--main-bg-color);
-    /* border-top: 1px solid #eee; */
-    /* border-top-left-radius: 20px;
-    border-top-right-radius: 20px; */
-    z-index: 100000000;
+    z-index: 100;
     display: flex;
     justify-content: space-evenly;
     box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.02);
@@ -82,7 +79,6 @@ img {
 
 
 /* header */
-
 .header-container .logo {
   width: 100px;
   margin-top: 13.5px;
@@ -92,9 +88,8 @@ img {
   color: var(--main-color);
   font-size: 1.4rem;
   line-height: 40px;
-  color: var(--reversal-color);
+  color: var(--text-highlight-color);
 }
-
 
 
 /* menu */

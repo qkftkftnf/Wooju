@@ -15,7 +15,7 @@
     <div class="category-carousel">
       <el-scrollbar>
         <div class="carousel-container">
-          <div class="review-card" v-for="i in 4">
+          <div class="review-card bs-card-03" v-for="i in 4" @click="linkTo">
             <div class="image">
               <img src="@/assets/images/pic3.jpg" alt="reviewPic">
               <span class="like">
@@ -34,7 +34,7 @@
               </div>
             </div>
           </div>
-          <div class="more-card review-card">
+          <div class="more-card review-card bs-none">
             <div class="more-btn">
               <span>
                 더보기 <i class="fas fa-arrow-right"></i>
@@ -48,6 +48,11 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const linkTo = () => router.push({ name: "CommunityHotReview",  params: { reportPk: 1 } })
 </script>
 
 <style>

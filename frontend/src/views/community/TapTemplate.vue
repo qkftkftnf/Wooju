@@ -4,6 +4,9 @@
       <div class="tap-title">
         커뮤니티
       </div>
+      <div class="mode-toggle">
+        <ModeToggle/>
+      </div>
     </div>
     <div class="header-content">
       <img class="content-img" src="@/assets/images/community.jpg" alt="communityMainPic">
@@ -21,6 +24,7 @@
 </template>
 
 <script setup>
+import ModeToggle from "@/views/common/ModeToggle.vue"
 import CommunityMain from "@/views/community/CommunityMain.vue"
 import { ref, onMounted } from "vue";
 
