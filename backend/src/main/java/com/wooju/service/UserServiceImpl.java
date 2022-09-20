@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
 			ReviewDto info = ReviewDto.builder()
 						.id(review.getId())
 						.product_id(review.getProduct().getId())
+						.title(review.getTitle())
 						.img(review.getImg())
 						.content(review.getContent())
 						.star(review.getStar())
