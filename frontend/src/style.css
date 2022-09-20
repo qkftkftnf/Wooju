@@ -22,7 +22,8 @@
   --selected-color: #FDCC93;
   --card-bg-color: #fff;
   --border-color: #E8E8E8;
-  --shadow-color: rgba(0, 0, 0, 0.03)
+  --shadow-percentage-04: 0.04;
+  --shadow-percentage-03: 0.03;
 
   /* --dark-main-color: #ffd524;
   --dark-main-bg-color: #161b27;

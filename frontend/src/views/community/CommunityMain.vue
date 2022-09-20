@@ -32,14 +32,14 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card bs-card-03" v-for="i in 4" @click="linkTo">
+                <div class="review-card" v-for="i in 4" @click="linkTo">
                   <div class="image">
                     <img src="@/assets/images/pic3.jpg" alt="reviewPic">
                     <span class="like">
-                      <i class="fas fa-heart icon"></i> 73
+                      <i class="fas fa-heart heart"></i> 73
                     </span>
                   </div>
-                  <div class="review-content">
+                  <div class="card-content">
                     <div class="wooju">
                       만강에 비친 달
                     </div>

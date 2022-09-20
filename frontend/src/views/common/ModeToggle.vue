@@ -18,18 +18,16 @@ const toggleFunc = () => {
 
     toggleValue.value = !toggleValue.value
     document.documentElement.style.setProperty('--main-color', '#ffd524');
-    document.documentElement.style.setProperty('--main-bg-color', '#1d222e');
-    document.documentElement.style.setProperty('--highlight-bg-color', '#091022');
+    document.documentElement.style.setProperty('--main-bg-color', '#1d222e'); // 2
+    document.documentElement.style.setProperty('--highlight-bg-color', '#091022'); // 1
     document.documentElement.style.setProperty('--menu-color', '#23283c');
     document.documentElement.style.setProperty('--text-color', '#f4f4f4');
-    document.documentElement.style.setProperty('--card-bg-color', '#282B37');
+    document.documentElement.style.setProperty('--card-bg-color', '#282B37'); // 3
     document.documentElement.style.setProperty('--border-color', '#282B37');
 
-    document.documentElement.style.setProperty("--shadow-color", "rgba(255, 0, 0, 0.4)")
-    console.log(document.documentElement.style)
-    // var bsCard03 = document.querySelectorAll(".bs-card-03")
-    // bsCard03.forEach(eachClass => eachClass.style.boxShadow = "0px -4px 6px 6px rgba(255, 255, 255, 0.9) !important")
-    // bsCard03.forEach(eachClass => eachClass.classList.replace("bs-card-03", "bs-dark-card-03"))
+    document.documentElement.style.setProperty("--shadow-percentage-03", "0.08")
+    document.documentElement.style.setProperty("--shadow-percentage-04", "0.09")
+
     document.querySelector("#mode-icon").classList.add('fa-sun')
     document.querySelector("#mode-icon").classList.remove('fa-moon')
 
@@ -46,6 +44,9 @@ const toggleFunc = () => {
     document.documentElement.style.setProperty('--card-bg-color', '#fff');
     document.documentElement.style.setProperty('--border-color', '#E8E8E8');
     
+    document.documentElement.style.setProperty("--shadow-percentage-03", "0.03")
+    document.documentElement.style.setProperty("--shadow-percentage-04", "0.04")
+
     document.querySelector("#mode-icon").classList.add('fa-moon')
     document.querySelector("#mode-icon").classList.remove('fa-sun')
 
