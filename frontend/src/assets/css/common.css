@@ -79,6 +79,15 @@ img {
 
 
 /* header */
+.header-container {
+  width: 500px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  background-color: var(--main-color);
+  z-index: 100000000;
+}
+
 .header-container .logo {
   width: 100px;
   margin-top: 13.5px;
@@ -93,6 +102,16 @@ img {
 
 
 /* menu */
+.menu-container {
+  width: 500px;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--menu-color);
+  border-top: 1px solid #eee;
+  z-index: 100000000;
+}
+
 .menu-container .menu-div {
   padding-top: 10px;
   width: 15%;

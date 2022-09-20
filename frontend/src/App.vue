@@ -16,5 +16,5 @@ import MenuView from "@/views/common/MenuView.vue"
 <style>
 @import "assets/css/common.css";
 @import "assets/css/CommunityMain.css";
-@import "assets/css/communityHot.css";
+@import "assets/css/CommunityHot.css";
 </style>
