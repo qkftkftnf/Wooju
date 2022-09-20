@@ -23,7 +23,6 @@ img {
     height: 60px;
     position: fixed;
     top: 0;
-    background-color: var(--main-color);
     z-index: 100000000;
   }
 
@@ -53,7 +52,6 @@ img {
     height: 60px;
     position: fixed;
     top: 0;
-    background-color: var(--main-color);
     z-index: 100;
   }
   
@@ -83,7 +81,7 @@ img {
   height: 60px;
   position: fixed;
   top: 0;
-  background-color: var(--main-color);
+  background-color: var(--main-header-color);
   z-index: 100000000;
 }
 
