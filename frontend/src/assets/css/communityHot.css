@@ -11,8 +11,11 @@
 }
 
 .review-body {
-    width: 100%;
-    margin: 60px 0px 10px 0px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid #FFFAE8;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(151, 101, 13, 0.3);
+  border-radius: 23px;
 }
 
 .review-body .review-text {
@@ -94,4 +97,12 @@
 .review-content .rate .star {
   color: #ffd524;
   margin-right: 5px;
+}
+
+.el-carousel__item h3 {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+  text-align: center;
 }

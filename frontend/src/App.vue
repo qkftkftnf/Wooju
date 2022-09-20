@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <HeaderView/>
+    <!-- <HeaderView/> -->
     <RouterView/>
     <MenuView/>
   </div>

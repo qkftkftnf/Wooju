@@ -32,7 +32,7 @@ img {
   height: 60px;
   position: fixed;
   top: 0;
-  background-color: var(--frame-color);
+  background-color: var(--main-color);
   z-index: 100000000;
 }
 
@@ -55,7 +55,7 @@ img {
   height: 80px;
   position: fixed;
   bottom: 0;
-  background-color: var(--frame-color);
+  background-color: var(--menu-color);
   border-top: 1px solid #eee;
   z-index: 100000000;
 }

@@ -1,9 +1,8 @@
 <template>
-
-
   <div class="container">
+    <HeaderView/>
     <h1 class="hot-review-title">모든 핫 리뷰</h1>
-      <div class="review-body" v-for="i in 2">
+      <div class="review-body" v-for="item in 2" :key="item">
           <div class="review-header">
             <div class="profile">
               <div class="profile-box">
@@ -16,7 +15,14 @@
             </div>
             <span class="review-date">2022.09.16</span> 
           </div>
-          <img src="@/assets/images/pic3.jpg"/>
+          <!-- <img src="@/assets/images/pic3.jpg"/> -->
+          <div class="block text-center" m="t-4">
+            <el-carousel trigger="click" height="250px" indicator-position="outside" autoplay="false">
+              <el-carousel-item v-for="item in 4" :key="item">
+                <h3 class="small justify-center" text="2xl">{{ item }}</h3>
+              </el-carousel-item>
+            </el-carousel>
+          </div>          
           <div class="review-content">
             <div class="wooju">
               만강에 비친 달
@@ -28,7 +34,6 @@
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi modi reiciendis aspernatur similique, officiis sit tenetur mollitia eius qui fugit?
             </p>
           </div>
-          <hr align="center" width="100%">
       </div>
     <img src="@/assets/images/pic2.jpg"/>
     <p>
@@ -54,6 +59,7 @@
 
 <script setup>
 
+import HeaderView from "@/views/common/HeaderView.vue"
 </script>
 
 <style>
