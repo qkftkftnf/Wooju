@@ -26,6 +26,8 @@ public class Product {
 	@Column(name = "image")
 	private String image;
 	
+	@Column(name="like_num")
+	private int like;
 	
 
 }

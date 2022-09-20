@@ -46,5 +46,8 @@ public class Review {
 	@Column(name ="star_rate", nullable =false)
 	private double star;
 	
+	@Column(name="like_num")
+	private int like;
+	
 
 }

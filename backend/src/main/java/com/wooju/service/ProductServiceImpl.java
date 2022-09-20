@@ -32,6 +32,9 @@ public class ProductServiceImpl implements ProductService{
 					.product(product.get())
 					.build();
 		likeProductRepository.save(likeproduct);
+		long num=likeProductRepository.countByProductId(product_id);
+		product.get().setLike((int)num);
+		
 	}
 
 	@Override
@@ -42,6 +45,8 @@ public class ProductServiceImpl implements ProductService{
 		Optional<Product> product= productRepository.findById(product_id);
 		if(!product.isPresent()) throw new Exception();
 		likeProductRepository.deleteByProductIdAndUserId(product_id, user.getId());
+		long num=likeProductRepository.countByProductId(product_id);
+		product.get().setLike((int)num);
 		
 	}
 
