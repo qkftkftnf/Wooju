@@ -2,22 +2,22 @@
   <div class="tap-template container">
     <div class="tap-header">
       <div class="tap-title">
-        커뮤니티
+        <!-- 탭메뉴 이름 -->
       </div>
       <div class="mode-toggle">
         <ModeToggle/>
       </div>
     </div>
     <div class="header-content">
-      <img class="content-img" src="@/assets/images/community.jpg" alt="communityMainPic">
-      <p class="header-intro">더 많은 사람들과 더 많은 우주를 나눠보세요</p>
+      <!-- 탭메뉴 이미지 -->
+      <img class="content-img" src="" alt="">
+      <!-- 탭메뉴 설명 -->
+      <p class="header-intro"></p>
     </div>
     
     <div class="inner-container">
-      <!-- <div class="upper-rounding"></div> -->
       <div class="inner-section">
         <!-- 본문 입력 -->
-        <CommunityMain/>
       </div>
     </div>
   </div>
@@ -25,7 +25,6 @@
 
 <script setup>
 import ModeToggle from "@/views/common/ModeToggle.vue"
-import CommunityMain from "@/views/community/CommunityMain.vue"
 import { ref, onMounted } from "vue";
 
 const position = ref(0)
@@ -47,13 +46,9 @@ onMounted(() => {
       document.querySelector(".header-content .content-img").style.opacity = `${((position.value.top - 260) / 250 )}`;
       document.querySelector(".header-content .content-img").style.scale = `${((position.value.top - 60) /  390)}`;
       document.querySelector(".header-content .header-intro").style.opacity = `${((position.value.top - 260) / 190 )}`;
-      
     }
   }
 })  
-
-
-  
 </script>
 
 <style>

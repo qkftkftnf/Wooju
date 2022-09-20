@@ -1,7 +1,7 @@
 .hot-review-title {
   margin: 50px 0;
   padding-left: 30px;
-  width: 100%;
+  width: calc(100% - 30px);
   height: 80px;
   font-size: 2.3rem;
   font-weight: 800;
@@ -11,22 +11,23 @@
 }
 
 .review-body {
-  margin: 10px 10px 10px 10px;
-  border: 1px solid #FFFAE8;
+  margin: 20px;
+  padding: 20px 0;
+  /* border: 1px solid #FFFAE8; */
   background-color: #fff;
-  box-shadow: 0px 0px 8px rgba(151, 101, 13, 0.3);
+  /* box-shadow: 0px 0px 8px rgba(151, 101, 13, 0.3); */
   border-radius: 23px;
 }
 
 .review-body .review-text {
-    margin: 10px 0px 20px 0px;
+  margin: 10px 0px 20px 0px;
     
 }
 .review-body .review-header {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
-    justify-content: space-between;
+  padding: 20px 20px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .review-body .review-header .profile-box {

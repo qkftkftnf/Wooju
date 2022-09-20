@@ -8,7 +8,7 @@
       <i class="fas fa-hand-holding-heart icon"></i>
       <span class="menu-title">오늘의 추천</span>
     </div>
-    <div class="my-page menu-div">
+    <div class="my-page menu-div" @click="linkTo('CommunityMain')">
       <i class="fas fa-users icon is-active"></i>
       <span class="menu-title">커뮤니티</span>
     </div>
@@ -22,11 +22,14 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  
-}
+
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const linkTo = (name) => router.push({ name: name })
 </script>
+
 <style>
   
 </style>

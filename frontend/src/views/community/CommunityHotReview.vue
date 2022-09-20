@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container pt-60">
     <HeaderView/>
     <h1 class="hot-review-title">모든 핫 리뷰</h1>
-      <div class="review-body" v-for="item in 2" :key="item">
+      <div class="review-body bs-card-03" v-for="item in 3" :key="item">
           <div class="review-header">
             <div class="profile">
               <div class="profile-box">
@@ -18,8 +18,10 @@
           <!-- <img src="@/assets/images/pic3.jpg"/> -->
           <div class="block text-center" m="t-4">
             <el-carousel trigger="click" height="250px" indicator-position="outside" autoplay="false">
-              <el-carousel-item v-for="item in 4" :key="item">
-                <h3 class="small justify-center" text="2xl">{{ item }}</h3>
+              <el-carousel-item v-for="i in 4" :key="i">
+                <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
+                <!-- <img :src="`@/assets/images/pic${i}.jpg`" alt=""> -->
+                <img src="@/assets/images/pic1.jpg" alt="pic">
               </el-carousel-item>
             </el-carousel>
           </div>          
@@ -35,25 +37,6 @@
             </p>
           </div>
       </div>
-    <img src="@/assets/images/pic2.jpg"/>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis unde nulla cum voluptatum nemo praesentium dolor facilis harum labore illum, neque sint tempora in. Corrupti vel fuga amet illo provident!
-    </p>
-    <img src="@/assets/images/pic1.jpg"/>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, delectus?
-    </p>
-    <img src="@/assets/images/pic3.jpg"/>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet tenetur commodi obcaecati nulla adipisci repellendus ipsum possimus reprehenderit dolore omnis voluptatem eaque dolorum officia consequatur, quos quasi recusandae tempora amet, placeat aliquam voluptates laboriosam cumque sapiente minima! Velit, officiis vero.
-    </p>
-    <img src="@/assets/images/pic2.jpg"/>
-    <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi modi reiciendis aspernatur similique, officiis sit tenetur mollitia eius qui fugit?
-    </p>
-
-    
-
   </div>
 </template>
 

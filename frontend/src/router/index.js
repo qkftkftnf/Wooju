@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import TapTemplate from "../views/community/TapTemplate.vue";
+import CommunityMain from "../views/community/CommunityMain.vue";
 import CommunityHotReview from "../views/community/CommunityHotReview.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      name: "TapTemplate",
+      name: "CommunityMain",
       path: "",
-      component: TapTemplate,
+      component: CommunityMain,
     },
     {
       name: "CommunityHotReview",

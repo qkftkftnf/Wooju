@@ -80,7 +80,6 @@ img {
 
 /* header */
 .header-container {
-  width: 500px;
   height: 60px;
   position: fixed;
   top: 0;
@@ -103,7 +102,6 @@ img {
 
 /* menu */
 .menu-container {
-  width: 500px;
   height: 80px;
   position: fixed;
   bottom: 0;
