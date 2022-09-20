@@ -62,4 +62,8 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<LikeProduct> likeproducts;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
+	
 }

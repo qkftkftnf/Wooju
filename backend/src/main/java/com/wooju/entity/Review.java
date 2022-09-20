@@ -37,6 +37,9 @@ public class Review {
 	@Column(name = "img")
 	private String img;
 	
+	@Column(name = "title",nullable=false)
+	private String title;
+	
 	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
 	private String content;
 	

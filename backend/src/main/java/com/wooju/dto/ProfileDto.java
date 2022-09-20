@@ -27,6 +27,8 @@ public class ProfileDto {
 	String nickname;
 	@ApiModelProperty(name="프로필 사진")
 	String img;
-	@ApiModelProperty(name="취미")
+	@ApiModelProperty(name="좋아요")
 	ArrayList<Product> likeList;
+	@ApiModelProperty(name="리뷰")
+	ArrayList<ReviewDto> reviewList;
 }

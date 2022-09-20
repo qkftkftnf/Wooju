@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wooju.dto.ProfileDto;
+import com.wooju.dto.ReviewDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
+import com.wooju.entity.Review;
 import com.wooju.entity.User;
 import com.wooju.repository.UserRepository;
 
@@ -64,6 +66,17 @@ public class UserServiceImpl implements UserService {
 		dto.setLikeList(new ArrayList<Product>());
 		for(LikeProduct likeProduct:user.getLikeproducts()) {
 			dto.getLikeList().add(likeProduct.getProduct());
+		}
+		dto.setReviewList(new ArrayList<ReviewDto>());
+		for(Review review:user.getReviews()) {
+			ReviewDto info = ReviewDto.builder()
+						.id(review.getId())
+						.product_id(review.getProduct().getId())
+						.img(review.getImg())
+						.content(review.getContent())
+						.star(review.getStar())
+						.build();
+			dto.getReviewList().add(info);
 		}
 		return dto;
 	}
