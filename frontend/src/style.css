@@ -10,15 +10,23 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --main-color: #f05555;
-  --main-bg-color: #fff;
-  --frame-color: #fff;
+  --main-color: #FFD634;
+  /* --main-bg-color: #FFFAE8; */
+  --main-bg-color: #f9f9f9;
+  --highlight-bg-color: #FFD634;
+  /* --highlight-dark-bg-color: #091022; */
+  --menu-color: #fafafa;
   --text-color: #000;
-  --text-highlight-color: #f05555;
+  --text-sub-color: #666;
+  --text-highlight-color: #FF9314;
+  --selected-color: #FDCC93;
+  --card-bg-color: #fff;
+  --border-color: #E8E8E8;
+  --shadow-color: rgba(0, 0, 0, 0.03)
 
   /* --dark-main-color: #ffd524;
   --dark-main-bg-color: #161b27;
-  --dark-frame-color: #23283c; */
+  --dark-menu-color: #23283c; */
 }
 
 body {
@@ -41,3 +49,33 @@ body {
     background-color: #ffffff;
   }
 } */
+
+/* box-shadow */
+/* light mode */
+.bs-upper-02 {
+  box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.02) !important;
+}
+
+.bs-upper-05 {
+  box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.bs-lower-05 {
+  box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.bs-card-03 {
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+.bs-none {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.bs-dark-card-03 {
+  box-shadow: 2px 2px 9px 2px rgba(255, 0, 0, 0.03) !important;
+}
+
+.pt-60 {
+  padding-top: 60px;
+}

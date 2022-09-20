@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <HeaderView/>
+    <!-- <HeaderView/> -->
     <RouterView/>
     <MenuView/>
   </div>
@@ -15,4 +15,6 @@ import MenuView from "@/views/common/MenuView.vue"
 
 <style>
 @import "assets/css/common.css";
+@import "assets/css/CommunityMain.css";
+@import "assets/css/CommunityHot.css";
 </style>
