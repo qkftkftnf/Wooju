@@ -7,24 +7,25 @@
   font-weight: 800;
   line-height: 80px;
   text-align: left;
-  color: var(--main-color);
+  color: var(--text-highlight-color);
 }
 
 .review-body {
   margin: 20px;
   padding: 20px 0;
   /* border: 1px solid #FFFAE8; */
-  background-color: #fff;
+  background-color: var(--review-body-color);
   /* box-shadow: 0px 0px 8px rgba(151, 101, 13, 0.3); */
   border-radius: 23px;
 }
 
 .review-body .review-text {
   margin: 10px 0px 20px 0px;
-    
+  font-size: 0.9rem;    
 }
+
 .review-body .review-header {
-  padding: 20px 20px 0 20px;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -34,8 +35,8 @@
     position: relative;
     display: inline-block;
     margin: 0;
-    width: 75px;
-    height: 75px; 
+    width: 50px;
+    height: 50px; 
     border-radius: 70%;
     overflow: hidden;
 }
@@ -48,16 +49,16 @@
 
 .review-body .review-header .profile-box .profile-img {
     
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .review-body .review-header .review-writer {
-    margin: 0;
-    margin-left: 20px;
-    flex-flow:column;
-    text-align: left;
+  margin: 0;
+  margin-left: 10px;
+  flex-flow:column;
+  text-align: left;
 }
 
 .review-writer .review-nickname {
@@ -71,14 +72,15 @@
 }
 
 .review-body .review-header .review-date {
-    width: 80px;
-    height: 20px;
-    padding: 0;
-    margin: 0;
-    vertical-align: bottom;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 0.7rem;
+  width: 80px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .review-content {
@@ -95,6 +97,18 @@
   font-weight: 600;
 }
 
+.review-content .wooju .wooju-name {
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
+.review-content .rate .wooju-star {
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
 .review-content .rate .star {
   color: #ffd524;
   margin-right: 5px;
@@ -107,3 +121,14 @@
   margin: 0;
   text-align: center;
 }
+
+.like {
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+}
+
+.like .icon {
+  color: tomato;
+}
+
