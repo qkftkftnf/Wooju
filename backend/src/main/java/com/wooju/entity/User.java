@@ -45,6 +45,21 @@ public class User {
 	@Column(name = "gender", nullable = false)
 	private String gender;
 	
+	@Column(name = "question1", nullable =false)
+	private int question1;
+	
+	@Column(name = "question2", nullable =false)
+	private int question2;
+	
+	@Column(name = "question3", nullable =false)
+	private int question3;
+	
+	@Column(name = "question4", nullable =false)
+	private int question4;
+	
+	@Column(name = "question5", nullable =false)
+	private int question5;
+	
 	@OneToMany(mappedBy = "user")
 	private List<LikeProduct> likeproducts;
 }

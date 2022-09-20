@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
 				.nickname(signUpInfo.getNickname())
 				.birthdate(signUpInfo.getBirthdate())
 				.gender(signUpInfo.getGender())
+				.question1(-1)
+				.question2(-1)
+				.question3(-1)
+				.question4(-1)
+				.question5(-1)
 				.build();
 		userRepository.save(user);
 	}

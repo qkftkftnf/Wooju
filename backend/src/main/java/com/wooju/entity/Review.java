@@ -40,6 +40,8 @@ public class Review {
 	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
 	private String content;
 	
+	@Column(name ="star_rate", nullable =false)
+	private double star;
 	
 
 }
