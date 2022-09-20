@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.wooju.dto.ProfileDto;
 import com.wooju.dto.ReviewDto;
+import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
@@ -79,6 +80,16 @@ public class UserServiceImpl implements UserService {
 			dto.getReviewList().add(info);
 		}
 		return dto;
+	}
+
+	@Override
+	public void modifyProfile(ModifyProfileRequestDto dto, int id) {
+		Optional<User> userTemp=userRepository.findById(id);
+		User user=userTemp.get();
+
+		user.setImg(dto.getImg());
+		user.setNickname(dto.getNickname());
+		userRepository.save(user);
 	}
 
 }

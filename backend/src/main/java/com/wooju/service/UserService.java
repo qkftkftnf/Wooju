@@ -1,6 +1,7 @@
 package com.wooju.service;
 
 import com.wooju.dto.ProfileDto;
+import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.entity.User;
 
@@ -12,5 +13,6 @@ public interface UserService {
 	void SignupUser(SignUpRequestDto signUpInfo);
 	User getUserById(int id);
 	ProfileDto getProfile(int id);
+	void modifyProfile(ModifyProfileRequestDto dto, int id);
 
 }
