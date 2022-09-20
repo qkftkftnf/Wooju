@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
 						.img(review.getImg())
 						.content(review.getContent())
 						.star(review.getStar())
+						.like(review.getLike())
 						.build();
 			dto.getReviewList().add(info);
 		}
