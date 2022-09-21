@@ -16,6 +16,8 @@ import com.wooju.auth.SsafyUserDetails;
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
+import com.wooju.dto.request.ProductLikeRequestDto;
+import com.wooju.dto.request.ReviewLikeRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
@@ -71,14 +73,14 @@ public class ReviewController {
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "success"));
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{review_id}")
 	@ApiOperation(value = "리뷰 상세 조회", notes = "해당 리뷰의 상세 정보를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
 	public ResponseEntity<? extends BaseResponseDto> getReviewDetail(@ApiIgnore Authentication authentication,
-			@PathVariable("id") int id) throws Exception {
+			@PathVariable("review_id") int id) throws Exception {
 		ReviewDto review = reviewService.getReviewDetail(id);
 		return ResponseEntity.status(200).body(ReviewDetailResponseDto.of(200, "Success", review));
 	}
@@ -114,6 +116,40 @@ public class ReviewController {
 		int user_id=userDetails.getUserId();
 		
 		reviewService.deleteReview(user_id,id);
+		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
+	}
+	
+	@PostMapping("/like")
+	@ApiOperation(value="좋아요", notes ="술 좋아요")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<BaseResponseDto> addlike(@RequestBody @ApiParam(value="리뷰 정보", required=true) ReviewLikeRequestDto reviewlike,
+			@ApiIgnore Authentication authentication) throws Exception{
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		User user=userDetails.getUser();
+		
+		reviewService.addLike(reviewlike.getReview_id(),user);
+		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
+	}
+	
+	@DeleteMapping("/like/{product_id}")
+	@ApiOperation(value="좋아요 취소", notes ="술 좋아요 취소")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<BaseResponseDto> deletelike(@PathVariable("product_id") int id,
+			@ApiIgnore Authentication authentication) throws Exception{
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		User user=userDetails.getUser();
+		
+		reviewService.deleteLike(id,user);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
 }

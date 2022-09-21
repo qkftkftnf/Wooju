@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,13 @@ import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
+import com.wooju.entity.LikeProduct;
+import com.wooju.entity.LikeReview;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
 import com.wooju.entity.User;
 import com.wooju.repository.LikeProductRepository;
+import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
 import com.wooju.repository.ReviewRepository;
 
@@ -30,6 +35,10 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Autowired
 	LikeProductRepository likeProductRepository;
+	
+	@Autowired
+	LikeReviewRepository likeReviewRepository;
+	
 	@Override
 	public ReviewMainDto getMainPage() {
 		ReviewMainDto dto =ReviewMainDto.builder().build();
@@ -110,6 +119,36 @@ public class ReviewServiceImpl implements ReviewService{
 		Review review = reviewTemp.get();
 		if(review.getUser().getId() != user_id) throw new Exception();
 		reviewRepository.deleteById(id);
+	}
+	
+	@Override
+	@Transactional
+	public void addLike(int review_id, User user) throws Exception {
+		long check =likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
+		if(check != 0) throw new Exception();
+		Optional<Review> review= reviewRepository.findById(review_id);
+		if(!review.isPresent()) throw new Exception();
+		LikeReview likeReview=LikeReview.builder()
+					.user(user)
+					.review(review.get())
+					.build();
+		likeReviewRepository.save(likeReview);
+		long num=likeReviewRepository.countByReviewId(review_id);
+		review.get().setLike((int)num);
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteLike(int review_id, User user) throws Exception {
+		long check =likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
+		if(check != 0) throw new Exception();
+		Optional<Review> review= reviewRepository.findById(review_id);
+		if(!review.isPresent()) throw new Exception();
+		likeReviewRepository.deleteByReviewIdAndUserId(review_id, user.getId());
+		long num=likeReviewRepository.countByReviewId(review_id);
+		review.get().setLike((int)num);
+		
 	}
 
 }
