@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wooju.auth.SsafyUserDetails;
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
+import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
@@ -80,4 +82,20 @@ public class ReviewController {
 		return ResponseEntity.status(200).body(ReviewDetailResponseDto.of(200, "Success", review));
 	}
 
+	@PutMapping("")
+	@ApiOperation(value = "리뷰 상세 조회", notes = "해당 리뷰의 상세 정보를 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<? extends BaseResponseDto> getReviewDetail(@ApiIgnore Authentication authentication,
+			@RequestBody @ApiParam(value="리뷰 내용", required=true)ModifyReviewRequestDto dto) throws Exception {
+		
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		int id=userDetails.getUserId();
+		
+		reviewService.modifyReview(id,dto);
+		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
+	}
 }
