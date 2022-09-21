@@ -103,5 +103,13 @@ public class ReviewServiceImpl implements ReviewService{
 			review.setTitle(dto.getTitle());
 		reviewRepository.save(review);
 	}
+	@Override
+	public void deleteReview(int user_id, int id) throws Exception{
+		Optional<Review> reviewTemp= reviewRepository.findById(id);
+		if(!reviewTemp.isPresent()) throw new Exception();
+		Review review = reviewTemp.get();
+		if(review.getUser().getId() != user_id) throw new Exception();
+		reviewRepository.deleteById(id);
+	}
 
 }

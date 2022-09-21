@@ -9,11 +9,9 @@ import com.wooju.entity.User;
 public interface ReviewService {
 
 	ReviewMainDto getMainPage();
-
 	void createReview(User user, ReviewRequestDto dto);
-
 	ReviewDto getReviewDetail(int id);
-
 	void modifyReview(int user_id, ModifyReviewRequestDto dto);
+	void deleteReview(int user_id, int id) throws Exception;
 
 }

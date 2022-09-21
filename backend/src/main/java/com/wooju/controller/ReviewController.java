@@ -3,6 +3,7 @@ package com.wooju.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,7 +84,7 @@ public class ReviewController {
 	}
 
 	@PutMapping("")
-	@ApiOperation(value = "리뷰 상세 조회", notes = "해당 리뷰의 상세 정보를 조회한다.") 
+	@ApiOperation(value = "리뷰 수정", notes = "해당 리뷰의  정보를 수정한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 500, message = "서버 오류")
@@ -96,6 +97,23 @@ public class ReviewController {
 		int id=userDetails.getUserId();
 		
 		reviewService.modifyReview(id,dto);
+		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
+	}
+	
+	@DeleteMapping("/{review_id}")
+	@ApiOperation(value = "리뷰 수정", notes = "해당 리뷰의  정보를 수정한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<? extends BaseResponseDto> delete(@ApiIgnore Authentication authentication,
+			@PathVariable("review_id") int id) throws Exception {
+		
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		int user_id=userDetails.getUserId();
+		
+		reviewService.deleteReview(user_id,id);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
 }
