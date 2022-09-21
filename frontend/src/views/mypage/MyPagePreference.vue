@@ -13,15 +13,18 @@
     </div>
 
     <div class="type-image">
-      <img src="" alt="">
+      <img src="@/assets/images/soju.png" alt="like-soju">
     </div>
   
     <div class="preferance">
+      <div class="abst">
+        깔끔한 맛을 좋아하는 당신!
+      </div>
       <div class="sweet flavor">
-        단 맛을 <span class="highlight">좋아</span>하고,
+        단 맛을 <span class="highlight">싫어</span>하고,
       </div>
       <div class="acidity flavor">
-        신 맛을 <span class="highlight">싫어</span>하고,
+        신 맛을 <span class="highlight">좋아</span>하고,
       </div>
       <div class="proof flavor">
         도수가 <span class="highlight">높은</span> 술을 좋아합니다.

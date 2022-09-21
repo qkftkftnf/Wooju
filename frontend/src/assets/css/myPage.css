@@ -212,7 +212,7 @@
 
 /* myPage: preferance */
 .mypage-inner {
-  margin-top: 40px;
+  margin: 60px 0 120px 0;
 }
 
 .preferance-container .type-main .prefer-type {
@@ -231,6 +231,13 @@
   color: var(--text-highlight-color);
 }
 
+.preferance-container .preferance .abst {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-highlight-color);
+}
+
 .preferance-container .preferance .flavor {
   margin-bottom: 5px;
 }
@@ -238,4 +245,76 @@
 .preferance .flavor .highlight {
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+
+/* myPage: likes */
+.likes-container {
+  margin-top: 40px;
+}
+
+.likes-container .like-wooju {
+  margin: 0 5% 25px 5%;
+  width: 90%;
+  height: 120px;
+  float: left;
+  border-radius: 20px;
+  box-shadow: 1px 4px 4px 4px rgba(0, 0, 0, 0.05);
+  background-color: var(--card-bg-color);
+  position: relative;
+}
+
+.likes-container .like-wooju > div {
+  display: inline-block;
+  text-align: left;
+}
+
+.like-wooju .wooju-img {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.like-wooju .wooju-img img {
+  margin: 0 auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.like-wooju .introduction {
+  margin: 10px 0;
+  width: calc(100% - 120px);
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 120px;
+  font-size: 0.9rem;
+}
+
+.like-wooju .introduction > div {
+  height: 33px;
+  line-height: 33px;
+}
+
+.like-wooju .introduction .title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.like-wooju .introduction .star-icon {
+  color: #FFD634;
+}
+
+.like-wooju .introduction .half {
+  margin-right: 5px;
+}
+
+.like-wooju .introduction .heart {
+  margin: 0 3px 0 5px;
+}
+
+.like-wooju .introduction .heart .heart-icon {
+  color: tomato;
 }
