@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
+import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
+import com.wooju.entity.User;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.ProductRepository;
 import com.wooju.repository.ReviewRepository;
@@ -58,6 +60,20 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		
 		return dto;
+	}
+	@Override
+	public void createReview(User user, ReviewRequestDto dto) {
+		Product product = productRepository.findById(dto.getProduct_id()).get();
+		Review review = Review.builder()
+				.user(user)
+				.product(product)
+				.img(dto.getImg())
+				.title(dto.getTitle())
+				.content(dto.getContent())
+				.star(dto.getStar())
+				.like(0)
+				.build();
+		reviewRepository.save(review);
 	}
 
 }
