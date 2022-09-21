@@ -39,7 +39,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2).useDefaultResponseMessages(false)
         		.globalOperationParameters(global)
         		.select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.wooju"))
                 .paths(PathSelectors.ant("/api/**"))
                 .build()
                 .securityContexts(newArrayList(securityContext()))
