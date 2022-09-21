@@ -16,7 +16,7 @@
       <i class="fas fa-wine-bottle icon"></i>
       <span class="menu-title">우리술 찾기</span>
     </div>
-    <div class="my-page menu-div">
+    <div class="my-page menu-div" @click="linkTo('MyPageMain')">
       <i class="fas fa-user icon"></i>
       <span class="menu-title">마이 페이지</span>
     </div>

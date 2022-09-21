@@ -1,0 +1,241 @@
+/* main tab */
+.tab-template {
+  background-color: var(--highlight-bg-color);
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.mypage-header {
+  width: 100%;
+  max-width: 500px;
+  position: fixed;
+  top: 0;
+  height: 120px;
+  background-color: var(--highlight-bg-color);
+  z-index: 50;
+}
+
+.header-nick {
+  width: 250px;
+  height: 60px;
+  position: absolute;
+  top: 240px;
+  left: calc(50% - 125px);
+  font-size: 1.5rem;
+  /* font-size: 1.2rem; */
+  font-weight: 800;
+  line-height: 60px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.mypage-profile {
+  width: 100%;
+  max-width: 500px;
+  height: 510px;
+  position: fixed;
+  top: 0;
+  background-color: var(--highlight-bg-color);
+  color: var(--text-color);
+  opacity: 1;
+}
+
+.mypage-profile .profile-pic {
+  position: absolute;
+  top: 135px;
+  left: 38%;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  transform-origin: 50% 0;
+  box-shadow: 0px 4px 6px 6px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+.mypage-profile .level {
+  width: 250px;
+  height: 20px;
+  position: absolute;
+  left: calc(50% - 125px);
+  top: 300px;
+  text-align: center;
+}
+
+.mypage-profile .email {
+  width: 250px;
+  height: 20px;
+  position: absolute;
+  top: 320px;
+  left: calc(50% - 125px);
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.mypage-profile .edit-profile {
+  position: absolute;
+  top: 320px;
+  left: calc(50% + 90px);
+}
+
+.mypage-profile .bg-box {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 115px;
+  left: calc(50% - 125px);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, var(--shadow-percentage-03));
+}
+
+.mypage-container {
+  margin-top: 510px;
+  width: 100%;
+  position: relative;
+}
+
+.mypage-tabs {
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  position: absolute;
+  top: -60px;
+  z-index: 100;
+}
+
+.tabs-menu-container {
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  border-radius: 40px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: var(--main-bg-color);
+  box-shadow: 0px -12px 6px -6px rgba(0, 0, 0, 0.05);
+}
+
+.tabs-menu-container .tab {
+  width: 33%;
+  height: 100%;
+  float: left;
+  line-height: 60px;
+  font-size: 1.1rem;
+}
+
+.mypage-tabs .tabs-now {
+  width: 33%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease;
+}
+
+.mypage-tabs .tabs-now .under-bar {
+  width: 70px;
+  height: 3px;
+  background-color: var(--main-color);
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 35px);
+  border-radius: 2px;
+}
+
+.mypage-container {
+  width: 100%;
+  max-width: 500px;
+  height: calc(100vh - 160px);
+  z-index: 100;
+}
+
+.tabs-container {
+  width: 100%;
+  max-width: 500px;
+  height: calc(100% - 30px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.tabs-container .con {
+  width: 300vw;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  float: left;
+  background-color: var(--main-bg-color);
+  transition: all 0.5s ease;
+}
+
+.tabs-container .scroll-false {
+  width: 300vw;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.tabs-container .tab-section {
+  margin: 0;
+  width: 100vw;
+  max-width: 500px;
+  height: 100%;
+  position: absolute;
+  background-color: var(--main-bg-color);
+}
+
+.mypage-type {
+  top: 0;
+  left: 0;
+}
+
+.mypage-likes {
+  top: 0;
+  left: 100vw;
+}
+
+.mypage-reviews {
+  top: 0;
+  left: 200vw;
+}
+
+.tabs-container img {
+  width: 100%;
+}
+
+
+/* myPage: preferance */
+.mypage-inner {
+  margin-top: 40px;
+}
+
+.preferance-container .type-main .prefer-type {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.type-main .prefer-type .nick {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.type-main .person-type {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-highlight-color);
+}
+
+.preferance-container .preferance .flavor {
+  margin-bottom: 5px;
+}
+
+.preferance .flavor .highlight {
+  font-size: 1.1rem;
+  font-weight: 600;
+}

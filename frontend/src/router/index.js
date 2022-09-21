@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import CommunityMain from "../views/community/CommunityMain.vue";
 import CommunityHotReview from "../views/community/CommunityHotReview.vue";
+import MyPageMain from "../views/mypage/MyPageMain.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
       path: "/hotreview",
       component: CommunityHotReview,
     },
+    {
+      name: "MyPageMain",
+      path: "/id",
+      component: MyPageMain,
+    }
   ],
 });
 
