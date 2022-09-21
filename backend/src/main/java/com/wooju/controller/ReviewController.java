@@ -4,16 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wooju.auth.SsafyUserDetails;
+import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
+import com.wooju.dto.response.ReviewDetailResponseDto;
 import com.wooju.dto.response.ReviewMainResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.ReviewService;
@@ -64,4 +67,17 @@ public class ReviewController {
 		
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "success"));
 	}
+	
+	@GetMapping("/{id}")
+	@ApiOperation(value = "리뷰 상세 조회", notes = "해당 리뷰의 상세 정보를 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<? extends BaseResponseDto> getReviewDetail(@ApiIgnore Authentication authentication,
+			@PathVariable("id") int id) throws Exception {
+		ReviewDto review = reviewService.getReviewDetail(id);
+		return ResponseEntity.status(200).body(ReviewDetailResponseDto.of(200, "Success", review));
+	}
+
 }

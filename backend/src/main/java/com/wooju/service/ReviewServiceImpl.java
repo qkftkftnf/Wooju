@@ -3,6 +3,7 @@ package com.wooju.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,6 +75,22 @@ public class ReviewServiceImpl implements ReviewService{
 				.like(0)
 				.build();
 		reviewRepository.save(review);
+	}
+	@Override
+	public ReviewDto getReviewDetail(int id) {
+		Optional<Review> reviewTemp=reviewRepository.findById(id);
+		Review review=reviewTemp.get();
+		ReviewDto dto=ReviewDto.builder()
+				.id(id)
+				.user_id(review.getUser().getId())
+				.product_id(review.getProduct().getId())
+				.img(review.getImg())
+				.title(review.getTitle())
+				.content(review.getContent())
+				.star(review.getStar())
+				.like(review.getLike())
+				.build();
+		return dto;
 	}
 
 }
