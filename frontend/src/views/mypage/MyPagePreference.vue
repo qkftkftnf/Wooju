@@ -2,7 +2,7 @@
   <div class="preferance-container mypage-inner">
     <div class="type-main">
       <span class="name prefer-type">
-        <span class="nick">공사중입니다</span> 님은
+        <span class="nick">닉네임스토리</span> 님은
       </span>
       <span class="person-type prefer-type">
         애호가

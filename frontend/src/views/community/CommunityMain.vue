@@ -32,7 +32,7 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="i in 4" @click="linkTo">
+                <div class="review-card" v-for="i in 3" @click="linkTo">
                   <div class="image">
                     <img src="@/assets/images/pic3.jpg" alt="reviewPic">
                     <span class="like">
