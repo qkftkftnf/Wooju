@@ -85,14 +85,46 @@ public class ReviewServiceImpl implements ReviewService{
 			dto.getGosureview().add(info);
 		}
 		
-		ArrayList<Product> hotproduct =productRepository.findTop3ByOrderByLikeDesc();
-		dto.setHotproduct(hotproduct);
+		dto.setHotproductsreview(new ArrayList<ReviewDto>());
+		ArrayList<Product> hotproduct =productRepository.findTop3ByOrderByReviewDesc();
+		for(Product product: hotproduct) {
+			Optional<Review> reviewTemp=reviewRepository.findFirstByProductIdOrderByIdDesc(product.getId());
+			if(!reviewTemp.isPresent())break;
+			Review review=reviewTemp.get();
+			ReviewDto info= ReviewDto.builder()
+					.id(review.getId())
+					.user_id(review.getUser().getId())
+					.user_nickname(review.getUser().getNickname())
+					.product_id(review.getProduct().getId())
+					.product_name(review.getProduct().getName())
+					.title(review.getTitle())
+					.img(review.getImg())
+					.content(review.getContent())
+					.time(review.getTime())
+					.star(review.getStar())
+					.like(review.getLike())
+					.build();
+			dto.getHotproductsreview().add(info);
+		}
 		
 	
-		dto.setRecentproduct(new ArrayList<Product>());
-		ArrayList<Review> recent =reviewRepository.findTop3ByOrderByProductIdDesc();
+		dto.setRecentreview(new ArrayList<ReviewDto>());
+		ArrayList<Review> recent =reviewRepository.findTop3ByOrderByIdDesc();
 		for(Review review: recent) {
-			dto.getRecentproduct().add(review.getProduct());
+			ReviewDto info= ReviewDto.builder()
+					.id(review.getId())
+					.user_id(review.getUser().getId())
+					.user_nickname(review.getUser().getNickname())
+					.product_id(review.getProduct().getId())
+					.product_name(review.getProduct().getName())
+					.title(review.getTitle())
+					.img(review.getImg())
+					.content(review.getContent())
+					.time(review.getTime())
+					.star(review.getStar())
+					.like(review.getLike())
+					.build();
+			dto.getRecentreview().add(info);
 		}
 		
 		return dto;
@@ -115,6 +147,9 @@ public class ReviewServiceImpl implements ReviewService{
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
 		if(count>5) user.setGosu(true);
+		count=reviewRepository.countByProductId(dto.getProduct_id());
+		product.setReview((int)count);
+		
 		userRepository.save(user);
 		
 	}
@@ -161,6 +196,9 @@ public class ReviewServiceImpl implements ReviewService{
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
 		if(count<=5) user.setGosu(false);
+		count=reviewRepository.countByProductId(review.getProduct().getId());
+		Product product=productRepository.findById(review.getProduct().getId()).get();
+		product.setReview((int)count);
 		userRepository.save(user);
 	}
 	

@@ -10,5 +10,5 @@ import com.wooju.entity.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer>{	
-	ArrayList<Product> findTop3ByOrderByLikeDesc();
+	ArrayList<Product> findTop3ByOrderByReviewDesc();
 }

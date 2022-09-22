@@ -128,4 +128,7 @@ public class Product {
 	@Column(name="like_num", nullable = true)
 	private int like;
 	
+	@Column(name="review_num", nullable = false)
+	private int review;
+	
 }

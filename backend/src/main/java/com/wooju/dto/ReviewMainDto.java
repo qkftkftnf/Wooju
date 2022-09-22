@@ -19,12 +19,12 @@ public class ReviewMainDto {
 	@ApiModelProperty(name="HotReview")
 	ArrayList<ReviewDto> Hotreview;
 	
-	@ApiModelProperty(name="HotProduct")
-	ArrayList<Product> Hotproduct;
+	@ApiModelProperty(name="HotProductsreview")
+	ArrayList<ReviewDto> Hotproductsreview;
 	
 	@ApiModelProperty(name="GosuReview")
 	ArrayList<ReviewDto> Gosureview;
 	
-	@ApiModelProperty(name="RecentProduct")
-	ArrayList<Product> Recentproduct;
+	@ApiModelProperty(name="RecentReview")
+	ArrayList<ReviewDto> Recentreview;
 }

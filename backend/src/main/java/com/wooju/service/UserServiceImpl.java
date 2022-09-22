@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wooju.dto.ProfileDto;
+import com.wooju.dto.ProfileProductDto;
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
@@ -66,18 +67,29 @@ public class UserServiceImpl implements UserService {
 				.review_count(user.getReview_count())
 				.gosu(user.isGosu())
 				.build();
-		dto.setLikeList(new ArrayList<Product>());
+		dto.setLikeList(new ArrayList<ProfileProductDto>());
 		for(LikeProduct likeProduct:user.getLikeproducts()) {
-			dto.getLikeList().add(likeProduct.getProduct());
+			ProfileProductDto info =ProfileProductDto.builder()
+								.id(likeProduct.getProduct().getId())
+								.name(likeProduct.getProduct().getName())
+								.img(likeProduct.getProduct().getImage())
+								.alcohol(likeProduct.getProduct().getAlcohol())
+								.like(likeProduct.getProduct().getLike())
+								.build();
+			dto.getLikeList().add(info);
 		}
 		dto.setReviewList(new ArrayList<ReviewDto>());
 		for(Review review:user.getReviews()) {
 			ReviewDto info = ReviewDto.builder()
 						.id(review.getId())
+						.user_id(review.getUser().getId())
+						.user_nickname(review.getUser().getNickname())
 						.product_id(review.getProduct().getId())
+						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
 						.img(review.getImg())
 						.content(review.getContent())
+						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();

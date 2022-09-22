@@ -32,7 +32,7 @@ public class ProfileDto {
 	@ApiModelProperty(name="맛고수 여부")
 	boolean gosu;
 	@ApiModelProperty(name="좋아요")
-	ArrayList<Product> likeList;
+	ArrayList<ProfileProductDto> likeList;
 	@ApiModelProperty(name="리뷰")
 	ArrayList<ReviewDto> reviewList;
 }
