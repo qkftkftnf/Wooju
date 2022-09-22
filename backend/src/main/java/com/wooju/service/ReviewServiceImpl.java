@@ -24,6 +24,7 @@ import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
 import com.wooju.repository.ReviewRepository;
+import com.wooju.repository.UserRepository;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -39,6 +40,9 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Autowired
 	LikeReviewRepository likeReviewRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Override
 	public ReviewMainDto getMainPage() {
@@ -74,6 +78,7 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		return dto;
 	}
+	@Transactional
 	@Override
 	public void createReview(User user, ReviewRequestDto dto) {
 		Product product = productRepository.findById(dto.getProduct_id()).get();
@@ -88,9 +93,11 @@ public class ReviewServiceImpl implements ReviewService{
 				.like(0)
 				.build();
 		reviewRepository.save(review);
-		long count =reviewRepository.findByUser(user.getId());
+		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
+		System.out.println(count);
 		if(count>5) user.setGosu(true);
+		userRepository.save(user);
 		
 	}
 	
@@ -124,15 +131,18 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
+	@Transactional
 	public void deleteReview(User user, int id) throws Exception{
 		Optional<Review> reviewTemp= reviewRepository.findById(id);
 		if(!reviewTemp.isPresent()) throw new Exception();
 		Review review = reviewTemp.get();
 		if(review.getUser().getId() != user.getId()) throw new Exception();
 		reviewRepository.deleteById(id);
-		long count =reviewRepository.findByUser(user.getId());
+		long count =reviewRepository.countByUserId(user.getId());
+		System.out.println(count);
 		user.setReview_count((int)count);
 		if(count<=5) user.setGosu(false);
+		userRepository.save(user);
 	}
 	
 	@Override
