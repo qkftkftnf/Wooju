@@ -55,7 +55,9 @@ public class ReviewServiceImpl implements ReviewService{
 			ReviewDto info = ReviewDto.builder()
 						.id(review.getId())
 						.user_id(review.getUser().getId())
+						.user_nickname(review.getUser().getNickname())
 						.product_id(review.getProduct().getId())
+						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
 						.img(review.getImg())
 						.content(review.getContent())
@@ -95,7 +97,6 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewRepository.save(review);
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
-		System.out.println(count);
 		if(count>5) user.setGosu(true);
 		userRepository.save(user);
 		
@@ -108,7 +109,9 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewDto dto=ReviewDto.builder()
 				.id(id)
 				.user_id(review.getUser().getId())
+				.user_nickname(review.getUser().getNickname())
 				.product_id(review.getProduct().getId())
+				.product_name(review.getProduct().getName())
 				.img(review.getImg())
 				.title(review.getTitle())
 				.content(review.getContent())
@@ -139,7 +142,6 @@ public class ReviewServiceImpl implements ReviewService{
 		if(review.getUser().getId() != user.getId()) throw new Exception();
 		reviewRepository.deleteById(id);
 		long count =reviewRepository.countByUserId(user.getId());
-		System.out.println(count);
 		user.setReview_count((int)count);
 		if(count<=5) user.setGosu(false);
 		userRepository.save(user);
