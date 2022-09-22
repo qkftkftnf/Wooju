@@ -50,7 +50,7 @@ public class Product {
 	@Column(name = "other_category", nullable = true)
 	private int other_category;
 	
-	@Column(name = "situation_category", nullable = false)
+	@Column(name = "situation_category", nullable = true)
 	private int situation_category;
 	
 	@Column(name = "ingredient", nullable = false)

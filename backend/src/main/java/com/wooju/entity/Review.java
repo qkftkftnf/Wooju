@@ -1,5 +1,7 @@
 package com.wooju.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,6 +44,9 @@ public class Review {
 	
 	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
 	private String content;
+	
+	@Column(name = "time",nullable =false)
+	LocalDate time;
 	
 	@Column(name ="star_rate", nullable =false)
 	private double star;

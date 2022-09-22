@@ -63,6 +63,8 @@ public class UserServiceImpl implements UserService {
 				.gender(user.getGender())
 				.img(user.getImg())
 				.birthdate(user.getBirthdate())
+				.review_count(user.getReview_count())
+				.gosu(user.isGosu())
 				.build();
 		dto.setLikeList(new ArrayList<Product>());
 		for(LikeProduct likeProduct:user.getLikeproducts()) {

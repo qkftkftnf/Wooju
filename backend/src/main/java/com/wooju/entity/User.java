@@ -45,6 +45,12 @@ public class User {
 	@Column(name = "gender", nullable = false)
 	private String gender;
 	
+	@Column(name = "review_count",nullable = false)
+	private int review_count;
+	
+	@Column(name = "gosu", nullable=false)
+	private boolean gosu;
+	
 	@Column(name = "question1", nullable =false)
 	private int question1;
 	

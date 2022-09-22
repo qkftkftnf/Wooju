@@ -1,5 +1,7 @@
 package com.wooju.dto;
 
+import java.time.LocalDate;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -24,6 +26,8 @@ public class ReviewDto {
 	String img;
 	@ApiModelProperty(name="리뷰 내용")
 	String content;
+	@ApiModelProperty(name="작성 시간")
+	LocalDate time;
 	@ApiModelProperty(name="평점")
 	double star;
 	@ApiModelProperty(name="좋아요 수")

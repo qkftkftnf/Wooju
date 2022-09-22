@@ -12,7 +12,7 @@ public interface ReviewService {
 	void createReview(User user, ReviewRequestDto dto);
 	ReviewDto getReviewDetail(int id);
 	void modifyReview(int user_id, ModifyReviewRequestDto dto);
-	void deleteReview(int user_id, int id) throws Exception;
+	void deleteReview(User user, int id) throws Exception;
 	void addLike(int review_id,User user) throws Exception;
 	void deleteLike(int review_id, User user) throws Exception;
 

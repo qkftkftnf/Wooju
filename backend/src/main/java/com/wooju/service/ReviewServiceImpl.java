@@ -1,5 +1,6 @@
 package com.wooju.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +55,7 @@ public class ReviewServiceImpl implements ReviewService{
 						.title(review.getTitle())
 						.img(review.getImg())
 						.content(review.getContent())
+						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();
@@ -81,11 +83,17 @@ public class ReviewServiceImpl implements ReviewService{
 				.img(dto.getImg())
 				.title(dto.getTitle())
 				.content(dto.getContent())
+				.time(LocalDate.now())
 				.star(dto.getStar())
 				.like(0)
 				.build();
 		reviewRepository.save(review);
+		long count =reviewRepository.findByUser(user.getId());
+		user.setReview_count((int)count);
+		if(count>5) user.setGosu(true);
+		
 	}
+	
 	@Override
 	public ReviewDto getReviewDetail(int id) {
 		Optional<Review> reviewTemp=reviewRepository.findById(id);
@@ -97,11 +105,13 @@ public class ReviewServiceImpl implements ReviewService{
 				.img(review.getImg())
 				.title(review.getTitle())
 				.content(review.getContent())
+				.time(review.getTime())
 				.star(review.getStar())
 				.like(review.getLike())
 				.build();
 		return dto;
 	}
+	
 	@Override
 	public void modifyReview(int user_id, ModifyReviewRequestDto dto) {
 		Optional<Review> reviewTemp =reviewRepository.findById(dto.getId());
@@ -112,13 +122,17 @@ public class ReviewServiceImpl implements ReviewService{
 			review.setTitle(dto.getTitle());
 		reviewRepository.save(review);
 	}
+	
 	@Override
-	public void deleteReview(int user_id, int id) throws Exception{
+	public void deleteReview(User user, int id) throws Exception{
 		Optional<Review> reviewTemp= reviewRepository.findById(id);
 		if(!reviewTemp.isPresent()) throw new Exception();
 		Review review = reviewTemp.get();
-		if(review.getUser().getId() != user_id) throw new Exception();
+		if(review.getUser().getId() != user.getId()) throw new Exception();
 		reviewRepository.deleteById(id);
+		long count =reviewRepository.findByUser(user.getId());
+		user.setReview_count((int)count);
+		if(count<=5) user.setGosu(false);
 	}
 	
 	@Override

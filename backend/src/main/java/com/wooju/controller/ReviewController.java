@@ -103,7 +103,7 @@ public class ReviewController {
 	}
 	
 	@DeleteMapping("/{review_id}")
-	@ApiOperation(value = "리뷰 수정", notes = "해당 리뷰의  정보를 수정한다.") 
+	@ApiOperation(value = "리뷰 삭제", notes = "해당 리뷰를 삭제한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 500, message = "서버 오류")
@@ -113,9 +113,9 @@ public class ReviewController {
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
-		int user_id=userDetails.getUserId();
+		User user=userDetails.getUser();
 		
-		reviewService.deleteReview(user_id,id);
+		reviewService.deleteReview(user,id);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
 	

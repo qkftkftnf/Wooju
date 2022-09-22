@@ -11,4 +11,5 @@ import com.wooju.entity.Review;
 public interface ReviewRepository extends JpaRepository<Review, Integer>{	
 	ArrayList<Review> findTop5ByOrderByProductIdDesc();
 	ArrayList<Review> findTop5ByOrderByLikeDesc();
+	Long findByUser(int user);
 }
