@@ -2,8 +2,6 @@ package com.wooju.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -15,7 +13,6 @@ import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
-import com.wooju.entity.LikeProduct;
 import com.wooju.entity.LikeReview;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
@@ -50,7 +47,8 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		
 		dto.setHotreview(new ArrayList<ReviewDto>());
-		ArrayList<Review> hotreview = reviewRepository.findTop5ByOrderByLikeDesc();
+		ArrayList<Review> hotreview = reviewRepository.findTop3ByTimeOrderByLikeDesc(LocalDate.now().minusDays(1));
+		
 		for(Review review: hotreview) {			
 			ReviewDto info = ReviewDto.builder()
 						.id(review.getId())
@@ -68,12 +66,31 @@ public class ReviewServiceImpl implements ReviewService{
 			dto.getHotreview().add(info);
 		}
 		
+		dto.setGosureview(new ArrayList<ReviewDto>());
+		ArrayList<Review> gosureview =reviewRepository.findTop3ByUserGosuOrderByIdDesc(true);
+		for(Review review: gosureview) {			
+			ReviewDto info = ReviewDto.builder()
+						.id(review.getId())
+						.user_id(review.getUser().getId())
+						.user_nickname(review.getUser().getNickname())
+						.product_id(review.getProduct().getId())
+						.product_name(review.getProduct().getName())
+						.title(review.getTitle())
+						.img(review.getImg())
+						.content(review.getContent())
+						.time(review.getTime())
+						.star(review.getStar())
+						.like(review.getLike())
+						.build();
+			dto.getGosureview().add(info);
+		}
 		
-		ArrayList<Product> hotproduct =productRepository.findTop5ByOrderByLikeDesc();
+		ArrayList<Product> hotproduct =productRepository.findTop3ByOrderByLikeDesc();
 		dto.setHotproduct(hotproduct);
 		
+	
 		dto.setRecentproduct(new ArrayList<Product>());
-		ArrayList<Review> recent =reviewRepository.findTop5ByOrderByProductIdDesc();
+		ArrayList<Review> recent =reviewRepository.findTop3ByOrderByProductIdDesc();
 		for(Review review: recent) {
 			dto.getRecentproduct().add(review.getProduct());
 		}
