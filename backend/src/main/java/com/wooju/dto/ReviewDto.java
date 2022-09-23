@@ -1,6 +1,7 @@
 package com.wooju.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +30,7 @@ public class ReviewDto {
 	@ApiModelProperty(name="리뷰 제목")
 	String title;
 	@ApiModelProperty(name="사진")
-	String img;
+	ArrayList<String> img;
 	@ApiModelProperty(name="리뷰 내용")
 	String content;
 	@ApiModelProperty(name="작성 시간")

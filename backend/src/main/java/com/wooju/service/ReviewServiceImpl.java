@@ -9,17 +9,21 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wooju.dto.ProfileProductDto;
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
+import com.wooju.entity.LikeProduct;
 import com.wooju.entity.LikeReview;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
+import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
+import com.wooju.repository.ReviewImgRepository;
 import com.wooju.repository.ReviewRepository;
 import com.wooju.repository.UserRepository;
 
@@ -41,6 +45,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	ReviewImgRepository reviewImgRepository;
+	
 	@Override
 	public ReviewMainDto getMainPage() {
 		ReviewMainDto dto =ReviewMainDto.builder().build();
@@ -57,12 +64,16 @@ public class ReviewServiceImpl implements ReviewService{
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
-						.img(review.getImg())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();
+			info.setImg(new ArrayList<String>());
+			ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+			for(ReviewImg img:imgs) {
+				info.getImg().add(img.getImg());
+			}
 			dto.getHotreview().add(info);
 		}
 		
@@ -76,12 +87,16 @@ public class ReviewServiceImpl implements ReviewService{
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
-						.img(review.getImg())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();
+			info.setImg(new ArrayList<String>());
+			ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+			for(ReviewImg img:imgs) {
+				info.getImg().add(img.getImg());
+			}
 			dto.getGosureview().add(info);
 		}
 		
@@ -98,12 +113,16 @@ public class ReviewServiceImpl implements ReviewService{
 					.product_id(review.getProduct().getId())
 					.product_name(review.getProduct().getName())
 					.title(review.getTitle())
-					.img(review.getImg())
 					.content(review.getContent())
 					.time(review.getTime())
 					.star(review.getStar())
 					.like(review.getLike())
 					.build();
+			info.setImg(new ArrayList<String>());
+			ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+			for(ReviewImg img:imgs) {
+				info.getImg().add(img.getImg());
+			}
 			dto.getHotproductsreview().add(info);
 		}
 		
@@ -118,12 +137,16 @@ public class ReviewServiceImpl implements ReviewService{
 					.product_id(review.getProduct().getId())
 					.product_name(review.getProduct().getName())
 					.title(review.getTitle())
-					.img(review.getImg())
 					.content(review.getContent())
 					.time(review.getTime())
 					.star(review.getStar())
 					.like(review.getLike())
 					.build();
+			info.setImg(new ArrayList<String>());
+			ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+			for(ReviewImg img:imgs) {
+				info.getImg().add(img.getImg());
+			}
 			dto.getRecentreview().add(info);
 		}
 		
@@ -136,7 +159,6 @@ public class ReviewServiceImpl implements ReviewService{
 		Review review = Review.builder()
 				.user(user)
 				.product(product)
-				.img(dto.getImg())
 				.title(dto.getTitle())
 				.content(dto.getContent())
 				.time(LocalDate.now())
@@ -144,6 +166,16 @@ public class ReviewServiceImpl implements ReviewService{
 				.like(0)
 				.build();
 		reviewRepository.save(review);
+		for(String st:dto.getImg()) {
+		ReviewImg reviewimg=ReviewImg.builder()
+				.user(user)
+				.img(st)
+				.review(review)
+				.build();
+		reviewImgRepository.save(reviewimg);
+		}
+		
+				
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
 		if(count>5) user.setGosu(true);
@@ -164,13 +196,17 @@ public class ReviewServiceImpl implements ReviewService{
 				.user_nickname(review.getUser().getNickname())
 				.product_id(review.getProduct().getId())
 				.product_name(review.getProduct().getName())
-				.img(review.getImg())
 				.title(review.getTitle())
 				.content(review.getContent())
 				.time(review.getTime())
 				.star(review.getStar())
 				.like(review.getLike())
 				.build();
+		dto.setImg(new ArrayList<String>());
+		ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+		for(ReviewImg img:imgs) {
+			dto.getImg().add(img.getImg());
+		}
 		return dto;
 	}
 	
@@ -179,10 +215,10 @@ public class ReviewServiceImpl implements ReviewService{
 		Optional<Review> reviewTemp =reviewRepository.findById(dto.getId());
 		Review review=reviewTemp.get();
 			review.setStar(dto.getStar());
-			review.setImg(dto.getImg());
 			review.setContent(dto.getContent());
 			review.setTitle(dto.getTitle());
 		reviewRepository.save(review);
+		
 	}
 	
 	@Override
@@ -192,6 +228,8 @@ public class ReviewServiceImpl implements ReviewService{
 		if(!reviewTemp.isPresent()) throw new Exception();
 		Review review = reviewTemp.get();
 		if(review.getUser().getId() != user.getId()) throw new Exception();
+		likeReviewRepository.deleteByReviewIdAndUserId(id,user.getId());
+		reviewImgRepository.deleteByUserIdAndReviewId(user.getId(),id);
 		reviewRepository.deleteById(id);
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
@@ -244,12 +282,16 @@ public class ReviewServiceImpl implements ReviewService{
 							.product_id(review.getProduct().getId())
 							.product_name(review.getProduct().getName())
 							.title(review.getTitle())
-							.img(review.getImg())
 							.content(review.getContent())
 							.time(review.getTime())
 							.star(review.getStar())
 							.like(review.getLike())
 							.build();
+				info.setImg(new ArrayList<String>());
+				ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+				for(ReviewImg img:imgs) {
+					info.getImg().add(img.getImg());
+				}
 				list.add(info);
 			}
 		}else if(value.equals("gosureview")) {
@@ -262,12 +304,16 @@ public class ReviewServiceImpl implements ReviewService{
 							.product_id(review.getProduct().getId())
 							.product_name(review.getProduct().getName())
 							.title(review.getTitle())
-							.img(review.getImg())
 							.content(review.getContent())
 							.time(review.getTime())
 							.star(review.getStar())
 							.like(review.getLike())
 							.build();
+				info.setImg(new ArrayList<String>());
+				ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+				for(ReviewImg img:imgs) {
+					info.getImg().add(img.getImg());
+				}
 				list.add(info);
 			}
 		}else if(value.equals("recentreview")){
@@ -280,12 +326,16 @@ public class ReviewServiceImpl implements ReviewService{
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
-						.img(review.getImg())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();
+				info.setImg(new ArrayList<String>());
+				ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+				for(ReviewImg img:imgs) {
+					info.getImg().add(img.getImg());
+				}
 				list.add(info);
 			}
 		}else if(value.equals("Hotproductsreview")){
@@ -301,12 +351,16 @@ public class ReviewServiceImpl implements ReviewService{
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
-						.img(review.getImg())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();
+				info.setImg(new ArrayList<String>());
+				ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+				for(ReviewImg img:imgs) {
+					info.getImg().add(img.getImg());
+				}
 				list.add(info);
 			}
 		}else {

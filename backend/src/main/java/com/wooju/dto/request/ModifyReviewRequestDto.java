@@ -1,6 +1,8 @@
 package com.wooju.dto.request;
 
 
+import java.util.ArrayList;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -13,9 +15,6 @@ public class ModifyReviewRequestDto {
 
 	@ApiModelProperty(name="id")
 	int id;
-	
-	@ApiModelProperty(name="img")
-	String img;
 	
 	@ApiModelProperty(name="title", example="제목")
 	String title;

@@ -14,7 +14,9 @@ import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
+import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
+import com.wooju.repository.ReviewImgRepository;
 import com.wooju.repository.UserRepository;
 
 
@@ -23,6 +25,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	ReviewImgRepository reviewImgRepository;
 	
 	@Override
 	public User getUserByEmail(String email, String usertype) throws Exception {
@@ -87,12 +91,16 @@ public class UserServiceImpl implements UserService {
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
-						.img(review.getImg())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
 						.like(review.getLike())
 						.build();
+			info.setImg(new ArrayList<String>());
+			ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+			for(ReviewImg img:imgs) {
+				info.getImg().add(img.getImg());
+			}
 			dto.getReviewList().add(info);
 		}
 		return dto;

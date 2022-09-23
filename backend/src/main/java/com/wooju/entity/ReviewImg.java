@@ -22,35 +22,22 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Review {
+public class ReviewImg {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false)
-	private Product product;
+	@JoinColumn(name = "review_id", nullable = false)
+	private Review review;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
-	
-	@Column(name = "title",nullable=false)
-	private String title;
-	
-	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
-	private String content;
-	
-	@Column(name = "time",nullable =false)
-	LocalDate time;
-	
-	@Column(name ="star_rate", nullable =false)
-	private double star;
-	
-	@Column(name="like_num")
-	private int like;
-	
+	@Column(name = "img", nullable=false)
+	private String img;
+		
 
 }

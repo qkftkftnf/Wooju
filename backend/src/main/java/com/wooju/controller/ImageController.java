@@ -1,6 +1,8 @@
 package com.wooju.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wooju.dto.response.BaseResponseDto;
 import com.wooju.dto.response.FirstLoginResponseDto;
+import com.wooju.dto.response.ImageListResponseDto;
 import com.wooju.dto.response.ImageResponseDto;
 import com.wooju.service.S3upload;
 
@@ -40,5 +43,16 @@ public class ImageController {
 		return ResponseEntity.status(200).body(ImageResponseDto.of(200,"success", img));
 	}
 	
+	@PostMapping("/uploads")
+	@ApiOperation(value="이미지 등록", notes ="새 이미지 업로드")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<? extends BaseResponseDto> uploads (@RequestPart ArrayList<MultipartFile> file) throws IOException{
+		ArrayList<String> imgs=s3Upload.uploads(file);
+		
+		return ResponseEntity.status(200).body(ImageListResponseDto.of(200,"success", imgs));
+	}
 	
 }
