@@ -1,5 +1,7 @@
 package com.wooju.service;
 
+import java.util.ArrayList;
+
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
@@ -15,5 +17,6 @@ public interface ReviewService {
 	void deleteReview(User user, int id) throws Exception;
 	void addLike(int review_id,User user) throws Exception;
 	void deleteLike(int review_id, User user) throws Exception;
+	ArrayList<ReviewDto> getmorelistPage(String value);
 
 }

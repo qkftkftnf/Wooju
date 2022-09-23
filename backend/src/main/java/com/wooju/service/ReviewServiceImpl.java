@@ -231,5 +231,88 @@ public class ReviewServiceImpl implements ReviewService{
 		review.get().setLike((int)num);
 		
 	}
+	@Override
+	public ArrayList<ReviewDto> getmorelistPage(String value) {
+		ArrayList<ReviewDto> list= new ArrayList<ReviewDto>();
+		if(value.equals("hotreview")) {
+			ArrayList<Review> hotreview = reviewRepository.findTop10ByTimeOrderByLikeDesc(LocalDate.now().minusDays(1));
+			for(Review review: hotreview) {			
+				ReviewDto info = ReviewDto.builder()
+							.id(review.getId())
+							.user_id(review.getUser().getId())
+							.user_nickname(review.getUser().getNickname())
+							.product_id(review.getProduct().getId())
+							.product_name(review.getProduct().getName())
+							.title(review.getTitle())
+							.img(review.getImg())
+							.content(review.getContent())
+							.time(review.getTime())
+							.star(review.getStar())
+							.like(review.getLike())
+							.build();
+				list.add(info);
+			}
+		}else if(value.equals("gosureview")) {
+			ArrayList<Review> gosureview =reviewRepository.findTop10ByUserGosuOrderByIdDesc(true);
+			for(Review review: gosureview) {			
+				ReviewDto info = ReviewDto.builder()
+							.id(review.getId())
+							.user_id(review.getUser().getId())
+							.user_nickname(review.getUser().getNickname())
+							.product_id(review.getProduct().getId())
+							.product_name(review.getProduct().getName())
+							.title(review.getTitle())
+							.img(review.getImg())
+							.content(review.getContent())
+							.time(review.getTime())
+							.star(review.getStar())
+							.like(review.getLike())
+							.build();
+				list.add(info);
+			}
+		}else if(value.equals("recentreview")){
+			ArrayList<Review> recent =reviewRepository.findTop10ByOrderByIdDesc();
+			for(Review review: recent) {
+				ReviewDto info= ReviewDto.builder()
+						.id(review.getId())
+						.user_id(review.getUser().getId())
+						.user_nickname(review.getUser().getNickname())
+						.product_id(review.getProduct().getId())
+						.product_name(review.getProduct().getName())
+						.title(review.getTitle())
+						.img(review.getImg())
+						.content(review.getContent())
+						.time(review.getTime())
+						.star(review.getStar())
+						.like(review.getLike())
+						.build();
+				list.add(info);
+			}
+		}else if(value.equals("Hotproductsreview")){
+			ArrayList<Product> hotproduct =productRepository.findTop10ByOrderByReviewDesc();
+			for(Product product: hotproduct) {
+				Optional<Review> reviewTemp=reviewRepository.findFirstByProductIdOrderByIdDesc(product.getId());
+				if(!reviewTemp.isPresent())break;
+				Review review=reviewTemp.get();
+				ReviewDto info= ReviewDto.builder()
+						.id(review.getId())
+						.user_id(review.getUser().getId())
+						.user_nickname(review.getUser().getNickname())
+						.product_id(review.getProduct().getId())
+						.product_name(review.getProduct().getName())
+						.title(review.getTitle())
+						.img(review.getImg())
+						.content(review.getContent())
+						.time(review.getTime())
+						.star(review.getStar())
+						.like(review.getLike())
+						.build();
+				list.add(info);
+			}
+		}else {
+			return null;
+		}
+		return list;
+	}
 
 }

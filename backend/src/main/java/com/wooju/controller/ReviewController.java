@@ -1,5 +1,7 @@
 package com.wooju.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -22,6 +24,7 @@ import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
 import com.wooju.dto.response.ReviewDetailResponseDto;
+import com.wooju.dto.response.ReviewListResponseDto;
 import com.wooju.dto.response.ReviewMainResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.ReviewService;
@@ -52,6 +55,19 @@ public class ReviewController {
 		ReviewMainDto dto=reviewService.getMainPage();
 		
 		return ResponseEntity.status(200).body(ReviewMainResponseDto.of(200, "Success",dto));
+	}
+	
+	@GetMapping("/more/{value}")
+	@ApiOperation(value="커뮤니티 메인", notes ="커뮤니티 메인 리스트 조회")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<? extends BaseResponseDto> getmorelist(@PathVariable("value") String value){
+		
+		ArrayList<ReviewDto> list=reviewService.getmorelistPage(value);
+		
+		return ResponseEntity.status(200).body(ReviewListResponseDto.of(200, "Success",list));
 	}
 	
 	
