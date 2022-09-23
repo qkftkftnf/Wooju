@@ -1,7 +1,7 @@
 <template>
-  <div class="tap-template container">
-    <div class="tap-header">
-      <div class="tap-title">
+  <div class="tab-template container">
+    <div class="tab-header">
+      <div class="tab-title">
         커뮤니티
       </div>
       <div class="mode-toggle">
@@ -32,7 +32,7 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="i in 4" @click="linkTo">
+                <div class="review-card" v-for="i in 3" @click="linkTo">
                   <div class="image">
                     <img src="@/assets/images/pic3.jpg" alt="reviewPic">
                     <span class="like">
@@ -85,12 +85,12 @@ onMounted(() => {
     position.value = innerContainer[0].getBoundingClientRect()
 
     if (position.value.top < 60) {
-      document.querySelector(".tap-header .tap-title").style.top = "0";
-      document.querySelector(".tap-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.05)";
+      document.querySelector(".tab-header .tab-title").style.top = "0";
+      document.querySelector(".tab-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.05)";
     } else {
-      document.querySelector(".tap-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.0)";
-      document.querySelector(".tap-header .tap-title").style.top = `${50 * (position.value.top / 450)}px`;
-      document.querySelector(".tap-header .tap-title").style.fontSize = `${1.2 + position.value.top / 450}rem`;
+      document.querySelector(".tab-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.0)";
+      document.querySelector(".tab-header .tab-title").style.top = `${50 * (position.value.top / 450)}px`;
+      document.querySelector(".tab-header .tab-title").style.fontSize = `${1.2 + position.value.top / 450}rem`;
       document.querySelector(".header-content .content-img").style.opacity = `${((position.value.top - 260) / 250 )}`;
       document.querySelector(".header-content .content-img").style.scale = `${((position.value.top - 60) /  390)}`;
       document.querySelector(".header-content .header-intro").style.opacity = `${((position.value.top - 260) / 190 )}`;
