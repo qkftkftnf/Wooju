@@ -11,17 +11,48 @@
     </div>
     <div class="header-content">
       탭메뉴 이미지
-      <img class="content-img" src="" alt="">
+      <img class="content-img" src="@/assets/images/우주헤더.png" alt="">
       탭메뉴 설명
-      <p class="header-intro">모든 우-주 찾아보기</p>
+      <!-- <p class="header-intro">모든 우-주 찾아보기</p> -->
     </div>
     
     <div class="inner-container">
       <div class="inner-section">
         <!-- 본문 입력 -->
         <div class="woojoo-searchbar">
-          <div >
-            
+          <div class="category-title">종류별로 보기</div>
+          <div class="category-list">
+            <div class="category-box">
+              <img class="image" src="@/assets/images/탁주.png" alt="">
+              <p>소주</p>
+            </div>
+            <div class="category-box">
+              <img class="image" src="@/assets/images/탁주.png" alt="">
+              <p>탁주</p>
+            </div>
+            <div class="category-box">
+              <img class="image" src="@/assets/images/탁주.png" alt="">
+              <p>과실주</p>
+            </div>
+            <div class="category-box">
+              <img class="image" src="@/assets/images/탁주.png" alt="">
+              <p>증류주</p>
+            </div>
+          </div>
+        </div>
+        <div class="woojo-list">
+          <div class="woojoo-list-box" v-for="i in 4">
+            <div class="image">
+              <img src="@/assets/images/woojoo1.jpg" alt="">
+              <span class="like">
+                <i class="fas fa-heart heart"></i> 73
+              </span>
+            </div>
+            <div class="content">
+              <p>제목 : 옛날 술</p>
+              <p>별점 : 4.3</p>
+              <p>상세설명 : 이 술은 옛날부터 전해져 내려오는 어쩌구 저쩌구</p>
+            </div>
           </div>
         </div>
         <div>
