@@ -149,6 +149,7 @@ img {
 .tab-template {
   background-color: var(--highlight-bg-color);
   padding-bottom: 40px;
+  position: relative;
 }
 
 .tab-header {

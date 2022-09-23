@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-template container">
+  <div class="tab-template profile-container">
     <div class="mypage-header">
       <div class="header-nick">
         닉네임스토리
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="tabs-container">
-        <div class="con">
+        <div class="tab-control">
           <!-- tab1 -->
           <div class="tab-section mypage-type">
             <el-scrollbar>
@@ -81,17 +81,15 @@ const position = ref(0)
 onMounted(() => {
   const mypageTabs = document.querySelector(".mypage-container")
   window.onscroll = function() {scrollTabMenu()};
-  const hey = document.getElementsByClassName("tab-section")
+  position.value = mypageTabs.getBoundingClientRect().top
+  
   function scrollTabMenu() {
-    position.value = mypageTabs.getBoundingClientRect().top
 
     if (position.value <= 120) {
-      // document.querySelector(".mypage-tabs .tabs-menu-container").style.top = "0px"
       document.querySelector(".mypage-header .header-nick").style.top = "0"
       document.querySelector(".mypage-header .header-nick").style.fontSize = "1.2rem"
       document.querySelector(".scroll-false").style.display = "none"
     } else {
-      // document.querySelector(".mypage-tabs .tabs-menu-container").style.top = `${position.value - 120}px`
       document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
       document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
       document.querySelector(".mypage-profile .bg-box").style.opacity = `${(position.value - 350) / 160}`
@@ -106,18 +104,34 @@ onMounted(() => {
 })
 
 function tabPosition(tabName) {
-  if (tabName == "mypage-type") {
-    document.querySelector(".tabs-container .con").style.left = "0"
-    document.querySelector(".tabs-container .scroll-false").style.left = "0"
-    document.querySelector(".tabs-now").style.left = "0"
-  } else if (tabName == "mypage-likes") {
-    document.querySelector(".tabs-container .con").style.left = "-100vw"
-    document.querySelector(".tabs-container .scroll-false").style.left = "-100vw"
-    document.querySelector(".tabs-now").style.left = "33%"
-  } else if (tabName == "mypage-reviews") {
-    document.querySelector(".tabs-container .con").style.left = "-200vw"
-    document.querySelector(".tabs-container .scroll-false").style.left = "-200vw"
-    document.querySelector(".tabs-now").style.left = "66%"
+  if (window.innerWidth >= 500) {
+    if (tabName == "mypage-type") {
+      document.querySelector(".tabs-container .tab-control").style.margin = "0 0 0 0"
+      document.querySelector(".tabs-container .scroll-false").style.left = "0"
+      document.querySelector(".tabs-now").style.left = "0"
+    } else if (tabName == "mypage-likes") {
+      document.querySelector(".tabs-container .tab-control").style.margin = "0 0 0 -500px"
+      document.querySelector(".tabs-container .scroll-false").style.left = "-500px"
+      document.querySelector(".tabs-now").style.left = "33%"
+    } else if (tabName == "mypage-reviews") {
+      document.querySelector(".tabs-container .tab-control").style.margin = "0 0 0 -1000px"
+      document.querySelector(".tabs-container .scroll-false").style.left = "-1000px"
+      document.querySelector(".tabs-now").style.left = "66%"
+    }
+  } else {
+    if (tabName == "mypage-type") {
+      document.querySelector(".tabs-container .tab-control").style.margin = "0 0 0 0"
+      document.querySelector(".tabs-container .scroll-false").style.left = "0"
+      document.querySelector(".tabs-now").style.left = "0"
+    } else if (tabName == "mypage-likes") {
+      document.querySelector(".tabs-container .tab-control").style.margin = "0 0 0 -100vw"
+      document.querySelector(".tabs-container .scroll-false").style.left = "-100vw"
+      document.querySelector(".tabs-now").style.left = "33%"
+    } else if (tabName == "mypage-reviews") {
+      document.querySelector(".tabs-container .tab-control").style.margin = "0 0 0 -200vw"
+      document.querySelector(".tabs-container .scroll-false").style.left = "-200vw"
+      document.querySelector(".tabs-now").style.left = "66%"
+    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="likes-container">
+  <div class="likes-container mypage-inner">
     <div class="like-wooju" v-for="i in 8">
       <div class="wooju-img">
         <img src="https://thesool.com/common/imageView.do?targetId=PR00000106&targetNm=PRODUCT" alt="">
