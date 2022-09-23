@@ -22,6 +22,9 @@ public class ModifyReviewRequestDto {
 	@ApiModelProperty(name="content", example="내용")
 	String content;
 	
+	@ApiModelProperty(name="img")
+	ArrayList<String> img;
+	
 	@ApiModelProperty(name="별점", example="3.5")
 	double star;
 }

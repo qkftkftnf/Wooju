@@ -1,5 +1,6 @@
 package com.wooju.service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -30,6 +31,9 @@ import com.wooju.repository.UserRepository;
 @Service
 public class ReviewServiceImpl implements ReviewService{
 
+	@Autowired
+	S3upload s3upload;
+	
 	@Autowired
 	ReviewRepository reviewRepository;
 	
@@ -211,14 +215,29 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public void modifyReview(int user_id, ModifyReviewRequestDto dto) {
+	@Transactional
+	public void modifyReview(User user, ModifyReviewRequestDto dto) throws IOException {
 		Optional<Review> reviewTemp =reviewRepository.findById(dto.getId());
 		Review review=reviewTemp.get();
 			review.setStar(dto.getStar());
 			review.setContent(dto.getContent());
 			review.setTitle(dto.getTitle());
 		reviewRepository.save(review);
-		
+		ArrayList<ReviewImg> list=reviewImgRepository.findByUserIdAndReviewId(user.getId(), review.getId());
+		ArrayList<String> img=new ArrayList<>();
+		for(ReviewImg imgs:list) {
+			img.add(imgs.getImg());
+		}
+		s3upload.deletefile(img);
+		reviewImgRepository.deleteByUserIdAndReviewId(user.getId(), review.getId());
+		for(String st:dto.getImg()) {
+			ReviewImg reviewimg=ReviewImg.builder()
+					.user(user)
+					.img(st)
+					.review(review)
+					.build();
+			reviewImgRepository.save(reviewimg);
+		}
 	}
 	
 	@Override
@@ -228,6 +247,12 @@ public class ReviewServiceImpl implements ReviewService{
 		if(!reviewTemp.isPresent()) throw new Exception();
 		Review review = reviewTemp.get();
 		if(review.getUser().getId() != user.getId()) throw new Exception();
+		ArrayList<ReviewImg> list=reviewImgRepository.findByUserIdAndReviewId(user.getId(), id);
+		ArrayList<String> img=new ArrayList<>();
+		for(ReviewImg imgs:list) {
+			img.add(imgs.getImg());
+		}
+		s3upload.deletefile(img);
 		likeReviewRepository.deleteByReviewIdAndUserId(id,user.getId());
 		reviewImgRepository.deleteByUserIdAndReviewId(user.getId(),id);
 		reviewRepository.deleteById(id);

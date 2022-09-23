@@ -2,6 +2,7 @@ package com.wooju.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,9 @@ public class S3uploadImpl implements S3upload{
 	 @Value("${cloud.aws.s3.bucket}")
 	 private String bucket;
 	 
+	 @Value("${cloud.aws.region.static}")
+	 private String region;
+	 
 	@Autowired
 	AmazonS3 amazonS3;
 
@@ -30,7 +34,6 @@ public class S3uploadImpl implements S3upload{
 	        objMeta.setContentLength(multipartFile.getInputStream().available());
 
 	        amazonS3.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
-
 	        return amazonS3.getUrl(bucket, s3FileName).toString();
 	}
 
@@ -50,6 +53,14 @@ public class S3uploadImpl implements S3upload{
 		}
         return fileNameList;
 
+	}
+
+	@Override
+	public void deletefile(ArrayList<String> file) throws IOException {
+		for(String img:file) {
+			String st[]=img.split("/");
+			amazonS3.deleteObject(bucket, st[3]);
+		}
 	}
 	
 }

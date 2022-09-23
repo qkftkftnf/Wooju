@@ -105,14 +105,14 @@ public class ReviewController {
         @ApiResponse(code = 200, message = "성공"),
         @ApiResponse(code = 500, message = "서버 오류")
     })
-	public ResponseEntity<? extends BaseResponseDto> getReviewDetail(@ApiIgnore Authentication authentication,
+	public ResponseEntity<? extends BaseResponseDto> modifyReview(@ApiIgnore Authentication authentication,
 			@RequestBody @ApiParam(value="리뷰 내용", required=true)ModifyReviewRequestDto dto) throws Exception {
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
-		int id=userDetails.getUserId();
+		User user=userDetails.getUser();
 		
-		reviewService.modifyReview(id,dto);
+		reviewService.modifyReview(user,dto);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
 	
