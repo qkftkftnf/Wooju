@@ -42,7 +42,7 @@
 ## 시스템 아키텍쳐
 ![image](https://user-images.githubusercontent.com/97646054/190904702-fe9b78fa-056e-47f9-a371-8ff0b9292d8b.png)
 
-## [와이어프레임] (https://www.figma.com/file/N6jsgs8GukRfWqACKczNjJ/%EC%9A%B0%EC%A3%BCWooJu?node-id=0%3A1)
+## [와이어프레임](https://www.figma.com/file/N6jsgs8GukRfWqACKczNjJ/%EC%9A%B0%EC%A3%BCWooJu?node-id=0%3A1)
 
 
 ## 개발 환경 및 기술 스택
