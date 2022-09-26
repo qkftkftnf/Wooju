@@ -1,5 +1,14 @@
-from sqlalchemy import Column, VARCHAR, BigInteger, SmallInteger, Float
+from sqlalchemy import Column, VARCHAR, BigInteger, SmallInteger, Float, ForeignKey, Table
+from sqlalchemy.orm import relationship
 from .database import Base
+
+product_food = Table("product_food", Base.metadata,
+                       Column("product_id", ForeignKey("product.id"), primary_key=True),
+                       Column("food_id", ForeignKey("food.id"), primary_key=True))
+
+product_maker = Table("product_maker", Base.metadata,
+                       Column("product_id", ForeignKey("product.id"), primary_key=True),
+                       Column("maker_id", ForeignKey("maker.id"), primary_key=True))
 
 class Product(Base):
 	__tablename__ = 'product'
@@ -43,6 +52,12 @@ class Product(Base):
 	nut_category = Column(SmallInteger, nullable=True)
 	other_category = Column(SmallInteger, nullable=True)
 	situation_category = Column(SmallInteger, nullable=True)
+	foods = relationship("Food",
+						secondary=product_food,
+						back_populates="products")
+	makers = relationship("Maker",
+						secondary=product_maker,
+						back_populates="products")
 
 
 class Food(Base):
@@ -51,6 +66,10 @@ class Food(Base):
 	id = Column(BigInteger, primary_key=True, autoincrement=True)
 	img = Column(VARCHAR(2048), nullable=False)
 	name = Column(VARCHAR(255), nullable=False)
+	products = relationship("Product",
+					secondary=product_food,
+					back_populates="foods")
+
 
 class Maker(Base):
 	__tablename__ = 'maker'
@@ -60,4 +79,7 @@ class Maker(Base):
 	ceo_name = Column(VARCHAR(255), nullable=False)
 	name = Column(VARCHAR(255), nullable=False)
 	official_name = Column(VARCHAR(255), nullable=False)
+	products = relationship("Product",
+						secondary=product_maker,
+						back_populates="makers")
 

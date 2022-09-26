@@ -1,8 +1,35 @@
+from re import U
 from typing import List, Union
 
 from pydantic import BaseModel
 
 
+class FoodBase(BaseModel):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class Food(FoodBase):
+    name: str
+    img: Union[str, None] = None
+
+
+class MakerBase(BaseModel):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class Maker(MakerBase):
+    name: str
+    official_name: str
+    address: str
+    ceo_name: str
+
+    
 class ProductBase(BaseModel):
     id: int
     name: str
@@ -19,6 +46,8 @@ class ProductBase(BaseModel):
 class ProductDetail(ProductBase):
     subtext: Union[str, None] = None
     award: Union[str, None] = None
+    foods: List[Food]
+    makers: List[Maker]
 
     acidity: int
     weight: int
@@ -32,36 +61,3 @@ class ProductDetail(ProductBase):
     spicy: int
     sweet: int
     tannin: int
-
-
-class FoodBase(BaseModel):
-    email: str
-
-
-class FoodCreate(FoodBase):
-    password: str
-
-
-class Food(FoodBase):
-    id: int
-    # is_active: bool
-    # items: List[Item] = []
-
-    class Config:
-        orm_mode = True
-
-class MakerBase(BaseModel):
-    email: str
-
-
-class MakerCreate(MakerBase):
-    password: str
-
-
-class Maker(MakerBase):
-    id: int
-    # is_active: bool
-    # items: List[Item] = []
-
-    class Config:
-        orm_mode = True
