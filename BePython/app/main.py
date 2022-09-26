@@ -3,8 +3,23 @@ from typing import List, Union
 from fastapi import Depends, APIRouter, FastAPI, HTTPException, responses, Query
 from fastapi_pagination import Page, add_pagination, paginate
 from sqlalchemy.orm import Session
+from starlette.middleware.cors import CORSMiddleware
 
 from . import crud, models, database, schemas
+
+origins = [
+    "*"
+]
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=[""],
+)
 
 models.Base.metadata.create_all(bind=database.engine)
 
@@ -14,8 +29,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-app = FastAPI()
 
 @app.get("/")
 def main():
