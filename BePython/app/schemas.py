@@ -11,6 +11,14 @@ class ProductBase(BaseModel):
     type: str
     volume: str
     alcohol: float
+    
+    class Config:
+        orm_mode = True
+    
+
+class ProductDetail(ProductBase):
+    subtext: Union[str, None] = None
+    award: Union[str, None] = None
 
     acidity: int
     weight: int
@@ -25,18 +33,6 @@ class ProductBase(BaseModel):
     sweet: int
     tannin: int
 
-    
-
-class Product(ProductBase):
-    subtext: Union[str, None] = None
-
-    class Config:
-        orm_mode = True
-
-class ProductList(ProductBase):
-
-    class Config:
-        orm_mode = True
 
 class FoodBase(BaseModel):
     email: str
