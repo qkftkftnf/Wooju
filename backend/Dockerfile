@@ -6,6 +6,6 @@ FROM openjdk:8-jdk
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 
-# 8081 포트 사용
-EXPOSE 8081
+# 8181 포트 사용
+EXPOSE 8181
 ENTRYPOINT ["java","-jar","/app.jar"]g
