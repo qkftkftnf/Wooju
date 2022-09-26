@@ -1,10 +1,10 @@
-from typing import List
+from typing import List, Union
 
-from fastapi import Depends, APIRouter, FastAPI, HTTPException, responses
+from fastapi import Depends, APIRouter, FastAPI, HTTPException, responses, Query
 from fastapi_pagination import Page, add_pagination, paginate
 from sqlalchemy.orm import Session
 
-import crud, models, database, schemas
+from . import crud, models, database, schemas
 
 models.Base.metadata.create_all(bind=database.engine)
 
@@ -22,17 +22,18 @@ def main():
     return responses.RedirectResponse(url="/docs/")
 
 
-@app.get("/product/", tags=["data"], response_model=Page[schemas.Product])
+@app.get("/product/", tags=["data"], response_model=Page[schemas.ProductBase])
 async def read_products(
     db: Session = Depends(get_db),
-    size: int = 20,
-    isRecommend: bool = False,
+    types: Union[List[str], None] = Query(default=None),
+    alcohol: float = 100,
+    isAward: bool = False,
 ):
-    products = crud.get_products(db)
+    products = crud.get_products(db, types, alcohol, isAward)
     return paginate(products)
 
 
-@app.get("/product/{product_id}", tags=["data"], response_model=schemas.Product)
+@app.get("/product/{product_id}", tags=["data"], response_model=schemas.ProductDetail)
 async def read_product(product_id: int, db: Session = Depends(get_db)):
     product = crud.get_product(db, product_id=product_id)
     if product is None:
