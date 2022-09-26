@@ -1,16 +1,17 @@
-FROM node:16-alpine as build-stage
-WORKDIR /app
+FROM node:16
+
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
 COPY package*.json ./
 
 RUN npm install
-COPY . .
-RUN npm run start
 
-# production stage
-FROM nginx:stable-alpine as production-stage
-## COPY <호스트OS 파일 경로> <Docker 컨테이너 안에서의 경로>
-COPY  ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./ ./
 
-COPY --from=build-stage /app/dist usr/share/nginx/html
 EXPOSE 5173
-CMD ["nginx", "-g", "daemon off;"]
+
+CMD ["npm", "run" , "dev"]
