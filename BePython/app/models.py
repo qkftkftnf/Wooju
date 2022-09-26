@@ -1,5 +1,5 @@
 from sqlalchemy import Column, VARCHAR, BigInteger, SmallInteger, Float
-from database import Base
+from .database import Base
 
 class Product(Base):
 	__tablename__ = 'product'
@@ -11,7 +11,7 @@ class Product(Base):
 	name = Column(VARCHAR(255), nullable=False)
 	alcohol = Column(Float, nullable=False)
 	anju_note = Column(VARCHAR(255), nullable=True)
-	award = Column(VARCHAR(255), nullable=False)
+	award = Column(VARCHAR(255), nullable=True)
 	price = Column(BigInteger, nullable=False)
 	distinction = Column(VARCHAR(255), nullable=True)
 	ingredient = Column(VARCHAR(255), nullable=True)
@@ -46,7 +46,7 @@ class Product(Base):
 
 
 class Food(Base):
-	__tablename__ = 'Food'
+	__tablename__ = 'food'
 
 	id = Column(BigInteger, primary_key=True, autoincrement=True)
 	img = Column(VARCHAR(2048), nullable=False)
