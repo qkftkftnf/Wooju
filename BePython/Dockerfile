@@ -19,14 +19,14 @@ RUN pip3 install --upgrade pip
 RUN pip3 install --no-cache-dir --upgrade -r /app/requirements.txt
 
 #
-COPY ./ /app
+COPY ./app /app
 
 EXPOSE 80
 
 # container 실행 시 자동으로 실행 할 command
 #  uvicorn을 사용하여 main.py의 app을 실행시킵니다.
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 
 ## 참고할거 아래
