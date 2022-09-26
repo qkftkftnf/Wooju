@@ -6,7 +6,7 @@
       </div>
       <div class="introduction">
         <div class="title">
-          만강에 비친 달
+          만강에 비친 달 {{ likesData }}
         </div>
         <div class="content">
           <span class="proof">17%</span> | <span class="bottle">375ml</span>
@@ -28,6 +28,20 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+const router = useRouter();
+
+// vuex axios
+const store = useStore();
+const likesData = computed(() => store.getters.sool);
+
+onMounted(() => {
+  store.dispatch("fetchSool")
+})
+
 
 </script>
 

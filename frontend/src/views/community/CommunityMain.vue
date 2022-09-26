@@ -15,8 +15,9 @@
     
     <div class="inner-container">
       <div class="inner-section">
-        <!-- 본문 입력 -->
-        <div class="community-category" v-for="i in 4">
+        
+        <!-- HOT review -->
+        <div class="community-category">
           <div class="category-header">
             <div class="category-title">
               핫 리뷰
@@ -32,22 +33,23 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="i in 3" @click="linkTo">
+                <div class="review-card" v-for="review in reviewsData.dto?.hotreview" @click="linkTo">
                   <div class="image">
-                    <img src="@/assets/images/pic3.jpg" alt="reviewPic">
+                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <img :src="review.img[0]" alt="reviewThumbnail">
                     <span class="like">
-                      <i class="fas fa-heart heart"></i> 73
+                      <i class="fas fa-heart heart"></i> {{ review.like }}
                     </span>
                   </div>
                   <div class="card-content">
                     <div class="wooju">
-                      만강에 비친 달
+                      {{ review.product_name }}
                     </div>
                     <div class="rate">
-                      <i class="fas fa-star star"></i> 4.5
+                      <i class="fas fa-star star"></i> {{ review.star }}
                     </div>
                     <div class="preview">
-                      님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                      {{ review.content }}
                     </div>
                   </div>
                 </div>
@@ -62,6 +64,154 @@
             </el-scrollbar>
           </div>
         </div>
+
+        <!-- HOT PRODUCTS review -->
+        <div class="community-category">
+          <div class="category-header">
+            <div class="category-title">
+              핫한 술 리뷰
+            </div>
+            <div class="more"> 
+              <!-- linkTo -->
+              더보기 <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="category-intro">
+            지금 가장 많이 리뷰가 달린 핫한 술을 구경하세요
+          </div>
+          <div class="category-carousel">
+            <el-scrollbar>
+              <div class="carousel-container">
+                <div class="review-card" v-for="review in reviewsData.dto?.hotproductsreview" @click="linkTo">
+                  <div class="image">
+                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <img :src="review.img[0]" alt="reviewThumbnail">
+                    <span class="like">
+                      <i class="fas fa-heart heart"></i> {{ review.like }}
+                    </span>
+                  </div>
+                  <div class="card-content">
+                    <div class="wooju">
+                      {{ review.product_name }}
+                    </div>
+                    <div class="rate">
+                      <i class="fas fa-star star"></i> {{ review.star }}
+                    </div>
+                    <div class="preview">
+                      {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                    </div>
+                  </div>
+                </div>
+                <div class="more-card review-card bs-none">
+                  <div class="more-btn">
+                    <span>
+                      더보기 <i class="fas fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </el-scrollbar>
+          </div>
+        </div>
+
+        <!-- GOSU review -->
+        <div class="community-category">
+          <div class="category-header">
+            <div class="category-title">
+              맛 고수 리뷰
+            </div>
+            <div class="more"> 
+              <!-- linkTo -->
+              더보기 <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="category-intro">
+            전통주를 사랑하는 맛 고수들의 풍부한 리뷰
+          </div>
+          <div class="category-carousel">
+            <el-scrollbar>
+              <div class="carousel-container">
+                <div class="review-card" v-for="review in reviewsData.dto?.gosureview" @click="linkTo">
+                  <div class="image">
+                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <img :src="review.img[0]" alt="reviewThumbnail">
+                    <span class="like">
+                      <i class="fas fa-heart heart"></i> {{ review.like }}
+                    </span>
+                  </div>
+                  <div class="card-content">
+                    <div class="wooju">
+                      {{ review.product_name }}
+                    </div>
+                    <div class="rate">
+                      <i class="fas fa-star star"></i> {{ review.star }}
+                    </div>
+                    <div class="preview">
+                      {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                    </div>
+                  </div>
+                </div>
+                <div class="more-card review-card bs-none">
+                  <div class="more-btn">
+                    <span>
+                      더보기 <i class="fas fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </el-scrollbar>
+          </div>
+        </div>
+
+        <!-- RECENT review -->
+        <div class="community-category">
+          <div class="category-header">
+            <div class="category-title">
+              최신 리뷰
+            </div>
+            <div class="more"> 
+              <!-- linkTo -->
+              더보기 <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="category-intro">
+            다른 사람들은 지금 무슨 술을 먹고 있는지 구경하세요
+          </div>
+          <div class="category-carousel">
+            <el-scrollbar>
+              <div class="carousel-container">
+                <div class="review-card" v-for="review in reviewsData.dto?.recentreview" @click="linkTo">
+                  <div class="image">
+                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <img :src="review.img[0]" alt="reviewThumbnail">
+                    <span class="like">
+                      <i class="fas fa-heart heart"></i> {{ review.like }}
+                    </span>
+                  </div>
+                  <div class="card-content">
+                    <div class="wooju">
+                      {{ review.product_name }}
+                    </div>
+                    <div class="rate">
+                      <i class="fas fa-star star"></i> {{ review.star }}
+                    </div>
+                    <div class="preview">
+                      {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                    </div>
+                  </div>
+                </div>
+                <div class="more-card review-card bs-none">
+                  <div class="more-btn">
+                    <span>
+                      더보기 <i class="fas fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </el-scrollbar>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -69,12 +219,23 @@
 
 <script setup>
 import ModeToggle from "@/views/common/ModeToggle.vue"
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const router = useRouter();
 const linkTo = () => router.push({ name: "CommunityHotReview",  params: { reportPk: 1 } })
 
+// vuex axios
+const store = useStore();
+const reviewsData = computed(() => store.getters.reviews);
+
+onMounted(() => {
+  store.dispatch("fetchAllReviews")
+})
+
+
+// header scroll event js
 const position = ref(0)
 
 onMounted(() => {
@@ -96,7 +257,8 @@ onMounted(() => {
       document.querySelector(".header-content .header-intro").style.opacity = `${((position.value.top - 260) / 190 )}`;
     }
   }
-})  
+})
+
 </script>
 
 <style>
