@@ -17,7 +17,7 @@ buildscript{
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVer}"
         classpath "io.spring.gradle:dependency-management-plugin:${springDependencyMgmtVer}.RELEASE"
         classpath "org.springframework:springloaded:${springLoadedVer}.RELEASE"
-//        classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVer}"
+        classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVer}"
         classpath "com.github.node-gradle:gradle-node-plugin:3.1.0"
     }
 }
@@ -31,7 +31,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'eclipse'
 apply plugin: 'com.github.node-gradle.node'
-//apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 
 
 repositories {
@@ -50,7 +50,7 @@ sourceCompatibility = '1.8'
 node {
     download = true
     version = '14.17.0'
-    nodeModulesDir = file("/var/jenkins_home/workspace/wooju_front/frontend")
+    nodeModulesDir = file("${project.projectDir}/../frontend")
 }
 
 configurations {
@@ -93,28 +93,28 @@ processResources {
     duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
 }
 
-//def querydslDir = 'src/main/generated'
-//querydsl {
-//    library = "com.querydsl:querydsl-apt"
-//    jpa = true
-//    querydslSourcesDir = querydslDir
-//}
-//
-//sourceSets {
-//    main {
-//        java {
-//            srcDirs = ['src/main/java', querydslDir]
-//        }
-//    }
-//}
-//
-//compileQuerydsl {
-//    options.annotationProcessorPath = configurations.querydsl
-//}
-//
-//configurations {
-//    querydsl.extendsFrom compileClasspath
-//}
+def querydslDir = 'src/main/generated'
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslDir]
+        }
+    }
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
 //[��]
 
 dependencies {
