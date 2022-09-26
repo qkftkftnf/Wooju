@@ -1,5 +1,7 @@
 package com.wooju.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wooju.auth.SsafyUserDetails;
+import com.wooju.dto.ProductReviewDto;
 import com.wooju.dto.request.ProductLikeRequestDto;
 import com.wooju.dto.request.ProductListRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
+import com.wooju.dto.response.ProductDetailResponseDto;
 import com.wooju.dto.response.ProductListResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.ProductService;
@@ -51,7 +55,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{product_id}")
-	@ApiOperation(value="술 리스트 조회", notes ="술 리스트 가져오기")
+	@ApiOperation(value="술 디테일 조회", notes ="술 상세정보 가져오기")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 401 , message="부적절한 토큰"),
@@ -59,7 +63,8 @@ public class ProductController {
 	})
 	public ResponseEntity<? extends BaseResponseDto> productdetail(@PathVariable("product_id") int id) throws Exception{
 		 Object result=productService.getdetail(id);
-		return ResponseEntity.status(200).body(ProductListResponseDto.of(200, "Success",result));
+		 ArrayList<ProductReviewDto> list=productService.getReviewList(id);
+		return ResponseEntity.status(200).body(ProductDetailResponseDto.of(200, "Success",result,list));
 	}
 	
 	@PostMapping("/like")

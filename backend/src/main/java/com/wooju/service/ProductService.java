@@ -1,5 +1,8 @@
 package com.wooju.service;
 
+import java.util.ArrayList;
+
+import com.wooju.dto.ProductReviewDto;
 import com.wooju.dto.request.ProductListRequestDto;
 import com.wooju.entity.User;
 
@@ -9,5 +12,6 @@ public interface ProductService {
 	void deleteLike(int product_id, User user) throws Exception;
 	Object getlist(ProductListRequestDto dto);
 	Object getdetail(int id);
+	ArrayList<ProductReviewDto> getReviewList(int id);
 
 }
