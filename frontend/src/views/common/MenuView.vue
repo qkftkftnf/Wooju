@@ -5,7 +5,7 @@
       <span class="menu-title">마이 페이지</span>
     </div>
     <div class="my-page menu-div">
-      <i class="fas fa-hand-holding-heart icon"></i>
+      <i class="fas fa-hand-holding-heart icon" @click="linkTo('MyRecommendation')"></i>
       <span class="menu-title">오늘의 추천</span>
     </div>
     <div class="my-page menu-div" @click="linkTo('CommunityMain')">
