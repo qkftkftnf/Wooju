@@ -8,9 +8,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      find: /^~(.*)$/,
-      replacement: 'node_modules/$1',
-      vue: '@vue/compat',
+      // find: /^~(.*)$/,
+      // replacement: 'node_modules/$1',
+      // vue: '@vue/compat',
     }
   }
 })
