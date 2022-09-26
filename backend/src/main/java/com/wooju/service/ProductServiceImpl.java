@@ -5,8 +5,14 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import com.wooju.dto.request.ProductListRequestDto;
 import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
 import com.wooju.entity.User;
@@ -15,6 +21,9 @@ import com.wooju.repository.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService{
+	@Value("${cloud.fastapi.address}")
+    private String address;
+	
 	@Autowired
 	LikeProductRepository likeProductRepository;
 	@Autowired
@@ -48,6 +57,37 @@ public class ProductServiceImpl implements ProductService{
 		long num=likeProductRepository.countByProductId(product_id);
 		product.get().setLike((int)num);
 		
+	}
+
+	@Override
+	public Object getlist(ProductListRequestDto dto) {
+		WebClient webclient = WebClient.builder()
+				.baseUrl(address)
+				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+				.build();
+		
+		ResponseEntity<Object> result=webclient.get().
+				uri("/product/")
+				.retrieve()
+				.toEntity(Object.class)
+				.block();
+		return (result.getBody());
+		
+	}
+
+	@Override
+	public Object getdetail(int id) {
+		WebClient webclient = WebClient.builder()
+				.baseUrl(address)
+				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+				.build();
+		
+		ResponseEntity<Object> result=webclient.get().
+				uri("/product/"+id)
+				.retrieve()
+				.toEntity(Object.class)
+				.block();
+		return (result.getBody());
 	}
 
 
