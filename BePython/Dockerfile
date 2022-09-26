@@ -28,7 +28,7 @@ EXPOSE 8082
 # container 실행 시 자동으로 실행 할 command
 #  uvicorn을 사용하여 main.py의 app을 실행시킵니다.
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8082"]
+CMD ["uvicorn", "bepython.main:app", "--host", "0.0.0.0", "--port", "8082"]
 
 
 ## 참고할거 아래
