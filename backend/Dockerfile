@@ -8,4 +8,4 @@ COPY ${JAR_FILE} app.jar
 
 # 8181 포트 사용
 EXPOSE 8181
-ENTRYPOINT ["java","-jar","/app.jar"]g
+ENTRYPOINT ["java","-jar","/app.jar"]
