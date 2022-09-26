@@ -1,5 +1,5 @@
 # 파이썬 최신 이미지 빌드
-FROM python:latest
+FROM tiangolo/uvicorn-gunicorn:python3.8
 
 # root에 app 폴더 생성
 RUN mkdir /bepython
