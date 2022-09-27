@@ -28,6 +28,16 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const linkTo = (name) => router.push({ name: name })
+
+const props = defineProps({
+  menuTab: String,
+})
+
+const tabName = document.querySelector(`.${props.menuTab}`)
+
+// if (props.menuTab == "") {
+
+// }
 </script>
 
 <style>
