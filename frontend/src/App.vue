@@ -19,6 +19,8 @@ import HeaderView from "@/views/common/HeaderView.vue"
 @import "assets/css/CommunityHot.css";
 @import "assets/css/WoojooSearch.css";
 @import "assets/css/myPage.css";
+@import "assets/css/woojooDetail.css";
 @import "assets/css/MyRecommendation.css";
+
 
 </style>
