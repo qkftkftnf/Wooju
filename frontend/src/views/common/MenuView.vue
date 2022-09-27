@@ -39,11 +39,6 @@ onMounted(() => {
 
   tabName.classList.replace("is-inactive", "is-active")
 })
-
-
-// if (props.menuTab == "") {
-
-// }
 </script>
 
 <style>

@@ -47,7 +47,7 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref } from "vue";
   
-const uploadImages = ref(["hey"])
+const uploadImages = ref([])
 const maxLength = ref(3)
 
 const onFileChange = (image) => {
