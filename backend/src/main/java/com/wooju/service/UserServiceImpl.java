@@ -1,5 +1,6 @@
 package com.wooju.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	@Autowired
 	ReviewImgRepository reviewImgRepository;
+	@Autowired
+	S3upload s3upload;
 	
 	@Override
 	public User getUserByEmail(String email, String usertype) throws Exception {
@@ -43,11 +46,13 @@ public class UserServiceImpl implements UserService {
 				.nickname(signUpInfo.getNickname())
 				.birthdate(signUpInfo.getBirthdate())
 				.gender(signUpInfo.getGender())
+				.type("술")
 				.question1(-1)
 				.question2(-1)
 				.question3(-1)
 				.question4(-1)
 				.question5(-1)
+				.question6(-1)
 				.build();
 		userRepository.save(user);
 	}
@@ -107,10 +112,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void modifyProfile(ModifyProfileRequestDto dto, int id) {
+	public void modifyProfile(ModifyProfileRequestDto dto, int id) throws IOException {
 		Optional<User> userTemp=userRepository.findById(id);
 		User user=userTemp.get();
-
+		ArrayList<String> list=new ArrayList<String>();
+		list.add(user.getImg());
+		s3upload.deletefile(list);
 		user.setImg(dto.getImg());
 		user.setNickname(dto.getNickname());
 		userRepository.save(user);

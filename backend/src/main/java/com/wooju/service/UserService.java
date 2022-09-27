@@ -1,5 +1,7 @@
 package com.wooju.service;
 
+import java.io.IOException;
+
 import com.wooju.dto.ProfileDto;
 import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
@@ -13,6 +15,6 @@ public interface UserService {
 	void SignupUser(SignUpRequestDto signUpInfo);
 	User getUserById(int id);
 	ProfileDto getProfile(int id);
-	void modifyProfile(ModifyProfileRequestDto dto, int id);
+	void modifyProfile(ModifyProfileRequestDto dto, int id) throws IOException;
 
 }
