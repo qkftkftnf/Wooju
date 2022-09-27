@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.wooju.dto.ProfileDto;
 import com.wooju.dto.ProfileProductDto;
 import com.wooju.dto.ReviewDto;
+import com.wooju.dto.SurveyDto;
 import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
 import com.wooju.entity.LikeProduct;
@@ -121,6 +122,33 @@ public class UserServiceImpl implements UserService {
 		user.setImg(dto.getImg());
 		user.setNickname(dto.getNickname());
 		userRepository.save(user);
+	}
+
+	@Override
+	public SurveyDto getSurvey(User user) {
+		if(user == null) {
+			SurveyDto dto= SurveyDto.builder()
+					.type("술")
+					.question1(-1)
+					.question2(-1)
+					.question3(-1)
+					.question4(-1)
+					.question5(-1)
+					.question6(-1)
+					.build();
+			return dto;
+		}else {
+			SurveyDto dto=SurveyDto.builder()
+					.type(user.getType())
+					.question1(user.getQuestion1())
+					.question2(user.getQuestion2())
+					.question3(user.getQuestion3())
+					.question4(user.getQuestion4())
+					.question5(user.getQuestion5())
+					.question6(user.getQuestion6())
+					.build();
+			return dto;
+		}
 	}
 
 }
