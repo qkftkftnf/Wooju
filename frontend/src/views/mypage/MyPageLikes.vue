@@ -36,10 +36,10 @@ const router = useRouter();
 
 // vuex axios
 const store = useStore();
-const likesData = computed(() => store.getters.sool);
+const likesData = computed(() => store.getters.woojoo);
 
 onMounted(() => {
-  store.dispatch("fetchSool")
+  store.dispatch("fetchWoojoo")
 })
 
 

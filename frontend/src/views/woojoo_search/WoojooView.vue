@@ -1,7 +1,7 @@
 <template>
   <div>
     <RouterView/>
-    <MenuView menuTab="my-recommendation-menu"/>
+    <MenuView menuTab="woojoo-search-menu"/>
   </div>
 </template>
 

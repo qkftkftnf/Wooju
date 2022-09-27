@@ -3,15 +3,15 @@ import http from "@/api/index.js"
 const mypage = {
   state: {
     profile: {},
-    sool: [],
+    woojoo: [],
   },
   mutations: {
     SET_PROFILE: (state, profile) => (state.profile = profile),
-    SET_SOOL: (state, sool) => (state.sool = sool),
+    SET_WOOJOO: (state, woojoo) => (state.woojoo = woojoo),
   },
   getters: {
     profile: (state) => state.profile,
-    sool: (state) => state.sool,
+    woojoo: (state) => state.woojoo,
   },
   actions: {
     fetchProfile({ commit }) {
@@ -21,7 +21,7 @@ const mypage = {
         })
         .catch((err) => console.log(err))
     },
-    fetchSool({ commit }) {
+    fetchWoojoo({ commit }) {
       http.get('/product',
         {
           params: {
@@ -30,7 +30,7 @@ const mypage = {
         }
       )
         .then(({ data }) => {
-          commit("SET_SOOL", data.items)
+          commit("SET_WOOJOO", data.items)
         })
         .catch((err) => console.log(err))
     }

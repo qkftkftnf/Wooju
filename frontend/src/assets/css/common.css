@@ -134,11 +134,14 @@ img {
   font-size: 1.5rem;
   display: block;
   margin: 2px auto;
-  color: var(--menu-icon-color);
 }
 
 .menu-container .my-page .menu-title {
   font-size: 12px;
+}
+
+.menu-container .my-page .is-inactive {
+  color: var(--menu-icon-color);
 }
 
 .menu-container .my-page .is-active {

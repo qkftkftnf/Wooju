@@ -1,7 +1,7 @@
 <template>
   <div>
     <RouterView/>
-    <MenuView menuTab="my-recommendation-menu"/>
+    <MenuView menuTab="my-page-menu"/>
   </div>
 </template>
 
