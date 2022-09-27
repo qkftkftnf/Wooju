@@ -5,8 +5,12 @@ import CommunityMain from "../views/community/CommunityMain.vue";
 import CommunityHotReview from "../views/community/CommunityHotReview.vue";
 import WoojooView from "../views/woojoo_search/WoojooView.vue"
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
+<<<<<<< HEAD
 import WoojooReviewCreate from "../views/woojoo_search/WoojooReviewCreate.vue"
 import MyPageView from "../views/mypage/MyPageView.vue";
+=======
+import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
+>>>>>>> b03ce1f70c6106ea1fdd480b058540eee9d20ed3
 import MyPageMain from "../views/mypage/MyPageMain.vue";
 import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
 import MyRecommendationResult from "../views/recommendation/MyRecommendationResult.vue";
@@ -59,6 +63,11 @@ const router = createRouter({
           component: MyPageMain,
         },
       ],
+    },
+    {
+      name: "WoojooDetail",
+      path: "/woojoo/1",
+      component: WoojooDetail,
     },
     {
       name: "MyRecommendationView",

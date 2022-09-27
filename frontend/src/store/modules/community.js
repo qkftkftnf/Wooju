@@ -1,3 +1,6 @@
+import router from "../../router"
+import axios from "axios"
+
 import http from "@/api/index.js"
 
 const community = {
