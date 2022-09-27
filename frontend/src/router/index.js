@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import CommunityMain from "../views/community/CommunityMain.vue";
 import CommunityHotReview from "../views/community/CommunityHotReview.vue";
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
+import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
 import MyPageMain from "../views/mypage/MyPageMain.vue";
 
 const router = createRouter({
@@ -27,7 +28,12 @@ const router = createRouter({
       name: "MyPageMain",
       path: "/id",
       component: MyPageMain,
-    }
+    },
+    {
+      name: "WoojooDetail",
+      path: "/woojoo/1",
+      component: WoojooDetail,
+    },
   ],
 });
 

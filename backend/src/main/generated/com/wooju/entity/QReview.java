@@ -26,7 +26,15 @@ public class QReview extends EntityPathBase<Review> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
+    public final NumberPath<Integer> like = createNumber("like", Integer.class);
+
     public final QProduct product;
+
+    public final NumberPath<Double> star = createNumber("star", Double.class);
+
+    public final DatePath<java.time.LocalDate> time = createDate("time", java.time.LocalDate.class);
+
+    public final StringPath title = createString("title");
 
     public final QUser user;
 
