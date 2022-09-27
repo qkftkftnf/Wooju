@@ -22,6 +22,9 @@
   </div>
   
   <teleport to='.tab-template' />
+    <transition name="background">
+      <div v-if="isOpen" class="teleport-background"></div>
+    </transition>
     <transition name="review">
       <div v-if="isOpen" class="teleport-container">
         <el-scrollbar>
@@ -94,6 +97,18 @@ const closeModal = () => {
 
   .review-leave-to {
     top: calc(100vh - 190px);
+  }
+  
+  .background-enter-from {
+    opacity: 0;
+  }
+
+  .background-enter-to {
+    opacity: 1;
+  }
+
+  .background-leave-to {
+    opacity: 0;
   }
   
 </style>

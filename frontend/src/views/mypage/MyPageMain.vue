@@ -79,11 +79,11 @@ import { ref, onMounted } from "vue";
 const position = ref(0)
 
 onMounted(() => {
-  const mypageTabs = document.querySelector(".mypage-container")
   window.onscroll = function() {scrollTabMenu()};
-  position.value = mypageTabs.getBoundingClientRect().top
+  const mypageTabs = document.querySelector(".mypage-container")
   
   function scrollTabMenu() {
+    position.value = mypageTabs.getBoundingClientRect().top
 
     if (position.value <= 120) {
       document.querySelector(".mypage-header .header-nick").style.top = "0"

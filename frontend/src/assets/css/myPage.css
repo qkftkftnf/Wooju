@@ -391,6 +391,9 @@
   color: #FFD634;
 }
 
+
+/* review card modal */
+
 .teleport-container {
   width: 90%;
   max-width: 450px;
@@ -407,5 +410,14 @@
   background-color: #aaf;
 }
 
-
-/* review card modal */
+.teleport-background {
+  width: 100%;
+  max-width: 450px;
+  height: calc(100vh - 70px);
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: -120px;
+  left: 0;
+  z-index: 100000;
+  transition: all 0.5s ease;
+}
