@@ -1,0 +1,107 @@
+.rec-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.rec-type {
+  margin-bottom: 120px;
+  background-color: var(--main-bg-color);
+}
+
+.rec-type .title {
+  margin-bottom: 40px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-highlight-color);
+}
+
+
+/* if user survey */
+.rec-type .bottles {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  font-size: 0.9rem;
+}
+
+.rec-type .bottles .bottle-card {
+  width: 28vw;
+  max-width: 140px;
+  height: 200px;
+}
+
+.rec-type .bottles .bottle-img {
+  width: 28vw;
+  max-width: 140px;
+  height: 28vw;
+  max-height: 140px;  
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
+}
+
+.rec-type .bottles .bottle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  
+}
+
+.rec-type .bottles .bottle-content {
+  padding: 5px 0;
+  width: 28vw;
+  max-width: 140px;
+  height: calc(180px - 28vw);
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--card-transparent-color);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px; 
+}
+
+.rec-type .bottles .bottle-title {
+  font-weight: 600;
+}
+
+.rec-type .award-title {
+  height: 60px;
+  font-size: 1.2rem;
+  line-height: 30px;
+}
+
+
+/* if user not surveyed yet */
+.rec-type .not-surveyed {
+  padding-bottom: 30px;
+  width: 100%;
+  max-width: 500px;
+  height: 130px;
+}
+
+.rec-type .not-surveyed .not-surveyed-content {
+  height: 50px;
+  line-height: 25px;
+}
+
+.rec-type .not-surveyed .survey-btn {
+  margin-top: 30px;
+  height: 50px;
+}
+
+.rec-type .not-surveyed .survey-btn .btn-box {
+  width: 200px;
+  height: 50px;
+  background-color: var(--highlight-bg-color);
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
+  font-size: 1.1rem;
+  line-height: 50px;
+  border-radius: 15px;
+}
+
+.rec-type .not-surveyed .life-style-btn .btn-box {
+  width: 250px;
+}

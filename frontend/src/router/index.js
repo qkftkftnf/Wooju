@@ -1,33 +1,83 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import CommunityView from "../views/community/CommunityView.vue";
 import CommunityMain from "../views/community/CommunityMain.vue";
 import CommunityHotReview from "../views/community/CommunityHotReview.vue";
+import WoojooView from "../views/woojoo_search/WoojooView.vue"
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
+import WoojooReviewCreate from "../views/woojoo_search/WoojooReviewCreate.vue"
+import MyPageView from "../views/mypage/MyPageView.vue";
+import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
 import MyPageMain from "../views/mypage/MyPageMain.vue";
+import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
+import MyRecommendationResult from "../views/recommendation/MyRecommendationResult.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      name: "CommunityMain",
-      path: "",
-      component: CommunityMain,
+      name: "CommunityView",
+      path: "/community",
+      component: CommunityView,
+      children: [
+        {
+          name: "CommunityMain",
+          path: "",
+          component: CommunityMain,
+        },
+        {
+          name: "CommunityHotReview",
+          path: "hotreview",
+          component: CommunityHotReview,
+        },
+      ]
     },
     {
-      name: "CommunityHotReview",
-      path: "/hotreview",
-      component: CommunityHotReview,
+      name: "WoojooView",
+      path: "/woojoo",
+      component: WoojooView,
+      children: [
+        {
+          name: "WoojooSearch",
+          path: "search",
+          component: WoojooSearch,
+        },
+        {
+          name: "WoojooReviewCreate",
+          path: "pk/review/create",
+          component: WoojooReviewCreate,
+        }
+      ]
     },
     {
-      name: "WoojooSearch",
-      path: "/Woojoo",
-      component: WoojooSearch,
+      name: "MyPageView",
+      path: "/mypage",
+      component: MyPageView,
+      children: [
+        {
+          name: "MyPageMain",
+          path: "id",
+          component: MyPageMain,
+        },
+      ],
     },
     {
-      name: "MyPageMain",
-      path: "/id",
-      component: MyPageMain,
-    }
+      name: "WoojooDetail",
+      path: "/woojoo/1",
+      component: WoojooDetail,
+    },
+    {
+      name: "MyRecommendationView",
+      path: "/recommendation",
+      component: MyRecommendationView,
+      children: [
+        {
+          name: "MyRecommendationResult",
+          path: "userpk",
+          component: MyRecommendationResult,
+        },
+      ]
+    },
   ],
 });
 

@@ -23,37 +23,37 @@ public class Product {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Column(name = "subtext", nullable = false)
+	@Column(name = "subtext", nullable = true)
 	private String subtext;
 	
 	@Column(name = "price", nullable = false)
 	private int price;
 	
-	@Column(name = "image")
+	@Column(name = "image", length = 500,nullable = false)
 	private String image;
 	
 	@Column(name = "type", nullable = false)
 	private String type;
 	
 	@Column(name = "fruit_category", nullable = true)
-	private int fruit_category;
+	private Integer fruit_category;
 	
 	@Column(name = "flower_category", nullable = true)
-	private int flower_category;
+	private Integer flower_category;
 	
 	@Column(name = "nut_category", nullable = true)
-	private int nut_category;
+	private Integer nut_category;
 	
 	@Column(name = "herb_category", nullable = true)
-	private int herb_category;
+	private Integer herb_category;
 	
 	@Column(name = "other_category", nullable = true)
-	private int other_category;
+	private Integer other_category;
 	
 	@Column(name = "situation_category", nullable = true)
-	private int situation_category;
+	private Integer situation_category;
 	
-	@Column(name = "ingredient", nullable = false)
+	@Column(name = "ingredient", nullable = true)
 	private String ingredient;
 	
 	@Column(name = "alcohol", nullable = false)
@@ -68,22 +68,22 @@ public class Product {
 	@Column(name = "taste_standard", nullable = false)
 	private String taste_standard;
 	
-	@Column(name = "cutted_img", nullable = false)
+	@Column(name = "cutted_img",length = 500, nullable = true)
 	private String cutted_img;
 	
-	@Column(name = "taste_note", nullable = false)
+	@Column(name = "taste_note", nullable = true)
 	private String taste_note;
 	
-	@Column(name = "anju_note", nullable = false)
+	@Column(name = "anju_note", nullable = true)
 	private String anju_note;
 	
-	@Column(name = "storage_note", nullable = false)
+	@Column(name = "storage_note", nullable = true)
 	private String storage_note;
 	
-	@Column(name = "other_note", nullable = false)
+	@Column(name = "other_note", nullable = true)
 	private String other_note;
 	
-	@Column(name = "distinction", nullable = false)
+	@Column(name = "distinction", nullable = true)
 	private String distinction;
 	
 	@Column(name = "sweet", nullable = false)
@@ -122,13 +122,13 @@ public class Product {
 	@Column(name = "flavor", nullable = false)
 	private int flavor;
 	
-	@Column(name = "keyword", nullable = false)
+	@Column(name = "keyword", nullable = true)
 	private String keyword;
 	
 	@Column(name="like_num", nullable = true)
-	private int like;
+	private Integer like;
 	
-	@Column(name="review_num", nullable = false)
-	private int review;
+	@Column(name="review_num", nullable = true)
+	private Integer review;
 	
 }
