@@ -1,6 +1,3 @@
-import router from "../../router"
-import axios from "axios"
-
 import http from "@/api/index.js"
 
 const mypage = {
@@ -33,7 +30,7 @@ const mypage = {
         }
       )
         .then(({ data }) => {
-          commit("SET_SOOL", data)
+          commit("SET_SOOL", data.items)
         })
         .catch((err) => console.log(err))
     }

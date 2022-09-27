@@ -5,6 +5,7 @@ import CommunityHotReview from "../views/community/CommunityHotReview.vue";
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
 import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
 import MyPageMain from "../views/mypage/MyPageMain.vue";
+import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,11 @@ const router = createRouter({
       path: "/woojoo/1",
       component: WoojooDetail,
     },
+    {
+      name: "MyRecommendationView",
+      path: "/recommendation/userpk",
+      component: MyRecommendationView,
+    }
   ],
 });
 

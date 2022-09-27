@@ -2,7 +2,7 @@
   <div class="app-container">
     <!-- <HeaderView/> -->
     <RouterView/>
-    <MenuView/>
+    <!-- <MenuView/> -->
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { RouterView } from "vue-router";
 
 import HeaderView from "@/views/common/HeaderView.vue"
-import MenuView from "@/views/common/MenuView.vue"
+// import MenuView from "@/views/common/MenuView.vue"
 </script>
 
 <style>
@@ -20,5 +20,7 @@ import MenuView from "@/views/common/MenuView.vue"
 @import "assets/css/WoojooSearch.css";
 @import "assets/css/myPage.css";
 @import "assets/css/woojooDetail.css";
+@import "assets/css/MyRecommendation.css";
+
 
 </style>

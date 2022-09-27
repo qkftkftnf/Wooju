@@ -134,7 +134,7 @@ img {
   font-size: 1.5rem;
   display: block;
   margin: 2px auto;
-  color: var(--selected-color);
+  color: var(--menu-icon-color);
 }
 
 .menu-container .my-page .menu-title {
@@ -213,6 +213,6 @@ img {
 }
 
 .inner-section {
-  padding-top: 35px;
+  padding: 35px 0 50px 0;
   position: relative; 
 }
