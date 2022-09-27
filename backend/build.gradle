@@ -50,7 +50,7 @@ sourceCompatibility = '1.8'
 node {
     download = true
     version = '14.17.0'
-    nodeModulesDir = file("${project.projectDir}/../../wooju-front/frontend")
+    nodeModulesDir = file("${project.projectDir}/../frontend")
 }
 
 configurations {
