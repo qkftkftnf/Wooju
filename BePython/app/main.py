@@ -1,12 +1,28 @@
 from typing import List, Union
+import uvicorn
 
 from fastapi import Depends, APIRouter, FastAPI, HTTPException, responses, Query
 from fastapi_pagination import Page, add_pagination, paginate
 from sqlalchemy.orm import Session
+from starlette.middleware.cors import CORSMiddleware
 
-from . import crud, models, database, schemas
+import crud, models, database, schemas
+
+app = FastAPI()
 
 models.Base.metadata.create_all(bind=database.engine)
+
+origins = [
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = database.SessionLocal()
@@ -14,8 +30,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-app = FastAPI()
 
 @app.get("/")
 def main():
@@ -29,7 +43,7 @@ async def read_products(
     alcohol: float = 100,
     isAward: bool = False,
 ):
-    products = crud.get_products(db, types, alcohol, isAward)
+    products = crud.get_products(db=db, types=types, alcohol=alcohol, isAward=isAward)
     return paginate(products)
 
 
@@ -40,4 +54,16 @@ async def read_product(product_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
+
+@app.get("/recommendation/{user_id}", tags=["data"], response_model=List[schemas.ProductBase])
+async def read_products(
+    db: Session = Depends(get_db),
+    userId: Union[int, None] = None,
+):
+    products = crud.get_products(db, userId=userId)
+    return paginate(products)
+
 add_pagination(app)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8082)

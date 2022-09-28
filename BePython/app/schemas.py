@@ -1,4 +1,3 @@
-from re import U
 from typing import List, Union
 
 from pydantic import BaseModel
@@ -29,7 +28,12 @@ class Maker(MakerBase):
     address: str
     ceo_name: str
 
-    
+
+class UserBase(BaseModel):
+    id: int
+    nickname: str
+
+
 class ProductBase(BaseModel):
     id: int
     name: str
@@ -38,10 +42,30 @@ class ProductBase(BaseModel):
     type: str
     volume: str
     alcohol: float
+    like_num: int
+    price: int
     
     class Config:
         orm_mode = True
     
+
+class User(UserBase):
+    birthdate: str
+    email: str
+    gender: str
+    img: str
+    question1: int
+    question2: int
+    question3: int
+    question4: int
+    question5: int
+    usertype: str
+    gosu: bool
+    review_count: Union[int, None] = None
+    
+    class Config:
+        orm_mode = True
+
 
 class ProductDetail(ProductBase):
     subtext: Union[str, None] = None
@@ -61,3 +85,21 @@ class ProductDetail(ProductBase):
     spicy: int
     sweet: int
     tannin: int
+    taste_standard: str
+
+    fruit_category: Union[int, None] = None
+    flower_category: Union[int, None] = None
+    herb_category: Union[int, None] = None
+    nut_category: Union[int, None] = None
+    other_category: Union[int, None] = None
+    situation_category: Union[int, None] = None
+
+    anju_note: Union[str, None] = None
+    other_note: Union[str, None] = None
+    storage_note: Union[str, None] = None
+    taste_note: Union[str, None] = None
+
+    distinction: Union[str, None] = None
+    ingredient: Union[str, None] = None
+
+
