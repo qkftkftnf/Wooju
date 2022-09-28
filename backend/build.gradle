@@ -61,11 +61,11 @@ configurations {
     args = ['install']
 }*/
 
-task webpack(type: NpmTask, dependsOn: 'npmInstall') {
-    args = ['run','build']
-}
-
-processResources.dependsOn 'webpack'
+//task webpack(type: NpmTask, dependsOn: 'npmInstall') {
+//    args = ['run','build']
+//}
+//
+//processResources.dependsOn 'webpack'
 
 def buildTime() {
     def date = new Date()
