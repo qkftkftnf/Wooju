@@ -1,12 +1,17 @@
-import json
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
+import os 
 
-with open('./secrets.json', 'r', encoding='utf-8') as f:
-    secrets = json.load(f)
+load_dotenv()
 
-MYSQL_URL = f'mysql+pymysql://{secrets["USERNAME"]}:{secrets["PASSWORD"]}@{secrets["HOSTNAME"]}:{secrets["PORT"]}/{secrets["DBNAME"]}'
+DBUSER = os.environ.get('DBUSER')
+DBPASSWORD = os.environ.get('DBPASSWORD')
+DBPORT = os.environ.get('DBPORT')
+DBNAME = os.environ.get('DBNAME')
+MYSQL_URL = f'mysql+pymysql://{DBUSER}:{DBPASSWORD}@j7a304.p.ssafy.io:{DBPORT}/{DBNAME}'
+print(MYSQL_URL)
 engine = create_engine(MYSQL_URL, encoding='utf-8')
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
