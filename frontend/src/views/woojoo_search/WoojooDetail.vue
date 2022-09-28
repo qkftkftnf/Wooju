@@ -94,19 +94,25 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import DetailContent from "@/views/woojoo_search/DetailContent.vue"
 import DetailReviews from "@/views/woojoo_search/DetailReviews.vue"
-import ModeToggle from "@/views/common/ModeToggle.vue"
-import MyPagePreference from "@/views/mypage/MyPagePreference.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
-import MyPageReviews from "@/views/mypage/MyPageReviews.vue"
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+const router = useRouter();
+// const linkTo = () => router.push({ name: "", params: { }})
+
+const store = useStore();
+const woojooReviews = computed(() => store.getters.woojooReviews);
 
 const position = ref(0)
 
 onMounted(() => {
+  store.dispatch("fetchWoojooInfo")
   const mypageTabs = document.querySelector(".mypage-container")
   window.onscroll = function() {scrollTabMenu()};
   position.value = mypageTabs.getBoundingClientRect().top
-  
+
   function scrollTabMenu() {
 
     if (position.value <= 120) {

@@ -1,16 +1,17 @@
 <template>
-    <div class="review-body bs-card-03" v-for="item in 3" :key="item">
+    <!-- <span>{{woojooInfo.list}}</span> -->
+    <div class="review-body bs-card-03" v-for="review in woojooInfo.list">
           <div class="review-header">
             <div class="profile">
               <div class="profile-box">
                 <img class="profile-img" src="@/assets/images/profile_img_1.jpg" alt="">
               </div>
               <div class="review-writer">
-                <div class="review-nickname">hanssss</div>
+                <div class="review-nickname">{{review.nickname}}</div>
                 <div class="review-level">레벨 153</div>
               </div>
             </div>
-            <span class="review-date">2022.09.16</span> 
+            <span class="review-date">{{review.time}}</span> 
           </div>
           <!-- <img src="@/assets/images/pic3.jpg"/> -->
           <div class="block text-center" m="t-4">
@@ -21,40 +22,39 @@
                 <img src="@/assets/images/pic1.jpg" alt="pic">
               </el-carousel-item>
               <span class="like">
-                <i class="fas fa-heart icon"></i> 73
+                <i class="fas fa-heart icon"></i> {{review.like}}
               </span>              
             </el-carousel>
           </div>          
           <div class="review-content">
             <div class="wooju">
-              <span class="wooju-name">술 이름 : </span>
-              만강에 비친 달 
-              <i class="fas fa-chevron-right"></i>
+              <span class="wooju-name"> 제목 : </span>
+              {{review.title}}
             </div>
             <div class="rate">
               <span class="wooju-star">별점  </span>
-              <i class="fas fa-star star"></i> 4.5
+              <i class="fas fa-star star"></i> {{review.star}}
             </div>
             <p class="review-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi modi reiciendis aspernatur similique, officiis sit tenetur mollitia eius qui fugit?
+              {{review.content}}
             </p>
           </div>
       </div>
 </template>
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { computed } from "vue";
+// import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
-const router = useRouter();
-// const linkTo = () => router.push({ name: "", params: { }})
+// const router = useRouter();
+// // const linkTo = () => router.push({ name: "", params: { }})
 
 const store = useStore();
-const woojooReviews = computed(() => store.getters.woojooReviews);
+const woojooInfo = computed(() => store.getters.woojooInfo);
 
-onMounted(() => {
-  store.dispatch("fetchWoojooReviews")
-})
+// onMounted(() => {
+//   store.dispatch("fetchWoojooReviews")
+// })
 </script>
 <style>
     
