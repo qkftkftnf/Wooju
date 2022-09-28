@@ -1,4 +1,5 @@
 from typing import List, Union
+from datetime import date
 
 from pydantic import BaseModel
 
@@ -50,16 +51,15 @@ class ProductBase(BaseModel):
     
 
 class User(UserBase):
-    birthdate: str
     email: str
     gender: str
     img: str
+    birthdate: date
     question1: int
     question2: int
     question3: int
     question4: int
     question5: int
-    usertype: str
     gosu: bool
     review_count: Union[int, None] = None
     

@@ -2,13 +2,16 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 
 from models import Product, User
+from recommend import get_recommendations
 
 
-def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, userId: Optional[int]=None):
+def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None):
     products = db.query(Product)
 
-    if userId:
-        return 
+    if user_id:
+        user = db.query(User).filter(User.id == user_id)
+        return get_recommendations(user, products.filter(Product.type == '탁주'))
+
     else:
         products = products.filter(Product.alcohol < alcohol)
         if isAward:
