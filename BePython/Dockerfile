@@ -5,10 +5,10 @@ FROM tiangolo/uvicorn-gunicorn:python3.9
 # RUN mkdir -p /bepython
 
 # work dir 고정
-WORKDIR /bepython
+WORKDIR /BePython
 
 # host pc의 main.py , requirements.txt 를 아래 경로에 복사
-COPY ./requirements.txt /bepython/requirements.txt
+COPY ./requirements.txt /BePython/requirements.txt
 
 # # java stuff
 # RUN apt-get update 
@@ -16,12 +16,12 @@ COPY ./requirements.txt /bepython/requirements.txt
 
 # install python packages
 RUN pip3 install --upgrade pip
-RUN pip3 install --no-cache-dir --upgrade -r /bepython/requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r /BePython/requirements.txt
 
 # RUN cd /code && \ 
 #     curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh | bash -s
 # #
-COPY ./app /bepython/app
+COPY ./app /BePython/app
 
 EXPOSE 8082
 
