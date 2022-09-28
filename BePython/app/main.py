@@ -31,12 +31,12 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/")
+@app.get("/fastapi/")
 def main():
-    return responses.RedirectResponse(url="/docs/")
+    return responses.RedirectResponse(url="/fastapi/docs/")
 
 
-@app.get("/product/", tags=["data"], response_model=Page[schemas.ProductBase])
+@app.get("/fastapi/product/", tags=["data"], response_model=Page[schemas.ProductBase])
 async def read_products(
     db: Session = Depends(get_db),
     types: Union[List[str], None] = Query(default=None),
@@ -47,7 +47,7 @@ async def read_products(
     return paginate(products)
 
 
-@app.get("/product/{product_id}", tags=["data"], response_model=schemas.ProductDetail)
+@app.get("/fastapi/product/{product_id}", tags=["data"], response_model=schemas.ProductDetail)
 async def read_product(product_id: int, db: Session = Depends(get_db)):
     product = crud.get_product(db, product_id=product_id)
     if product is None:
@@ -55,7 +55,7 @@ async def read_product(product_id: int, db: Session = Depends(get_db)):
     return product
 
 
-@app.get("/recommendation/{user_id}", tags=["data"], response_model=List[schemas.ProductBase])
+@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=List[schemas.ProductBase])
 async def read_products(
     db: Session = Depends(get_db),
     userId: Union[int, None] = None,
