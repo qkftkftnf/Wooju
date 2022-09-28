@@ -11,7 +11,6 @@ DBPASSWORD = os.environ.get('DBPASSWORD')
 DBPORT = os.environ.get('DBPORT')
 DBNAME = os.environ.get('DBNAME')
 MYSQL_URL = f'mysql+pymysql://{DBUSER}:{DBPASSWORD}@j7a304.p.ssafy.io:{DBPORT}/{DBNAME}'
-print(MYSQL_URL)
 engine = create_engine(MYSQL_URL, encoding='utf-8')
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

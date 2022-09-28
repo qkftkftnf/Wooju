@@ -24,16 +24,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 def get_db():
     db = database.SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
-@app.get("/fastapi/")
-def main():
-    return responses.RedirectResponse(url="/fastapi/docs/")
 
 
 @app.get("/fastapi/product/", tags=["data"], response_model=Page[schemas.ProductBase])
