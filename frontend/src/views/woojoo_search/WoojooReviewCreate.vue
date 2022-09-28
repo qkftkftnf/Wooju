@@ -67,10 +67,10 @@ const eachThumbnail = (index) => {
   var reader = new FileReader()
 
   if (pic) {
+    reader.readAsDataURL(pic);
     reader.addEventListener('load', function() {
       document.querySelector(`.thumb${index}`).src = reader.result;
     });
-    reader.readAsDataURL(pic);
   }
 }
 </script>

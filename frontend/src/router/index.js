@@ -7,6 +7,7 @@ import WoojooView from "../views/woojoo_search/WoojooView.vue"
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
 import WoojooReviewCreate from "../views/woojoo_search/WoojooReviewCreate.vue"
 import MyPageView from "../views/mypage/MyPageView.vue";
+import MyPageProfileEdit from "../views/mypage/MyPageProfileEdit.vue"
 import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
 import MyPageMain from "../views/mypage/MyPageMain.vue";
 import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
@@ -59,6 +60,11 @@ const router = createRouter({
           path: "id",
           component: MyPageMain,
         },
+        {
+          name: "MyPageProfileEdit",
+          path: "id/edit",
+          component: MyPageProfileEdit,
+        }
       ],
     },
     {

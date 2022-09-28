@@ -22,7 +22,7 @@ const toggleFunc = () => {
     document.documentElement.style.setProperty('--main-header-color', '#1d222e');
     document.documentElement.style.setProperty('--highlight-bg-color', '#091022'); // darkest
     document.documentElement.style.setProperty('--menu-color', '#23283c');
-    document.documentElement.style.setProperty('--text-color', '#f4f4f4');
+    document.documentElement.style.setProperty('--text-color', '230, 230, 230');
     document.documentElement.style.setProperty('--text-highlight-color', '#FFD634');
     document.documentElement.style.setProperty('--card-bg-color', '#282B37'); // dark
     document.documentElement.style.setProperty('--card-transparent-color', '#282B37');
@@ -45,7 +45,7 @@ const toggleFunc = () => {
     document.documentElement.style.setProperty('--main-header-color', '#FFD634');
     document.documentElement.style.setProperty('--highlight-bg-color', '#FFD634');
     document.documentElement.style.setProperty('--menu-color', '#fafafa');
-    document.documentElement.style.setProperty('--text-color', '#000');
+    document.documentElement.style.setProperty('--text-color', '0, 0, 0');
     document.documentElement.style.setProperty('--text-highlight-color', '#FF9314');
     document.documentElement.style.setProperty('--card-bg-color', '#fff');
     document.documentElement.style.setProperty('--card-transparent-color', 'transparent');
