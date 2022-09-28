@@ -77,13 +77,19 @@ const openModal = (n) => {
 }
 const closeModal = () => {
   isOpen.value = false
+  closeFunc()
 }
 
-const clickFunc = () => {
-}
 const openFunc = () => {
   const telContainer = document.querySelector("#tel")
   telContainer.style.display = "block"
+}
+
+const closeFunc = () => {
+  const telContainer = document.querySelector("#tel")
+  setTimeout(() => {
+    telContainer.style.display = "none"
+  }, 2000);
 }
 
 </script>

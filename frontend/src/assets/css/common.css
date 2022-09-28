@@ -3,7 +3,7 @@
   margin: 0 auto;
   font-family: 'Spoqa Han Sans', 'Sans-serif';
   color: rgb(var(--text-color));
-  transition: background-color 0.55s ease, color 0.45s ease;
+  transition: background-color 0.55s ease, color 0.45s ease; 
 }
 
 img {
@@ -55,6 +55,7 @@ img {
     height: calc(100vh - 120px);
     position: absolute;
     top: 0;
+    transition: all 0.55s ease; 
     /* left: calc(50vw - 250px); */
   }
 }
