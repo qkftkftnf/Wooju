@@ -42,7 +42,19 @@
       </div>
 </template>
 <script setup>
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
+const router = useRouter();
+// const linkTo = () => router.push({ name: "", params: { }})
+
+const store = useStore();
+const woojooReviews = computed(() => store.getters.woojooReviews);
+
+onMounted(() => {
+  store.dispatch("fetchWoojooReviews")
+})
 </script>
 <style>
     
