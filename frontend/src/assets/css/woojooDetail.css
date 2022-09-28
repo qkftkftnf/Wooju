@@ -25,7 +25,7 @@
     font-weight: 800;
     line-height: 60px;
     text-align: center;
-    color: var(--text-color);
+    color: rgb(var(--text-color));
   }
   
   .mypage-profile {
@@ -35,7 +35,7 @@
     position: fixed;
     top: 0;
     background-color: var(--highlight-bg-color);
-    color: var(--text-color);
+    color: rgb(var(--text-color));
     opacity: 1;
   }
   
@@ -391,23 +391,4 @@
   .mypage-review-card .review-content .review-rate .star {
     color: #FFD634;
   }
-  
-  .teleport-container {
-    width: 90%;
-    max-width: 450px;
-    height: 70px;
-    background-color: rgb(248, 73, 61);
-    position: absolute;
-    top: 0;
-    left: 5%;
-    z-index: 100000;
-    transition: all 0.5s ease;
-  }
-  
-  .modal-enter-from .teleport-container {
-    background-color: #aaf;
-  }
-  
-  
-  /* review card modal */
   

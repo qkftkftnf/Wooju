@@ -2,24 +2,26 @@
   <div class="tab-template profile-container">
     <div class="mypage-header">
       <div class="header-nick">
-        닉네임스토리
+        <!-- 닉네임스토리 -->
       </div>
       <div class="mode-toggle">
         <ModeToggle/>
       </div>
     </div>
     <div class="mypage-profile">
-      <div class="bg-box"></div>
-      <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div>
+      <div class="bg-box">
+        <img src="@/assets/images/pic1.jpg" alt="">
+      </div>
+      <!-- <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div>
       <div class="level">
         lv.8
       </div>
       <div class="email">
         hey@gmail.com
       </div>
-      <div class="edit-profile">
+      <div class="edit-profile" @click="linkTo('MyPageProfileEdit')">
         <i class="fas fa-cog"></i>
-      </div>
+      </div> -->
     </div>
     
     
@@ -75,7 +77,15 @@ import MyPagePreference from "@/views/mypage/MyPagePreference.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
 import MyPageReviews from "@/views/mypage/MyPageReviews.vue"
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
+
+// script
+const router = useRouter();
+const linkTo = (name) => router.push({ name: name, })
+
+
+// js scroll function
 const position = ref(0)
 
 onMounted(() => {

@@ -21,50 +21,49 @@
 
   </div>
   
-  <teleport to='.tab-template' />
+  <teleport to='#tel'>
     <transition name="background">
       <div v-if="isOpen" class="teleport-background"></div>
     </transition>
     <transition name="review">
       <div v-if="isOpen" class="teleport-container">
-        <el-scrollbar>
-          <div class="modal-header">
-            <div class="date">
-              2022.09.10
-            </div>
-            <div class="edit-btn">
-              수정
-            </div>
+        <div class="modal-header">
+          <div class="date">
+            2022.09.10
           </div>
-
+          <div class="edit-btn">
+            수정
+          </div>
+        </div>
+        
+        <el-scrollbar>
           <div class="image-carousel">
-            <div class="img">
-              <img src="@/assets/images/pic1.jpg" alt="pic1">
-            </div>
-            <div class="img">
-              <img src="@/assets/images/pic2.jpg" alt="pic2">
-            </div>
-            <div class="img">
-              <img src="@/assets/images/pic3.jpg" alt="pic3">
-            </div>
+
+            <el-carousel trigger=click :autoplay="false" arrow="always">
+              <el-carousel-item v-for="i in 3">
+                <img src="@/assets/images/pic1.jpg" alt="">
+              </el-carousel-item>
+            </el-carousel>
           </div>
 
           <div class="review-stat">
             <div class="wooju">
-              황금보리 17%
+              술 이름: <span class="name">황금보리 17%</span> >
             </div>
             <div class="rate">
-              <i class="fas fa-star star" v-for="i in 4"></i>
+              내 평점: <i class="fas fa-star star" v-for="i in 4"></i> <span class="rate-num">4.0</span>
             </div>
           </div>
 
-          <div class="reivew-content">
+          <div class="review-content">
             전통주 갤러리에서 시행하는 전통주 시음회에 다녀왔습니다. 다섯 개의 전통주를 마실 수 있었는데, 그 중 저에게는 ‘만강에 비친 달’이 가장 인상 깊었습니다. 단호박을 재료로 해서 빚은 막걸리라는데, 노란 빛이 추석을 생각나게 하더군요. 맛도 독특하고 계속 생각나는 맛이었습니다. 모두들 한번쯤 도전해볼만 한 술인 것 같습니다. 
           </div>
-          <button @click="closeModal()"></button>
+
+          <button class="close-btn" @click="closeModal()">목록으로</button>
         </el-scrollbar>
       </div>
     </transition>
+  </teleport>
 </template>
 
 <script setup>
@@ -74,9 +73,17 @@ const isOpen = ref(false)
 
 const openModal = (n) => {
   isOpen.value = true
+  openFunc()
 }
 const closeModal = () => {
   isOpen.value = false
+}
+
+const clickFunc = () => {
+}
+const openFunc = () => {
+  const telContainer = document.querySelector("#tel")
+  telContainer.style.display = "block"
 }
 
 </script>

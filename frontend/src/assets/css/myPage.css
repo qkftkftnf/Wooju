@@ -24,7 +24,7 @@
   font-weight: 800;
   line-height: 60px;
   text-align: center;
-  color: var(--text-color);
+  color: rgb(var(--text-color));
 }
 
 .mypage-profile {
@@ -34,7 +34,7 @@
   position: fixed;
   top: 0;
   background-color: var(--highlight-bg-color);
-  color: var(--text-color);
+  color: rgb(var(--text-color));
   opacity: 1;
 }
 
@@ -148,7 +148,7 @@
 .tabs-container {
   width: 100%;
   max-width: 500px;
-  height: calc(100vh - 120px);
+  height: calc(100vh);
   position: absolute;
   top: 0;
   left: 0;
@@ -395,29 +395,177 @@
 /* review card modal */
 
 .teleport-container {
-  width: 90%;
+  width: 90vw;
   max-width: 450px;
-  height: 70px;
-  background-color: rgb(248, 73, 61);
+  height: calc(100vh - 60px);
   position: absolute;
-  top: 0;
+  top: -60px;
   left: 5%;
   z-index: 100000;
   transition: all 0.5s ease;
-}
-
-.modal-enter-from .teleport-container {
-  background-color: #aaf;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+  background-color: var(--card-bg-color);
 }
 
 .teleport-background {
-  width: 100%;
-  max-width: 450px;
+  width: 100vw;
+  max-width: 500px;
   height: calc(100vh - 70px);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(var(--text-color), 0.3);
   position: absolute;
   top: -120px;
   left: 0;
   z-index: 100000;
   transition: all 0.5s ease;
+}
+
+.teleport-container .modal-header {
+  width: 100%;
+  max-width: 450px;
+  height: 60px;
+  display: flex;
+}
+
+.teleport-container .modal-header .date{
+  padding-left: 20px;
+  width: 80%;
+  max-width: 400px;
+  height: 60px;
+  line-height: 60px;
+  text-align: left;
+}
+
+.teleport-container .modal-header .edit-btn {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  max-width: 100px;
+  height: 60px;
+  line-height: 60px;
+}
+
+.teleport-container .image-carousel {
+  width: 90vw;
+  max-width: 450px;
+  overflow: hidden;
+}
+
+.teleport-container .image-carousel .modal-img-container {
+  width: 270vw;
+  max-width: 1350px;
+  display: flex;
+}
+
+.teleport-container .modal-img-container .img {
+  margin: 0;
+  padding: 0;
+  width: 90vw;
+  height: 90vw;
+  max-width: 450px;
+  max-height: 450px;
+}
+
+.teleport-container .modal-img-container .img img {
+  width: 90vw;
+  height: 90vw;
+  max-width: 450px;
+  max-height: 450px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.teleport-container .el-carousel__arrow {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.teleport-container .review-stat {
+  margin: 20px 10px 20px 10px;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.teleport-container .review-stat .name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.teleport-container .review-stat div {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+
+.teleport-container .review-stat .star {
+  color: #FFD634;
+}
+
+.teleport-container .review-stat .rate-num {
+  margin-left: 5px;
+  font-weight: 400;
+}
+
+.teleport-container .review-content {
+  margin: 0 10px;
+  text-align: left;
+}
+
+.teleport-container .close-btn {
+  width: 80px;
+  height: 40px;
+  position: absolute;
+  bottom: 150px;
+  right: 20px;
+  border: 0px solid #000;
+  border-radius: 10px;
+  background-color: var(--highlight-bg-color);
+}
+
+
+/* profile edit page */
+.profile-edit-container {
+  margin-top: 60px;
+}
+
+.profile-edit-container .title {
+  padding: 40px 0 50px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.profile-edit-container .avatar .pic {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.profile-edit-container .avatar .pic img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile-edit-container .avatar .pic-edit {
+  width: 100vw;
+  max-width: 500px;
+  height: 80px;
+}
+
+.profile-edit-container .avatar .pic-edit .edit-btn {
+  margin-top: 20px;
+  width: 120px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 10px;
+  background-color: var(--highlight-bg-color);
+  font-size: 0.9rem;
+}
+
+.profile-edit-container .avatar .pic-edit .input-box {
+  display: none;
 }

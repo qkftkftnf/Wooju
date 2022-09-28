@@ -17,7 +17,7 @@
   --main-header-color: #FFD634;
   /* --highlight-dark-bg-color: #091022; */
   --menu-color: #fafafa;
-  --text-color: #000;
+  --text-color: 0, 0, 0;
   --text-sub-color: #666;
   --text-highlight-color: #FF9314;
   --menu-icon-color: #fae3a4;
@@ -41,6 +41,7 @@ body {
 }
 
 #app {
+  z-index: 0 !important;
   margin: 0 auto;
   max-height: 100vh;
   text-align: center;
