@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-template profile-container">
+  <div class="tab-template detail-header-container">
     <!-- <div class="mypage-header">
       <div class="header-nick">
         닉네임스토리
@@ -22,8 +22,27 @@
       </div>
     </div> -->
     <HeaderView/>
-    <div>
-        <img src="" alt="">
+    <div class="detail-header-container">
+      <div class="woojoo-pic">
+        <img class="image" src="@/assets/images/woojoo1.jpg" alt="">
+      </div>
+      <!-- <div class="detail-content">
+        <div class="wooju">
+          <span class="wooju-name">술 이름 : </span>
+          만강에 비친 달 
+        </div>
+        <div class="degree">
+          <span class="wooju-alcohol">도수 :  </span>
+          <i class="alcohol"></i> 17%
+        </div>
+        <div class="rate">
+          <span class="wooju-star">별점  </span>
+          <i class="fas fa-star star"></i> 4.5
+        </div>
+        <p class="detail-text">
+          수상내역 등등
+        </p>
+      </div> -->
     </div>
     <div class="mypage-container">
       <!-- tabs menu -->

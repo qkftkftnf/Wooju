@@ -10,5 +10,6 @@ export default axios.create({
   headers: {
     Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjU0NTYxNjMsImlhdCI6MTY2NDE2MDE2M30.20Vw9UYQ_Z-UkUfWiNbHaI7bZdR3ZnaIzASxzzavfJGI8fopHKYVXxjSObHSF85E994cr3n8quLIsUnJ6EZwuQ",
     "Content-type": "application/json",
+    // Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjU0NTYxNjMsImlhdCI6MTY2NDE2MDE2M30.20Vw9UYQ_Z-UkUfWiNbHaI7bZdR3ZnaIzASxzzavfJGI8fopHKYVXxjSObHSF85E994cr3n8quLIsUnJ6EZwuQ'
   },
 });

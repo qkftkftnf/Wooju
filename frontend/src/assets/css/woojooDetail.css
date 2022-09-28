@@ -1,6 +1,69 @@
 
+/* woojoo detail header */
+.detail-header-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.woojoo-pic {
+  height: 500px;
+}
+
+.woojoo-pic .image {
+  width: 100%;
+}
+
+/* woojoo-detail-content tab */
+.detail-content {
+  text-align: left;
+  margin: 20px 20px 10px 20px;
+}
+
+.detail-content .wooju {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 20px 0px 20px 10px;
+}
+
+.detail-content .wooju .wooju-name {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
+.detail-content .degree .wooju-alcohol {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
+.detail-content .degree {
+  font-size: 1.7rem;
+  margin: 20px 0px 20px 10px;
+}
+
+.detail-content .rate {
+  margin: 20px 0px 20px 10px;
+}
+
+.detail-content .rate .wooju-star {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
+.detail-content .rate .star {
+  color: #ffd524;
+  margin-right: 5px;
+}
+
+.detail-content .detail-text {
+  margin: 20px 0px 20px 10px;
+  font-size: 1.2rem;    
+}
+
 /* main tab */
-.profile-container {
+.detail-profile-container {
     padding-bottom: 70px;
   }
   
