@@ -1,8 +1,8 @@
 <template>
   <div class="likes-container mypage-inner">
-    <div class="like-wooju" v-for="data in likesData">
+    <div class="like-wooju" v-for="data in profileData.profile?.likeList">
       <div class="wooju-img">
-        <img :src="data.image" alt="">
+        <img :src="data.img" alt="">
       </div>
       <div class="introduction">
         <div class="title">
@@ -36,12 +36,7 @@ const router = useRouter();
 
 // vuex axios
 const store = useStore();
-const likesData = computed(() => store.getters.woojoo);
-
-onMounted(() => {
-  store.dispatch("fetchWoojoo")
-})
-
+const profileData = computed(() => store.getters.profile)
 
 </script>
 

@@ -620,29 +620,31 @@
 
 .profile-edit-container .profile-info {
   margin: 0 auto;
-  width: 200px;
+  width: 250px;
   height: 100px;
 }
 
 .profile-edit-container .profile-info .nick {
   margin-top: 50px;
-  width: 200px;
+  width: 250px;
   height: 35px;
   line-height: 35px;
   text-align: left;
 }
 
 .preferance-container .profile-info .edit-nickname {
-  width: 200px;
+  width: 250px;
   height: 30px;
 }
 
 .profile-edit-container .profile-info .email {
   padding-left: 5px;
-  width: 200px;
+  width: 250px;
   height: 50px;
   line-height: 50px;
   text-align: left;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .profile-edit-container .profile-info .email .envelope {

@@ -3,15 +3,20 @@ import { createRouter, createWebHistory } from "vue-router";
 import CommunityView from "../views/community/CommunityView.vue";
 import CommunityMain from "../views/community/CommunityMain.vue";
 import CommunityHotReview from "../views/community/CommunityHotReview.vue";
+
 import WoojooView from "../views/woojoo_search/WoojooView.vue"
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
-import WoojooReviewCreate from "../views/woojoo_search/WoojooReviewCreate.vue"
-import MyPageView from "../views/mypage/MyPageView.vue";
-import MyPageProfileEdit from "../views/mypage/MyPageProfileEdit.vue"
 import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
+import WoojooReviewCreate from "../views/woojoo_search/WoojooReviewCreate.vue"
+
+import MyPageView from "../views/mypage/MyPageView.vue";
 import MyPageMain from "../views/mypage/MyPageMain.vue";
+import MyPageProfileEdit from "../views/mypage/MyPageProfileEdit.vue"
+
 import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
 import MyRecommendationResult from "../views/recommendation/MyRecommendationResult.vue";
+
+import NonmemberView from "../views/common/NonmemberView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -84,6 +89,12 @@ const router = createRouter({
         },
       ]
     },
+    // path 수정 요망
+    {
+      name: "NonmemberView",
+      path: "/nonmember",
+      component: NonmemberView,
+    }
   ],
 });
 

@@ -23,5 +23,5 @@ import { RouterView } from "vue-router";
 @import "assets/css/myPage.css";
 @import "assets/css/woojooDetail.css";
 @import "assets/css/MyRecommendation.css";
-
+@import "assets/css/reviewCreate.css";
 </style>

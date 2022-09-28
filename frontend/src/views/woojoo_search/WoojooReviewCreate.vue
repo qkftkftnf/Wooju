@@ -1,52 +1,75 @@
 <template>
-  <div>
-  <HeaderView/>
-  <div class="create-container">
-    <div class="title">
-      리뷰 작성
+  <!-- <HeaderView/> -->
+  <div class="header-container">
+    <div class="create-header">
+      <div class="title">
+        리뷰 작성
+      </div>
+      <div class="submit">
+        <div class="submit-btn" @click="onSubmit">등록</div>
+      </div>
     </div>
+  </div>
+  
+  <div class="create-container">
     <div class="create-input">
       <div class="sool-name">
-        술이름 들어가고요
+        술 이름: <span>황금 보리 17.5%</span>
       </div>
+      <div class="line"></div>
       <div class="sool-rate">
-        별점 el-rate였나
+        <el-rate
+          v-model="rate"
+          allow-half
+          size="large"
+          show-score
+          ></el-rate>
       </div>
       <div class="review-textarea">
-        <textarea
-          name="review-content"
-          id="review-content"
-          rows="15"
+        <el-input
+          v-model="reviewTextarea"
+          :rows="12"
+          type="textarea"
           placeholder="내용을 입력해주세요"
-        >
-        </textarea>
+        />
       </div>
       <div class="img-upload">
         <div class="thumbnail-box">
-          <img src="" alt="" class="thumb0 th">
-          <img src="" alt="" class="thumb1 th">
-          <img src="" alt="" class="thumb2 th">
+          <div class="thumbnail gallary-btn">
+            <img src="" alt="" class="thumb0">
+          </div>
+          <div class="thumbnail">
+            <img src="" alt="" class="thumb1">
+          </div>
+          <div class="thumbnail">
+            <img src="" alt="" class="thumb2">
+          </div>
         </div>
-        <div class="alert">파일은 최대 3개까지 첨부가 가능합니다.</div>
-        <div>
-        </div>
-        <input
+        <div class="gallary" @click="openGallery">
+          <div class="img-icon">
+            + 사진 첨부
+          </div>
+          <input
           type="file"
           accept="image/jpeg, image/jpg, image/png"
           @change="onFileChange"
           multiple
           id="review-upload-input"
-        >
+          >
+        </div>
+        <!-- <div class="alert">파일은 최대 3개까지 첨부가 가능합니다.</div> -->
       </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref } from "vue";
+import { useStore } from "vuex";
   
+
+// image upload
 const uploadImages = ref([])
 const maxLength = ref(3)
 
@@ -73,6 +96,38 @@ const eachThumbnail = (index) => {
     });
   }
 }
+
+const openGallery = () => {
+  document.querySelector("#review-upload-input").click()
+}
+
+
+// submit
+const rate = ref(0)
+const reviewTextarea = ref("")
+const store = useStore()
+
+const onSubmit = () => {
+  // var imgData = new FormData()
+  // uploadImages.value.forEach(function(img) {
+  //   imgData.append("img", img)
+  // })
+  const reviewData = ref({
+    product_id: 100,
+    star: rate.value,
+    title: "필요한가요?",
+    content: reviewTextarea.value,
+    // img: imgData,
+    img: [],
+  })
+  
+  // console.log(reviewData.value)
+  store.dispatch('createReview', reviewData.value)
+};
+
+
+
+
 </script>
 
 <style>
