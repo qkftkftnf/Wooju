@@ -2,7 +2,7 @@
   <div class="preferance-container mypage-inner">
     <div class="type-main">
       <span class="name prefer-type">
-        <span class="nick">닉네임스토리</span> 님은
+        <span class="nick">{{ profileData.profile?.nickname }}</span> 님은
       </span>
       <span class="person-type prefer-type">
         애호가
@@ -35,6 +35,12 @@
 </template>
 
 <script setup>
+import { ref, onMounted ,computed } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+const profileData = computed(() => store.getters.profile)
+
 </script>
 
 <style>

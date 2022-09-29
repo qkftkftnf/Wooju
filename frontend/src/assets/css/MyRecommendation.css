@@ -117,8 +117,17 @@
   background-color: var(--main-bg-color);
 }
 
+.recomm-type-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .recomm-type-container .title {
-  padding: 40px 0;
+  margin: 100px 5% 0 5%;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 20px;
+  background-color: rgba(var(--main-rbga-color), 0.6);
 }
 
 .recomm-type-container .title .testimg {
@@ -128,7 +137,7 @@
 }
 
 .recomm-type-container .question0 {
-  margin-top: 20px;
+  margin-top: 60px;
   height: 60px;
   line-height: 30px;
   font-size: 1.2rem;
@@ -136,6 +145,7 @@
 }
 
 .recomm-type-container .select {
+  margin: 0 !important;
   padding: 0 10px;
   display: flex;
 }
