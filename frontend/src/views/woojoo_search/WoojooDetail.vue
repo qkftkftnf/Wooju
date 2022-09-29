@@ -7,44 +7,28 @@
       <div class="mode-toggle">
         <ModeToggle/>
       </div>
-    </div>
-    <div class="mypage-profile">
-      <div class="bg-box"></div>
-      <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div>
-      <div class="level">
-        lv.8
-      </div>
-      <div class="email">
+    </div> -->
+    <div class="detail-header">
+      <!-- <div class="bg-box"></div> -->
+      <!-- <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div> -->
+      <img class="bg-box" :src="woojooInfo.object?.image" alt="">
+      <!-- <div class="level"> -->
+        <!-- lv.8 -->
+      <!-- </div> -->
+      <!-- <div class="email">
         hey@gmail.com
       </div>
       <div class="edit-profile">
         <i class="fas fa-cog"></i>
-      </div>
-    </div> -->
-    <HeaderView/>
-    <div class="detail-header-container">
-      <div class="woojoo-pic">
-        <img class="image" src="@/assets/images/woojoo1.jpg" alt="">
-      </div>
-      <!-- <div class="detail-content">
-        <div class="wooju">
-          <span class="wooju-name">술 이름 : </span>
-          만강에 비친 달 
-        </div>
-        <div class="degree">
-          <span class="wooju-alcohol">도수 :  </span>
-          <i class="alcohol"></i> 17%
-        </div>
-        <div class="rate">
-          <span class="wooju-star">별점  </span>
-          <i class="fas fa-star star"></i> 4.5
-        </div>
-        <p class="detail-text">
-          수상내역 등등
-        </p>
       </div> -->
     </div>
-    <div class="mypage-container">
+    <HeaderView/>
+    <!-- <div class="detail-header-container">
+      <div class="woojoo-pic">
+        <img class="profile-pic" src="@/assets/images/woojoo1.jpg" alt="">
+      </div>
+    </div> -->
+    <div class="mypage-container" id="detail-container">
       <!-- tabs menu -->
       <div class="mypage-tabs">
         <div class="tabs-menu-container">
@@ -94,33 +78,38 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import DetailContent from "@/views/woojoo_search/DetailContent.vue"
 import DetailReviews from "@/views/woojoo_search/DetailReviews.vue"
-import ModeToggle from "@/views/common/ModeToggle.vue"
-import MyPagePreference from "@/views/mypage/MyPagePreference.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
-import MyPageReviews from "@/views/mypage/MyPageReviews.vue"
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+const router = useRouter();
+// const linkTo = () => router.push({ name: "", params: { }})
+
+const store = useStore();
+const woojooInfo = computed(() => store.getters.woojooInfo);
 
 const position = ref(0)
 
 onMounted(() => {
-  const mypageTabs = document.querySelector(".mypage-container")
+  store.dispatch("fetchWoojooInfo")
+  const mypageTabs = document.querySelector("#detail-container")
   window.onscroll = function() {scrollTabMenu()};
-  position.value = mypageTabs.getBoundingClientRect().top
-  
   function scrollTabMenu() {
+    position.value = mypageTabs.getBoundingClientRect().top
 
     if (position.value <= 120) {
-      document.querySelector(".mypage-header .header-nick").style.top = "0"
-      document.querySelector(".mypage-header .header-nick").style.fontSize = "1.2rem"
+      // document.querySelector(".mypage-header .header-nick").style.top = "0"
+      // document.querySelector(".mypage-header .header-nick").style.fontSize = "1.2rem"
       document.querySelector(".scroll-false").style.display = "none"
     } else {
-      document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
-      document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
-      document.querySelector(".mypage-profile .bg-box").style.opacity = `${(position.value - 350) / 160}`
-      document.querySelector(".mypage-profile .profile-pic").style.opacity = `${(position.value - 350) / 160}`
-      document.querySelector(".mypage-profile .level").style.opacity = `${(position.value - 350) / 160}`
-      document.querySelector(".mypage-profile .email").style.opacity = `${(position.value - 350) / 160}`
-      document.querySelector(".mypage-profile .edit-profile").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
+      // document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
+      document.querySelector(".detail-header .bg-box").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .profile-pic").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .level").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .email").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .edit-profile").style.opacity = `${(position.value - 350) / 160}`
       document.querySelector(".scroll-false").style.display = "block"
     }
   }
@@ -161,5 +150,5 @@ function tabPosition(tabName) {
 </script>
 
 <style>
-  
+
 </style>

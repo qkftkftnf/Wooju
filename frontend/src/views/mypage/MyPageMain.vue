@@ -26,6 +26,9 @@
       <div class="logout">
         <i class="fas fa-sign-out-alt"></i>
       </div>
+      <div class="logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
     </div>
     
     
