@@ -4,87 +4,82 @@
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+  --main-color: #FFD634;
+  /* --main-bg-color: #FFFAE8; */
+  --main-bg-color: #f9f9f9;
+  --highlight-bg-color: #FFD634;
+  --main-header-color: #FFD634;
+  /* --highlight-dark-bg-color: #091022; */
+  --menu-color: #fafafa;
+  --text-color: 0, 0, 0;
+  --text-sub-color: #777;
+  --text-highlight-color: #FF9314;
+  --menu-icon-color: #fae3a4;
+  --card-bg-color: #fff;
+  --card-transparent-color: transparent;
+  --border-color: #E8E8E8;
+  --shadow-percentage-04: 0.04;
+  --shadow-percentage-03: 0.03;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* --dark-main-color: #ffd524;
+  --dark-main-bg-color: #161b27;
+  --dark-menu-color: #23283c; */
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
+  /* min-width: 320px;
+  min-height: 100vh; */
 }
 
 #app {
-  max-width: 1280px;
+  z-index: 0 !important;
   margin: 0 auto;
-  padding: 2rem;
+  max-height: 100vh;
   text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+} */
+
+/* box-shadow */
+/* light mode */
+.bs-upper-02 {
+  box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.02) !important;
+}
+
+.bs-upper-05 {
+  box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.bs-lower-05 {
+  box-shadow: 0px -4px 6px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.bs-card-03 {
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+.bs-none {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.bs-dark-card-03 {
+  box-shadow: 2px 2px 9px 2px rgba(255, 0, 0, 0.03) !important;
+}
+
+.pt-60 {
+  padding-top: 60px;
 }
