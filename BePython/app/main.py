@@ -1,14 +1,14 @@
 from typing import List, Union
 import uvicorn
 
-from fastapi import Depends, APIRouter, FastAPI, HTTPException, responses, Query
+from fastapi import Depends, FastAPI, HTTPException, responses, Query
 from fastapi_pagination import Page, add_pagination, paginate
 from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
 
 import crud, models, database, schemas
 
-app = FastAPI()
+app = FastAPI(docs_url="/fastapi/docs/", redoc_url=None)
 
 origins = [
     "*"
@@ -69,13 +69,13 @@ async def read_product(product_id: int, db: Session = Depends(get_db)):
     return product
 
 
-@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=List[schemas.ProductBase])
+@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=schemas.Recommendation)
 async def read_products(
     db: Session = Depends(get_db),
-    userId: Union[int, None] = None,
+    user_id: Union[int, None] = None,
 ):
-    products = crud.get_products(db, userId=userId)
-    return paginate(products)
+    products = crud.get_products(db, user_id=user_id)
+    return products
 
 add_pagination(app)
 
