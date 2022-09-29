@@ -1,12 +1,16 @@
 FROM node:16-alpine
 
-WORKDIR /app
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY ./ ./
 
 EXPOSE 5173
 
