@@ -96,7 +96,7 @@ public class UserController {
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<? extends BaseResponseDto> myprofile(@ApiIgnore Authentication authentication) throws IOException{
+	public ResponseEntity<? extends BaseResponseDto> myprofile(@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
 		int id=userDetails.getUserId();
@@ -114,7 +114,7 @@ public class UserController {
 		@ApiResponse(code = 500 , message="서버오류")
 	})
 	public ResponseEntity<? extends BaseResponseDto> modifyprofile(@ApiIgnore Authentication authentication 
-			, @RequestBody @ApiParam(value="프로필", required=true)ModifyProfileRequestDto dto) throws IOException{
+			, @RequestBody @ApiParam(value="프로필", required=true)ModifyProfileRequestDto dto) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
 		int id=userDetails.getUserId();

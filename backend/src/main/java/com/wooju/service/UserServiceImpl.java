@@ -18,6 +18,7 @@ import com.wooju.entity.Product;
 import com.wooju.entity.Review;
 import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
+import com.wooju.exception.UserNotFoundException;
 import com.wooju.repository.ReviewImgRepository;
 import com.wooju.repository.UserRepository;
 
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserByEmail(String email, String usertype) throws Exception {
 		Optional<User> user =userRepository.findByEmailAndUsertype(email, usertype);
+		if(!user.isPresent()) throw new UserNotFoundException();
 		return user.get();
 	}
 
@@ -59,14 +61,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public User getUserById(int id) throws Exception{
 		Optional<User> user = userRepository.findById(id);
+		if(!user.isPresent()) throw new UserNotFoundException();
 		return user.get();
 	}
 
 	@Override
-	public ProfileDto getProfile(int id) {
+	public ProfileDto getProfile(int id) throws Exception{
 		Optional<User> usertemp=userRepository.findById(id);
+		if(!usertemp.isPresent()) throw new UserNotFoundException();
 		User user=usertemp.get();
 		ProfileDto dto= ProfileDto.builder()
 				.email(user.getEmail())
@@ -113,8 +117,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void modifyProfile(ModifyProfileRequestDto dto, int id) throws IOException {
+	public void modifyProfile(ModifyProfileRequestDto dto, int id) throws Exception {
 		Optional<User> userTemp=userRepository.findById(id);
+		if(!userTemp.isPresent()) throw new UserNotFoundException();
 		User user=userTemp.get();
 		ArrayList<String> list=new ArrayList<String>();
 		list.add(user.getImg());

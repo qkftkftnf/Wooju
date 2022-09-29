@@ -19,6 +19,9 @@ import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
 import com.wooju.entity.User;
+import com.wooju.exception.LikeException;
+import com.wooju.exception.ProductNotFoundException;
+import com.wooju.exception.ReviewNotFoundException;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.ProductRepository;
 import com.wooju.repository.ReviewRepository;
@@ -39,9 +42,9 @@ public class ProductServiceImpl implements ProductService{
 	@Transactional
 	public void addLike(int product_id, User user) throws Exception {
 		long check =likeProductRepository.countByProductIdAndUserId(product_id, user.getId());
-		if(check != 0) throw new Exception();
+		if(check != 0) throw new LikeException();
 		Optional<Product> product= productRepository.findById(product_id);
-		if(!product.isPresent()) throw new Exception();
+		if(!product.isPresent()) throw new ProductNotFoundException();
 		LikeProduct likeproduct= LikeProduct.builder()
 					.user(user)
 					.product(product.get())
@@ -56,9 +59,9 @@ public class ProductServiceImpl implements ProductService{
 	@Transactional
 	public void deleteLike(int product_id, User user) throws Exception {
 		long check = likeProductRepository.countByProductIdAndUserId(product_id, user.getId());
-		if(check == 0 )throw new Exception();
+		if(check == 0 )throw new LikeException();
 		Optional<Product> product= productRepository.findById(product_id);
-		if(!product.isPresent()) throw new Exception();
+		if(!product.isPresent()) throw new ProductNotFoundException();
 		likeProductRepository.deleteByProductIdAndUserId(product_id, user.getId());
 		long num=likeProductRepository.countByProductId(product_id);
 		product.get().setLike((int)num);
@@ -107,9 +110,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public ArrayList<ProductReviewDto> getReviewList(int id) {
+	public ArrayList<ProductReviewDto> getReviewList(int id) throws Exception {
 		ArrayList<Review> reviewTemp= reviewRepository.findByProductId(id);
-		
+		if(reviewTemp.isEmpty()) throw new ReviewNotFoundException();
 		ArrayList<ProductReviewDto> list=new ArrayList<ProductReviewDto>();
 		
 		for(Review review:reviewTemp) {

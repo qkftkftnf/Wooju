@@ -1,6 +1,5 @@
 package com.wooju.service;
 
-import java.io.IOException;
 
 import com.wooju.dto.ProfileDto;
 import com.wooju.dto.SurveyDto;
@@ -14,9 +13,9 @@ public interface UserService {
 
 	User getUserByEmail(String email, String usertype) throws Exception;
 	void SignupUser(SignUpRequestDto signUpInfo);
-	User getUserById(int id);
-	ProfileDto getProfile(int id);
-	void modifyProfile(ModifyProfileRequestDto dto, int id) throws IOException;
+	User getUserById(int id) throws Exception;
+	ProfileDto getProfile(int id) throws Exception;
+	void modifyProfile(ModifyProfileRequestDto dto, int id) throws Exception;
 	SurveyDto getSurvey(User user);
 
 }

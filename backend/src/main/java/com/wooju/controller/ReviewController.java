@@ -76,7 +76,7 @@ public class ReviewController {
 		@ApiResponse(code = 500 , message="서버오류")
 	})
 	public ResponseEntity<? extends BaseResponseDto> review(@ApiIgnore Authentication authentication,
-			@RequestBody @ApiParam(value="리뷰 내용", required=true)ReviewRequestDto dto){
+			@RequestBody @ApiParam(value="리뷰 내용", required=true)ReviewRequestDto dto)throws Exception{
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();

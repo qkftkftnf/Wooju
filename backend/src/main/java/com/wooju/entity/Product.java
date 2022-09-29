@@ -137,4 +137,12 @@ public class Product {
 	@OneToMany(mappedBy = "product")
 	private List<LikeProduct> likeproducts;
 	
+	@OneToMany(mappedBy = "product")
+	private List<Review> reviews;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductFood> productfoods;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductMaker> productmakers;
 }
