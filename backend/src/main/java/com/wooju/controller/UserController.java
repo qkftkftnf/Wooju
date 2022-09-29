@@ -23,6 +23,7 @@ import com.wooju.dto.response.BaseResponseDto;
 import com.wooju.dto.response.FirstLoginResponseDto;
 import com.wooju.dto.response.LoginResponseDto;
 import com.wooju.dto.response.ProfileResponseDto;
+import com.wooju.dto.response.RecomResponseDto;
 import com.wooju.dto.response.SurveyResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.OauthService;
@@ -147,7 +148,17 @@ public class UserController {
 	})
 	public ResponseEntity<? extends BaseResponseDto> survey(@ApiIgnore Authentication authentication,
 			@RequestBody @ApiParam(value="설문 결과", required=true) SurveyRequestDto dto){
-		return null;
+		User user;
+		if(authentication == null) {
+			user=null;
+		}
+		else {
+			SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+			user=userDetails.getUser();
+		}
+		Object obj=userService.getrecom(user,dto);
+		
+		return ResponseEntity.status(200).body(RecomResponseDto.of(200, "success",obj));
 		
 	}
 	
