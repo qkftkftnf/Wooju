@@ -1,6 +1,7 @@
 package com.wooju.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,5 +54,7 @@ public class Review {
 	@Column(name="like_num")
 	private int like;
 	
+	@OneToMany(mappedBy = "review")
+	private List<ReviewImg> reviewimgs;
 
 }

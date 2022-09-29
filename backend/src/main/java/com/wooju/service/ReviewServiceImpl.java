@@ -1,6 +1,5 @@
 package com.wooju.service;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -10,17 +9,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wooju.dto.ProfileProductDto;
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
-import com.wooju.entity.LikeProduct;
 import com.wooju.entity.LikeReview;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
 import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
+import com.wooju.exception.LikeException;
+import com.wooju.exception.ProductNotFoundException;
+import com.wooju.exception.ReviewNotFoundException;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
@@ -158,8 +158,10 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	@Transactional
 	@Override
-	public void createReview(User user, ReviewRequestDto dto) {
-		Product product = productRepository.findById(dto.getProduct_id()).get();
+	public int createReview(User user, ReviewRequestDto dto) throws Exception {
+		Optional<Product> productTemp = productRepository.findById(dto.getProduct_id());
+		if(!productTemp.isPresent()) throw new ProductNotFoundException();
+		Product product=productTemp.get();
 		Review review = Review.builder()
 				.user(user)
 				.product(product)
@@ -177,6 +179,7 @@ public class ReviewServiceImpl implements ReviewService{
 				.review(review)
 				.build();
 		reviewImgRepository.save(reviewimg);
+		
 		}
 		
 				
@@ -187,12 +190,15 @@ public class ReviewServiceImpl implements ReviewService{
 		product.setReview((int)count);
 		
 		userRepository.save(user);
+		int reviewid=reviewRepository.findFirstByUserIdOrderByIdDesc(user.getId()).get().getId();
+		return reviewid;
 		
 	}
 	
 	@Override
-	public ReviewDto getReviewDetail(int id) {
+	public ReviewDto getReviewDetail(int id) throws Exception {
 		Optional<Review> reviewTemp=reviewRepository.findById(id);
+		if(!reviewTemp.isPresent()) throw new ReviewNotFoundException();
 		Review review=reviewTemp.get();
 		ReviewDto dto=ReviewDto.builder()
 				.id(id)
@@ -216,8 +222,9 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Override
 	@Transactional
-	public void modifyReview(User user, ModifyReviewRequestDto dto) throws IOException {
+	public void modifyReview(User user, ModifyReviewRequestDto dto) throws Exception {
 		Optional<Review> reviewTemp =reviewRepository.findById(dto.getId());
+		if(!reviewTemp.isPresent()) throw new ReviewNotFoundException();
 		Review review=reviewTemp.get();
 			review.setStar(dto.getStar());
 			review.setContent(dto.getContent());
@@ -269,9 +276,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Transactional
 	public void addLike(int review_id, User user) throws Exception {
 		long check =likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
-		if(check != 0) throw new Exception();
+		if(check != 0) throw new LikeException();
 		Optional<Review> review= reviewRepository.findById(review_id);
-		if(!review.isPresent()) throw new Exception();
+		if(!review.isPresent()) throw new ReviewNotFoundException();
 		LikeReview likeReview=LikeReview.builder()
 					.user(user)
 					.review(review.get())
@@ -286,9 +293,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Transactional
 	public void deleteLike(int review_id, User user) throws Exception {
 		long check =likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
-		if(check != 0) throw new Exception();
+		if(check != 0) throw new LikeException();
 		Optional<Review> review= reviewRepository.findById(review_id);
-		if(!review.isPresent()) throw new Exception();
+		if(!review.isPresent()) throw new ReviewNotFoundException();
 		likeReviewRepository.deleteByReviewIdAndUserId(review_id, user.getId());
 		long num=likeReviewRepository.countByReviewId(review_id);
 		review.get().setLike((int)num);

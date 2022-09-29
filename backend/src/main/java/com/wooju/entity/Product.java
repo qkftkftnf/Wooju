@@ -1,8 +1,11 @@
 package com.wooju.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -131,4 +134,15 @@ public class Product {
 	@Column(name="review_num", nullable = true)
 	private Integer review;
 	
+	@OneToMany(mappedBy = "product")
+	private List<LikeProduct> likeproducts;
+	
+	@OneToMany(mappedBy = "product")
+	private List<Review> reviews;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductFood> productfoods;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductMaker> productmakers;
 }

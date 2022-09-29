@@ -1,11 +1,7 @@
 package com.wooju.dto.request;
 
-
-
 import java.time.LocalDate;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

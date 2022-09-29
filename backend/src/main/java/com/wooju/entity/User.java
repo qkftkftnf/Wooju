@@ -51,6 +51,9 @@ public class User {
 	@Column(name = "gosu", nullable=false)
 	private boolean gosu;
 	
+	@Column(name="type", nullable=false)
+	private String type;
+	
 	@Column(name = "question1", nullable =false)
 	private int question1;
 	
@@ -66,10 +69,19 @@ public class User {
 	@Column(name = "question5", nullable =false)
 	private int question5;
 	
+	@Column(name = "question6", nullable =false)
+	private int question6;
+	
 	@OneToMany(mappedBy = "user")
 	private List<LikeProduct> likeproducts;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
+	
+	@OneToMany(mappedBy = "user")
+	private List<ReviewImg> reviewimgs;
+	
+	@OneToMany(mappedBy = "user")
+	private List<LikeReview> reviewreviews;
 	
 }

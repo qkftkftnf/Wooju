@@ -2,9 +2,6 @@ package com.wooju.dto;
 
 import java.util.ArrayList;
 
-import com.wooju.entity.Product;
-import com.wooju.entity.Review;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;

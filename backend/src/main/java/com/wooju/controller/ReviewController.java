@@ -21,6 +21,7 @@ import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewLikeRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
+import com.wooju.dto.response.CreateReviewResponseDto;
 import com.wooju.dto.response.ReviewDetailResponseDto;
 import com.wooju.dto.response.ReviewListResponseDto;
 import com.wooju.dto.response.ReviewMainResponseDto;
@@ -76,15 +77,15 @@ public class ReviewController {
 		@ApiResponse(code = 500 , message="서버오류")
 	})
 	public ResponseEntity<? extends BaseResponseDto> review(@ApiIgnore Authentication authentication,
-			@RequestBody @ApiParam(value="리뷰 내용", required=true)ReviewRequestDto dto){
+			@RequestBody @ApiParam(value="리뷰 내용", required=true)ReviewRequestDto dto)throws Exception{
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
 		User user=userDetails.getUser();
 		
-		reviewService.createReview(user,dto);
+		int id=reviewService.createReview(user,dto);
 		
-		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "success"));
+		return ResponseEntity.status(200).body(CreateReviewResponseDto.of(200, "success",id));
 	}
 	
 	@GetMapping("/{review_id}")

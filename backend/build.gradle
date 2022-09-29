@@ -17,9 +17,7 @@ buildscript{
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVer}"
         classpath "io.spring.gradle:dependency-management-plugin:${springDependencyMgmtVer}.RELEASE"
         classpath "org.springframework:springloaded:${springLoadedVer}.RELEASE"
-        //��Ŭ������ ��츦 ���� QueryDSL �÷�����. IntelliJ�� ���ʿ�. [����]
-        classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVer}"
-        //[��] 
+        //classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVer}"
         classpath "com.github.node-gradle:gradle-node-plugin:3.1.0"
     }
 }
@@ -33,7 +31,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'eclipse'
 apply plugin: 'com.github.node-gradle.node'
-apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+//apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 
 
 repositories {
@@ -52,7 +50,6 @@ sourceCompatibility = '1.8'
 node {
     download = true
     version = '14.17.0'
-    // Set the work directory where node_modules should be located
     nodeModulesDir = file("${project.projectDir}/../frontend")
 }
 
@@ -64,14 +61,12 @@ configurations {
     args = ['install']
 }*/
 
-task webpack(type: NpmTask, dependsOn: 'npmInstall') {
-    args = ['run','build']
-}
+//task webpack(type: NpmTask, dependsOn: 'npmInstall') {
+//    args = ['run','build']
+//}
+//
+//processResources.dependsOn 'webpack'
 
-// processResources is a Java task. Run the webpack bundling before this task using the 'build' task in the package.json
-processResources.dependsOn 'webpack'
-
-//set build time and inject value to application.properties
 def buildTime() {
     def date = new Date()
     def formattedDate = date.format('yyyyMMdd_HHmm')
@@ -97,8 +92,8 @@ processResources {
     }
     duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
 }
-	
-def querydslDir = 'src/main/generated'
+
+/*def querydslDir = 'src/main/generated'
 querydsl {
     library = "com.querydsl:querydsl-apt"
     jpa = true
@@ -120,6 +115,7 @@ compileQuerydsl {
 configurations {
     querydsl.extendsFrom compileClasspath
 }
+*/
 //[��]
 
 dependencies {
@@ -141,11 +137,10 @@ dependencies {
 
     implementation("com.querydsl:querydsl-jpa:${querydslVer}")
     implementation("com.querydsl:querydsl-apt:${querydslVer}")
+    implementation('org.springframework.boot:spring-boot-starter-webflux')
 
 
-    //IntelliJ��
-    //IntelliJ������ �ϱ� annotationProcessor�� ���� ������ querydsl �÷����� �� �÷����� ������ ���ʿ�.
-    //annotationProcessor("com.querydsl:querydsl-apt:${querydslVer}:jpa")
+    annotationProcessor("com.querydsl:querydsl-apt:${querydslVer}:jpa")
 
     implementation("com.squareup.retrofit2:retrofit:2.7.1")
     implementation("com.squareup.retrofit2:converter-jackson:2.7.1")
@@ -166,7 +161,7 @@ dependencies {
     
     implementation ("com.google.code.gson:gson:2.9.0")
 
-    compile("javax.annotation:javax.annotation-api:1.2")
+    implementation("javax.annotation:javax.annotation-api:1.2")
 
     implementation("org.projectlombok:lombok:1.18.20")
     annotationProcessor("org.projectlombok:lombok:1.18.20")
@@ -174,7 +169,7 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-mail')
 	implementation ('com.amazonaws:aws-java-sdk:1.12.305')
 
-    compile ('org.springframework.boot:spring-boot-starter-tomcat')
+    implementation ('org.springframework.boot:spring-boot-starter-tomcat')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
