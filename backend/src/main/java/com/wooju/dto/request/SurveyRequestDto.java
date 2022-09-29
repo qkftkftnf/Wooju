@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@ApiModel("SignUpRequestDto")
+@ApiModel("SurveyRequestDto")
 public class SurveyRequestDto {
 
 	@ApiModelProperty(name="술의 종류", example="증류주")

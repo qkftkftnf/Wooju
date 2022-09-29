@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@ApiModel("ProductListResponse")
+@ApiModel("ProductDetailResponse")
 public class ProductDetailResponseDto extends BaseResponseDto{
 	
 	@ApiModelProperty(name="object")
