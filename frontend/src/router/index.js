@@ -18,6 +18,13 @@ import MyRecommendationResult from "../views/recommendation/MyRecommendationResu
 
 import NonmemberView from "../views/common/NonmemberView.vue";
 
+import LoginView from "../views/login/LoginView.vue";
+import LoginBase from "../views/login/LoginBase.vue";
+import LoginPopup from "../views/login/LoginPopup.vue";
+import LoginRedirect from "../views/login/LoginRedirect.vue";
+import SignupView from "../views/common/SignupView.vue";
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -94,7 +101,34 @@ const router = createRouter({
       name: "NonmemberView",
       path: "/nonmember",
       component: NonmemberView,
-    }
+    },
+    {
+      name: "LoginView",
+      path: "/login",
+      component: LoginView,
+      children: [
+        {
+          name: "LoginBase",
+          path: "",
+          component: LoginBase,
+        },
+        {
+          name: "LoginPopup",
+          path: "popup/:path",
+          component: LoginPopup,
+        },
+        {
+          name: "LoginRedirect",
+          path: "redirect/:path",
+          component: LoginRedirect,
+        },
+      ]
+    },
+    {
+      name: "SignupView",
+      path: "/signup",
+      component: SignupView,
+    },
   ],
 });
 
