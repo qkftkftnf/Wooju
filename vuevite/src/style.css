@@ -1,12 +1,12 @@
-@import "assets/css/common.css";
-@import "assets/css/CommunityMain.css";
-@import "assets/css/CommunityHot.css";
-@import "assets/css/WoojooSearch.css";
-@import "assets/css/myPage.css";
-@import "assets/css/woojooDetail.css";
-@import "assets/css/MyRecommendation.css";
-@import "assets/css/reviewCreate.css";
-@import "assets/css/nonmember.css";
+@import "@/assets/css/common.css";
+@import "@/assets/css/CommunityMain.css";
+@import "@/assets/css/CommunityHot.css";
+@import "@/assets/css/WoojooSearch.css";
+@import "@/assets/css/myPage.css";
+@import "@/assets/css/woojooDetail.css";
+@import "@/assets/css/MyRecommendation.css";
+@import "@/assets/css/reviewCreate.css";
+@import "@/assets/css/nonmember.css";
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
