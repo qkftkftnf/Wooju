@@ -2,7 +2,7 @@
   <div class="tab-template profile-container">
     <div class="mypage-header">
       <div class="header-nick">
-        닉네임스토리
+        {{ profileData.profile?.nickname }}
       </div>
       <div class="mode-toggle">
         <ModeToggle/>
@@ -10,7 +10,7 @@
     </div>
     <div class="mypage-profile">
       <div class="bg-box"></div>
-      <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')">
+      <div class="profile-pic" :style="`background-image: url(${profileData.profile?.img})`">
       </div>
       <div class="profilebox">
         <div class="edit-profile" @click="linkTo('MyPageProfileEdit')">
@@ -21,7 +21,10 @@
         lv.8
       </div>
       <div class="email">
-        hey@gmail.com
+        {{ profileData.profile?.email }}
+      </div>
+      <div class="logout">
+        <i class="fas fa-sign-out-alt"></i>
       </div>
       <div class="logout">
         <i class="fas fa-sign-out-alt"></i>
@@ -58,7 +61,7 @@
           <!-- tab2 -->
           <div class="tab-section mypage-likes">
             <el-scrollbar>
-              <MyPageLikes/>
+              <MyPageLikes :likesData="profileData.likeList"/>
             </el-scrollbar>
           </div>
           <!-- tab3 -->
@@ -80,13 +83,20 @@ import ModeToggle from "@/views/common/ModeToggle.vue"
 import MyPagePreference from "@/views/mypage/MyPagePreference.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
 import MyPageReviews from "@/views/mypage/MyPageReviews.vue"
-import { ref, onMounted } from "vue";
+import { ref, onMounted ,computed } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 
 // script
 const router = useRouter();
+const store = useStore();
+const profileData = computed(() => store.getters.profile)
 const linkTo = (name) => router.push({ name: name, })
+
+onMounted(() => {
+  store.dispatch("fetchProfile")
+})
 
 
 // js scroll function

@@ -72,11 +72,36 @@
   text-align: center;
 }
 
+.mypage-profile .profilebox {
+  width: 250px;
+  height: 125px;
+  position: absolute;
+  top: 115px;
+  left: calc(50% - 125px);
+}
+
 .mypage-profile .edit-profile {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 2px;
+  right: calc(50% - 50px);
+  background-color: var(--main-bg-color);
+  opacity: 0.8;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.1)
+
+}
+
+.mypage-profile .logout {
   position: absolute;
   top: 320px;
   left: calc(50% + 90px);
+  opacity: 0.5;
 }
+
+
 
 .mypage-profile .bg-box {
   width: 250px;
@@ -529,6 +554,10 @@
 /* profile edit page */
 .profile-edit-container {
   margin-top: 60px;
+  width: 100vw;
+  max-width: 500px;
+  height: calc(100vh - 130px);
+  position: relative;
 }
 
 .profile-edit-container .title {
@@ -536,11 +565,17 @@
   font-size: 1.4rem;
   font-weight: 600;
 }
+
+.profile-edit-container .avatar {
+  position: relative;
+}
+
 .profile-edit-container .avatar .pic {
   width: 150px;
   height: 150px;
   overflow: hidden;
   border-radius: 100%;
+  position: relative;
 }
 
 .profile-edit-container .avatar .pic img {
@@ -548,12 +583,25 @@
   height: 150px;
   object-fit: cover;
   object-position: center;
-}
+}  
 
 .profile-edit-container .avatar .pic-edit {
-  width: 100vw;
-  max-width: 500px;
-  height: 80px;
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  height: 40px;
+}
+
+.profile-edit-container .avatar .pic-edit .pic-edit-btn {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  left: calc(50% + 35px);
+  border-radius: 100%;
+  background-color: var(--card-bg-color);
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.07)
+
 }
 
 .profile-edit-container .avatar .pic-edit .edit-btn {
@@ -562,10 +610,60 @@
   height: 35px;
   line-height: 35px;
   border-radius: 10px;
-  background-color: var(--highlight-bg-color);
+  border: 1px solid var(--main-color);
   font-size: 0.9rem;
 }
 
-.profile-edit-container .avatar .pic-edit .input-box {
+.profile-edit-container .avatar .pic-edit #pic-upload-input {
   display: none;
+}
+
+.profile-edit-container .profile-info {
+  margin: 0 auto;
+  width: 250px;
+  height: 100px;
+}
+
+.profile-edit-container .profile-info .nick {
+  margin-top: 50px;
+  width: 250px;
+  height: 35px;
+  line-height: 35px;
+  text-align: left;
+}
+
+.preferance-container .profile-info .edit-nickname {
+  width: 250px;
+  height: 30px;
+}
+
+.profile-edit-container .profile-info .email {
+  padding-left: 5px;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.profile-edit-container .profile-info .email .envelope {
+  color: var(--text-sub-color);
+}
+
+.profile-edit-container .buttons {
+  margin-top: 50px;
+  width: 100vw;
+  max-width: 500px;
+  height: 100px;
+  position: relative;
+}
+
+.profile-edit-container .submit {
+  margin-top: 40px;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 10px;
+  background-color: var(--highlight-bg-color);
 }

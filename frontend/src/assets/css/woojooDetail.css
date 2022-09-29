@@ -173,12 +173,6 @@
     text-align: center;
   }
   
-  .mypage-profile .edit-profile {
-    position: absolute;
-    top: 320px;
-    left: calc(50% + 90px);
-  }
-  
   .mypage-profile .bg-box {
     width: 250px;
     height: 250px;
