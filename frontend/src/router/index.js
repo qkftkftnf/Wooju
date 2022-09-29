@@ -14,6 +14,10 @@ import MyPageMain from "../views/mypage/MyPageMain.vue";
 import MyPageProfileEdit from "../views/mypage/MyPageProfileEdit.vue"
 
 import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
+import MyRecommendationType from "../views/recommendation/MyRecommendationType.vue";
+import MyRecommendationTak from "../views/recommendation/MyRecommendationTak.vue";
+import MyRecommendationFruit from "../views/recommendation/MyRecommendationFruit.vue";
+import MyRecommendationSoju from "../views/recommendation/MyRecommendationSoju.vue";
 import MyRecommendationResult from "../views/recommendation/MyRecommendationResult.vue";
 
 import NonmemberView from "../views/common/NonmemberView.vue";
@@ -93,6 +97,26 @@ const router = createRouter({
           name: "MyRecommendationResult",
           path: "userpk",
           component: MyRecommendationResult,
+        },
+        {
+          name: "MyRecommendationType",
+          path: "type",
+          component: MyRecommendationType,
+        },
+        {
+          name: "MyRecommendationTak",
+          path: "tak",
+          component: MyRecommendationTak,
+        },
+        {
+          name: "MyRecommendationFruit",
+          path: "fruit",
+          component: MyRecommendationFruit,
+        },
+        {
+          name: "MyRecommendationSoju",
+          path: "soju",
+          component: MyRecommendationSoju,
         },
       ]
     },

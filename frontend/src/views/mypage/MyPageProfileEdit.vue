@@ -6,7 +6,7 @@
     </div>
     <div class="avatar">
       <div class="pic">
-        <img id="pic-thumbnail" src="https://images.unsplash.com/photo-1621351813579-4ceefec7235c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8eWVsbG93JTIwYWVzdGhldGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
+        <img id="pic-thumbnail" :src="profileData.profile.img" alt="">
       </div>
       <div class="pic-edit" @click="openGallery">
         <div class="pic-edit-btn">
@@ -51,14 +51,14 @@ onMounted(() => {
 
 
 // image upload  
-const uploadImages = ref([])
+const uploadImage = ref([])
 
 const openGallery = () => {
   document.querySelector("#pic-upload-input").click()
 }
 
 const onFileChange = (image) => {
-  uploadImages.value.push(image.target.files[0])
+  uploadImage.value.push(image.target.files[0])
   getThumbnail()
 }
 
@@ -74,15 +74,17 @@ const getThumbnail = () => {
   }
 }
 
-
+// const 
 const onSubmit = () => {
-  const profileInfo = ref({
-    img: "https://images.unsplash.com/photo-1621351813579-4ceefec7235c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8eWVsbG93JTIwYWVzdGhldGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-    nickname: profileData.value.profile.nickname,
-  })
-  
-  console.log(profileInfo.value)
-  store.dispatch("updateProfile", profileInfo.value)
+  var file = new FormData()
+  file.append("file", uploadImage.value[0])
+      
+  const profileInfo = {
+    file: file,
+    nickname: profileData.value.profile.nickname
+  }
+
+  store.dispatch("profileEdit", profileInfo)
 }
 
 </script>

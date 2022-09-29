@@ -1,4 +1,5 @@
 import router from "../../router";
+import axios from "axios";
 import http from "@/api/index.js"
 
 const mypage = {
@@ -23,7 +24,6 @@ const mypage = {
       http.get("/user/profile")
         .then(({ data }) => {
           commit("SET_PROFILE", data)
-          console.log(data)
         })
         .then(() => {
           commit("SET_ISLOADED", true)
@@ -31,15 +31,29 @@ const mypage = {
         )
         .catch((err) => console.log(err))
     },
-    updateProfile({}, profileInfo) {
-      http.put("/review", profileInfo)
+    profileEdit({}, profileInfo) {
+      axios({
+        method: "POST",
+        url: "https://j7a304.p.ssafy.io/api/image/upload",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: profileInfo.file,
+      })
         .then(({ data }) => {
-          router.push({
-            name: "MyPageMain",
+          http.put("/user/profile", {
+            nickname: profileInfo.nickname,
+            img: data.img
           })
-        })
-        .catch((err) => console.log(err))
-    }
+          .then(({ data }) => {
+            router.push({
+              name: "MyPageMain",
+            })
+          })
+          .catch((err) => console.log(err))
+      })
+      .catch((err) => console.log(err))
+    },
   },
 }
 
