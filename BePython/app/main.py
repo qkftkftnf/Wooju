@@ -55,7 +55,7 @@ async def read_product(product_id: int, db: Session = Depends(get_db)):
     return product
 
 
-@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=List[schemas.ProductBase])
+@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=schemas.Recommendation)
 async def read_products(
     db: Session = Depends(get_db),
     user_id: Union[int, None] = None,

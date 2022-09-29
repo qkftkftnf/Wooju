@@ -60,6 +60,8 @@ class User(UserBase):
     question3: int
     question4: int
     question5: int
+    question6: int
+    type: str
     gosu: bool
     review_count: Union[int, None] = None
     
@@ -103,3 +105,7 @@ class ProductDetail(ProductBase):
     ingredient: Union[str, None] = None
 
 
+class Recommendation(BaseModel):
+    taste: Union[List[ProductBase], None] = None
+    today: Union[List[ProductBase], None] = None
+    award: List[ProductBase]

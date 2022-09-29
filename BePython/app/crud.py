@@ -1,16 +1,21 @@
 from sqlalchemy.orm import Session
 from typing import List, Optional
+from  sqlalchemy.sql.expression import func
 
 from models import Product, User
-from recommend import get_recommendations
+from recommend import get_taste
 
 
 def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None):
     products = db.query(Product)
 
     if user_id:
+        result = {}
         user = db.query(User).filter(User.id == user_id)
-        return get_recommendations(user, products.filter(Product.type == '탁주'))
+        result['taste'] = get_taste(user, products.filter(Product.type == '탁주'))
+        result['today'] = products.order_by(func.rand())[:3]
+        result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
+        return result
 
     else:
         products = products.filter(Product.alcohol < alcohol)

@@ -98,6 +98,8 @@ class User(Base):
 	question3 = Column(SmallInteger, nullable=False)
 	question4 = Column(SmallInteger, nullable=False)
 	question5 = Column(SmallInteger, nullable=False)
+	question6 = Column(SmallInteger, nullable=False)
 	usertype = Column(VARCHAR(255), nullable=False)
+	type = Column(VARCHAR(255), nullable=False)
 	gosu = Column(Boolean, nullable=False)
 	review_count = Column(BigInteger, nullable=True)
