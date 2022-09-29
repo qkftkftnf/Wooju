@@ -47,11 +47,15 @@
       <i class="alcohol"></i> {{woojooInfo.object?.alcohol}}%
     </div>
     <div class="rate">
-      <span class="wooju-star">별점  </span>
+      <span class="wooju-star">별점 : </span>
       <i class="fas fa-star star"></i> {{woojooInfo.object?.star}}
     </div>
+    <div class="rate">
+      <span class="price">가격 :</span>
+      {{woojooInfo.object?.price}}원
+    </div>
     <p class="detail-text">
-      {{woojooInfo.object.award}}
+      {{woojooInfo.object?.award}}
     </p>
     <div class="title">
       어울리는 음식
@@ -80,6 +84,18 @@ const woojooInfo = computed(() => store.getters.woojooInfo);
 </script>
 
 <style>
+.detail-content .rate {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
+.price {
+  font-size: 1.5rem;
+    font-weight: 200;
+    color: #a4a4a4;
+}
+  
 .add {
   height: 0px !important;
 }
