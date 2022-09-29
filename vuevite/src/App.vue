@@ -1,27 +1,28 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-</script>
-
 <template>
-  <div>
-    제발 뭔데
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="app-container">
+    <!-- <HeaderView/> -->
+    <RouterView/>
+    <!-- <MenuView/> -->
+    <div id="tel"></div>  
   </div>
+
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<script setup>
+import { RouterView } from "vue-router";
+
+// import HeaderView from "@/views/common/HeaderView.vue"
+// import MenuView from "@/views/common/MenuView.vue"
+</script>
+
+<style>
+@import "assets/css/common.css";
+@import "assets/css/CommunityMain.css";
+@import "assets/css/CommunityHot.css";
+@import "assets/css/WoojooSearch.css";
+@import "assets/css/myPage.css";
+@import "assets/css/woojooDetail.css";
+@import "assets/css/MyRecommendation.css";
+@import "assets/css/reviewCreate.css";
+@import "assets/css/nonmember.css";
 </style>
