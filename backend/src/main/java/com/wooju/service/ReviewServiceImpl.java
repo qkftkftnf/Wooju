@@ -1,6 +1,5 @@
 package com.wooju.service;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -159,7 +158,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	@Transactional
 	@Override
-	public void createReview(User user, ReviewRequestDto dto) throws Exception {
+	public int createReview(User user, ReviewRequestDto dto) throws Exception {
 		Optional<Product> productTemp = productRepository.findById(dto.getProduct_id());
 		if(!productTemp.isPresent()) throw new ProductNotFoundException();
 		Product product=productTemp.get();
@@ -180,6 +179,7 @@ public class ReviewServiceImpl implements ReviewService{
 				.review(review)
 				.build();
 		reviewImgRepository.save(reviewimg);
+		
 		}
 		
 				
@@ -190,6 +190,8 @@ public class ReviewServiceImpl implements ReviewService{
 		product.setReview((int)count);
 		
 		userRepository.save(user);
+		int reviewid=reviewRepository.findFirstByUserIdOrderByIdDesc(user.getId()).get().getId();
+		return reviewid;
 		
 	}
 	

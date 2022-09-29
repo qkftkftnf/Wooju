@@ -21,6 +21,7 @@ import com.wooju.dto.request.ModifyReviewRequestDto;
 import com.wooju.dto.request.ReviewLikeRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
+import com.wooju.dto.response.CreateReviewResponseDto;
 import com.wooju.dto.response.ReviewDetailResponseDto;
 import com.wooju.dto.response.ReviewListResponseDto;
 import com.wooju.dto.response.ReviewMainResponseDto;
@@ -82,9 +83,9 @@ public class ReviewController {
 		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
 		User user=userDetails.getUser();
 		
-		reviewService.createReview(user,dto);
+		int id=reviewService.createReview(user,dto);
 		
-		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "success"));
+		return ResponseEntity.status(200).body(CreateReviewResponseDto.of(200, "success",id));
 	}
 	
 	@GetMapping("/{review_id}")
