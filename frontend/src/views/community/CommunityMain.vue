@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="header-content">
-      <img class="content-img" src="@/assets/images/community.jpg" alt="communityMainPic">
+      <img class="content-img" src="./public/assets/images/community.jpg" alt="communityMainPic">
       <p class="header-intro">더 많은 사람들과 더 많은 우주를 나눠보세요</p>
     </div>
     
@@ -35,7 +35,7 @@
               <div class="carousel-container">
                 <div class="review-card" v-for="review in reviewsData.dto?.hotreview" @click="linkTo">
                   <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <!-- <img src="./public/assets/images/pic3.jpg" alt="reviewPic"> -->
                     <img :src="review.img[0]" alt="reviewThumbnail">
                     <span class="like">
                       <i class="fas fa-heart heart"></i> {{ review.like }}
@@ -84,7 +84,7 @@
               <div class="carousel-container">
                 <div class="review-card" v-for="review in reviewsData.dto?.hotproductsreview" @click="linkTo">
                   <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <!-- <img src="./public/assets/images/pic3.jpg" alt="reviewPic"> -->
                     <img :src="review.img[0]" alt="reviewThumbnail">
                     <span class="like">
                       <i class="fas fa-heart heart"></i> {{ review.like }}
@@ -133,7 +133,7 @@
               <div class="carousel-container">
                 <div class="review-card" v-for="review in reviewsData.dto?.gosureview" @click="linkTo">
                   <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <!-- <img src="./public/assets/images/pic3.jpg" alt="reviewPic"> -->
                     <img :src="review.img[0]" alt="reviewThumbnail">
                     <span class="like">
                       <i class="fas fa-heart heart"></i> {{ review.like }}
@@ -182,7 +182,7 @@
               <div class="carousel-container">
                 <div class="review-card" v-for="review in reviewsData.dto?.recentreview" @click="linkTo">
                   <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
+                    <!-- <img src="./public/assets/images/pic3.jpg" alt="reviewPic"> -->
                     <img :src="review.img[0]" alt="reviewThumbnail">
                     <span class="like">
                       <i class="fas fa-heart heart"></i> {{ review.like }}

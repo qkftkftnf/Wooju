@@ -6,7 +6,7 @@
           <div class="review-header">
             <div class="profile">
               <div class="profile-box">
-                <img class="profile-img" src="@/assets/images/profile_img_1.jpg" alt="">
+                <img class="profile-img" src="./public/assets/images/profile_img_1.jpg" alt="">
               </div>
               <div class="review-writer">
                 <div class="review-nickname">hanssss</div>
@@ -15,13 +15,13 @@
             </div>
             <span class="review-date">2022.09.16</span> 
           </div>
-          <!-- <img src="@/assets/images/pic3.jpg"/> -->
+          <!-- <img src="./public/assets/images/pic3.jpg"/> -->
           <div class="block text-center" m="t-4">
             <el-carousel trigger="click" height="250px" indicator-position="outside" :autoplay="false">
               <el-carousel-item v-for="i in 4" :key="i">
                 <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
-                <!-- <img :src="`@/assets/images/pic${i}.jpg`" alt=""> -->
-                <img src="@/assets/images/pic1.jpg" alt="pic">
+                <!-- <img :src="`./public/assets/images/pic${i}.jpg`" alt=""> -->
+                <img src="./public/assets/images/pic1.jpg" alt="pic">
               </el-carousel-item>
               <span class="like">
                 <i class="fas fa-heart icon"></i> 73

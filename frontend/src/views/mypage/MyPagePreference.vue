@@ -13,7 +13,7 @@
     </div>
 
     <div class="type-image">
-      <img src="@/assets/images/soju.png" alt="like-soju">
+      <img src="./public/assets/images/soju.png" alt="like-soju">
     </div>
   
     <div class="preferance">

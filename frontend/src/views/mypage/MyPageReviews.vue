@@ -3,7 +3,7 @@
     <div class="list-row">
       <div class="mypage-review-card" v-for="i in 9" @click="openModal(i)">
         <div class="review-img">
-          <img src="@/assets/images/pic1.jpg" alt="pic1">
+          <img src="./public/assets/images/pic1.jpg" alt="pic1">
         </div>
         <div class="review-content">
           <div class="review-wooju">
@@ -36,13 +36,13 @@
 
           <div class="image-carousel">
             <div class="img">
-              <img src="@/assets/images/pic1.jpg" alt="pic1">
+              <img src="./public/assets/images/pic1.jpg" alt="pic1">
             </div>
             <div class="img">
-              <img src="@/assets/images/pic2.jpg" alt="pic2">
+              <img src="./public/assets/images/pic2.jpg" alt="pic2">
             </div>
             <div class="img">
-              <img src="@/assets/images/pic3.jpg" alt="pic3">
+              <img src="./public/assets/images/pic3.jpg" alt="pic3">
             </div>
           </div>
 
