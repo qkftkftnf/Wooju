@@ -1,0 +1,236 @@
+.rec-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.rec-type {
+  margin-bottom: 120px;
+  background-color: var(--main-bg-color);
+}
+
+.rec-type .title {
+  margin-bottom: 40px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-highlight-color);
+}
+
+
+/* if user survey */
+.rec-type .bottles {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  font-size: 0.9rem;
+}
+
+.rec-type .bottles .bottle-card {
+  width: 28vw;
+  max-width: 140px;
+  height: 200px;
+}
+
+.rec-type .bottles .bottle-img {
+  width: 28vw;
+  max-width: 140px;
+  height: 28vw;
+  max-height: 140px;  
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
+}
+
+.rec-type .bottles .bottle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  
+}
+
+.rec-type .bottles .bottle-content {
+  padding: 5px 0;
+  width: 28vw;
+  max-width: 140px;
+  height: calc(180px - 28vw);
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--card-transparent-color);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px; 
+}
+
+.rec-type .bottles .bottle-title {
+  font-weight: 600;
+}
+
+.rec-type .award-title {
+  height: 60px;
+  font-size: 1.2rem;
+  line-height: 30px;
+}
+
+
+/* if user not surveyed yet */
+.rec-type .not-surveyed {
+  padding-bottom: 30px;
+  width: 100%;
+  max-width: 500px;
+  height: 130px;
+}
+
+.rec-type .not-surveyed .not-surveyed-content {
+  height: 50px;
+  line-height: 25px;
+}
+
+.rec-type .not-surveyed .survey-btn {
+  margin-top: 30px;
+  height: 50px;
+}
+
+.rec-type .not-surveyed .survey-btn .btn-box {
+  width: 200px;
+  height: 50px;
+  background-color: var(--highlight-bg-color);
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
+  font-size: 1.1rem;
+  line-height: 50px;
+  border-radius: 15px;
+}
+
+.rec-type .not-surveyed .life-style-btn .btn-box {
+  width: 250px;
+}
+
+
+/* recommendation question type */
+.recomm-type-container,
+.wait-container {
+  margin-top: 60px;
+  padding-bottom: 70px;
+  height: calc(100vh - 60px);
+  position: relative;
+  background-color: var(--main-bg-color);
+}
+
+.recomm-type-container .title {
+  padding: 40px 0;
+}
+
+.recomm-type-container .title .testimg {
+  width: 90%;
+  max-width: 450px;
+  border-radius: 20px;
+}
+
+.recomm-type-container .question0 {
+  margin-top: 20px;
+  height: 60px;
+  line-height: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.recomm-type-container .select {
+  padding: 0 10px;
+  display: flex;
+}
+
+.recomm-type-container .select .option {
+  width: 27vw;
+  max-width: 135px;
+  height: 180px;
+}
+
+.recomm-type-container .select .option img {
+  width: 27vw;
+  max-width: 135px;
+  height: 27vw;
+  max-height: 135px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 1px solid var(--text-sub-color);
+}
+
+.recomm-type-container .select .option .content {
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+
+/* loading page */
+.wait-container .waiting-person {
+  padding-top: 40px;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 20px;
+}
+
+.wait-container .week {
+  margin: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.st0{
+  fill:#F9CF68;
+}
+
+.loading-js {
+  margin-top: 40px;
+  height: 100px;
+  position: relative;
+}
+.contain{
+  height: 100px;
+  width: 100px;
+  /* left: calc(50% - 35px);
+  top: 55vh;
+  position: absolute;
+  transform: translatex(-50%) translatey(-50%); */
+}
+
+.contain svg{
+  vertical-align: top;
+  width: 100%;
+}
+
+.contain svg .beer{
+  animation-name: empty;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  fill: #F9CF68;
+}
+@keyframes empty{
+  0%{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  } 
+  30%{
+    clip-path: polygon(0 16%, 100% 12%, 100% 100%, 0% 100%);
+  }
+  50%{
+    clip-path: polygon(0 40%, 100% 44%, 100% 100%, 0% 100%);
+  }
+  70%{
+    clip-path: polygon(0 69%, 100% 66%, 100% 100%, 0% 100%);
+  }
+  100%{
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+}
+
+
+/* survey */
+.survey-container {
+  margin-top: 60px;
+  padding-bottom: 70px;
+  height: calc(100vh - 60px);
+  position: relative;
+  background-color: var(--main-bg-color);
+}

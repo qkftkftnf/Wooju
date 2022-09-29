@@ -224,7 +224,7 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const router = useRouter();
-const linkTo = () => router.push({ name: "CommunityHotReview",  params: { reportPk: 1 } })
+const linkTo = () => router.push({ name: "CommunityHotReview" })
 
 // vuex axios
 const store = useStore();
