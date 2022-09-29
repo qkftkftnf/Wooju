@@ -1,26 +1,26 @@
 <template>
   <div class="likes-container mypage-inner">
-    <div class="like-wooju" v-for="i in 8">
+    <div class="like-wooju" v-for="data in profileData.profile?.likeList">
       <div class="wooju-img">
-        <img src="https://thesool.com/common/imageView.do?targetId=PR00000106&targetNm=PRODUCT" alt="">
+        <img :src="data.img" alt="">
       </div>
       <div class="introduction">
         <div class="title">
-          만강에 비친 달
+          {{ data.name }}
         </div>
         <div class="content">
-          <span class="proof">17%</span> | <span class="bottle">375ml</span>
+          <span class="proof">{{ data.alcohol }}%</span> | <span class="bottle">{{ data.volume }}</span>
         </div>
         <div class="likes">
-            <span class="star" v-for="i in 4">
+            <!-- <span class="star" v-for="i in 4">
               <i class="fas fa-star star-icon"></i>
             </span>
             <span class="half"><i class="far fa-star star-icon"></i></span>
-            <span> | </span>
+            <span> | </span> -->
             <span class="heart">
               <i class="fas fa-heart heart-icon"></i>
             </span>
-            <span class="count">74</span>
+            <span class="count">{{ data.like_num }}</span>
         </div>
       </div>
     </div>
@@ -28,6 +28,15 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+const router = useRouter();
+
+// vuex axios
+const store = useStore();
+const profileData = computed(() => store.getters.profile)
 
 </script>
 

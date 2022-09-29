@@ -1,19 +1,19 @@
 <template>
   <div class="mypage-review-container mypage-inner">
     <div class="list-row">
-      <div class="mypage-review-card" v-for="i in 9" @click="openModal(i)">
+      <div class="mypage-review-card" v-for="(data, idx) in profileData.profile?.reviewList" @click="openModal(idx)">
         <div class="review-img">
-          <img src="@/assets/images/pic1.jpg" alt="pic1">
+          <img :src="data.img" alt="pic">
         </div>
         <div class="review-content">
           <div class="review-wooju">
-            만강에 비친 달
+            {{ data.product_name }}
           </div>
           <div class="review-date">
-            2022.09.22
+            {{ data.time }}
           </div>
           <div class="review-rate">
-            <i class="fas fa-star star"></i> 4.5
+            <i class="fas fa-star star"></i> {{ data.star }}
           </div>
         </div>
       </div>
@@ -21,59 +21,80 @@
 
   </div>
   
-  <teleport to='.tab-template' />
+  <teleport to='#tel'>
+    <transition name="background">
+      <div v-if="isOpen" class="teleport-background"></div>
+    </transition>
     <transition name="review">
       <div v-if="isOpen" class="teleport-container">
-        <el-scrollbar>
-          <div class="modal-header">
-            <div class="date">
-              2022.09.10
-            </div>
-            <div class="edit-btn">
-              수정
-            </div>
+        <div class="modal-header">
+          <div class="date">
+            {{ profileData.profile?.reviewList[postIdx].time }}
           </div>
-
+          <div class="edit-btn">
+            수정
+          </div>
+        </div>
+        
+        <el-scrollbar>
           <div class="image-carousel">
-            <div class="img">
-              <img src="@/assets/images/pic1.jpg" alt="pic1">
-            </div>
-            <div class="img">
-              <img src="@/assets/images/pic2.jpg" alt="pic2">
-            </div>
-            <div class="img">
-              <img src="@/assets/images/pic3.jpg" alt="pic3">
-            </div>
+            <el-carousel trigger=click :autoplay="false" arrow="always">
+              <el-carousel-item v-for="image in profileData.profile?.reviewList[postIdx].img">
+                <img src="image" alt="pic">
+              </el-carousel-item>
+            </el-carousel>
           </div>
 
           <div class="review-stat">
             <div class="wooju">
-              황금보리 17%
+              술 이름: <span class="name">{{ profileData.profile?.reviewList[postIdx].product_name }}</span> >
             </div>
             <div class="rate">
-              <i class="fas fa-star star" v-for="i in 4"></i>
+              내 평점: <i class="fas fa-star star" v-for="i in 4"></i> <span class="rate-num">{{ profileData.profile?.reviewList[postIdx].star }}</span>
             </div>
           </div>
 
-          <div class="reivew-content">
-            전통주 갤러리에서 시행하는 전통주 시음회에 다녀왔습니다. 다섯 개의 전통주를 마실 수 있었는데, 그 중 저에게는 ‘만강에 비친 달’이 가장 인상 깊었습니다. 단호박을 재료로 해서 빚은 막걸리라는데, 노란 빛이 추석을 생각나게 하더군요. 맛도 독특하고 계속 생각나는 맛이었습니다. 모두들 한번쯤 도전해볼만 한 술인 것 같습니다. 
+          <div class="review-content">
+            {{ profileData.profile?.reviewList[postIdx].content }}
           </div>
-          <button @click="closeModal()"></button>
+
+          <button class="close-btn" @click="closeModal()">목록으로</button>
         </el-scrollbar>
       </div>
     </transition>
+  </teleport>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, computed } from "vue"
+import { useStore } from "vuex";
+
+const store = useStore();
+const profileData = computed(() => store.getters.profile)
 
 const isOpen = ref(false)
+const postIdx = ref(0)
 
-const openModal = (n) => {
+const openModal = (idx) => {
   isOpen.value = true
+  openFunc()
+  postIdx.value = idx
 }
 const closeModal = () => {
   isOpen.value = false
+  closeFunc()
+}
+
+const openFunc = () => {
+  const telContainer = document.querySelector("#tel")
+  telContainer.style.display = "block"
+}
+
+const closeFunc = () => {
+  const telContainer = document.querySelector("#tel")
+  setTimeout(() => {
+    telContainer.style.display = "none"
+  }, 2000);
 }
 
 </script>
@@ -94,6 +115,18 @@ const closeModal = () => {
 
   .review-leave-to {
     top: calc(100vh - 190px);
+  }
+  
+  .background-enter-from {
+    opacity: 0;
+  }
+
+  .background-enter-to {
+    opacity: 1;
+  }
+
+  .background-leave-to {
+    opacity: 0;
   }
   
 </style>
