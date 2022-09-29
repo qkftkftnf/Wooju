@@ -108,21 +108,25 @@ const reviewTextarea = ref("")
 const store = useStore()
 
 const onSubmit = () => {
-  // var imgData = new FormData()
-  // uploadImages.value.forEach(function(img) {
-  //   imgData.append("img", img)
-  // })
-  const reviewData = ref({
+  var imgData = new FormData()
+  
+  uploadImages.value.forEach(function(img) {
+    imgData.append("file", img)
+  })
+
+  const reviewData = {
     product_id: 100,
     star: rate.value,
     title: "필요한가요?",
     content: reviewTextarea.value,
-    // img: imgData,
-    img: [],
-  })
-  
-  // console.log(reviewData.value)
-  store.dispatch('createReview', reviewData.value)
+    file: imgData,
+  }
+
+  // for (let value of imgData.values()) {
+  //   console.log(value)
+  // } 
+
+  store.dispatch('createReview', reviewData)
 };
 
 

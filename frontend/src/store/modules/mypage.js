@@ -40,11 +40,11 @@ const mypage = {
         },
         data: profileInfo.file,
       })
-      .then(({ data }) => {
-        http.put("/user/profile", {
-          nickname: profileInfo.nickname,
-          img: data.img
-        })
+        .then(({ data }) => {
+          http.put("/user/profile", {
+            nickname: profileInfo.nickname,
+            img: data.img
+          })
           .then(({ data }) => {
             router.push({
               name: "MyPageMain",
@@ -53,7 +53,7 @@ const mypage = {
           .catch((err) => console.log(err))
       })
       .catch((err) => console.log(err))
-    }
+    },
   },
 }
 

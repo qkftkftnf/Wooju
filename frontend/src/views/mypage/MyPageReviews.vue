@@ -3,7 +3,7 @@
     <div class="list-row">
       <div class="mypage-review-card" v-for="(data, idx) in profileData.profile?.reviewList" @click="openModal(idx)">
         <div class="review-img">
-          <img :src="data.img" alt="pic">
+          <img :src="data.img[0]" alt="pic">
         </div>
         <div class="review-content">
           <div class="review-wooju">
@@ -40,7 +40,7 @@
           <div class="image-carousel">
             <el-carousel trigger=click :autoplay="false" arrow="always">
               <el-carousel-item v-for="image in profileData.profile?.reviewList[postIdx].img">
-                <img src="image" alt="pic">
+                <img :src="image" alt="pic">
               </el-carousel-item>
             </el-carousel>
           </div>
