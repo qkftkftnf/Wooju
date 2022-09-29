@@ -2,26 +2,30 @@
   <div class="tab-template profile-container">
     <div class="mypage-header">
       <div class="header-nick">
-        <!-- 닉네임스토리 -->
+        닉네임스토리
       </div>
       <div class="mode-toggle">
         <ModeToggle/>
       </div>
     </div>
     <div class="mypage-profile">
-      <div class="bg-box">
-        <img src="@/assets/images/pic1.jpg" alt="">
+      <div class="bg-box"></div>
+      <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')">
       </div>
-      <!-- <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div>
+      <div class="profilebox">
+        <div class="edit-profile" @click="linkTo('MyPageProfileEdit')">
+          <i class="fas fa-cog"></i>
+        </div>
+      </div>
       <div class="level">
         lv.8
       </div>
       <div class="email">
         hey@gmail.com
       </div>
-      <div class="edit-profile" @click="linkTo('MyPageProfileEdit')">
-        <i class="fas fa-cog"></i>
-      </div> -->
+      <div class="logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
     </div>
     
     
@@ -103,6 +107,8 @@ onMounted(() => {
       document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
       document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
       document.querySelector(".mypage-profile .bg-box").style.opacity = `${(position.value - 350) / 160}`
+      document.querySelector(".mypage-profile .edit-profile").style.opacity = `${(position.value - 350) / 160 * 0.8} !important`
+      document.querySelector(".mypage-profile .logout").style.opacity = `${(position.value - 350) / 160 * 0.5}`
       document.querySelector(".mypage-profile .profile-pic").style.opacity = `${(position.value - 350) / 160}`
       document.querySelector(".mypage-profile .level").style.opacity = `${(position.value - 350) / 160}`
       document.querySelector(".mypage-profile .email").style.opacity = `${(position.value - 350) / 160}`
