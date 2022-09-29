@@ -8,7 +8,7 @@ RUN npm ci
 
 COPY ./ ./
 
-RUN npm install --dev && npm run build
+RUN npm install --dev
 
 EXPOSE 5173
 
