@@ -27,7 +27,7 @@
             <div class="not-surveyed-content">
               아직 취향 조사를 하지 않으셨어요! <br/> 당신의 우주를 같이 알아볼까요?
             </div>
-            <div class="survey-btn">
+            <div class="survey-btn" @click="linkTo('MyRecommendationType')">
               <div class="btn-box">취향 알아보러 가기 ></div>
             </div>
           </div>
@@ -61,7 +61,7 @@
             <div class="not-surveyed-content">
               당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요
             </div>
-            <div class="survey-btn life-style-btn">
+            <div class="survey-btn life-style-btn" @click="linkTo('MyRecommendationType')">
               <div class="btn-box">오늘의 라이프 스타일은? ></div>
             </div>
           </div>
@@ -118,7 +118,7 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const router = useRouter();
-const linkTo = () => router.push({ name: "CommunityHotReview",  params: { reportPk: 1 } })
+const linkTo = (name) => router.push({ name: name })
 
 // vuex axios
 const store = useStore();
@@ -130,8 +130,8 @@ onMounted(() => {
 
 
 // whether surveyed
-const preference = ref(true)
-const lifestyle = ref(false)
+const preference = ref(false)
+const lifestyle = ref(true)
 
 
 // header scroll event js

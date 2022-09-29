@@ -105,3 +105,58 @@
 .rec-type .not-surveyed .life-style-btn .btn-box {
   width: 250px;
 }
+
+
+/* recommendation question type */
+.recomm-type-container {
+  margin-top: 60px;
+  padding-bottom: 70px;
+  height: calc(100vh - 60px);
+  position: relative;
+  background-color: var(--main-bg-color);
+}
+
+.st0{fill:#F9CF68;}
+
+.loading-js {
+  position: relative;
+  height: 100px;
+}
+.contain{
+  height: 100px;
+  width: 100px;
+  /* left: calc(50% - 35px);
+  top: 55vh;
+  position: absolute; */
+  /* transform: translatex(-50%) translatey(-50%); */
+}
+
+.contain svg{
+  vertical-align: top;
+  width: 100%;
+}
+
+.contain svg .beer{
+  animation-name: empty;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  fill: #F9CF68;
+}
+@keyframes empty{
+  0%{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  } 
+  30%{
+    clip-path: polygon(0 16%, 100% 12%, 100% 100%, 0% 100%);
+  }
+  50%{
+    clip-path: polygon(0 40%, 100% 44%, 100% 100%, 0% 100%);
+  }
+  70%{
+    clip-path: polygon(0 69%, 100% 66%, 100% 100%, 0% 100%);
+  }
+  100%{
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+}
