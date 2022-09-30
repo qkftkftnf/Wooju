@@ -9,25 +9,9 @@
       </div>
     </div> -->
     <div class="detail-header">
-      <!-- <div class="bg-box"></div> -->
-      <!-- <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div> -->
       <img class="bg-box" :src="woojooInfo.object?.image" alt="">
-      <!-- <div class="level"> -->
-        <!-- lv.8 -->
-      <!-- </div> -->
-      <!-- <div class="email">
-        hey@gmail.com
-      </div>
-      <div class="edit-profile">
-        <i class="fas fa-cog"></i>
-      </div> -->
     </div>
     <HeaderView/>
-    <!-- <div class="detail-header-container">
-      <div class="woojoo-pic">
-        <img class="profile-pic" src="@/assets/images/woojoo1.jpg" alt="">
-      </div>
-    </div> -->
     <div class="mypage-container" id="detail-container">
       <!-- tabs menu -->
       <div class="mypage-tabs">
@@ -36,7 +20,7 @@
             상세정보
           </div>
           <div class="tab tab-likes" @click="tabPosition('mypage-likes')">
-            ????
+            구매처 링크
           </div>
           <div class="tab tab-reviews" @click="tabPosition('detail-reviews')">
             리뷰

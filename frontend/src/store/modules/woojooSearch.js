@@ -22,7 +22,14 @@ const community = {
 		// 		.catch((err) => console.log(err))
 		// },
 		fetchWoojooList({ commit }) {
-			http.post("/product")
+      console.log('----1')
+			http.post("/product", {
+          "alcohol": 30,
+          "award": false,
+          "page": 1,
+          "size": 10,
+          "types": []
+      })
 				.then(({ data }) => {
 					console.log(data)
 					// commit("SET_WOOJOOLIST", data)
