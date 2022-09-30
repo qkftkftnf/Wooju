@@ -80,19 +80,20 @@ import DetailContent from "@/views/woojoo_search/DetailContent.vue"
 import DetailReviews from "@/views/woojoo_search/DetailReviews.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
 import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 const router = useRouter();
+const route = useRoute()
 // const linkTo = () => router.push({ name: "", params: { }})
 
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
-
 const position = ref(0)
+const productId = route.params.productId
 
 onMounted(() => {
-  store.dispatch("fetchWoojooInfo")
+  store.dispatch("fetchWoojooInfo", productId)
   const mypageTabs = document.querySelector("#detail-container")
   window.onscroll = function() {scrollTabMenu()};
   function scrollTabMenu() {

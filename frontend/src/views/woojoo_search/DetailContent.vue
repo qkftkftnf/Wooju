@@ -35,9 +35,9 @@
     <div class="woojoo-text">
       "{{woojooInfo.object?.subtext}}"
     </div>
-    <div>
+    <!-- <div>
       <img class="content-img" :src="woojooInfo.object?.image" alt="">
-    </div>
+    </div> -->
     <div class="wooju">
       <span class="wooju-name">술 이름 : </span>
       {{woojooInfo.object?.name}}
@@ -46,10 +46,10 @@
       <span class="wooju-alcohol">도수 :  </span>
       <i class="alcohol"></i> {{woojooInfo.object?.alcohol}}%
     </div>
-    <div class="rate">
+    <!-- <div class="rate">
       <span class="wooju-star">별점 : </span>
       <i class="fas fa-star star"></i> {{woojooInfo.object?.star}}
-    </div>
+    </div> -->
     <div class="rate">
       <span class="price">가격 :</span>
       {{woojooInfo.object?.price}}원

@@ -25,9 +25,9 @@ const WoojooDetail = {
     //     })
     //     .catch((err) => console.log(err))
     // },
-    fetchWoojooInfo({ commit }) {
+    fetchWoojooInfo({ commit }, productId) {
       console.log('-----2---')
-      http.get('/product/103')
+      http.get(`/product/${productId}`)
         .then(({ data }) => {
           console.log(data)
           commit("SET_WOOJOOINFO", data)

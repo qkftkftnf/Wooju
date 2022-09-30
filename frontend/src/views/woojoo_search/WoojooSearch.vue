@@ -66,6 +66,8 @@
 <script setup>
 import ModeToggle from "@/views/common/ModeToggle.vue"
 import { ref, onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
 
 const position = ref(0)
 
