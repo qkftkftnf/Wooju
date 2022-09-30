@@ -53,7 +53,7 @@
 /* woojoo-detail-content tab */
 .detail-content {
   text-align: left;
-  padding: 20px 20px 10px 0px;
+  padding: 20px 20px 10px 10px;
 }
 
 .detail-content .wooju {
@@ -330,7 +330,7 @@
     color: var(--text-highlight-color);
   }
   
-  .preferance-container .preferance .flavor {
+  . .preferance .flavor {
     margin-bottom: 5px;
   }
   
