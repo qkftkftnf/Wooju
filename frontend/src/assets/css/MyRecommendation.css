@@ -240,7 +240,101 @@
 .survey-container {
   margin-top: 60px;
   padding-bottom: 70px;
-  height: calc(100vh - 60px);
   position: relative;
   background-color: var(--main-bg-color);
+}
+
+.ques-container {
+  width: 100vw;
+  max-width: 500px;
+  height: calc(100vh - 130px);
+}
+
+.ques-container .day {
+  width: 100%;
+  height: 50px;
+  padding: 40px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.ques-container .day span {
+  display: block;
+  width: 110px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 20px;
+  color: #000;
+  background-color: rgba(var(--main-rbga-color), 0.7);
+}
+
+.ques-container .question {
+  width: 100%;
+  height: 45vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ques-container .question .ques-img-container {
+  width: 65%;
+}
+
+.ques-container .question .ask {
+  
+  width: 100%;
+  line-height: 30px;
+  font-size: 1.1rem;
+}
+
+.ques-container .options {
+  width: 100%;
+  height: calc(55vh - 280px);
+  
+}
+
+.ques-container .options .opt {
+  padding-top: 5px;
+  width: 80%;
+  height: 70px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--main-color);
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.ques-container .options .opt.upper {
+  margin-bottom: 20px;
+}
+
+.ques-container .options .opt.active {
+  background-color: var(--main-color);
+  color: #000;
+}
+
+.ques-container .options .opt span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ques-container .options .opt.active span {
+  color: #000;
+}
+
+.submit-survey {
+  display: flex;
+  align-items: center;
+}
+
+.submit-survey .submit-btn {
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  background-color: var(--highlight-bg-color);
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 20px;
 }
