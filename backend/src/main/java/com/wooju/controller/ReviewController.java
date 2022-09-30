@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wooju.auth.SsafyUserDetails;
+import com.wooju.auth.UserInfo;
 import com.wooju.dto.ReviewDto;
 import com.wooju.dto.ReviewMainDto;
 import com.wooju.dto.request.ModifyReviewRequestDto;
@@ -80,7 +80,7 @@ public class ReviewController {
 			@RequestBody @ApiParam(value="리뷰 내용", required=true)ReviewRequestDto dto)throws Exception{
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		
 		int id=reviewService.createReview(user,dto);
@@ -110,7 +110,7 @@ public class ReviewController {
 			@RequestBody @ApiParam(value="리뷰 내용", required=true)ModifyReviewRequestDto dto) throws Exception {
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		
 		reviewService.modifyReview(user,dto);
@@ -127,7 +127,7 @@ public class ReviewController {
 			@PathVariable("review_id") int id) throws Exception {
 		
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		
 		reviewService.deleteReview(user,id);
@@ -144,7 +144,7 @@ public class ReviewController {
 	public ResponseEntity<BaseResponseDto> addlike(@RequestBody @ApiParam(value="리뷰 정보", required=true) ReviewLikeRequestDto reviewlike,
 			@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		
 		reviewService.addLike(reviewlike.getReview_id(),user);
@@ -161,7 +161,7 @@ public class ReviewController {
 	public ResponseEntity<BaseResponseDto> deletelike(@PathVariable("product_id") int id,
 			@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		
 		reviewService.deleteLike(id,user);
