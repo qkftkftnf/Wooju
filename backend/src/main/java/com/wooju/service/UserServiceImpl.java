@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService {
 						.id(review.getId())
 						.user_id(review.getUser().getId())
 						.user_nickname(review.getUser().getNickname())
+						.user_img(review.getUser().getImg())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
