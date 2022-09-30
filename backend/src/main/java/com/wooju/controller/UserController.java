@@ -156,7 +156,8 @@ public class UserController {
 			SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
 			user=userDetails.getUser();
 		}
-		Object obj=userService.getrecom(user,dto);
+		userService.modifyrecom(user,dto);
+		Object obj=userService.getrecom(user, dto);
 		
 		return ResponseEntity.status(200).body(RecomResponseDto.of(200, "success",obj));
 		

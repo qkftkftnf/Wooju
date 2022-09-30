@@ -171,7 +171,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public Object getrecom(User user,SurveyRequestDto dto) {
+	public void modifyrecom(User user,SurveyRequestDto dto) {
 		if(user!= null) {
 			user.setType(dto.getType());
 			user.setQuestion1(dto.getQuestion1());
@@ -182,6 +182,11 @@ public class UserServiceImpl implements UserService {
 			user.setQuestion6(dto.getQuestion6());
 			userRepository.save(user);
 		}
+		
+	}
+
+	@Override
+	public Object getrecom(User user, SurveyRequestDto dto) {
 		WebClient webclient = WebClient.builder()
 				.baseUrl(address)
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -192,7 +197,6 @@ public class UserServiceImpl implements UserService {
 				.retrieve()
 				.toEntity(Object.class)
 				.block();
-		
 		
 		
 		return (result.getBody());

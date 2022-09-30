@@ -19,5 +19,6 @@ public interface UserService {
 	void modifyProfile(ModifyProfileRequestDto dto, int id) throws Exception;
 	SurveyDto getSurvey(User user);
 	Object getrecom(User user,SurveyRequestDto dto);
+	void modifyrecom(User user, SurveyRequestDto dto);
 
 }
