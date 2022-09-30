@@ -47,6 +47,12 @@ async def read_products(
     return paginate(products)
 
 
+@app.get("/fastapi/search", tags=["data"], response_model=Page[schemas.ProductBase])
+async def read_product(keyword: str, db: Session = Depends(get_db)):
+    products = crud.search_products(db, keyword=keyword)
+    return paginate(products)
+
+
 @app.get("/fastapi/product/{product_id}", tags=["data"], response_model=schemas.ProductDetail)
 async def read_product(product_id: int, db: Session = Depends(get_db)):
     product = crud.get_product(db, product_id=product_id)
@@ -62,6 +68,7 @@ async def read_products(
 ):
     products = crud.get_products(db, user_id=user_id)
     return products
+
 
 add_pagination(app)
 
