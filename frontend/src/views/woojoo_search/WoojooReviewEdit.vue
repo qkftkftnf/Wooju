@@ -3,7 +3,7 @@
   <div class="header-container">
     <div class="create-header">
       <div class="create-title">
-        리뷰 작성
+        리뷰 수정
       </div>
       <div class="submit">
         <div class="submit-btn" @click="onSubmit">등록</div>
@@ -14,12 +14,12 @@
   <div class="create-container">
     <div class="create-input">
       <div class="sool-name">
-        술 이름: <span>황금 보리 17.5%</span>
+        술 이름: <span>{{ reviewData.review.product_id }}</span>
       </div>
       <div class="line"></div>
       <div class="sool-rate">
         <el-rate
-          v-model="rate"
+          v-model="reviewData.review.star"
           allow-half
           size="large"
           show-score
@@ -27,7 +27,7 @@
       </div>
       <div class="review-textarea">
         <el-input
-          v-model="reviewTextarea"
+          v-model="reviewData.review.content"
           :rows="12"
           type="textarea"
           placeholder="내용을 입력해주세요"
@@ -36,13 +36,13 @@
       <div class="img-upload">
         <div class="thumbnail-box">
           <div class="thumbnail gallary-btn">
-            <img src="" alt="" class="thumb0">
+            <img :src="reviewData.review.img[0]" alt="" class="thumb0">
           </div>
           <div class="thumbnail">
-            <img src="" alt="" class="thumb1">
+            <img :src="reviewData.review.img[1]" alt="" class="thumb1">
           </div>
           <div class="thumbnail">
-            <img src="" alt="" class="thumb2">
+            <img :src="reviewData.review.img[2]" alt="" class="thumb2">
           </div>
         </div>
         <div class="gallary" @click="openGallery">
@@ -70,12 +70,22 @@
 
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
-import { ref } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
-  
+import { useRoute, useRouter } from "vue-router"
+
+const route = useRoute()
+const store = useStore();
+const reviewPk = route.params.articlePk
+
+const reviewData = computed(() => store.getters.reviews);
+
+onMounted(() => {
+  store.dispatch("fetchReview", reviewPk)
+})
+
 
 // image upload
-const uploadImages = ref([])
 const maxLength = ref(3)
 
 const onFileChange = (image) => {
@@ -84,7 +94,7 @@ const onFileChange = (image) => {
     document.getElementById("review-upload-input").value = "";
   } else {
     for (let index = 0; index < image.target.files.length; index++) {
-      uploadImages.value.push(image.target.files[index])
+      reviewData.value.review.img.push(image.target.files[index])
       eachThumbnail(index)
     }
   }
@@ -107,8 +117,8 @@ const openGallery = () => {
 }
 
 const resetGallery = () => {
-  uploadImages.value = []
-  console.log(uploadImages.value)
+  reviewData.value.review.img = []
+
   for (let index = 0; index < 3; index++) {
     document.querySelector(`.thumb${index}`).src = "";
    
@@ -117,28 +127,20 @@ const resetGallery = () => {
 
 
 // submit
-const rate = ref(0)
-const reviewTextarea = ref("")
-const store = useStore()
-
 const onSubmit = () => {
   var imgData = new FormData()
   
-  uploadImages.value.forEach(function(img) {
+  reviewData.value.review.img.forEach(function(img) {
     imgData.append("file", img)
   })
 
   const reviewData = {
-    product_id: 100,
+    id: reviewPk,
     star: rate.value,
-    title: "필요한가요?",
-    content: reviewTextarea.value,
-    file: imgData,
+    title: reviewData.value.review.title,
+    content: reviewData.value.review.conntent,
+    img: reviewData.value.review.img
   }
-
-  // for (let value of imgData.values()) {
-  //   console.log(value)
-  // } 
 
   store.dispatch('createReview', reviewData)
 };

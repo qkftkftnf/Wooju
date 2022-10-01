@@ -139,6 +139,9 @@
     </div>
     
     <div class="ques-container submit-survey">
+      <div class="last-img">
+        <img src="@/assets/images/survey/last.png" alt="last">
+      </div>
       <div class="submit-btn" @click="SubmitSurvey">
         나의 술 취향은?
       </div>
@@ -155,7 +158,6 @@ onMounted (() => {
   window.scrollTo(0, 0)
 })
 
-
 const answerList = ref({
   "question1": -1,
   "question2": -1,
@@ -163,7 +165,7 @@ const answerList = ref({
   "question4": -1,
   "question5": -1,
   "question6": -1,
-  "type": "증류주",
+  "type": "과실주",
 })
 
 
