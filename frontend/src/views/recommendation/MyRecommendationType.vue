@@ -1,14 +1,5 @@
 <template>
   <HeaderView/>
-  <!-- <div class="header-container">
-    <div class="create-header">
-      <div class="title">
-        취향 알아보기
-      </div>
-      <div class="submit">
-      </div>
-    </div>
-  </div> -->
 
   <!-- main section -->
   <div class="recomm-type-container" v-if="!selected">

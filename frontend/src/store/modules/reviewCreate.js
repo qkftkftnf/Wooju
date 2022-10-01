@@ -13,6 +13,13 @@ const reviewCreate = {
     review: (state) => state.review,
   },
   actions: {
+    fetchReview({ commit }, reviewPk) {
+      http.get(`review/${reviewPk}`)
+        .then(({ data }) => {
+          commit("SET_REVIEW", data)
+        })
+        .catch((err) => console.log(err))
+    },
     createReview({}, reviewData) {
       axios({
         method: "POST",
@@ -42,6 +49,7 @@ const reviewCreate = {
       })
       .catch((err) => console.log(err))
     },
+
   },
 }
 

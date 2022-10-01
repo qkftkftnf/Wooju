@@ -3,7 +3,7 @@
   display: flex;
 }
 
-.create-header .title {
+.create-header .create-title {
   width: calc(100vw - 120px);
   max-width: 380px;
   height: 60px;
@@ -106,7 +106,7 @@
   height: 40px;
 }
 
-.create-container .gallary .img-icon {
+.create-container .img-icon {
   width: 110px;
   height: 30px;
   color: var(--text-sub-color);

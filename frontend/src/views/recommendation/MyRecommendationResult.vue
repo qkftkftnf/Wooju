@@ -131,7 +131,7 @@ onMounted(() => {
 
 // whether surveyed
 const preference = ref(false)
-const lifestyle = ref(true)
+const lifestyle = ref(false)
 
 
 // header scroll event js
