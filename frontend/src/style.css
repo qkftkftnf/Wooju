@@ -11,6 +11,7 @@
   -webkit-text-size-adjust: 100%;
 
   --main-color: #FFD634;
+  --main-rbga-color: 255, 214, 52;
   /* --main-bg-color: #FFFAE8; */
   --main-bg-color: #f9f9f9;
   --highlight-bg-color: #FFD634;
