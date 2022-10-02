@@ -15,7 +15,7 @@ if (path == 'google') {
     .then(({ data }) => {
       console.log(data)
       opener.location = `/signup?email=${data.userEmail}&usertype=${data.userType}`
-      window.close()
+      // window.close()
     })
     .catch((err) => console.log(err))
 } else if (path == 'naver') {
