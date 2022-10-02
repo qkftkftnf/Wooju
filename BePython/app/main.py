@@ -48,7 +48,7 @@ async def read_products(
 
 
 @app.get("/fastapi/search", tags=["data"], response_model=Page[schemas.ProductBase])
-async def read_product(keyword: str, db: Session = Depends(get_db)):
+async def search_product(keyword: str, db: Session = Depends(get_db)):
     products = crud.search_products(db, keyword=keyword)
     return paginate(products)
 
@@ -62,11 +62,35 @@ async def read_product(product_id: int, db: Session = Depends(get_db)):
 
 
 @app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=schemas.Recommendation)
-async def read_products(
+async def recommend_products(
     db: Session = Depends(get_db),
     user_id: Union[int, None] = None,
 ):
     products = crud.get_products(db, user_id=user_id)
+    return products
+
+
+@app.get("/fastapi/test", tags=["data"], response_model=schemas.Recommendation)
+async def recommend_products(
+    type: str,
+    question1: int,
+    question2: int,
+    question3: int,
+    question4: int,
+    question5: int,
+    question6: int,
+    db: Session = Depends(get_db),
+):
+    user = {
+        'type': type,
+        'question1': question1,
+        'question2': question2,
+        'question3': question3,
+        'question4': question4,
+        'question5': question5,
+        'question6': question6,
+    }
+    products = crud.get_recommendation(db, user=user)
     return products
 
 

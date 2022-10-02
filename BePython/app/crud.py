@@ -11,7 +11,7 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
 
     if user_id:
         result = {}
-        user = db.query(User).filter(User.id == user_id)
+        user = db.query(User).filter(User.id == user_id).first()
         result['taste'] = get_taste(user, products.filter(Product.type == '탁주'))
         result['today'] = products.order_by(func.rand())[:3]
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
@@ -41,3 +41,26 @@ def search_products(db: Session, keyword: str):
     search = f"%{keyword}%"
     print(search)
     return db.query(Product).filter(Product.name.like(search)).all()
+
+
+def get_recommendation(db: Session, user: object):
+    products = db.query(Product)
+    print(user)
+    if user['type'] == '탁주':
+        typed_products = products \
+            .filter((Product.type == '탁주') | (Product.type == '탁주 기타주류'))
+    elif user['type'] == '약주, 과실주':
+        typed_products = products \
+            .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
+    elif user['type'] == '증류주':
+        typed_products = products \
+            .filter((Product.type == '리큐르') | (Product.type == '증류식소주') | (Product.type == '일반증류주') | (Product.type == '증류주 기타주류'))
+    else:
+        pass
+
+    
+    result = {}
+    result['taste'] = get_taste(user, typed_products)
+    result['today'] = products.order_by(func.rand())[:3]
+    result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
+    return result
