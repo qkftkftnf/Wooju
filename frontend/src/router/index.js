@@ -13,6 +13,7 @@ import MyPageView from "../views/mypage/MyPageView.vue";
 import MyPageMain from "../views/mypage/MyPageMain.vue";
 import MyPageProfileEdit from "../views/mypage/MyPageProfileEdit.vue"
 
+import MyRecommendationMain from "../views/recommendation/MyRecommendationMain.vue"
 import MyRecommendationView from "../views/recommendation/MyRecommendationView.vue";
 import MyRecommendationType from "../views/recommendation/MyRecommendationType.vue";
 import MyRecommendationTak from "../views/recommendation/MyRecommendationTak.vue";
@@ -94,9 +95,9 @@ const router = createRouter({
       component: MyRecommendationView,
       children: [
         {
-          name: "MyRecommendationResult",
+          name: "MyRecommendationMain",
           path: "userpk",
-          component: MyRecommendationResult,
+          component: MyRecommendationMain,
         },
         {
           name: "MyRecommendationType",
@@ -117,6 +118,11 @@ const router = createRouter({
           name: "MyRecommendationSoju",
           path: "soju",
           component: MyRecommendationSoju,
+        },
+        {
+          name: "MyRecommendationResult",
+          path: "result",
+          component: MyRecommendationResult,
         },
       ]
     },

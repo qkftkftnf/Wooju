@@ -1,186 +1,111 @@
 <template>
-  <div class="tab-template container">
-    <div class="tab-header">
-      <div class="tab-title">
-        오늘의 추천
-      </div>
-      <div class="mode-toggle">
-        <ModeToggle/>
-      </div>
+  <HeaderView/>
+  <div class="result-container">
+    <div class="result-title">
+      당신의 전통주 취향은…
     </div>
-    <div class="header-content">
-      <img class="content-img" src="@/assets/images/community.jpg" alt="communityMainPic">
-      <p class="header-intro">당신이 오늘 좋아할 만한 우주를 소개해드려요</p>
-    </div>
-    
-    <div class="inner-container" v-if="member">
-      <div class="rec-container inner-section">
-        <div class="mt"></div>
-        <!-- preferance -->
-        <div class="rec-type rec-preferance">
-          <div class="title">
-            ㅇㅇ 님의 취향에 딱 맞는 술
-          </div>
-
-          <!-- v-if not surveyed -->
-          <div class="not-surveyed" v-if="!preference">
-            <div class="not-surveyed-content">
-              아직 취향 조사를 하지 않으셨어요! <br/> 당신의 우주를 같이 알아볼까요?
-            </div>
-            <div class="survey-btn" @click="linkTo('MyRecommendationType')">
-              <div class="btn-box">취향 알아보러 가기 ></div>
-            </div>
-          </div>
-
-          <!-- v-if surveyed -->
-          <div class="bottles" v-if="preference">
-            <div class="bottle-card" v-for="i in 3">
-              <div class="bottle-img">
-                <img src="@/assets/images/woojoo1.jpg" alt="bottle">
-              </div>
-              <div class="bottle-content">
-                <div class="bottle-title">
-                  술 이름이 길어요
-                </div>
-                <div class="bottle-intro">
-                  14.5% | 375ml
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- life style -->
-        <div class="rec-type rec-preferance">
-          <div class="title">
-            ㅇㅇ 님의 오늘에 딱 맞는 술
-          </div>
-
-          <!-- v-if not surveyed -->
-          <div class="not-surveyed" v-if="!lifestyle">
-            <div class="not-surveyed-content">
-              당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요.
-            </div>
-            <div class="survey-btn life-style-btn" @click="linkTo('MyRecommendationType')">
-              <div class="btn-box">오늘의 라이프 스타일은? ></div>
-            </div>
-          </div>
-
-         <!-- v-if surveyed -->
-          <div class="bottles" v-if="lifestyle">
-            <div class="bottle-card" v-for="i in 3">
-              <div class="bottle-img">
-                <img src="@/assets/images/woojoo1.jpg" alt="bottle">
-              </div>
-              <div class="bottle-content">
-                <div class="bottle-title">
-                  술 이름
-                </div>
-                <div class="bottle-intro">
-                  14.5% | 375ml
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- award -->
-        <div class="rec-type rec-preferance">
-          <div class="title award-title">
-            아직 전통주에 대해 잘 모르겠다면,<br/>모두의 인정을 받은 술들은 어떤가요?
-          </div>
-          <div class="bottles">
-            <div class="bottle-card" v-for="i in 3">
-              <div class="bottle-img">
-                <img src="@/assets/images/woojoo1.jpg" alt="bottle">
-              </div>
-              <div class="bottle-content">
-                <div class="bottle-title">
-                  술 이름
-                </div>
-                <div class="bottle-intro">
-                  14.5% | 375ml
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <div class="type-main">
+      <span class="name prefer-type">
+        <span class="nick">{{ profileData.profile?.nickname }}</span> 님은
+      </span>
+      <span class="person-type prefer-type">
+        애호가
+      </span>
+      <span class="end prefer-type">
+        형입니다.
+      </span>
     </div>
 
-
-
-    <div class="inner-container" v-if="!member">
-      <div class="rec-container inner-section">
-        <div class="mt"></div>
-
-        <div class="recommend-content">
-          여러분
-        </div>
-      </div>
+    <div class="type-image">
+      <img src="@/assets/images/soju.png" alt="like-soju">
     </div>
 
+    <div class="graph">
+      <canvas id="myChart" width="250" height="250"></canvas>
+    </div>
+ 
+
+    <div class="preferance">
+      <div class="abst">
+        깔끔한 맛을 좋아하는 당신!
+      </div>
+      <div class="sweet flavor">
+        단 맛을 <span class="highlight">싫어</span>하고,
+      </div>
+      <div class="acidity flavor">
+        신 맛을 <span class="highlight">좋아</span>하고,
+      </div>
+      <div class="proof flavor">
+        도수가 <span class="highlight">높은</span> 술을 좋아합니다.
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import ModeToggle from "@/views/common/ModeToggle.vue"
-import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import HeaderView from '../common/HeaderView.vue';
+import { ref, onMounted ,computed } from "vue";
 import { useStore } from "vuex";
 
-const router = useRouter();
-const linkTo = (name) => router.push({ name: name })
 
-// vuex axios
+// script
 const store = useStore();
-const reviewsData = computed(() => store.getters.reviews);
+const profileData = computed(() => store.getters.profile)
 
 onMounted(() => {
-  store.dispatch("fetchAllReviews")
-})
+  store.dispatch("fetchProfile")
 
+  // rader chart
+  var ctx = document.getElementById('myChart').getContext('2d');
 
-// whether member
-const member = ref(false)
-
-// whether surveyed
-const preference = ref(false)
-const lifestyle = ref(false)
-
-
-// header scroll event js
-const position = ref(0)
-
-onMounted(() => {
-  const innerContainer = document.getElementsByClassName("inner-container")
-  window.onscroll = function() {scrollInnerHeader()};
-  
-  function scrollInnerHeader() {
-    position.value = innerContainer[0].getBoundingClientRect()
-
-    if (position.value.top < 60) {
-      document.querySelector(".tab-header .tab-title").style.top = "0";
-      document.querySelector(".tab-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.05)";
-    } else {
-      document.querySelector(".tab-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.0)";
-      document.querySelector(".tab-header .tab-title").style.top = `${50 * (position.value.top / 450)}px`;
-      document.querySelector(".tab-header .tab-title").style.fontSize = `${1.2 + position.value.top / 450}rem`;
-      document.querySelector(".header-content .content-img").style.opacity = `${((position.value.top - 260) / 250 )}`;
-      document.querySelector(".header-content .content-img").style.scale = `${((position.value.top - 60) /  390)}`;
-      document.querySelector(".header-content .header-intro").style.opacity = `${((position.value.top - 260) / 190 )}`;
-    }
-  }
+  var myChart = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: [
+        '단맛',
+        '신맛',
+        '바디감',
+        '탄산',
+        '풍미',
+      ],
+      datasets: [{
+        label: ' ',
+        data: [
+          2,4,5,3,4,
+        ],
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: true,
+      elements: {
+        line: {
+          borderWidth: 3
+        }
+      },
+      scale: {
+        ticks: {
+            beginAtZero: true,
+            max: 5,
+            min: 0,
+        }
+      },
+      legend: {
+        display: false
+      }
+    },
+  })
 })
 
 </script>
 
-<style>
-.mt {
-  width: 100%;
-  max-width: 500px;
-  height: 60px;
-  background-color: transparent;
-}
+<style> 
+  
 </style>
