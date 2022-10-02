@@ -13,9 +13,13 @@ const code = route.query.code;
 if (path == 'google') {
   http.get("/user/login-google", {params: {code: code}})
     .then(({ data }) => {
-      console.log(data)
-      opener.location = `/signup?email=${data.userEmail}&usertype=${data.userType}`
-      // window.close()
+      if (data.statusCode == 200) {
+        localStorage.setItem('accesstoken', data.accesstoken)
+        opener.location = '/community'
+      } else {
+        opener.location = `/signup?email=${data.userEmail}&usertype=${data.userType}`
+      }
+      window.close()
     })
     .catch((err) => console.log(err))
 } else if (path == 'naver') {
