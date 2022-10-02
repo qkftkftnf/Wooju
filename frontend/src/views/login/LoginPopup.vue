@@ -1,5 +1,5 @@
 <template>
-  <p>여기는 {{ path }}이여</p>
+  <p>{{ path }}로 로그인 중...</p>
 </template>
 
 <script setup>
