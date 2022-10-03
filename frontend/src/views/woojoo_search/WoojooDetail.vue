@@ -9,7 +9,16 @@
       </div>
     </div> -->
     <div class="detail-header">
-      <img class="bg-box" :src="woojooInfo.object?.image" alt="">
+      <span class="like">
+        <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
+      </span>
+      <div>
+        <img class="bg-box" :src="woojooInfo.object?.image" alt="">
+        
+      </div>
+      <span class="like-add">
+        <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
+      </span>
     </div>
     <HeaderView/>
     <div class="mypage-container" id="detail-container">
