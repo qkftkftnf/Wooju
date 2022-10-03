@@ -75,12 +75,12 @@ const router = createRouter({
       children: [
         {
           name: "MyPageMain",
-          path: "id",
+          path: "",
           component: MyPageMain,
         },
         {
           name: "MyPageProfileEdit",
-          path: "id/edit",
+          path: "/edit",
           component: MyPageProfileEdit,
         }
       ],
@@ -97,7 +97,7 @@ const router = createRouter({
       children: [
         {
           name: "MyRecommendationMain",
-          path: "userpk",
+          path: "",
           component: MyRecommendationMain,
         },
         {

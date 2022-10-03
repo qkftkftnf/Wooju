@@ -129,9 +129,9 @@ const onSubmit = () => {
   })
 
   const reviewData = {
-    product_id: 100,
+    product_id: 64,
     star: rate.value,
-    title: "필요한가요?",
+    title: "",
     content: reviewTextarea.value,
     file: imgData,
   }
