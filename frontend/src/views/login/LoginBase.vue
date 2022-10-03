@@ -23,7 +23,7 @@ import { useRouter } from "vue-router"
 const store = useStore()
 const router = useRouter()
 
-const checkLogin = () => {
+window.checkLogin = () => {
   const token = localStorage.getItem('token')
   console.log(token)
   if (!!token) {
