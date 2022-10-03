@@ -57,7 +57,7 @@ public class S3uploadImpl implements S3upload{
 	public void deletefile(ArrayList<String> file) throws IOException {
 		for(String img:file) {
 			String st[]=img.split("/");
-			amazonS3.deleteObject(bucket, st[3]);
+			if(st.length>=4) amazonS3.deleteObject(bucket, st[3]);
 		}
 	}
 	

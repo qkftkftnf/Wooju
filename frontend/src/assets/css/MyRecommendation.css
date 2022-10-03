@@ -38,14 +38,16 @@
   max-width: 140px;
   height: 28vw;
   max-height: 140px;  
+  background-color: #fff;
   box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
 }
 
 .rec-type .bottles .bottle-img img {
-  width: 100%;
+  width: 70%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  border-radius: 10px;
+  /* object-fit: cover;
+  object-position: center; */
   
 }
 
@@ -117,8 +119,17 @@
   background-color: var(--main-bg-color);
 }
 
+.recomm-type-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .recomm-type-container .title {
-  padding: 40px 0;
+  margin: 100px 5% 0 5%;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 20px;
+  background-color: rgba(var(--main-rbga-color), 0.6);
 }
 
 .recomm-type-container .title .testimg {
@@ -128,7 +139,7 @@
 }
 
 .recomm-type-container .question0 {
-  margin-top: 20px;
+  margin-top: 60px;
   height: 60px;
   line-height: 30px;
   font-size: 1.2rem;
@@ -136,6 +147,7 @@
 }
 
 .recomm-type-container .select {
+  margin: 0 !important;
   padding: 0 10px;
   display: flex;
 }
@@ -230,7 +242,197 @@
 .survey-container {
   margin-top: 60px;
   padding-bottom: 70px;
-  height: calc(100vh - 60px);
   position: relative;
   background-color: var(--main-bg-color);
 }
+
+.ques-container {
+  width: 100vw;
+  max-width: 500px;
+  height: calc(100vh - 130px);
+}
+
+.ques-container .day {
+  width: 100%;
+  height: 50px;
+  padding: 50px 0 20px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.ques-container .day span {
+  display: block;
+  width: 110px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 20px;
+  color: #000;
+  background-color: rgba(var(--main-rbga-color), 0.7);
+}
+
+.ques-container .question {
+  width: 100%;
+  height: 45vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ques-container .question .ques-img-container {
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.ques-container .question .ask {
+  width: 100%;
+  line-height: 30px;
+  font-size: 1.1rem;
+}
+
+.ques-container .options {
+  width: 100%;
+  height: calc(55vh - 280px);
+  
+}
+
+.ques-container .options .opt {
+  padding-top: 5px;
+  width: 80%;
+  height: 70px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  background-color: var(--main-bg-color);
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.ques-container .options .opt .circle {
+  border-radius: 100%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.ques-container .options .opt .biggest {
+  width: 50px;
+  height: 50px;
+  --option-color: 20, 104, 55;
+  border: 3px solid rgb(var(--option-color));
+}
+
+.ques-container .options .opt .bigger {
+  width: 40px;
+  height: 40px;
+  --option-color: 50, 158, 77;
+  border: 3px solid rgb(var(--option-color));
+}
+
+.ques-container .options .opt .big {
+  width: 30px;
+  height: 30px;
+  --option-color: 101, 197, 117;
+  border: 3px solid rgb(var(--option-color));
+}
+
+.ques-container .options .opt .active {
+  background-color: rgba(var(--option-color), 0.6);
+}
+
+.ques-container .options .opt-content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  width: 85%;
+  height: 70px;
+  font-size: 0.7rem;
+  line-height: 20px;
+  margin: 0 auto;
+}
+
+.ques-container .options .left-content {
+  text-align: left;
+  margin: 0;
+}
+
+.ques-container .options .right-content {
+  margin: 0;
+  text-align: right;
+}
+
+.ques-container .options .opt-content span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ques-container .options .opt span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ques-container .options .opt.active span {
+  color: #000;
+}
+
+.submit-survey {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.submit-survey .last-img {
+  width: 70%;
+}
+
+.submit-survey .submit-btn {
+  margin-top: 40px;
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  background-color: var(--highlight-bg-color);
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 20px;
+}
+
+
+/* recommendation result */
+.result-container {
+  margin-top: 60px;
+  padding-bottom: 150px;
+  /* height: calc(100vh - 60px); */
+  position: relative;
+  background-color: var(--main-bg-color);
+}
+
+.result-container .result-title {
+  padding-top: 70px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.result-container .type-main {
+  margin-top: 40px;
+}
+
+.result-container .graph {
+  margin: 20px 0 50px 0;
+}
+
+.result-container .preferance .abst {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-highlight-color);
+}
+
+.result-container .preferance .flavor {
+  margin-bottom: 5px;
+}
+
+.result .flavor .highlight {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+

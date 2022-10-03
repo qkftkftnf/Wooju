@@ -1,4 +1,4 @@
-from sqlalchemy import Column, VARCHAR, BigInteger, SmallInteger, DateTime, Float, ForeignKey, Table, Boolean
+from sqlalchemy import Column, VARCHAR, BigInteger, SmallInteger, Date, Float, ForeignKey, Table, Boolean
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -88,7 +88,7 @@ class User(Base):
 	__tablename__ = 'user'
 
 	id = Column(BigInteger, primary_key=True, autoincrement=True)
-	birthdate = Column(DateTime, nullable=False)
+	birthdate = Column(Date, nullable=False)
 	email = Column(VARCHAR(255), nullable=False)
 	gender = Column(VARCHAR(255), nullable=False)
 	img = Column(VARCHAR(255), nullable=False)
@@ -98,6 +98,8 @@ class User(Base):
 	question3 = Column(SmallInteger, nullable=False)
 	question4 = Column(SmallInteger, nullable=False)
 	question5 = Column(SmallInteger, nullable=False)
+	question6 = Column(SmallInteger, nullable=False)
 	usertype = Column(VARCHAR(255), nullable=False)
+	type = Column(VARCHAR(255), nullable=False)
 	gosu = Column(Boolean, nullable=False)
 	review_count = Column(BigInteger, nullable=True)

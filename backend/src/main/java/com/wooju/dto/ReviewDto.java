@@ -21,7 +21,9 @@ public class ReviewDto {
 	int user_id;
 	@ApiModelProperty(name="user_id")
 	String user_nickname;
-	@ApiModelProperty(name="user_id")
+	@ApiModelProperty(name="user_img")
+	String user_img;
+	@ApiModelProperty(name="gosu")
 	boolean gosu;
 	@ApiModelProperty(name="product_id")
 	int product_id;

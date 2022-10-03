@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wooju.auth.SsafyUserDetails;
+import com.wooju.auth.UserInfo;
 import com.wooju.dto.ProductReviewDto;
 import com.wooju.dto.request.ProductLikeRequestDto;
 import com.wooju.dto.request.ProductListRequestDto;
@@ -77,7 +77,7 @@ public class ProductController {
 	public ResponseEntity<BaseResponseDto> addlike(@RequestBody @ApiParam(value="술 정보", required=true) ProductLikeRequestDto productlike,
 			@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		productService.addLike(productlike.getProduct_id(),user);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
@@ -93,7 +93,7 @@ public class ProductController {
 	public ResponseEntity<BaseResponseDto> deletelike(@PathVariable("product_id") int id,
 			@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		User user=userDetails.getUser();
 		productService.deleteLike(id,user);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));

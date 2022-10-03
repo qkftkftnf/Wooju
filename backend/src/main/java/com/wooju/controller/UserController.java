@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wooju.auth.SsafyUserDetails;
+import com.wooju.auth.UserInfo;
 import com.wooju.dto.ProfileDto;
 import com.wooju.dto.SurveyDto;
 import com.wooju.dto.request.ModifyProfileRequestDto;
@@ -23,6 +23,7 @@ import com.wooju.dto.response.BaseResponseDto;
 import com.wooju.dto.response.FirstLoginResponseDto;
 import com.wooju.dto.response.LoginResponseDto;
 import com.wooju.dto.response.ProfileResponseDto;
+import com.wooju.dto.response.RecomResponseDto;
 import com.wooju.dto.response.SurveyResponseDto;
 import com.wooju.entity.User;
 import com.wooju.service.OauthService;
@@ -94,7 +95,7 @@ public class UserController {
 	})
 	public ResponseEntity<? extends BaseResponseDto> myprofile(@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		int id=userDetails.getUserId();
 		
 		ProfileDto dto = userService.getProfile(id); 
@@ -112,7 +113,7 @@ public class UserController {
 	public ResponseEntity<? extends BaseResponseDto> modifyprofile(@ApiIgnore Authentication authentication 
 			, @RequestBody @ApiParam(value="프로필", required=true)ModifyProfileRequestDto dto) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 		int id=userDetails.getUserId();
 		
 		userService.modifyProfile(dto,id);
@@ -131,7 +132,7 @@ public class UserController {
 			user=null;
 		}
 		else {
-		SsafyUserDetails userDetails=(SsafyUserDetails) authentication.getDetails();
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
 			user=userDetails.getUser();
 		}
 		
@@ -147,7 +148,18 @@ public class UserController {
 	})
 	public ResponseEntity<? extends BaseResponseDto> survey(@ApiIgnore Authentication authentication,
 			@RequestBody @ApiParam(value="설문 결과", required=true) SurveyRequestDto dto){
-		return null;
+		User user;
+		if(authentication == null) {
+			user=null;
+		}
+		else {
+			UserInfo userDetails=(UserInfo) authentication.getDetails();
+			user=userDetails.getUser();
+		}
+		userService.modifyrecom(user,dto);
+		Object obj=userService.getrecom(user, dto);
+		
+		return ResponseEntity.status(200).body(RecomResponseDto.of(200, "success",obj));
 		
 	}
 	

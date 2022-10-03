@@ -5,6 +5,7 @@ import com.wooju.dto.ProfileDto;
 import com.wooju.dto.SurveyDto;
 import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
+import com.wooju.dto.request.SurveyRequestDto;
 import com.wooju.entity.User;
 
 
@@ -17,5 +18,7 @@ public interface UserService {
 	ProfileDto getProfile(int id) throws Exception;
 	void modifyProfile(ModifyProfileRequestDto dto, int id) throws Exception;
 	SurveyDto getSurvey(User user);
+	Object getrecom(User user,SurveyRequestDto dto);
+	void modifyrecom(User user, SurveyRequestDto dto);
 
 }

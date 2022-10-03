@@ -45,30 +45,6 @@ public class JwtTokenUtil {
                 .build();
     }
     
-    public static String getToken(String userNo) {
-    		Date expires = JwtTokenUtil.getTokenExpiration(expirationTime);
-        return JWT.create()
-                .withSubject(userNo)
-                .withExpiresAt(expires)
-                .withIssuer(ISSUER)
-                .withIssuedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-                .sign(Algorithm.HMAC512(secretKey.getBytes()));
-    }
-    
-    public static String getToken(String userNo,String userType,int imageNo,String nickname,String gender) {
-		Date expires = JwtTokenUtil.getTokenExpiration(expirationTime);
-    return JWT.create()
-            .withSubject(userNo)
-            .withClaim("userType", userType)
-            .withClaim("imageNo", imageNo)
-            .withClaim("NickName",nickname)
-            .withClaim("gender",gender)
-            .withExpiresAt(expires)
-            .withIssuer(ISSUER)
-            .withIssuedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-            .sign(Algorithm.HMAC512(secretKey.getBytes()));
-    }
-    
     public static String getToken(User user) {
 		Date expires = JwtTokenUtil.getTokenExpiration(expirationTime);
     return JWT.create()
@@ -79,14 +55,6 @@ public class JwtTokenUtil {
             .sign(Algorithm.HMAC512(secretKey.getBytes()));
     }
 
-    public static String getToken(Instant expires, String userId) {
-        return JWT.create()
-                .withSubject(userId)
-                .withExpiresAt(Date.from(expires))
-                .withIssuer(ISSUER)
-                .withIssuedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-                .sign(Algorithm.HMAC512(secretKey.getBytes()));
-    }
     
     public static Date getTokenExpiration(int expirationTime) {
     		Date now = new Date();

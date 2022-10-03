@@ -1,14 +1,14 @@
 from typing import List, Union
 import uvicorn
 
-from fastapi import Depends, APIRouter, FastAPI, HTTPException, responses, Query
+from fastapi import Depends, FastAPI, HTTPException, responses, Query
 from fastapi_pagination import Page, add_pagination, paginate
 from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
 
 import crud, models, database, schemas
 
-app = FastAPI()
+app = FastAPI(docs_url="/fastapi/docs/", redoc_url=None)
 
 origins = [
     "*"
@@ -61,6 +61,12 @@ async def read_products(
     return paginate(products)
 
 
+@app.get("/fastapi/search", tags=["data"], response_model=Page[schemas.ProductBase])
+async def search_product(keyword: str, db: Session = Depends(get_db)):
+    products = crud.search_products(db, keyword=keyword)
+    return paginate(products)
+
+
 @app.get("/fastapi/product/{product_id}", tags=["data"], response_model=schemas.ProductDetail)
 async def read_product(product_id: int, db: Session = Depends(get_db)):
     product = crud.get_product(db, product_id=product_id)
@@ -69,13 +75,38 @@ async def read_product(product_id: int, db: Session = Depends(get_db)):
     return product
 
 
-@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=List[schemas.ProductBase])
-async def read_products(
+@app.get("/fastapi/recommendation/{user_id}", tags=["data"], response_model=schemas.Recommendation)
+async def recommend_products(
     db: Session = Depends(get_db),
-    userId: Union[int, None] = None,
+    user_id: Union[int, None] = None,
 ):
-    products = crud.get_products(db, userId=userId)
-    return paginate(products)
+    products = crud.get_products(db, user_id=user_id)
+    return products
+
+
+@app.get("/fastapi/test", tags=["data"], response_model=schemas.Recommendation)
+async def recommend_products(
+    type: str,
+    question1: int,
+    question2: int,
+    question3: int,
+    question4: int,
+    question5: int,
+    question6: int,
+    db: Session = Depends(get_db),
+):
+    user = {
+        'type': type,
+        'question1': question1,
+        'question2': question2,
+        'question3': question3,
+        'question4': question4,
+        'question5': question5,
+        'question6': question6,
+    }
+    products = crud.get_recommendation(db, user=user)
+    return products
+
 
 add_pagination(app)
 

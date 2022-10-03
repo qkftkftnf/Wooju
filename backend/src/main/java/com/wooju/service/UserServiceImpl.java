@@ -4,8 +4,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.wooju.dto.ProfileDto;
 import com.wooju.dto.ProfileProductDto;
@@ -13,6 +20,7 @@ import com.wooju.dto.ReviewDto;
 import com.wooju.dto.SurveyDto;
 import com.wooju.dto.request.ModifyProfileRequestDto;
 import com.wooju.dto.request.SignUpRequestDto;
+import com.wooju.dto.request.SurveyRequestDto;
 import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
@@ -28,10 +36,15 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	
 	@Autowired
 	ReviewImgRepository reviewImgRepository;
+	
 	@Autowired
 	S3upload s3upload;
+	
+	@Value("${cloud.fastapi.address}")
+    private String address;
 	
 	@Override
 	public User getUserByEmail(String email, String usertype) throws Exception {
@@ -98,6 +111,7 @@ public class UserServiceImpl implements UserService {
 						.id(review.getId())
 						.user_id(review.getUser().getId())
 						.user_nickname(review.getUser().getNickname())
+						.user_img(review.getUser().getImg())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.title(review.getTitle())
@@ -154,6 +168,39 @@ public class UserServiceImpl implements UserService {
 					.build();
 			return dto;
 		}
+	}
+
+	@Transactional
+	@Override
+	public void modifyrecom(User user,SurveyRequestDto dto) {
+		if(user!= null) {
+			user.setType(dto.getType());
+			user.setQuestion1(dto.getQuestion1());
+			user.setQuestion2(dto.getQuestion2());
+			user.setQuestion3(dto.getQuestion3());
+			user.setQuestion4(dto.getQuestion4());
+			user.setQuestion5(dto.getQuestion5());
+			user.setQuestion6(dto.getQuestion6());
+			userRepository.save(user);
+		}
+		
+	}
+
+	@Override
+	public Object getrecom(User user, SurveyRequestDto dto) {
+		WebClient webclient = WebClient.builder()
+				.baseUrl(address)
+				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+				.build();
+		
+		ResponseEntity<Object> result=webclient.get().
+				uri("/recommendation/"+user.getId())
+				.retrieve()
+				.toEntity(Object.class)
+				.block();
+		
+		
+		return (result.getBody());
 	}
 
 }
