@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <img src="@/assets/images/Samsung_Logo.svg" alt="logo" class="logo">
+    <img src="@/assets/images/logo.png" alt="logo" class="logo">
     <ModeToggle/>
   </div>
 </template>
