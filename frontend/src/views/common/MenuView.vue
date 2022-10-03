@@ -4,7 +4,7 @@
       <i class="fas fa-home icon is-inactive"></i>
       <span class="menu-title">홈</span>
     </div>
-    <div id="my-recommendation-menu" class="my-page menu-div" @click="linkTo('MyRecommendationResult')">
+    <div id="my-recommendation-menu" class="my-page menu-div" @click="linkTo('MyRecommendationMain')">
       <i class="fas fa-hand-holding-heart icon is-inactive"></i>
       <span class="menu-title">오늘의 추천</span>
     </div>

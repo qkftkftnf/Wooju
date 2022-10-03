@@ -18,13 +18,23 @@
           </div>
         </div>
         <div id="question1" class="options">
-          <div class="opt upper" @click="question(1, 0)">
-            좋아하는 향기를 두를래!<br/>
-            <span>향수 뿌리기</span>
+
+          <div class="five opt">
+            <div class="biggest circle" @click="question(1, 0)"></div>
+            <div class="bigger circle" @click="question(1, 1)"></div>
+            <div class="big circle" @click="question(1, 2)"></div>
+            <div class="bigger circle" @click="question(1, 3)"></div>
+            <div class="biggest circle last-opt" @click="question(1, 4)"></div>
           </div>
-          <div class="opt" @click="question(1, 1)">
-            깔끔한 게 좋지!<br/>
+          <div class="opt-content">
+            <div class="left-content">
+              좋아하는 향기를 두를래!<br/>
+            <span>향수 뿌리기</span>
+            </div>
+            <div class="right-content">
+              깔끔한 게 좋지!<br/>
             <span>탈취제 뿌리기</span>
+            </div>
           </div>
         </div>
       </div>
@@ -45,13 +55,22 @@
           </div>
         </div>
         <div id="question2" class="options">
-          <div class="opt upper" @click="question(2, 0)">
-            입안이 가벼워지는<br/>
-            <span>루이보스 차</span>
+          <div class="five opt">
+            <div class="biggest circle" @click="question(2, 0)"></div>
+            <div class="bigger circle" @click="question(2, 1)"></div>
+            <div class="big circle" @click="question(2, 2)"></div>
+            <div class="bigger circle" @click="question(2, 3)"></div>
+            <div class="biggest circle last-opt" @click="question(2, 4)"></div>
           </div>
-          <div class="opt" @click="question(2, 1)">
-            부드럽게 넘어가는<br/>
-            <span>밀크 쉐이크</span>
+          <div class="opt-content">
+            <div class="left-content">
+              입안이 가벼워지는<br/>
+              <span>루이보스 차</span>
+            </div>
+            <div class="right-content">
+              부드럽게 넘어가는<br/>
+              <span>밀크 쉐이크</span>
+            </div>
           </div>
         </div>
       </div>
@@ -72,13 +91,23 @@
           </div>
         </div>
         <div id="question3" class="options">
-          <div class="opt upper" @click="question(3, 0)">
-            취한 느낌을 즐기는 거라고<br/>
-            <span>술은 취하려고 마시는 거지!</span>
+
+          <div class="five opt">
+            <div class="biggest circle" @click="question(3, 0)"></div>
+            <div class="bigger circle" @click="question(3, 1)"></div>
+            <div class="big circle" @click="question(3, 2)"></div>
+            <div class="bigger circle" @click="question(3, 3)"></div>
+            <div class="biggest circle last-opt" @click="question(3, 4)"></div>
           </div>
-          <div class="opt" @click="question(3, 1)">
-            그 조명, 온도, 습도….<br/>
-            <span>술자리에서의 분위기가 좋아</span>
+          <div class="opt-content">
+            <div class="left-content">
+              취한 느낌을 즐기는 거라고<br/>
+              <span>술은 취하려고 마시는 거지!</span>
+            </div>
+            <div class="right-content">
+              그 조명, 온도, 습도….<br/>
+              <span>술자리에서의 분위기가 좋아</span>
+            </div>
           </div>
         </div>
       </div>
@@ -99,13 +128,22 @@
           </div>
         </div>
         <div id="question4" class="options">
-          <div class="opt upper" @click="question(4, 0)">
-            강황, 고수, 계피…. 제대로 즐길래<br/>
-            <span>향신료 넣어주세요!</span>
+          <div class="five opt">
+            <div class="biggest circle" @click="question(4, 0)"></div>
+            <div class="bigger circle" @click="question(4, 1)"></div>
+            <div class="big circle" @click="question(4, 2)"></div>
+            <div class="bigger circle" @click="question(4, 3)"></div>
+            <div class="biggest circle last-opt" @click="question(4, 4)"></div>
           </div>
-          <div class="opt" @click="question(4, 1)">
-            본연의 마일드한 맛을 즐길래<br/>
+          <div class="opt-content">
+            <div class="left-content">
+              강황, 고수, 계피…. 제대로 즐길래<br/>
+            <span>향신료 넣어주세요!</span>
+            </div>
+            <div class="right-content">
+              본연의 마일드한 맛을 즐길래<br/>
             <span>기본으로 주세요~</span>
+            </div>
           </div>
         </div>
       </div>
@@ -126,13 +164,22 @@
           </div>
         </div>
         <div id="question5" class="options">
-          <div class="opt upper" @click="question(5, 0)">
-            고소하고 먹기 부담스럽지 않은<br/>
-            <span>참깨 드레싱</span>
+          <div class="five opt">
+            <div class="biggest circle" @click="question(5, 0)"></div>
+            <div class="bigger circle" @click="question(5, 1)"></div>
+            <div class="big circle" @click="question(5, 2)"></div>
+            <div class="bigger circle" @click="question(5, 3)"></div>
+            <div class="biggest circle last-opt" @click="question(5, 4)"></div>
           </div>
-          <div class="opt" @click="question(5, 1)">
-            상큼하고 냄새가 좋은<br/>
+          <div class="opt-content">
+            <div class="left-content">
+              고소하고 먹기 부담스럽지 않은<br/>
+            <span>참깨 드레싱</span>
+            </div>
+            <div class="right-content">
+              상큼하고 냄새가 좋은<br/>
             <span>오리엔탈 드레싱</span>
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +189,7 @@
       <div class="last-img">
         <img src="@/assets/images/survey/last.png" alt="last">
       </div>
-      <div class="submit-btn" @click="SubmitSurvey">
+      <div class="submit-btn" @click="linkTo('MyRecommendationLover')">
         나의 술 취향은?
       </div>
     </div>
@@ -153,6 +200,11 @@
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, onMounted } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const store = useStore()
+
 
 onMounted (() => {
   window.scrollTo(0, 0)
@@ -172,13 +224,49 @@ const answerList = ref({
 
 const question = (idx, option) => {
   answerList.value[`question${idx}`] = option
-  document.querySelectorAll(`#question${idx} div.opt`)[!!option ? 0 : 1].classList.remove('active')
-  document.querySelectorAll(`#question${idx} div.opt`)[option].classList.add('active')
+
+  document.querySelectorAll(`#question${idx} div.opt .circle`)[0].classList.remove('active')
+  document.querySelectorAll(`#question${idx} div.opt .circle`)[1].classList.remove('active')
+  document.querySelectorAll(`#question${idx} div.opt .circle`)[2].classList.remove('active')
+  document.querySelectorAll(`#question${idx} div.opt .circle`)[3].classList.remove('active')
+  document.querySelectorAll(`#question${idx} div.opt .circle`)[4].classList.remove('active')
+
+  document.querySelectorAll(`#question${idx} div.opt .circle`)[option].classList.add('active')
+
+}
+
+
+const weekday = {
+  1: "월요일",
+  2: "화요일",
+  3: "수요일",
+  4: "목요일",
+  5: "금요일",
+}
+
+const checkSurvey =() => {
+  for (let index = 1; index < 6; index++) {
+    const answer = answerList.value[`question${index}`];
+    if (answer == -1) {
+      const day = weekday[index]
+      alert(`${day} 문항에 체크해주세요!`)
+      return false
+    }
+  }
+  return true
 }
 
 const SubmitSurvey = () => {
-  console.log(answerList.value)
+  const checked = ref(false)
+  checked.value = checkSurvey()
+  if (checked.value) {
+    store.dispatch("submitSurvey", answerList.value)
+  }
 }
+
+const router = useRouter();
+const linkTo = (name) => router.push({ name: name })
+
 </script>
 
 <style>

@@ -13,7 +13,7 @@
       <p class="header-intro">당신이 오늘 좋아할 만한 우주를 소개해드려요</p>
     </div>
     
-    <div class="inner-container">
+    <div class="inner-container" v-if="member">
       <div class="rec-container inner-section">
         <div class="mt"></div>
         <!-- preferance -->
@@ -59,7 +59,7 @@
           <!-- v-if not surveyed -->
           <div class="not-surveyed" v-if="!lifestyle">
             <div class="not-surveyed-content">
-              당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요
+              당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요.
             </div>
             <div class="survey-btn life-style-btn" @click="linkTo('MyRecommendationType')">
               <div class="btn-box">오늘의 라이프 스타일은? ></div>
@@ -108,6 +108,19 @@
 
       </div>
     </div>
+
+
+
+    <div class="inner-container" v-if="!member">
+      <div class="rec-container inner-section">
+        <div class="mt"></div>
+
+        <div class="recommend-content">
+          여러분
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -128,6 +141,9 @@ onMounted(() => {
   store.dispatch("fetchAllReviews")
 })
 
+
+// whether member
+const member = ref(true)
 
 // whether surveyed
 const preference = ref(false)
