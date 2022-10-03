@@ -187,7 +187,7 @@
       <div class="last-img">
         <img src="@/assets/images/survey/last.png" alt="last">
       </div>
-      <div class="submit-btn" @click="SubmitSurvey">
+      <div class="submit-btn" @click="linkTo('MyRecommendationExplorer')">
         나의 술 취향은?
       </div>
     </div>
@@ -197,6 +197,7 @@
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 onMounted (() => {
   window.scrollTo(0, 0)
@@ -254,6 +255,10 @@ const SubmitSurvey = () => {
     store.dispatch("submitSurvey", answerList.value)
   }
 }
+
+
+const router = useRouter();
+const linkTo = (name) => router.push({ name: name })
 
 </script>
 

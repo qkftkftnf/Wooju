@@ -2,43 +2,44 @@
   <HeaderView/>
   <div class="result-container">
     <div class="result-title">
-      당신의 전통주 취향은…
+      <span class="nick">당신의 전통주 취향</span>은<br/>
     </div>
-    <div class="type-main">
+
+    <div class="type-main explorer" v-if="!type">
       <span class="name prefer-type">
-        <span class="nick">{{ profileData.profile?.nickname }}</span> 님은
       </span>
       <span class="person-type prefer-type">
-        애호가
+        탐험가
       </span>
       <span class="end prefer-type">
         형입니다.
       </span>
+      <div class="type-image">
+        <img src="@/assets/images/type/explorer.png" alt="like-soju">
+      </div>
+  
+      <div class="graph">
+        <canvas id="myChart" width="250" height="250"></canvas>
+      </div>
+   
+  
+      <div class="preferance">
+        <div class="abst">
+          톡톡 튀는 탄산처럼 어디로 튈지 모르는 당신!
+        </div>
+        <div class="sweet flavor">
+          단 맛을 <span class="highlight">좋아</span>하고,
+        </div>
+        <div class="acidity flavor">
+          신 맛을 <span class="highlight">싫어</span>하고,
+        </div>
+        <div class="proof flavor">
+          탄산이 <span class="highlight">높은</span> 술을 좋아합니다.
+        </div>
+      </div>
     </div>
 
-    <div class="type-image">
-      <img src="@/assets/images/soju.png" alt="like-soju">
-    </div>
-
-    <div class="graph">
-      <canvas id="myChart" width="250" height="250"></canvas>
-    </div>
- 
-
-    <div class="preferance">
-      <div class="abst">
-        깔끔한 맛을 좋아하는 당신!
-      </div>
-      <div class="sweet flavor">
-        단 맛을 <span class="highlight">싫어</span>하고,
-      </div>
-      <div class="acidity flavor">
-        신 맛을 <span class="highlight">좋아</span>하고,
-      </div>
-      <div class="proof flavor">
-        도수가 <span class="highlight">높은</span> 술을 좋아합니다.
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -51,8 +52,8 @@ import { useStore } from "vuex";
 // script
 const store = useStore();
 const profileData = computed(() => store.getters.profile)
-
 onMounted(() => {
+  const type = ref(false)
   store.dispatch("fetchProfile")
 
   // rader chart
@@ -71,7 +72,7 @@ onMounted(() => {
       datasets: [{
         label: ' ',
         data: [
-          2,4,5,3,4,
+          5,2,3,5,2,
         ],
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',

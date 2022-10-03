@@ -189,7 +189,7 @@
       <div class="last-img">
         <img src="@/assets/images/survey/last.png" alt="last">
       </div>
-      <div class="submit-btn" @click="SubmitSurvey">
+      <div class="submit-btn" @click="linkTo('MyRecommendationLover')">
         나의 술 취향은?
       </div>
     </div>
@@ -201,6 +201,7 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 const store = useStore()
 
@@ -263,6 +264,8 @@ const SubmitSurvey = () => {
   }
 }
 
+const router = useRouter();
+const linkTo = (name) => router.push({ name: name })
 
 </script>
 
