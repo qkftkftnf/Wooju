@@ -87,7 +87,7 @@ const router = createRouter({
     },
     {
       name: "WoojooDetail",
-      path: "/woojoo/1",
+      path: "/woojoo/:productId",
       component: WoojooDetail,
     },
     {

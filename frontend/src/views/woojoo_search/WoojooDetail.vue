@@ -9,25 +9,18 @@
       </div>
     </div> -->
     <div class="detail-header">
-      <!-- <div class="bg-box"></div> -->
-      <!-- <div class="profile-pic" style="background-image: url('https://www.sciencetimes.co.kr/wp-content/uploads/2022/06/%EB%B3%B4%EB%9E%8F%EB%B9%9B1.jpg')"></div> -->
-      <img class="bg-box" :src="woojooInfo.object?.image" alt="">
-      <!-- <div class="level"> -->
-        <!-- lv.8 -->
-      <!-- </div> -->
-      <!-- <div class="email">
-        hey@gmail.com
+      <span class="like">
+        <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
+      </span>
+      <div>
+        <img class="bg-box" :src="woojooInfo.object?.image" alt="">
+        
       </div>
-      <div class="edit-profile">
-        <i class="fas fa-cog"></i>
-      </div> -->
+      <span class="like-add">
+        <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
+      </span>
     </div>
     <HeaderView/>
-    <!-- <div class="detail-header-container">
-      <div class="woojoo-pic">
-        <img class="profile-pic" src="@/assets/images/woojoo1.jpg" alt="">
-      </div>
-    </div> -->
     <div class="mypage-container" id="detail-container">
       <!-- tabs menu -->
       <div class="mypage-tabs">
@@ -36,7 +29,7 @@
             상세정보
           </div>
           <div class="tab tab-likes" @click="tabPosition('mypage-likes')">
-            ????
+            구매처 링크
           </div>
           <div class="tab tab-reviews" @click="tabPosition('detail-reviews')">
             리뷰
@@ -80,19 +73,20 @@ import DetailContent from "@/views/woojoo_search/DetailContent.vue"
 import DetailReviews from "@/views/woojoo_search/DetailReviews.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
 import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 const router = useRouter();
+const route = useRoute()
 // const linkTo = () => router.push({ name: "", params: { }})
 
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
-
 const position = ref(0)
+const productId = route.params.productId
 
 onMounted(() => {
-  store.dispatch("fetchWoojooInfo")
+  store.dispatch("fetchWoojooInfo", productId)
   const mypageTabs = document.querySelector("#detail-container")
   window.onscroll = function() {scrollTabMenu()};
   function scrollTabMenu() {
