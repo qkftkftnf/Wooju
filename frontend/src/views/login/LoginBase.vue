@@ -33,8 +33,8 @@ window.checkLogin = () => {
     alert('로그인 실패')
   }
 }
-
-const loginPopup = (path) => window.open(`/login/popup/${path}`, '_blank', 'menubar=no, status=no, toolbar=no')
+// 'menubar=no, status=no, toolbar=no'
+const loginPopup = (path) => window.open(`/login/popup/${path}`, '_blank', )
 </script>
 
 <style>

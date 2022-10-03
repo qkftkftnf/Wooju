@@ -109,12 +109,7 @@ const onSubmit = () => {
   } else if (signupInfo.gender == '여자') {
     signupInfo.gender = 'F'
   }
-  // http.post("/user/signup", signupInfo)
-  //   .then(({ data }) => {
-  //     console.log(data)
-  //     // router push to main page
-  //   })
-  //   .catch((err) => console.log(err))
+
 }
 
 </script>

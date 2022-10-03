@@ -30,6 +30,14 @@ const mypage = {
           })
       }
     },
+    signup() {
+      http.post("/user/signup", signupInfo)
+      .then(({ data }) => {
+        console.log(data)
+        // router push to main page
+      })
+      .catch((err) => console.log(err))
+    },
   },
 }
 
