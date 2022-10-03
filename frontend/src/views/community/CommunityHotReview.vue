@@ -2,26 +2,27 @@
   <div class="container pt-60">
     <HeaderView/>
     <h1 class="hot-review-title">모든 핫 리뷰</h1>
-      <div class="review-body bs-card-03" v-for="item in 3" :key="item">
+      <div class="review-body bs-card-03" v-for="review in reviewsData.dto?.hotreview">
           <div class="review-header">
             <div class="profile">
               <div class="profile-box">
-                <img class="profile-img" src="@/assets/images/profile_img_1.jpg" alt="">
+                <img class="profile-img" :src="review.user_img" alt="">
               </div>
               <div class="review-writer">
-                <div class="review-nickname">hanssss</div>
-                <div class="review-level">레벨 153</div>
+                <div class="review-nickname">{{review.user_nickname}}</div>
+                <div class="review-level">{{review?.gosu}}</div>
               </div>
             </div>
-            <span class="review-date">2022.09.16</span> 
+            <span class="review-date">{{review.time}}</span> 
           </div>
           <!-- <img src="@/assets/images/pic3.jpg"/> -->
           <div class="block text-center" m="t-4">
             <el-carousel trigger="click" height="250px" indicator-position="outside" :autoplay="false">
-              <el-carousel-item v-for="i in 4" :key="i">
-                <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
-                <!-- <img :src="`@/assets/images/pic${i}.jpg`" alt=""> -->
-                <img src="@/assets/images/pic1.jpg" alt="pic">
+              <el-carousel-item v-for="review_pic in review.img" :key="i">
+                <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3>
+                <img :src="`@/assets/images/pic${i}.jpg`" alt="">
+                <img src="@/assets/images/pic1.jpg" alt="pic"> -->
+                <img :src="review_pic" alt="">
               </el-carousel-item>
               <span class="like">
                 <i class="fas fa-heart icon"></i> 73
@@ -30,16 +31,20 @@
           </div>          
           <div class="review-content">
             <div class="wooju">
+              <span class="wooju-name">제목 : </span>
+               {{review.title}}
+            </div>
+            <div class="wooju">
               <span class="wooju-name">술 이름 : </span>
-              만강에 비친 달 
+               {{review.product_name}}
               <i class="fas fa-chevron-right"></i>
             </div>
             <div class="rate">
               <span class="wooju-star">별점  </span>
-              <i class="fas fa-star star"></i> 4.5
+              <i class="fas fa-star star"></i> {{review.star}}
             </div>
             <p class="review-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi modi reiciendis aspernatur similique, officiis sit tenetur mollitia eius qui fugit?
+              {{review.content}}
             </p>
           </div>
       </div>
@@ -47,8 +52,15 @@
 </template>
 
 <script setup>
-
 import HeaderView from "@/views/common/HeaderView.vue"
+import { ref, computed, onMounted } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+const reviewsData = computed(() => store.getters.reviews);
+onMounted(() => {
+  store.dispatch("fetchAllReviews")
+})
 </script>
 
 <style>
