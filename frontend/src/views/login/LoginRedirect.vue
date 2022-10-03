@@ -14,8 +14,8 @@ if (path == 'google') {
   http.get("/user/login-google", {params: {code: code}})
     .then(({ data }) => {
       if (data.statusCode == 200) {
-        localStorage.setItem('accesstoken', data.accesstoken)
-        opener.location = '/community'
+        localStorage.setItem('token', data.accesstoken)
+        opener.checkLogin()
       } else {
         opener.location = `/signup?email=${data.userEmail}&usertype=${data.userType}`
       }

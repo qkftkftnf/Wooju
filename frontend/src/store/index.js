@@ -5,6 +5,7 @@ import mypage from "./modules/mypage"
 import woojooDetail from "./modules/woojooDetail";
 import reviewCreate from "./modules/reviewCreate"
 import recommendation from "./modules/recommendation";
+import auth from "./modules/auth"
 
 const store = createStore({
   modules: {
@@ -13,6 +14,7 @@ const store = createStore({
     woojooDetail,
     reviewCreate,
     recommendation,
+    auth
   },
 })
 

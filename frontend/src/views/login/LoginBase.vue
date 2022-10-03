@@ -17,13 +17,24 @@ import HeaderView from "@/views/common/HeaderView.vue"
 import MenuView from "@/views/common/MenuView.vue"
 import google from "@/assets/images/login/google.svg"
 import naver from "@/assets/images/login/naver.svg"
-// import { onMounted } from "vue";
+import { useStore } from "vuex"
+import { useRouter } from "vue-router"
 
+const store = useStore()
+const router = useRouter()
 
-// onMounted(() => {
-// })
-// 'menubar=no, status=no, toolbar=no'
-const loginPopup = (path) => window.open(`/login/popup/${path}`, '_blank', )
+const checkLogin = () => {
+  const token = localStorage.getItem('token')
+  console.log(token)
+  if (!!token) {
+    store.dispatch('saveToken', token)
+    router.push({ name: 'CommunityMain' })
+  } else {
+    alert('로그인 실패')
+  }
+}
+
+const loginPopup = (path) => window.open(`/login/popup/${path}`, '_blank', 'menubar=no, status=no, toolbar=no')
 </script>
 
 <style>

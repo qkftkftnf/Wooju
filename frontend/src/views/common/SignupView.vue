@@ -6,7 +6,7 @@
     </div>
     <div class="avatar">
       <div class="pic">
-        <img id="pic-thumbnail" src="https://images.unsplash.com/photo-1621351813579-4ceefec7235c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8eWVsbG93JTIwYWVzdGhldGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
+        <img id="pic-thumbnail" :src="userInfo.img" alt="profile image">
       </div>
       <div class="pic-edit" @click="openGallery">
         <div class="pic-edit-btn">
@@ -22,23 +22,29 @@
 
       <div class="profile-info">
         <div class="nick">
-          닉네임
-          <el-input type="text" class="edit-nickname" v-model="signupInfo.nickname"/>
+          <div class="label">
+            닉네임
+          </div>
+          <el-input type="text" class="edit-nickname" v-model="userInfo.nickname"/>
         </div>
         <div class="birthdate">
-          생일
-          <el-input type="date" class="edit-nickname" v-model="signupInfo.birthdate"/>
+          <div class="label">
+            생일
+          </div>
+          <el-input type="date" class="edit-nickname" v-model="userInfo.birthdate"/>
         </div>
         <div class="gender">
-          성별
-          <el-radio-group v-model="signupInfo.gender">
-            <el-radio label="M" />
-            <el-radio label="F" />
+          <div class="label">
+            성별
+          </div>
+          <el-radio-group class="gender-radio" v-model="userInfo.gender">
+            <el-radio label="남자" />
+            <el-radio label="여자" />
           </el-radio-group>
         </div>
-        <div class="submit" @click="onSubmit">
-          회원 가입
-        </div>
+      </div>
+      <div class="submit" @click="onSubmit">
+        회원 가입
       </div>
 
     </div>
@@ -54,15 +60,14 @@ import http from "@/api/index.js"
 
 const store = useStore()
 const route = useRoute()
-const signupInfo = ref({
+const userInfo = ref({
   "birthdate": "",
   "email": route.query.email,
   "gender": "",
-  "img": "",
+  "img": "https://wooju-bucket.s3.ap-northeast-2.amazonaws.com/48817946-7a86-45e4-8209-b17ec8716fcc-user.png",
   "nickname": "",
   "usertype": route.query.usertype,
 })
-console.log(signupInfo)
 
 // image upload  
 const uploadImages = ref([])
@@ -90,13 +95,26 @@ const getThumbnail = () => {
 
 
 const onSubmit = () => {
-  signupInfo.value.img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJgdkzZiGruJOVzqaKOz091hE2lkNHq8b4jPIdJdxaVw&s'
-  http.post("/user/signup", signupInfo.value)
-    .then(({ data }) => {
-      console.log(data)
-      // router push to main page
-    })
-    .catch((err) => console.log(err))
+  const signupInfo = {
+    "birthdate": userInfo.value.birthdate,
+    "email": userInfo.value.email,
+    "gender": userInfo.value.gender,
+    "img": userInfo.value.img,
+    "nickname": userInfo.value.nickname,
+    "usertype": userInfo.value.usertype,
+  }
+
+  if (signupInfo.gender == '남자') {
+    signupInfo.gender = 'M'
+  } else if (signupInfo.gender == '여자') {
+    signupInfo.gender = 'F'
+  }
+  // http.post("/user/signup", signupInfo)
+  //   .then(({ data }) => {
+  //     console.log(data)
+  //     // router push to main page
+  //   })
+  //   .catch((err) => console.log(err))
 }
 
 </script>
@@ -105,15 +123,19 @@ const onSubmit = () => {
   .signup-container {
   margin-top: 60px;
   width: 100vw;
+  height: calc(100vh - 60px);
   max-width: 500px;
-  height: calc(100vh - 130px);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .signup-container .title {
-  padding: 40px 0 50px 0;
   font-size: 1.4rem;
   font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
 
 .signup-container .avatar {
@@ -123,6 +145,7 @@ const onSubmit = () => {
 .signup-container .avatar .pic {
   width: 150px;
   height: 150px;
+  margin-bottom: 20px;
   overflow: hidden;
   border-radius: 100%;
   position: relative;
@@ -169,10 +192,31 @@ const onSubmit = () => {
 }
 
 .signup-container .profile-info {
-  margin: 0 auto;
+  /* margin-right: 10px; */
   width: 250px;
-  height: 100px;
 }
+
+.signup-container .profile-info .el-input {
+  width: 190px;
+}
+
+.signup-container .profile-info .el-radio-group {
+  width: 155px;
+  margin-right: 25px;
+}
+
+.signup-container .profile-info .label {
+  width: 60px;
+  text-align: left;
+}
+
+.signup-container .profile-info .nick,
+.signup-container .profile-info .birthdate,
+.signup-container .profile-info .gender {
+  display: flex;
+  margin-top: 10px;
+}
+
 
 .signup-container .buttons {
   margin-top: 50px;
@@ -183,7 +227,7 @@ const onSubmit = () => {
 }
 
 .signup-container .submit {
-  margin-top: 40px;
+  margin-top: 30px;
   width: 100px;
   height: 40px;
   line-height: 40px;
