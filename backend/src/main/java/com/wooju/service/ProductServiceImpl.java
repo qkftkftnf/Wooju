@@ -75,7 +75,21 @@ public class ProductServiceImpl implements ProductService{
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.build();
 		
-		ResponseEntity<Object> result=webclient.get().
+		if(dto.getTypes().isEmpty() || dto.getTypes().get(0).equals("")) {
+			ResponseEntity<Object> result=webclient.get().
+					uri(uriBuilder-> uriBuilder
+						    .path("/product/")
+						    .queryParam("alcohol", dto.getAlcohol())
+						    .queryParam("isAward", dto.isAward())
+						    .queryParam("page", dto.getPage())
+						    .queryParam("size", dto.getSize())
+						    .build())
+					.retrieve()
+					.toEntity(Object.class)
+					.block();
+			return (result.getBody());
+		}else {
+			ResponseEntity<Object> result=webclient.get().
 				uri(uriBuilder-> uriBuilder
 					    .path("/product/")
 					    .queryParam("types", dto.getTypes())
@@ -87,8 +101,8 @@ public class ProductServiceImpl implements ProductService{
 				.retrieve()
 				.toEntity(Object.class)
 				.block();
-		return (result.getBody());
-		
+			return (result.getBody());
+		}
 	}
 
 	@Override
