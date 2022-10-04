@@ -11,9 +11,12 @@ const path = route.params.path;
 const code = route.query.code;
 
 if (path == 'google') {
-  http.get("/user/login-google", {params: {code: code}})
+  http.get("/user/login-google", {
+    headers: {Authorization: ''},
+    params: {code: code}
+  })
     .then(({ data }) => {
-      console.log(data)
+      // console.log(data)
       if (data.statusCode == 200) {
         localStorage.setItem('token', data.accesstoken)
         opener.checkLogin()
@@ -21,7 +24,7 @@ if (path == 'google') {
         localStorage.setItem('token', data.accesstoken)
         opener.location = `/signup?email=${data.userEmail}&usertype=${data.userType}`
       }
-      // window.close()
+      window.close()
     })
     .catch((err) => console.log(err))
 } else if (path == 'naver') {
