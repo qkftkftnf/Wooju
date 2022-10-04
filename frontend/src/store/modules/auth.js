@@ -30,7 +30,7 @@ const mypage = {
           })
       }
     },
-    signup() {
+    signup(signupInfo) {
       http.post("/user/signup", signupInfo)
       .then(({ data }) => {
         console.log(data)
