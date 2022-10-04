@@ -68,7 +68,6 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_img(review.getUser().getImg())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
-						.title(review.getTitle())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
@@ -92,7 +91,6 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_img(review.getUser().getImg())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
-						.title(review.getTitle())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
@@ -119,7 +117,6 @@ public class ReviewServiceImpl implements ReviewService{
 					.user_img(review.getUser().getImg())
 					.product_id(review.getProduct().getId())
 					.product_name(review.getProduct().getName())
-					.title(review.getTitle())
 					.content(review.getContent())
 					.time(review.getTime())
 					.star(review.getStar())
@@ -144,7 +141,6 @@ public class ReviewServiceImpl implements ReviewService{
 					.user_img(review.getUser().getImg())
 					.product_id(review.getProduct().getId())
 					.product_name(review.getProduct().getName())
-					.title(review.getTitle())
 					.content(review.getContent())
 					.time(review.getTime())
 					.star(review.getStar())
@@ -169,7 +165,6 @@ public class ReviewServiceImpl implements ReviewService{
 		Review review = Review.builder()
 				.user(user)
 				.product(product)
-				.title(dto.getTitle())
 				.content(dto.getContent())
 				.time(LocalDate.now())
 				.star(dto.getStar())
@@ -211,7 +206,6 @@ public class ReviewServiceImpl implements ReviewService{
 				.user_img(review.getUser().getImg())
 				.product_id(review.getProduct().getId())
 				.product_name(review.getProduct().getName())
-				.title(review.getTitle())
 				.content(review.getContent())
 				.time(review.getTime())
 				.star(review.getStar())
@@ -233,7 +227,6 @@ public class ReviewServiceImpl implements ReviewService{
 		Review review=reviewTemp.get();
 			review.setStar(dto.getStar());
 			review.setContent(dto.getContent());
-			review.setTitle(dto.getTitle());
 		reviewRepository.save(review);
 		ArrayList<ReviewImg> list=reviewImgRepository.findByUserIdAndReviewId(user.getId(), review.getId());
 		ArrayList<String> img=new ArrayList<>();
@@ -319,7 +312,6 @@ public class ReviewServiceImpl implements ReviewService{
 							.user_img(review.getUser().getImg())
 							.product_id(review.getProduct().getId())
 							.product_name(review.getProduct().getName())
-							.title(review.getTitle())
 							.content(review.getContent())
 							.time(review.getTime())
 							.star(review.getStar())
@@ -342,7 +334,6 @@ public class ReviewServiceImpl implements ReviewService{
 							.user_img(review.getUser().getImg())
 							.product_id(review.getProduct().getId())
 							.product_name(review.getProduct().getName())
-							.title(review.getTitle())
 							.content(review.getContent())
 							.time(review.getTime())
 							.star(review.getStar())
@@ -365,7 +356,6 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_img(review.getUser().getImg())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
-						.title(review.getTitle())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())
@@ -391,7 +381,6 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_img(review.getUser().getImg())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
-						.title(review.getTitle())
 						.content(review.getContent())
 						.time(review.getTime())
 						.star(review.getStar())

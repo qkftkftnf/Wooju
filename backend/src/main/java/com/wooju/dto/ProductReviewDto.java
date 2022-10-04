@@ -21,8 +21,6 @@ public class ProductReviewDto {
 	int id;
 	@ApiModelProperty(name="nickname")
 	String nickname;
-	@ApiModelProperty(name="title")
-	String title;
 	@ApiModelProperty(name="content")
 	String content;
 	@ApiModelProperty(name="time")

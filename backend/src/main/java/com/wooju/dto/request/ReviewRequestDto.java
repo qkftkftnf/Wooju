@@ -20,9 +20,6 @@ public class ReviewRequestDto {
 	@ApiModelProperty(name="img")
 	ArrayList<String> img;
 	
-	@ApiModelProperty(name="title", example="제목")
-	String title;
-	
 	@ApiModelProperty(name="content", example="내용")
 	String content;
 	

@@ -37,10 +37,7 @@ public class Review {
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	
-	
-	@Column(name = "title",nullable=false)
-	private String title;
+		
 	
 	@Column(name = "content", nullable = false, columnDefinition = "TEXT")
 	private String content;
