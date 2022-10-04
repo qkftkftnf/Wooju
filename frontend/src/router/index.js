@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import MainView from "../views/main/MainView.vue";
 import MainHome from "../views/main/MainHome.vue";
 import MainHomeNonmember from "../views/main/MainHomeNonmember.vue";
 
@@ -40,12 +41,7 @@ const router = createRouter({
     {
       name: "MainHome",
       path: "/",
-      component: MainHome,
-    },
-    {
-      name: "MainHomeNone",
-      path: "/n",
-      component: MainHomeNonmember,
+      component: MainView,
     },
     // account (signup/login)
     {

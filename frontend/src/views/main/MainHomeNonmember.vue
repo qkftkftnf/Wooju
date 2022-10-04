@@ -17,14 +17,14 @@
         <div class="mt"></div>
         <div class="home-corner recommendation-corner">
           <div class="corner-img-box">
-            <img src="@/assets/images/home/recommendation.jpg" alt="" class="corner-img">
+            <img src="@/assets/images/home/recommendation.png" alt="" class="corner-img">
           </div>
           <div class="home-content rec-intro">
             아직 어떤 전통주를 마셔봐야할지<br/>모르는 여러분에게
             <span>나만의 취향에 맞는 술을<br/>추천 받아 보세요</span>
           </div>
           <div class="btn-box">
-            <div class="togo-btn">
+            <div class="togo-btn" @click="linkTo('MyRecommendationType')">
               취향 알아보러 가기 >
             </div>
           </div>
@@ -32,14 +32,14 @@
 
         <div class="home-corner community-corner">
           <div class="corner-img-box">
-            <img src="@/assets/images/home/community.jpg" alt="" class="corner-img">
+            <img src="@/assets/images/home/community.png" alt="" class="corner-img">
           </div>
           <div class="home-content com-intro">
             전통주에 대해 더 많은 이야기를<br/>나누고 싶은 여러분에게
             <span>커뮤니티에서<br/>다양한 우주들을 만나보세요</span>
           </div>
           <div class="btn-box">
-            <div class="togo-btn">
+            <div class="togo-btn" @click="linkTo('CommunityMain')">
               커뮤니티 둘러보기 >
             </div>
           </div>
@@ -47,14 +47,14 @@
 
         <div class="home-corner search-corner">
           <div class="corner-img-box">
-            <img src="@/assets/images/home/search.jpg" alt="" class="corner-img">
+            <img src="@/assets/images/home/search.png" alt="" class="corner-img">
           </div>
           <div class="home-content search-intro">
             전통주의 상세 정보부터 최저가까지<br/>한눈에 알고 싶은 여러분에게
             <span>전통주 검색 기능도 누려보세요</span>
           </div>
           <div class="btn-box">
-            <div class="togo-btn">
+            <div class="togo-btn" @click="linkTo('WoojooSearch')">
               전통주 검색하기 >
             </div>
           </div>
@@ -62,15 +62,15 @@
 
         <div class="home-corner signup-corner">
           <div class="corner-img-box">
-            <img src="@/assets/images/home/signup.jpg" alt="" class="corner-img">
+            <img src="@/assets/images/home/signup.png" alt="" class="corner-img">
           </div>
           <div class="home-content signup-intro">
             취향에 맞는 술을<br/>매일 다르게 추천 받고 싶은 여러분에게
             <span>우주의 회원이 되어<br/> 더 풍부한 전통주를 즐겨보세요</span>
           </div>
           <div class="btn-box">
-            <div class="togo-btn">
-              회원가입하러 가기 >
+            <div class="togo-btn" @click="linkTo('LoginBase')">
+              로그인 <span>또는</span> 회원가입 >
             </div>
           </div>
         </div>
@@ -134,11 +134,8 @@ onMounted(() => {
   background-color: transparent;
 }
 
-.fake img {
-width: 50% !important;
-}
-
-.fake2 img {
-  width: 100% !important;
+.togo-btn span {
+  font-weight: 400;
+  font-size: 1rem;
 }
 </style>

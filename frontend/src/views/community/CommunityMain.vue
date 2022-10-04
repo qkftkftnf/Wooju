@@ -9,12 +9,13 @@
       </div>
     </div>
     <div class="header-content">
-      <img class="content-img" src="@/assets/images/community.jpg" alt="communityMainPic">
+      <img class="content-img" src="@/assets/images/community.png" alt="communityMainPic">
       <p class="header-intro">더 많은 사람들과 더 많은 우주를 나눠보세요</p>
     </div>
     
     <div class="inner-container">
       <div class="inner-section">
+        <div class="mt"></div>
         
         <!-- HOT review -->
         <div class="community-category">
@@ -78,7 +79,7 @@
             </div>
           </div>
           <div class="category-intro">
-            지금 가장 많이 리뷰가 달린 핫한 술을 구경하세요
+            지금 가장 많이 리뷰가 달린 술을 구경하세요
           </div>
           <div class="category-carousel">
             <el-scrollbar>
@@ -266,5 +267,11 @@ onMounted(() => {
 </script>
 
 <style>
-  
+.mt {
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  background-color: transparent;
+}
+
 </style>

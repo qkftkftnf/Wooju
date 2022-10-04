@@ -16,44 +16,107 @@
       <div class="rec-container inner-section">
         <div class="mt"></div>
         <div class="home-corner recommendation-corner">
-          <div class="home-title">
-            우주가 추천하는 오늘의 술
-          </div>
-          <div class="bottles">
-            <div class="bottle-card" v-for="i in 3">
-              <div class="bottle-img">
-                <img src="@/assets/images/profile_img_1.jpg" alt="bottle">
+
+          <div class="community-category">
+            <div class="category-header">
+              <div class="category-title">
+                오늘의 추천
               </div>
-              <div class="bottle-content">
-                <div class="bottle-title">
-                  술 이름이 길어요
-                </div>
-                <div class="bottle-intro">
-                  14.5% | 375ml
-                </div>
+              <div class="more"> 
+                <!-- linkTo -->
+                더보기 <i class="fas fa-chevron-right"></i>
               </div>
+            </div>
+            <div class="category-intro">
+              오늘밤 취향 가득한 전통주 어떤가요?
+            </div>
+            <div class="category-carousel">
+              <el-scrollbar>
+                <div class="carousel-container">
+                  <div class="review-card" v-for="idx in 3">
+                    <div @click="linkToCommunity('hotreview', idx + 1)">
+                      <div class="image main-review-img">
+                        <img src="@/assets/images/profile_img_1.jpg" alt="reviewThumbnail">
+                        <span class="like">
+                          <i class="fas fa-heart heart"></i> review.like
+                        </span>
+                      </div>
+                      <div class="card-content">
+                        <div class="wooju">
+                          review.product_name
+                        </div>
+                        <div class="rate">
+                          <i class="fas fa-star star"></i> review.star
+                        </div>
+                        <div class="preview">
+                          review.content
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="more-card review-card bs-none" @click="linkToCommunity('hotreview', 0)">
+                    <div class="more-btn">
+                      <span>
+                        더보기 <i class="fas fa-arrow-right"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </el-scrollbar>
             </div>
           </div>
 
 
-          <div class="btn-box">
-            <div class="togo-btn">
-              추천 더 받으러 가기 >
-            </div>
-          </div>
         </div>
 
         <div class="home-corner search-corner">
-          <div class="corner-img-box">
-            <img src="@/assets/images/home/search.jpg" alt="" class="corner-img">
-          </div>
-          <div class="home-content search-intro">
-            전통주의 상세 정보부터 최저가까지<br/>한눈에 알고 싶은 여러분에게
-            <span>전통주 검색 기능도 누려보세요</span>
-          </div>
-          <div class="btn-box">
-            <div class="togo-btn">
-              전통주 검색하기 >
+
+          <div class="community-category">
+            <div class="category-header">
+              <div class="category-title">
+                핫 리뷰
+              </div>
+              <div class="more"> 
+                <!-- linkTo -->
+                더보기 <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+            <div class="category-intro">
+              지금 마시고 싶은 전통주를 찾고 있다면?
+            </div>
+            <div class="category-carousel">
+              <el-scrollbar>
+                <div class="carousel-container">
+                  <div class="review-card" v-for="idx in 3">
+                    <div @click="linkToCommunity('hotreview', idx + 1)">
+                      <div class="image main-review-img">
+                        <img src="@/assets/images/profile_img_1.jpg" alt="reviewThumbnail">
+                        <span class="like">
+                          <i class="fas fa-heart heart"></i> review.like
+                        </span>
+                      </div>
+                      <div class="card-content">
+                        <div class="wooju">
+                          review.product_name
+                        </div>
+                        <div class="rate">
+                          <i class="fas fa-star star"></i> review.star
+                        </div>
+                        <div class="preview">
+                          review.content
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="more-card review-card bs-none" @click="linkToCommunity('hotreview', 0)">
+                    <div class="more-btn">
+                      <span>
+                        더보기 <i class="fas fa-arrow-right"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </el-scrollbar>
             </div>
           </div>
         </div>
@@ -74,6 +137,7 @@ import { useStore } from "vuex";
 
 const router = useRouter();
 const linkTo = (name) => router.push({ name: name })
+const linkToCommunity = (category, post) => router.push({ name: "CommunityCategory", query: { name: category, post: post }})
 
 // vuex axios
 const store = useStore();
@@ -118,11 +182,15 @@ onMounted(() => {
   background-color: transparent;
 }
 
-.fake img {
-width: 50% !important;
+.main-review-img img {
+  object-fit: contain !important;
+  object-position: center;
+
 }
 
-.fake2 img {
-  width: 100% !important;
+.togo-btn span {
+  font-weight: 400;
+  font-size: 1rem;
 }
+
 </style>
