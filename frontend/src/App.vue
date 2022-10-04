@@ -19,7 +19,7 @@ import { RouterView } from "vue-router";
 @import "@/assets/css/common.css";
 @import "@/assets/css/CommunityMain.css";
 @import "@/assets/css/communityHot.css";
-@import "@/assets/css/WoojooSearch.css";
+/* @import "@/assets/css/WoojooSearch.css"; */
 @import "@/assets/css/myPage.css";
 @import "@/assets/css/woojooDetail.css";
 @import "@/assets/css/MyRecommendation.css";

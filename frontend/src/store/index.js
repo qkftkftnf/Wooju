@@ -7,6 +7,7 @@ import reviewCreate from "./modules/reviewCreate"
 import woojooSearch from "./modules/woojooSearch"
 import recommendation from "./modules/recommendation";
 import auth from "./modules/auth"
+import product from "./modules/product"
 
 const store = createStore({
   modules: {
@@ -16,7 +17,8 @@ const store = createStore({
     reviewCreate,
     woojooSearch,
     recommendation,
-    auth
+    auth,
+    product
   },
 })
 
