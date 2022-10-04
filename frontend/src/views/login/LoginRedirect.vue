@@ -11,7 +11,10 @@ const path = route.params.path;
 const code = route.query.code;
 
 if (path == 'google') {
-  http.get("/user/login-google", {params: {code: code}})
+  http.get("/user/login-google", {
+    headers: {Authorization: ''},
+    params: {code: code}
+  })
     .then(({ data }) => {
       // console.log(data)
       if (data.statusCode == 200) {
