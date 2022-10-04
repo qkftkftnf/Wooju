@@ -12,7 +12,7 @@ const mypage = {
   getters: {
     token: state => state.token,
     isLoggedIn: state => !!state.token,
-    authHeader: state => `Bearer ${state.token}`,
+    authHeader: state => `Bearer ${getters.token}`,
   },
   actions: {
     saveToken({ commit }, token) {
