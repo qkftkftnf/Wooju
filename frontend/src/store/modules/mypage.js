@@ -19,9 +19,11 @@ const mypage = {
     isLoaded: (state) => state.isLoaded,
   },
   actions: {
-    fetchProfile({ commit }) {
+    fetchProfile({ commit, getters }) {
       commit("SET_ISLOADED", false)
-      http.get("/user/profile")
+      http.get("/user/profile", {
+        headers: {Authorization: getters.authHeader}
+      })
         .then(({ data }) => {
           commit("SET_PROFILE", data)
         })
@@ -31,11 +33,12 @@ const mypage = {
         )
         .catch((err) => console.log(err))
     },
-    profileEdit({}, profileInfo) {
+    profileEdit({ getters }, profileInfo) {
       axios({
         method: "POST",
         url: "https://j7a304.p.ssafy.io/api/image/upload",
         headers: {
+          Authorization: getters.authHeader,
           "Content-Type": "multipart/form-data",
         },
         data: profileInfo.file,
@@ -44,6 +47,8 @@ const mypage = {
           http.put("/user/profile", {
             nickname: profileInfo.nickname,
             img: data.img
+          }, {
+            headers: {Authorization: getters.authHeader}
           })
           .then(({ data }) => {
             router.push({

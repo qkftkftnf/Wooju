@@ -16,8 +16,6 @@ public class ModifyReviewRequestDto {
 	@ApiModelProperty(name="id")
 	int id;
 	
-	@ApiModelProperty(name="title", example="제목")
-	String title;
 	
 	@ApiModelProperty(name="content", example="내용")
 	String content;

@@ -29,8 +29,6 @@ public class ReviewDto {
 	int product_id;
 	@ApiModelProperty(name="user_id")
 	String product_name;
-	@ApiModelProperty(name="리뷰 제목")
-	String title;
 	@ApiModelProperty(name="사진")
 	ArrayList<String> img;
 	@ApiModelProperty(name="리뷰 내용")

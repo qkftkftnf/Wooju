@@ -36,11 +36,11 @@ import SignupView from "../views/common/SignupView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      name: "MainHome",
-      path: "/",
-      component: MainHome,
-    },
+    // {
+    //   name: "MainHome",
+    //   path: "/",
+    //   component: MainHome,
+    // },
     // account (signup/login)
     {
       name: "LoginView",
@@ -146,7 +146,7 @@ const router = createRouter({
           path: ":productPk/review/create",
           component: WoojooReviewCreate,
         },
-        {
+        { 
           name: "WoojooDetail",
           path: ":productPk",
           component: WoojooDetail,
