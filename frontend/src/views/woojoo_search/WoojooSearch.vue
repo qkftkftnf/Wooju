@@ -19,7 +19,7 @@
       </div>
       <div class="search-alcohol">
         도수
-        <input v-model="searchInfo.alcohol" type="number">
+        <el-slider v-model="searchInfo.alcohol" tooltip-class="search-tooltip" />
         이하인 술만 검색
       </div>
       <div>
@@ -36,7 +36,10 @@
   <div class="tab-template container">
 
     <div class="products-list">
-      <div class="products-list-box" v-for="product in products.items" v-if="isProductLoad">
+      <div class="products-list-box" 
+        v-for="product in products.items" 
+        v-if="isProductLoad"
+        @click="goToDetail(product.id)">
         <div class="image">
           <img :src="product.image" alt="">
           <span class="like">
@@ -62,10 +65,10 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import ModeToggle from "@/views/common/ModeToggle.vue"
 import { ref, onMounted, computed } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex"
 
-const router = useRoute();
+const router = useRouter();
 const store = useStore();
 const position = ref(0);
 const products = computed(() => store.getters.products)
@@ -79,44 +82,17 @@ const searchInfo = ref({
   search: ""
 })
 const searchProducts = () => {
-  console.log(searchInfo.value)
   store.dispatch('fetchProducts', searchInfo.value)
 }
 const changePage = (page) => {
   searchInfo.value.page = page
   searchProducts()
 }
-
-// const setType = (type) => {
-//   if (type in searchInfo.value.types) {
-
-//   }
-// }
-
-
+const goToDetail = (productId) => {
+  router.push({name: 'WoojooDetail', params:{'productPk': productId}}, )
+}
 
 store.dispatch('fetchProducts', searchInfo.value)
-const productsData = computed(() => store.getters.products);
-
-onMounted(() => {
-  const innerContainer = document.getElementsByClassName("inner-container")
-  window.onscroll = function () { scrollInnerHeader() };
-
-  function scrollInnerHeader() {
-    position.value = innerContainer[0].getBoundingClientRect()
-
-    if (position.value.top < 60) {
-      document.querySelector(".tab-header .tab-title").style.top = "0";
-      document.querySelector(".tab-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.05)";
-    } else {
-      document.querySelector(".tab-header").style.boxShadow = "0px 4px 6px 6px rgba(0, 0, 0, 0.0)";
-      document.querySelector(".tab-header .tab-title").style.top = `${50 * (position.value.top / 450)}px`;
-      document.querySelector(".tab-header .tab-title").style.fontSize = `${1.2 + position.value.top / 450}rem`;
-      document.querySelector(".header-content .search-container").style.opacity = `${((position.value.top - 260) / 200)}`;
-      document.querySelector(".header-content .search-container").style.scale = `${((position.value.top - 60) / 390)}`;
-    }
-  }
-})  
 </script>
 
 <style>
@@ -163,5 +139,13 @@ onMounted(() => {
 .products-list .el-pagination {
   --el-pagination-button-disabled-bg-color: var(--main-bg-color);
   --el-pagination-bg-color: var(--main-bg-color);
+}
+
+.el-popper.is-dark.search-tooltip {
+  background-color: var(--main-bg-color);
+}
+
+.el-popper.is-dark.search-tooltip .el-popper__arrow{
+  display: none;
 }
 </style>
