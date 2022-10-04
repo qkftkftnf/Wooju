@@ -84,8 +84,8 @@ async def recommend_products(
     return products
 
 
-@app.get("/fastapi/test", tags=["data"], response_model=schemas.Recommendation)
-async def recommend_products(
+@app.get("/fastapi/test1", tags=["data"], response_model=schemas.Recommendation)
+async def recommend_products_test1(
     type: str,
     question1: int,
     question2: int,
@@ -105,6 +105,24 @@ async def recommend_products(
         'question6': question6,
     }
     products = crud.get_recommendation(db, user=user)
+    return products
+
+
+@app.get("/fastapi/test2", tags=["data"], response_model=schemas.Recommendation)
+async def recommend_products_test2(
+    keywords: str,
+    db: Session = Depends(get_db),
+):
+    user = {
+        'type': '탁주',
+        'question1': 1,
+        'question2': 1,
+        'question3': 1,
+        'question4': 1,
+        'question5': 1,
+        'question6': 1,
+    }
+    products = crud.get_recommendation(db, user=user, keywords=keywords)
     return products
 
 

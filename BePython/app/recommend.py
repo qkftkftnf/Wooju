@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
-from sqlalchemy.orm import Session
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sqlalchemy.orm import Session
 from schemas import ProductBase
 import json
 
@@ -43,6 +44,26 @@ def get_taste(user, products):
     sim_scores = list(enumerate(cosine_similarity(target, taste_data)[0]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[:10]
+
+    sool_indices = [idx[0] for idx in sim_scores]
+    result = product_df.iloc[sool_indices].sample(3)
+
+    result_json = result.to_json(orient="records")
+    return json.loads(result_json)
+
+
+def get_today(keywords, products):
+    product_df = pd.read_sql(products.statement, products.session.bind)
+
+    target_data =  pd.DataFrame({'keyword': [keywords]})
+    search_data = pd.concat([target_data, product_df], ignore_index = True)
+    tfidf = TfidfVectorizer()
+    tfidf_matrix = tfidf.fit_transform(search_data['keyword'].fillna(value=''))
+
+    cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
+    sim_scores = list(enumerate(cosine_sim[0]))
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[1:11]
 
     sool_indices = [idx[0] for idx in sim_scores]
     result = product_df.iloc[sool_indices].sample(3)

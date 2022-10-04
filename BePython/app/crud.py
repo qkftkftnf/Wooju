@@ -3,7 +3,7 @@ from typing import List, Optional
 from  sqlalchemy.sql.expression import func
 
 from models import Product, User
-from recommend import get_taste
+from recommend import get_taste, get_today
 
 
 def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None):
@@ -43,9 +43,8 @@ def search_products(db: Session, keyword: str):
     return db.query(Product).filter(Product.name.like(search)).all()
 
 
-def get_recommendation(db: Session, user: object):
+def get_recommendation(db: Session, user: object, keywords: Optional[str]=None):
     products = db.query(Product)
-    print(user)
     if user['type'] == '탁주':
         typed_products = products \
             .filter((Product.type == '탁주') | (Product.type == '탁주 기타주류'))
@@ -61,6 +60,6 @@ def get_recommendation(db: Session, user: object):
     
     result = {}
     result['taste'] = get_taste(user, typed_products)
-    result['today'] = products.order_by(func.rand())[:3]
+    result['today'] = get_today(keywords, products) if keywords else {}
     result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
     return result
