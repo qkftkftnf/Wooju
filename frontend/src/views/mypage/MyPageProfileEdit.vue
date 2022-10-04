@@ -52,15 +52,62 @@ onMounted(() => {
 
 // image upload  
 const uploadImage = ref([])
+var imageData = new FormData()
 
 const openGallery = () => {
   document.querySelector("#pic-upload-input").click()
 }
 
 const onFileChange = (image) => {
-  uploadImage.value.push(image.target.files[0])
+  // uploadImage.value.push(image.target.files[0])
+  getResized(image, 0)
   getThumbnail()
 }
+
+const getResized = (image, index) => {
+  const originalWidth = ref(0)
+  const originalHeight = ref(0)
+  const resizedWidth = ref(0)
+  const resizedHeight = ref(0)
+    
+  
+  const pic = image.target.files[index]
+  var reader = new FileReader()
+  reader.readAsDataURL(pic);
+  
+  // get size of image
+  reader.onload = function (e) {
+    var image = new Image();
+    image.src = e.target.result;
+    
+    image.onload = function() {
+      originalWidth.value = this.width
+      originalHeight.value = this.height
+      
+      if ( originalWidth.value > originalHeight.value ) {
+        resizedWidth.value = 400
+        resizedHeight.value = originalHeight.value * 400 / originalWidth.value
+      } else {
+        originalHeight.value = 400
+        resizedWidth.value = resizedWidth.value * 400 / originalHeight.value
+      }
+      var canvas = document.createElement("canvas")
+
+      canvas.width = resizedWidth.value
+      canvas.height = resizedHeight.value
+      
+      // draw resized image
+      canvas.getContext("2d").drawImage(image, 0, 0, resizedWidth.value, resizedHeight.value)
+
+      // append image in formData
+      canvas.toBlob(function(blob) {
+        imageData.append("file", blob)
+      })
+    }
+  }
+  
+}
+
 
 const getThumbnail = () => {
   const pic = document.getElementById("pic-upload-input").files[0]
@@ -76,12 +123,13 @@ const getThumbnail = () => {
 
 // const 
 const onSubmit = () => {
-  var file = new FormData()
-  file.append("file", uploadImage.value[0])
+  // var file = new FormData()
+  // file.append("file", uploadImage.value[0])
       
   const profileInfo = {
-    file: file,
-    nickname: profileData.value.profile.nickname
+    // file: file,
+    file: imageData,
+    nickname: profileData.value.profile.nickname,
   }
 
   store.dispatch("profileEdit", profileInfo)

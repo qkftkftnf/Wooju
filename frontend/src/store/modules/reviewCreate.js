@@ -21,7 +21,6 @@ const reviewCreate = {
         .catch((err) => console.log(err))
     },
     createReview({ getters }, reviewData) {
-      console.log(reviewData)
       axios({
         method: "POST",
         url: "https://j7a304.p.ssafy.io/api/image/uploads",

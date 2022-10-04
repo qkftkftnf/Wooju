@@ -32,11 +32,29 @@ const mypage = {
     },
     signup({}, signupInfo) {
       console.log(signupInfo)
-      http.post("/user/signup", signupInfo)
-      .then(({ data }) => {
-        // console.log(data)        // router push to login page
-        router.push({ name: 'LoginBase' })
+      axios({
+        method: "POST",
+        url: "https://j7a304.p.ssafy.io/api/image/uploads",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: signupInfo.file,
       })
+        .then(({ data }) => {
+          http.post("/user/signup", {
+            "birthdate": signupInfo.birthdate,
+            "email": signupInfo.email,
+            "gender": signupInfo.gender,
+            "img": data.img,
+            "nickname": signupInfo.nickname,
+            "usertype": signupInfo.usertype,        
+          })
+          .then(({ data }) => {
+            // console.log(data)        // router push to login page
+            router.push({ name: 'LoginBase' })
+          })
+          .catch((err) => console.log(err))
+        })
       .catch((err) => console.log(err))
     },
   },
