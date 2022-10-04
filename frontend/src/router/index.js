@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import MainHome from "../views/main/MainHome.vue";
+import MainHomeNonmember from "../views/main/MainHomeNonmember.vue";
 
 import CommunityView from "../views/community/CommunityView.vue";
 import CommunityMain from "../views/community/CommunityMain.vue";
@@ -36,11 +37,16 @@ import SignupView from "../views/common/SignupView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   name: "MainHome",
-    //   path: "/",
-    //   component: MainHome,
-    // },
+    {
+      name: "MainHome",
+      path: "/",
+      component: MainHome,
+    },
+    {
+      name: "MainHomeNone",
+      path: "/n",
+      component: MainHomeNonmember,
+    },
     // account (signup/login)
     {
       name: "LoginView",

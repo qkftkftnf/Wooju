@@ -16,29 +16,31 @@
       <div class="rec-container inner-section">
         <div class="mt"></div>
         <div class="home-corner recommendation-corner">
-          <div class="home-title">
-            우주가 추천하는 오늘의 술
+          <div class="corner-img-box">
+            <img src="@/assets/images/home/recommendation.jpg" alt="" class="corner-img">
           </div>
-          <div class="bottles">
-            <div class="bottle-card" v-for="i in 3">
-              <div class="bottle-img">
-                <img src="@/assets/images/profile_img_1.jpg" alt="bottle">
-              </div>
-              <div class="bottle-content">
-                <div class="bottle-title">
-                  술 이름이 길어요
-                </div>
-                <div class="bottle-intro">
-                  14.5% | 375ml
-                </div>
-              </div>
-            </div>
+          <div class="home-content rec-intro">
+            아직 어떤 전통주를 마셔봐야할지<br/>모르는 여러분에게
+            <span>나만의 취향에 맞는 술을<br/>추천 받아 보세요</span>
           </div>
-
-
           <div class="btn-box">
             <div class="togo-btn">
-              추천 더 받으러 가기 >
+              취향 알아보러 가기 >
+            </div>
+          </div>
+        </div>
+
+        <div class="home-corner community-corner">
+          <div class="corner-img-box">
+            <img src="@/assets/images/home/community.jpg" alt="" class="corner-img">
+          </div>
+          <div class="home-content com-intro">
+            전통주에 대해 더 많은 이야기를<br/>나누고 싶은 여러분에게
+            <span>커뮤니티에서<br/>다양한 우주들을 만나보세요</span>
+          </div>
+          <div class="btn-box">
+            <div class="togo-btn">
+              커뮤니티 둘러보기 >
             </div>
           </div>
         </div>
@@ -58,6 +60,20 @@
           </div>
         </div>
 
+        <div class="home-corner signup-corner">
+          <div class="corner-img-box">
+            <img src="@/assets/images/home/signup.jpg" alt="" class="corner-img">
+          </div>
+          <div class="home-content signup-intro">
+            취향에 맞는 술을<br/>매일 다르게 추천 받고 싶은 여러분에게
+            <span>우주의 회원이 되어<br/> 더 풍부한 전통주를 즐겨보세요</span>
+          </div>
+          <div class="btn-box">
+            <div class="togo-btn">
+              회원가입하러 가기 >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
