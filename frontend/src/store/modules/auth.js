@@ -34,7 +34,7 @@ const mypage = {
       console.log(signupInfo)
       axios({
         method: "POST",
-        url: "https://j7a304.p.ssafy.io/api/image/uploads",
+        url: "https://j7a304.p.ssafy.io/api/image/upload",
         headers: {
           "Content-Type": "multipart/form-data",
         },
