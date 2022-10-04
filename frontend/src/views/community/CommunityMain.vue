@@ -33,27 +33,28 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="review in reviewsData.dto?.hotreview" @click="linkTo">
-                  <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
-                    <img :src="review.img[0]" alt="reviewThumbnail">
-                    <span class="like">
-                      <i class="fas fa-heart heart"></i> {{ review.like }}
-                    </span>
-                  </div>
-                  <div class="card-content">
-                    <div class="wooju">
-                      {{ review.product_name }}
+                <div class="review-card" v-for="review, idx in reviewsData.dto?.hotreview">
+                  <div @click="linkTo('hotreview', idx + 1)">
+                    <div class="image">
+                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <span class="like">
+                        <i class="fas fa-heart heart"></i> {{ review.like }}
+                      </span>
                     </div>
-                    <div class="rate">
-                      <i class="fas fa-star star"></i> {{ review.star }}
-                    </div>
-                    <div class="preview">
-                      {{ review.content }}
+                    <div class="card-content">
+                      <div class="wooju">
+                        {{ review.product_name }}
+                      </div>
+                      <div class="rate">
+                        <i class="fas fa-star star"></i> {{ review.star }}
+                      </div>
+                      <div class="preview">
+                        {{ review.content }}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="more-card review-card bs-none">
+                <div class="more-card review-card bs-none" @click="linkTo('hotreview', 0)">
                   <div class="more-btn">
                     <span>
                       더보기 <i class="fas fa-arrow-right"></i>
@@ -82,27 +83,28 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="review in reviewsData.dto?.hotproductsreview" @click="linkTo">
-                  <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
-                    <img :src="review.img[0]" alt="reviewThumbnail">
-                    <span class="like">
-                      <i class="fas fa-heart heart"></i> {{ review.like }}
-                    </span>
-                  </div>
-                  <div class="card-content">
-                    <div class="wooju">
-                      {{ review.product_name }}
+                <div class="review-card" v-for="review, idx in reviewsData.dto?.hotproductsreview">
+                  <div @click="linkTo('Hotproductsreview', idx + 1)">
+                    <div class="image">
+                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <span class="like">
+                        <i class="fas fa-heart heart"></i> {{ review.like }}
+                      </span>
                     </div>
-                    <div class="rate">
-                      <i class="fas fa-star star"></i> {{ review.star }}
-                    </div>
-                    <div class="preview">
-                      {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                    <div class="card-content">
+                      <div class="wooju">
+                        {{ review.product_name }}
+                      </div>
+                      <div class="rate">
+                        <i class="fas fa-star star"></i> {{ review.star }}
+                      </div>
+                      <div class="preview">
+                        {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="more-card review-card bs-none">
+                <div class="more-card review-card bs-none" @click="linkTo('Hotproductsreview', 0)">
                   <div class="more-btn">
                     <span>
                       더보기 <i class="fas fa-arrow-right"></i>
@@ -131,27 +133,28 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="review in reviewsData.dto?.gosureview" @click="linkTo">
-                  <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
-                    <img :src="review.img[0]" alt="reviewThumbnail">
-                    <span class="like">
-                      <i class="fas fa-heart heart"></i> {{ review.like }}
-                    </span>
-                  </div>
-                  <div class="card-content">
-                    <div class="wooju">
-                      {{ review.product_name }}
+                <div class="review-card" v-for="review, idx in reviewsData.dto?.gosureview">
+                  <div @click="linkTo('gosureview', idx + 1)">
+                    <div class="image">
+                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <span class="like">
+                        <i class="fas fa-heart heart"></i> {{ review.like }}
+                      </span>
                     </div>
-                    <div class="rate">
-                      <i class="fas fa-star star"></i> {{ review.star }}
-                    </div>
-                    <div class="preview">
-                      {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                    <div class="card-content">
+                      <div class="wooju">
+                        {{ review.product_name }}
+                      </div>
+                      <div class="rate">
+                        <i class="fas fa-star star"></i> {{ review.star }}
+                      </div>
+                      <div class="preview">
+                        {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="more-card review-card bs-none">
+                <div class="more-card review-card bs-none" @click="linkTo('gosureview', 0)">
                   <div class="more-btn">
                     <span>
                       더보기 <i class="fas fa-arrow-right"></i>
@@ -180,27 +183,28 @@
           <div class="category-carousel">
             <el-scrollbar>
               <div class="carousel-container">
-                <div class="review-card" v-for="review in reviewsData.dto?.recentreview" @click="linkTo">
-                  <div class="image">
-                    <!-- <img src="@/assets/images/pic3.jpg" alt="reviewPic"> -->
-                    <img :src="review.img[0]" alt="reviewThumbnail">
-                    <span class="like">
-                      <i class="fas fa-heart heart"></i> {{ review.like }}
-                    </span>
-                  </div>
-                  <div class="card-content">
-                    <div class="wooju">
-                      {{ review.product_name }}
+                <div class="review-card" v-for="review, idx in reviewsData.dto?.recentreview">
+                  <div @click="linkTo('recentreview', idx + 1)">
+                    <div class="image">
+                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <span class="like">
+                        <i class="fas fa-heart heart"></i> {{ review.like }}
+                      </span>
                     </div>
-                    <div class="rate">
-                      <i class="fas fa-star star"></i> {{ review.star }}
-                    </div>
-                    <div class="preview">
-                      {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                    <div class="card-content">
+                      <div class="wooju">
+                        {{ review.product_name }}
+                      </div>
+                      <div class="rate">
+                        <i class="fas fa-star star"></i> {{ review.star }}
+                      </div>
+                      <div class="preview">
+                        {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="more-card review-card bs-none">
+                <div class="more-card review-card bs-none" @click="linkTo('recentreview', 0)">
                   <div class="more-btn">
                     <span>
                       더보기 <i class="fas fa-arrow-right"></i>
@@ -224,7 +228,7 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const router = useRouter();
-const linkTo = () => router.push({ name: "CommunityHotReview" })
+const linkTo = (category, post) => router.push({ name: "CommunityCategory", query: { name: category, post: post }})
 
 // vuex axios
 const store = useStore();

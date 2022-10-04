@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import MainHome from "../views/main/MainHome.vue";
+
 import CommunityView from "../views/community/CommunityView.vue";
 import CommunityMain from "../views/community/CommunityMain.vue";
-import CommunityHotReview from "../views/community/CommunityHotReview.vue";
+import CommunityCategory from "../views/community/CommunityCategory.vue";
 
 import WoojooView from "../views/woojoo_search/WoojooView.vue"
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
@@ -35,61 +37,39 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      name: "CommunityView",
-      path: "/community",
-      component: CommunityView,
-      children: [
-        {
-          name: "CommunityMain",
-          path: "",
-          component: CommunityMain,
-        },
-        {
-          name: "CommunityHotReview",
-          path: "hotreview",
-          component: CommunityHotReview,
-        },
-      ]
+      name: "MainHome",
+      path: "/",
+      component: MainHome,
     },
+    // account (signup/login)
     {
-      name: "WoojooView",
-      path: "/woojoo",
-      component: WoojooView,
+      name: "LoginView",
+      path: "/login",
+      component: LoginView,
       children: [
         {
-          name: "WoojooSearch",
-          path: "search",
-          component: WoojooSearch,
-        },
-        {
-          name: "WoojooReviewCreate",
-          path: "pk/review/create",
-          component: WoojooReviewCreate,
-        }
-      ]
-    },
-    {
-      name: "MyPageView",
-      path: "/mypage",
-      component: MyPageView,
-      children: [
-        {
-          name: "MyPageMain",
+          name: "LoginBase",
           path: "",
-          component: MyPageMain,
+          component: LoginBase,
         },
         {
-          name: "MyPageProfileEdit",
-          path: "/edit",
-          component: MyPageProfileEdit,
-        }
+          name: "LoginPopup",
+          path: "popup/:path",
+          component: LoginPopup,
+        },
+        {
+          name: "LoginRedirect",
+          path: "redirect/:path",
+          component: LoginRedirect,
+        },
       ],
     },
     {
-      name: "WoojooDetail",
-      path: "/woojoo/1",
-      component: WoojooDetail,
+      name: "SignupView",
+      path: "/signup",
+      component: SignupView,
     },
+    // recommendation
     {
       name: "MyRecommendationView",
       path: "/recommendation",
@@ -130,40 +110,72 @@ const router = createRouter({
           path: "result/explorer",
           component: MyRecommendationExplorer,
         },
-      ]
+      ],
     },
-    // path 수정 요망
+    // community
+     {
+      name: "CommunityView",
+      path: "/community",
+      component: CommunityView,
+      children: [
+        {
+          name: "CommunityMain",
+          path: "",
+          component: CommunityMain,
+        },
+        {
+          name: "CommunityCategory",
+          path: "category",
+          component: CommunityCategory,
+        },
+      ],
+    },
+    // product
+    {
+      name: "WoojooView",
+      path: "/product",
+      component: WoojooView,
+      children: [
+        {
+          name: "WoojooSearch",
+          path: "",
+          component: WoojooSearch,
+        },
+        {
+          name: "WoojooReviewCreate",
+          path: ":productPk/review/create",
+          component: WoojooReviewCreate,
+        },
+        {
+          name: "WoojooDetail",
+          path: ":productPk",
+          component: WoojooDetail,
+        },
+      ],
+    },
+    // my page
+    {
+      name: "MyPageView",
+      path: "/mypage",
+      component: MyPageView,
+      children: [
+        {
+          name: "MyPageMain",
+          path: "",
+          component: MyPageMain,
+        },
+        {
+          name: "MyPageProfileEdit",
+          path: "/edit",
+          component: MyPageProfileEdit,
+        },
+      ],
+    },
+   // path 수정 요망
     {
       name: "NonmemberView",
       path: "/nonmember",
       component: NonmemberView,
-    },
-    {
-      name: "LoginView",
-      path: "/login",
-      component: LoginView,
-      children: [
-        {
-          name: "LoginBase",
-          path: "",
-          component: LoginBase,
-        },
-        {
-          name: "LoginPopup",
-          path: "popup/:path",
-          component: LoginPopup,
-        },
-        {
-          name: "LoginRedirect",
-          path: "redirect/:path",
-          component: LoginRedirect,
-        },
-      ]
-    },
-    {
-      name: "SignupView",
-      path: "/signup",
-      component: SignupView,
     },
   ],
 });

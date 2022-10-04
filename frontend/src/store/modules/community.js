@@ -2,7 +2,7 @@ import http from "@/api/index.js"
 
 const community = {
   state: {
-    reviews: {},
+    reviews: {review: []},
     review: {},
   },
   mutations: {
@@ -14,6 +14,13 @@ const community = {
   actions: {
     fetchAllReviews({ commit }) {
       http.get("/review")
+        .then(({ data }) => {
+          commit("SET_REVIEWS", data)
+        })
+        .catch((err) => console.log(err))
+    },
+    fetchReviews({ commit }, category) {
+      http.get(`/review/more/${category}`)
         .then(({ data }) => {
           commit("SET_REVIEWS", data)
         })

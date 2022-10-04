@@ -1,6 +1,6 @@
 <template>
   <div id="main-home-menu" class="menu-container">
-    <div class="my-page menu-div">
+    <div class="my-page menu-div" @click="linkTo('MainHome')">
       <i class="fas fa-home icon is-inactive"></i>
       <span class="menu-title">홈</span>
     </div>
