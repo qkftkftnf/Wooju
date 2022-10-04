@@ -35,8 +35,8 @@ const mypage = {
       http.post("/user/signup", signupInfo)
       .then(({ data }) => {
         console.log(data)
-        // router push to main page
-        router.push({ name: communityMain })
+        // router push to login page
+        router.push({ name: LoginBase })
       })
       .catch((err) => console.log(err))
     },
