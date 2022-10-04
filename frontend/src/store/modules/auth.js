@@ -34,9 +34,9 @@ const mypage = {
       console.log(signupInfo)
       http.post("/user/signup", signupInfo)
       .then(({ data }) => {
-        console.log(data)
+        // console.log(data)
         // router push to login page
-        router.push({ name: LoginBase })
+        router.push({ name: 'LoginBase' })
       })
       .catch((err) => console.log(err))
     },
