@@ -14,7 +14,7 @@
       <div class="signup-btn">회원 가입</div>
     </div>
   </div>
-  <MenuView menuTab="my-page-menu"/>
+  <!-- <MenuView menuTab="my-page-menu"/> -->
 </template>
 
 <script setup>
