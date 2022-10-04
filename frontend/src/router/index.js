@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import MainView from "../views/main/MainView.vue";
 import MainHome from "../views/main/MainHome.vue";
+import MainHomeNonmember from "../views/main/MainHomeNonmember.vue";
 
 import CommunityView from "../views/community/CommunityView.vue";
 import CommunityMain from "../views/community/CommunityMain.vue";
@@ -39,7 +41,7 @@ const router = createRouter({
     {
       name: "MainHome",
       path: "/",
-      component: MainHome,
+      component: MainView,
     },
     // account (signup/login)
     {
@@ -146,7 +148,7 @@ const router = createRouter({
           path: ":productPk/review/create",
           component: WoojooReviewCreate,
         },
-        {
+        { 
           name: "WoojooDetail",
           path: ":productPk",
           component: WoojooDetail,

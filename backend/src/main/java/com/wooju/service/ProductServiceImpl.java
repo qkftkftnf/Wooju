@@ -133,7 +133,6 @@ public class ProductServiceImpl implements ProductService{
 			ProductReviewDto dto= ProductReviewDto.builder()
 					.id(review.getId())
 					.nickname(review.getUser().getNickname())
-					.title(review.getTitle())
 					.content(review.getContent())
 					.star(review.getStar())
 					.time(review.getTime())
