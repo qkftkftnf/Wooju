@@ -82,7 +82,7 @@ public class UserController {
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<BaseResponseDto> SignUp(@RequestBody  @ApiParam(value="회원 정보", required=true)SignUpRequestDto signUpInfo) throws IOException{
+	public ResponseEntity<BaseResponseDto> SignUp(@RequestBody  @ApiParam(value="회원 정보", required=true)SignUpRequestDto signUpInfo) throws Exception{
 		userService.SignupUser(signUpInfo);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}

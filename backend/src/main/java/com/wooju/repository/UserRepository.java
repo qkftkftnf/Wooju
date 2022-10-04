@@ -10,6 +10,7 @@ import com.wooju.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{	
 	Optional<User> findByEmailAndUsertype(String email,String usertype);
+	long countByEmailAndUsertype(String email,String usertype);
 	User findByEmail(String username);
 
 }

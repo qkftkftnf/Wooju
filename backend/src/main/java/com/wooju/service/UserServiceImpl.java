@@ -26,6 +26,7 @@ import com.wooju.entity.Product;
 import com.wooju.entity.Review;
 import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
+import com.wooju.exception.ExistUserException;
 import com.wooju.exception.UserNotFoundException;
 import com.wooju.repository.ReviewImgRepository;
 import com.wooju.repository.UserRepository;
@@ -54,7 +55,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void SignupUser(SignUpRequestDto signUpInfo) {
+	public void SignupUser(SignUpRequestDto signUpInfo) throws Exception{
+		long usertemp=userRepository.countByEmailAndUsertype(signUpInfo.getEmail(), signUpInfo.getUsertype());
+				if(usertemp>0) throw new ExistUserException();
 		User user=User.builder()
 				.email(signUpInfo.getEmail())
 				.img(signUpInfo.getImg())

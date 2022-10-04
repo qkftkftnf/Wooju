@@ -13,7 +13,7 @@ import com.wooju.entity.User;
 public interface UserService {
 
 	User getUserByEmail(String email, String usertype) throws Exception;
-	void SignupUser(SignUpRequestDto signUpInfo);
+	void SignupUser(SignUpRequestDto signUpInfo)throws Exception;
 	User getUserById(int id) throws Exception;
 	ProfileDto getProfile(int id) throws Exception;
 	void modifyProfile(ModifyProfileRequestDto dto, int id) throws Exception;
