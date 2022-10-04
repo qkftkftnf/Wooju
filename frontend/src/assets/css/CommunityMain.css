@@ -77,6 +77,12 @@
   object-position: center;
 }
 
+.category-carousel .review-card .image img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
 .category-carousel .review-card .image .like {
   position: absolute;
   bottom: 10px;

@@ -49,11 +49,22 @@
   box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, var(--shadow-percentage-03));
 }
 
+.like-add {
+  position: absolute;
+  bottom: 100px;
+  right: 60px;
+  font-size: 0.8rem;
+}
+
+.like-add .icon {
+  margin: 10px;
+  color: tomato;
+}
 
 /* woojoo-detail-content tab */
 .detail-content {
   text-align: left;
-  padding: 20px 20px 10px 0px;
+  padding: 20px 20px 10px 10px;
 }
 
 .detail-content .wooju {
@@ -330,7 +341,7 @@
     color: var(--text-highlight-color);
   }
   
-  .preferance-container .preferance .flavor {
+  .preferance .flavor {
     margin-bottom: 5px;
   }
   
