@@ -47,6 +47,8 @@ const mypage = {
           http.put("/user/profile", {
             nickname: profileInfo.nickname,
             img: data.img
+          }, {
+            headers: {Authorization: getters.authHeader}
           })
           .then(({ data }) => {
             router.push({
