@@ -21,6 +21,7 @@ const reviewCreate = {
         .catch((err) => console.log(err))
     },
     createReview({ getters }, reviewData) {
+      console.log(reviewData)
       axios({
         method: "POST",
         url: "https://j7a304.p.ssafy.io/api/image/uploads",
@@ -30,14 +31,11 @@ const reviewCreate = {
         data: reviewData.file,
       })
         .then(({ data }) => {
-          console.log("hey", data)
-
           http.post("/review", {
             content: reviewData.content,
             img: data.imgs,
             product_id: reviewData.product_id,
             star: reviewData.star,
-            title: "title 핑료?"
           }, {
             headers: {Authorization: getters.authHeader}
           })
