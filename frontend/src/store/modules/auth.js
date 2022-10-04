@@ -12,7 +12,7 @@ const mypage = {
   getters: {
     token: state => state.token,
     isLoggedIn: state => !!state.token,
-    authHeader: state => `Bearer ${getters.token}`,
+    authHeader: state => `Bearer ${state.token}`,
   },
   actions: {
     saveToken({ commit }, token) {
@@ -20,7 +20,7 @@ const mypage = {
       localStorage.setItem('token', '')
       sessionStorage.setItem('token', token)
     },
-    logout({ commit, getters }) {
+    logout({ commit, getters }, ) {
       router.push({ name: 'home' })
       if (getters.isLoggedIn) {
         logout(getters.authHeader)
@@ -32,9 +32,7 @@ const mypage = {
     },
     signup({}, signupInfo) {
       console.log(signupInfo)
-      http.post("/user/signup", signupInfo, {
-        headers: {Authorization: ''}
-      })
+      http.post("/user/signup", signupInfo)
       .then(({ data }) => {
         // console.log(data)        // router push to login page
         router.push({ name: 'LoginBase' })

@@ -17,8 +17,9 @@ const recommendation = {
     recommendation: (state) => state.recommendation,
   },
   actions: {
-    submitSurvey({ }, surveyInfo) {
+    submitSurvey({ getters }, surveyInfo) {
       axios.get("https://j7a304.p.ssafy.io/fastapi/test", {
+        headers: {Authorization: getters.authHeader},
         params: {
           type: surveyInfo.type,
           question1: surveyInfo.question1,
