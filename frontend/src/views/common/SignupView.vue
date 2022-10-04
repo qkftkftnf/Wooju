@@ -56,10 +56,10 @@ import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, onMounted ,computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import http from "@/api/index.js"
 
 const store = useStore()
 const route = useRoute()
+
 const userInfo = ref({
   "birthdate": "",
   "email": route.query.email,
@@ -109,7 +109,7 @@ const onSubmit = () => {
   } else if (signupInfo.gender == '여자') {
     signupInfo.gender = 'F'
   }
-
+  store.dispatch('signup', signupInfo)
 }
 
 </script>

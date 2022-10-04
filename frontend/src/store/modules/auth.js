@@ -35,6 +35,7 @@ const mypage = {
       .then(({ data }) => {
         console.log(data)
         // router push to main page
+        router.push({ name: communityMain })
       })
       .catch((err) => console.log(err))
     },
