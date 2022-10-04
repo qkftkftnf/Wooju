@@ -32,10 +32,11 @@ const mypage = {
     },
     signup({}, signupInfo) {
       console.log(signupInfo)
-      http.post("/user/signup", signupInfo)
+      http.post("/user/signup", signupInfo, {
+        headers: {Authorization: ''}
+      })
       .then(({ data }) => {
-        // console.log(data)
-        // router push to login page
+        // console.log(data)        // router push to login page
         router.push({ name: 'LoginBase' })
       })
       .catch((err) => console.log(err))
