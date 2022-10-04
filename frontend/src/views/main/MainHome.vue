@@ -1,6 +1,6 @@
 <template>
   <HeaderView/>
-  <div>
+  <div class="home-container">
     여러분의 우주에 전통주를 채워보세요!
   </div>
   <MenuView menuTab="main-home-menu"/>
