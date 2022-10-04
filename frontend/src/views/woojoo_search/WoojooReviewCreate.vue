@@ -69,7 +69,6 @@
 </template>
 
 <script setup>
-import HeaderView from "@/views/common/HeaderView.vue"
 import { ref } from "vue";
 import { useStore } from "vuex";
   
@@ -77,6 +76,7 @@ import { useStore } from "vuex";
 // image upload
 const uploadImages = ref([])
 const maxLength = ref(3)
+var imageData = new FormData()
 
 const onFileChange = (image) => {
   if (image.target.files.length > maxLength.value) {
@@ -84,10 +84,55 @@ const onFileChange = (image) => {
     document.getElementById("review-upload-input").value = "";
   } else {
     for (let index = 0; index < image.target.files.length; index++) {
-      uploadImages.value.push(image.target.files[index])
+      // uploadImages.value.push(image.target.files[index])
       eachThumbnail(index)
+      getResized(image, index) 
     }
   }
+}
+
+const getResized = (image, index) => {
+  const originalWidth = ref(0)
+  const originalHeight = ref(0)
+  const resizedWidth = ref(0)
+  const resizedHeight = ref(0)
+    
+  
+  const pic = image.target.files[index]
+  var reader = new FileReader()
+  reader.readAsDataURL(pic);
+  
+  // get size of image
+  reader.onload = function (e) {
+    var image = new Image();
+    image.src = e.target.result;
+    
+    image.onload = function() {
+      originalWidth.value = this.width
+      originalHeight.value = this.height
+      
+      if ( originalWidth.value > originalHeight.value ) {
+        resizedWidth.value = 500
+        resizedHeight.value = originalHeight.value * 500 / originalWidth.value
+      } else {
+        originalHeight.value = 500
+        resizedWidth.value = resizedWidth.value * 500 / originalHeight.value
+      }
+      var canvas = document.createElement("canvas")
+
+      canvas.width = resizedWidth.value
+      canvas.height = resizedHeight.value
+      
+      // draw resized image
+      canvas.getContext("2d").drawImage(image, 0, 0, resizedWidth.value, resizedHeight.value)
+
+      // append image in formData
+      canvas.toBlob(function(blob) {
+        imageData.append("file", blob)
+      })
+    }
+  }
+  
 }
 
 const eachThumbnail = (index) => {
@@ -122,18 +167,18 @@ const reviewTextarea = ref("")
 const store = useStore()
 
 const onSubmit = () => {
-  var imgData = new FormData()
+  // var imgData = new FormData()
   
-  uploadImages.value.forEach(function(img) {
-    imgData.append("file", img)
-  })
+  // uploadImages.value.forEach(function(img) {
+  //   imgData.append("file", img)
+  // })
 
   const reviewData = {
     product_id: 64,
     star: rate.value,
-    title: "",
     content: reviewTextarea.value,
-    file: imgData,
+    // file: imgData,
+    file: imageData
   }
 
   // for (let value of imgData.values()) {
