@@ -149,3 +149,9 @@
   text-align: center;
   display: block;
 }
+
+.review-body .image-carousel .review-detail-img {
+  object-fit: cover;
+  height: 90vw !important;
+  max-height: 450px;
+}

@@ -30,14 +30,11 @@ const reviewCreate = {
         data: reviewData.file,
       })
         .then(({ data }) => {
-          console.log("hey", data)
-
           http.post("/review", {
             content: reviewData.content,
             img: data.imgs,
             product_id: reviewData.product_id,
             star: reviewData.star,
-            title: "title 핑료?"
           }, {
             headers: {Authorization: getters.authHeader}
           })
