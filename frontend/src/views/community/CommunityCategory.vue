@@ -1,15 +1,14 @@
 <template>
-  <div class="container pt-60">
-    <!-- {{ reviewsData.review[firstPost]?.img }} -->
+  <div class="container pt-60" v-if="isCommunityLoaded">
     <HeaderView/>
     <div class="review-body first-review" v-if="!showAll">
       <div class="review-header">
         <div class="profile">
           <div class="profile-box">
-            <img class="profile-img" src="@/assets/images/profile_img_1.jpg" alt="">
+            <img class="profile-img" :src="reviewsData.review[firstPost].user_img" alt="">
           </div>
           <div class="review-writer">
-            <div class="review-nickname">{{ reviewsData.review[firstPost]?.user_nickname }}</div>
+            <div class="review-nickname">{{ reviewsData.review[firstPost].user_nickname }}</div>
             <div class="review-level">레벨 153</div>
           </div>
         </div>
@@ -45,7 +44,7 @@
         <div class="review-header">
           <div class="profile">
             <div class="profile-box">
-              <img class="profile-img" src="@/assets/images/profile_img_1.jpg" alt="">
+              <img class="profile-img" :src="review.user_img" alt="">
             </div>
             <div class="review-writer">
               <div class="review-nickname">{{ review.user_nickname }}</div>
@@ -95,24 +94,14 @@ const titles = {
   recentreview: "최신 리뷰",
 }
 
-const firstReview = ref({
-  user_nickname: "",
-  time: "",
-  image: [],
-  product_name: "",
-  star: 0,
-  content: "",
-})
-
-onMounted (() => {
-  store.dispatch("fetchReviews", route.query.name)
-
-
-})
-
 const reviewsData = computed(() => store.getters.reviews)
+const isCommunityLoaded = computed(() => store.getters.isCommunityLoaded)
 
-const title = titles[route.query.category]
+store.commit("SET_IS_COMMUNITY_LOADED", false)
+store.dispatch("fetchReviews", route.query.name)
+
+
+const title = titles[route.query.name]
 const showAll = ref(false)
 const firstPost = ref(0)
 if (route.query.post == 0) {
