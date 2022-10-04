@@ -17,7 +17,7 @@
       <div class="image-carousel">
         <el-carousel trigger=click :autoplay="false" arrow="always">
           <el-carousel-item v-for="image in reviewsData.review[firstPost]?.img">
-            <img :src="image" alt="pic">
+            <img :src="image" alt="pic" class="review-detail-img">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -56,7 +56,7 @@
         <div class="image-carousel">
           <el-carousel trigger=click :autoplay="false" arrow="always">
             <el-carousel-item v-for="image in review.img">
-              <img :src="image" alt="pic">
+              <img :src="image" alt="pic" class="review-detail-img">
             </el-carousel-item>
           </el-carousel>
         </div>
