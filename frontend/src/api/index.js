@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useStore } from "vuex";
 
-store = useStore()
+const store = useStore()
 // axios 객체 생성
 export default axios.create({
   // baseURL: "http://192.168.195.105:8080/api/",
