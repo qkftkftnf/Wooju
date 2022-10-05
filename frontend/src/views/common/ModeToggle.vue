@@ -32,6 +32,8 @@ const toggleFunc = () => {
     document.documentElement.style.setProperty("--shadow-percentage-03", "0.08")
     document.documentElement.style.setProperty("--shadow-percentage-04", "0.09")
 
+    document.documentElement.style.setProperty("--checked-brightness", "0.7")
+
     document.querySelector("#mode-icon").classList.add('fa-sun')
     document.querySelector("#mode-icon").classList.remove('fa-moon')
 
@@ -54,6 +56,8 @@ const toggleFunc = () => {
     
     document.documentElement.style.setProperty("--shadow-percentage-03", "0.03")
     document.documentElement.style.setProperty("--shadow-percentage-04", "0.04")
+
+    document.documentElement.style.setProperty("--checked-brightness", "0.97")
 
     document.querySelector("#mode-icon").classList.add('fa-moon')
     document.querySelector("#mode-icon").classList.remove('fa-sun')

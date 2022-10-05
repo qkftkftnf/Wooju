@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <RouterView/>
-    <MenuView menuTab="woojoo-search-menu"/>
-  </div>
+  <RouterView/>
+  <MenuView menuTab="woojoo-search-menu"/>
 </template>
 
 <script setup>
