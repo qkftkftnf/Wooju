@@ -97,6 +97,7 @@ public class ProductServiceImpl implements ProductService{
 					    .queryParam("isAward", dto.isAward())
 					    .queryParam("page", dto.getPage())
 					    .queryParam("size", dto.getSize())
+					    .queryParam("keyword",dto.getKeyword())
 					    .build())
 				.retrieve()
 				.toEntity(Object.class)
@@ -126,7 +127,6 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public ArrayList<ProductReviewDto> getReviewList(int id) throws Exception {
 		ArrayList<Review> reviewTemp= reviewRepository.findByProductId(id);
-		if(reviewTemp.isEmpty()) throw new ReviewNotFoundException();
 		ArrayList<ProductReviewDto> list=new ArrayList<ProductReviewDto>();
 		
 		for(Review review:reviewTemp) {
