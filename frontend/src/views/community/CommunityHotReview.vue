@@ -25,7 +25,7 @@
                 <img :src="review_pic" alt="">
               </el-carousel-item>
               <span class="like">
-                <i class="fas fa-heart icon"></i> 73
+                <i class="fas fa-heart icon"></i> review
               </span>              
             </el-carousel>
           </div>          
