@@ -121,7 +121,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/survey")
-	@ApiOperation(value="설문 조사",notes="설문 조사 받기")
+	@ApiOperation(value="설문 조사",notes="기존 설문 조사 정보 받기")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
@@ -141,7 +141,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/survey")
-	@ApiOperation(value="설문 조사",notes="설문 조사 받기")
+	@ApiOperation(value="설문 조사 정보 수정",notes="새로운 설문 조사 받아 저장")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
@@ -163,5 +163,24 @@ public class UserController {
 		
 	}
 	
+	@PostMapping("/survey")
+	@ApiOperation(value="기존에 있는 설문 조사 결과 받기",notes="기존에 있는 설문 정보 토대로 결과값 반환")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<? extends BaseResponseDto> surveyproductlist(@ApiIgnore Authentication authentication,
+			@RequestBody @ApiParam(value="설문 결과", required=true) SurveyRequestDto dto){
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
+		User user=userDetails.getUser();
+		
+		
+		Object obj=userService.getrecom(user, dto);
+		
+		return ResponseEntity.status(200).body(RecomResponseDto.of(200, "success",obj));
+		
+	}
 	
 }

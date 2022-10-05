@@ -195,14 +195,33 @@ public class UserServiceImpl implements UserService {
 				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.build();
 		
+		if(user!=null) {
 		ResponseEntity<Object> result=webclient.get().
 				uri("/recommendation/"+user.getId())
 				.retrieve()
 				.toEntity(Object.class)
 				.block();
-		
-		
 		return (result.getBody());
+		}else {
+			ResponseEntity<Object> result=webclient.get().
+					uri(uriBuilder-> uriBuilder
+						    .path("/recommendation/")
+							.queryParam("type",dto.getType())
+							.queryParam("question1",dto.getQuestion1())
+							.queryParam("question2",dto.getQuestion2())
+							.queryParam("question3",dto.getQuestion3())
+							.queryParam("question4",dto.getQuestion4())
+							.queryParam("question5",dto.getQuestion5())
+							.queryParam("question6",dto.getQuestion6())	
+							.build())
+					.retrieve()
+					.toEntity(Object.class)
+					.block();
+			return (result.getBody());
+		}
+		
+		
+		
 	}
 
 }
