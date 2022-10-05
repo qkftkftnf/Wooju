@@ -32,6 +32,11 @@
     <p class="detail-text">
       {{woojooInfo.object?.award}}
     </p>
+
+    <div class="graph">
+      <canvas id="productChart" width="250" height="250"></canvas>
+    </div>
+
     <div class="title">
       어울리는 음식
     </div>
@@ -56,6 +61,57 @@ import { ref, computed, onMounted } from "vue";
 
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
+
+onMounted(() => {
+
+  // rader chart
+  var ctx = document.getElementById('productChart').getContext('2d');
+
+  var myChart = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: [
+        '단맛',
+        '신맛',
+        '바디감',
+        '탄산',
+        '풍미',
+      ],
+      datasets: [{
+        label: ' ',
+        data: [
+          5,2,3,5,2,
+        ],
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: true,
+      elements: {
+        line: {
+          borderWidth: 3
+        }
+      },
+      scale: {
+        ticks: {
+            beginAtZero: true,
+            max: 5,
+            min: 0,
+        }
+      },
+      legend: {
+        display: false
+      }
+    },
+  })
+
 </script>
 
 <style>
