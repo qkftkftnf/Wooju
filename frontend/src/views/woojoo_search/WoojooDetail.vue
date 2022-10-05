@@ -83,7 +83,7 @@ const route = useRoute()
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
 const position = ref(0)
-const productId = route.params.productId
+const productId = route.params.productPk
 
 onMounted(() => {
   store.dispatch("fetchWoojooInfo", productId)
