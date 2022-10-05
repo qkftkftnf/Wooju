@@ -44,7 +44,7 @@ const WoojooDetail = {
       http.post('/product/like',{
         headers: {Authorization: getters.authHeader},
         params: {
-          'productId': productId
+          'productlike': productId
         },
       })
         .then(({data}) => {
