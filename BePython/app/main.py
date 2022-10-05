@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI, HTTPException, responses, Query
 from fastapi_pagination import Page, add_pagination, paginate
 from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
+from models import User
 
 import crud, models, database, schemas
 

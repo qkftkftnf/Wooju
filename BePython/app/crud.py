@@ -12,7 +12,7 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
     if user_id != None:
         result = {}
         user = db.query(User).filter(User.id == user_id).first()
-        result['taste'] = get_taste(user, products.filter(Product.type == '탁주'))
+        result['taste'] = get_taste(user, products)
         result['today'] = products.order_by(func.rand())[:3]
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
 
