@@ -23,6 +23,9 @@ public class ProductListRequestDto {
 	@ApiModelProperty(name="isAward", example="내용")
 	boolean isAward;
 	
+	@ApiModelProperty(name="keyword")
+	String keyword;
+	
 	@ApiModelProperty(name="page")
 	int page;
 	

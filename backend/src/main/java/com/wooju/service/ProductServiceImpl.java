@@ -97,6 +97,7 @@ public class ProductServiceImpl implements ProductService{
 					    .queryParam("isAward", dto.isAward())
 					    .queryParam("page", dto.getPage())
 					    .queryParam("size", dto.getSize())
+					    .queryParam("keyword",dto.getKeyword())
 					    .build())
 				.retrieve()
 				.toEntity(Object.class)
@@ -126,7 +127,6 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public ArrayList<ProductReviewDto> getReviewList(int id) throws Exception {
 		ArrayList<Review> reviewTemp= reviewRepository.findByProductId(id);
-		if(reviewTemp.isEmpty()) throw new ReviewNotFoundException();
 		ArrayList<ProductReviewDto> list=new ArrayList<ProductReviewDto>();
 		
 		for(Review review:reviewTemp) {
@@ -141,6 +141,25 @@ public class ProductServiceImpl implements ProductService{
 			list.add(dto);
 		}
 		return list;
+	}
+
+	@Override
+	public Object serachList(String word) {
+		WebClient webclient = WebClient.builder()
+				.baseUrl(address)
+				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+				.build();
+		
+		ResponseEntity<Object> result=webclient.get().
+				uri(uriBuilder-> uriBuilder
+					    .path("/search")
+						.queryParam("keyword",word)
+						.build())
+				.retrieve()
+				.toEntity(Object.class)
+				.block();
+		
+		return result.getBody();
 	}
 
 

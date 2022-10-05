@@ -13,5 +13,6 @@ public interface ProductService {
 	Object getlist(ProductListRequestDto dto);
 	Object getdetail(int id);
 	ArrayList<ProductReviewDto> getReviewList(int id) throws Exception;
+	Object serachList(String word);
 
 }
