@@ -10,11 +10,11 @@
     </div> -->
     <div class="detail-header">
 
-      <img class="bg-box" @click="likeProduct(woojooInfo.object.id)" :src="woojooInfo.object?.image" alt="">
-
+      <img class="bg-box" @click="likeProduct(productId)" :src="woojooInfo.object?.image" alt="">
       <span class="like-add">
         <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
       </span>
+      
     </div>
     <HeaderView/>
     <div class="mypage-container" id="detail-container">
@@ -81,9 +81,13 @@ const woojooInfo = computed(() => store.getters.woojooInfo);
 const position = ref(0)
 const productId = route.params.productPk
 
-function likeProduct(productId) {
-  store.dispatch('likeProduct',productId)
+const likeProduct = (a) => {
+  store.dispatch('likeProduct',a)
 }
+
+// function likeProduct(a) {
+//   store.dispatch('likeProduct',a)
+// }
 
 onMounted(() => {
   store.dispatch("fetchWoojooInfo", productId)
