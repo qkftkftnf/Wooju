@@ -84,18 +84,24 @@ const getResized = (image, index) => {
       originalWidth.value = this.width
       originalHeight.value = this.height
       
-      if ( originalWidth.value > originalHeight.value ) {
-        resizedWidth.value = 400
-        resizedHeight.value = originalHeight.value * 400 / originalWidth.value
+      if ( originalWidth.value > 400 && originalHeight.value > 400) {
+        if ( originalWidth.value > originalHeight.value ) {
+          resizedWidth.value = 400
+          resizedHeight.value = originalHeight.value * 400 / originalWidth.value
+        } else {
+          resizedHeight.value = 400
+          resizedWidth.value = originalWidth.value * 400 / originalHeight.value
+        }
       } else {
-        originalHeight.value = 400
-        resizedWidth.value = resizedWidth.value * 400 / originalHeight.value
+        resizedWidth.value = originalWidth.value
+        resizedHeight.value = originalHeight.value
       }
+      
       var canvas = document.createElement("canvas")
-
+      
       canvas.width = resizedWidth.value
       canvas.height = resizedHeight.value
-      
+      console.log(canvas.width, canvas.height)
       // draw resized image
       canvas.getContext("2d").drawImage(image, 0, 0, resizedWidth.value, resizedHeight.value)
 
