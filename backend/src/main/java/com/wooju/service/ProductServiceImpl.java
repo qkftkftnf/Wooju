@@ -143,6 +143,25 @@ public class ProductServiceImpl implements ProductService{
 		return list;
 	}
 
+	@Override
+	public Object serachList(String word) {
+		WebClient webclient = WebClient.builder()
+				.baseUrl(address)
+				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+				.build();
+		
+		ResponseEntity<Object> result=webclient.get().
+				uri(uriBuilder-> uriBuilder
+					    .path("/search")
+						.queryParam("keyword",word)
+						.build())
+				.retrieve()
+				.toEntity(Object.class)
+				.block();
+		
+		return result.getBody();
+	}
+
 
 
 }
