@@ -58,7 +58,7 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		
 		dto.setHotreview(new ArrayList<ReviewDto>());
-		ArrayList<Review> hotreview = reviewRepository.findTop3ByTimeOrderByLikeDesc(LocalDate.now().minusDays(1));
+		ArrayList<Review> hotreview = reviewRepository.findTop3ByTimeBetweenOrderByLikeDesc(LocalDate.now().minusDays(2),LocalDate.now());
 		
 		for(Review review: hotreview) {			
 			ReviewDto info = ReviewDto.builder()
@@ -303,7 +303,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public ArrayList<ReviewDto> getmorelistPage(String value) {
 		ArrayList<ReviewDto> list= new ArrayList<ReviewDto>();
 		if(value.equals("hotreview")) {
-			ArrayList<Review> hotreview = reviewRepository.findTop10ByTimeOrderByLikeDesc(LocalDate.now().minusDays(1));
+			ArrayList<Review> hotreview = reviewRepository.findTop10ByTimeBetweenOrderByLikeDesc(LocalDate.now().minusDays(2),LocalDate.now());
 			for(Review review: hotreview) {			
 				ReviewDto info = ReviewDto.builder()
 							.id(review.getId())

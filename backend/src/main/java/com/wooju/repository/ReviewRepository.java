@@ -14,8 +14,8 @@ public interface ReviewRepository extends JpaRepository<Review, Integer>{
 	ArrayList<Review> findTop3ByOrderByIdDesc();
 	ArrayList<Review> findTop10ByOrderByIdDesc();
 	
-	ArrayList<Review> findTop3ByTimeOrderByLikeDesc(LocalDate time);
-	ArrayList<Review> findTop10ByTimeOrderByLikeDesc(LocalDate time);
+	ArrayList<Review> findTop3ByTimeBetweenOrderByLikeDesc(LocalDate stime,LocalDate etime);
+	ArrayList<Review> findTop10ByTimeBetweenOrderByLikeDesc(LocalDate stime,LocalDate etime);
 	
 	ArrayList<Review> findTop3ByUserGosuOrderByIdDesc(boolean gosu);
 	ArrayList<Review> findTop10ByUserGosuOrderByIdDesc(boolean gosu);
