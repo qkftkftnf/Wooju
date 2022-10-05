@@ -5,22 +5,15 @@
         <img :src="data.img" alt="">
       </div>
       <div class="introduction">
-        <div class="title">
+        <div class="product-title">
           {{ data.name }}
         </div>
         <div class="content">
-          <span class="proof">{{ data.alcohol }}%</span> | <span class="bottle">{{ data.volume }}</span>
-        </div>
-        <div class="likes">
-            <!-- <span class="star" v-for="i in 4">
-              <i class="fas fa-star star-icon"></i>
-            </span>
-            <span class="half"><i class="far fa-star star-icon"></i></span>
-            <span> | </span> -->
-            <span class="heart">
-              <i class="fas fa-heart heart-icon"></i>
-            </span>
-            <span class="count">{{ data.like_num }}</span>
+          <span class="proof">{{ data.alcohol }}%</span> |
+          <span class="heart">
+            <i class="fas fa-heart heart-icon"></i>
+          </span>
+          <span class="count">{{ data.like }}</span>
         </div>
       </div>
     </div>
@@ -28,7 +21,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
@@ -38,7 +31,7 @@ const router = useRouter();
 const store = useStore();
 const profileData = computed(() => store.getters.profile)
 
-</script>
+</script> 
 
 <style>
   

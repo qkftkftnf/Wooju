@@ -352,7 +352,7 @@
   
   
   /* myPage: likes */
-  .likes-container .like-wooju {
+  /* .likes-container .like-wooju {
     margin: 0 5% 25px 5%;
     width: 90%;
     height: 120px;
@@ -360,13 +360,13 @@
     box-shadow: 1px 4px 4px 4px rgba(0, 0, 0, 0.05);
     background-color: var(--card-bg-color);
     position: relative;
-  }
+  } */
   
   /* .likes-container .like-wooju:last-child {
     margin-bottom: 100px;
   }
    */
-  .likes-container .like-wooju > div {
+  /* .likes-container .like-wooju > div {
     display: inline-block;
     text-align: left;
   }
@@ -420,7 +420,7 @@
   .like-wooju .introduction .heart .heart-icon {
     color: tomato;
   }
-  
+   */
   
   /* myPage: reviews */
   .mypage-review-container .list-row {
