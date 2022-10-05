@@ -85,7 +85,7 @@ async def recommend_products(
     return products
 
 
-@app.get("/fastapi/test1", tags=["data"], response_model=schemas.Recommendation)
+@app.get("/fastapi/recommendation", tags=["data"], response_model=schemas.Recommendation)
 async def recommend_products_test1(
     type: str,
     question1: int,
