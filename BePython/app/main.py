@@ -8,13 +8,13 @@ from starlette.middleware.cors import CORSMiddleware
 
 import crud, models, database, schemas
 
-app = FastAPI(docs_url="/fastapi/docs/", redoc_url=None)
+app = FastAPI(title='WooJoo',
+            openapi_url='/fastapi/openapi.json',
+            docs_url="/fastapi/docs", redoc_url=None)
 
 origins = [
     "*"
 ]
-
-app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
@@ -56,6 +56,7 @@ async def read_products(
     types: Union[List[str], None] = Query(default=None),
     alcohol: float = 100,
     isAward: bool = False,
+    search: Union[str, None] = None
 ):
     products = crud.get_products(db=db, types=types, alcohol=alcohol, isAward=isAward)
     return paginate(products)
