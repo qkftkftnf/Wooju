@@ -9,13 +9,9 @@
       </div>
     </div> -->
     <div class="detail-header">
-      <span class="like">
-        <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
-      </span>
-      <div>
-        <img class="bg-box" :src="woojooInfo.object?.image" alt="">
-        
-      </div>
+
+      <img class="bg-box" @click="likeProduct(woojooInfo.object.id)" :src="woojooInfo.object?.image" alt="">
+
       <span class="like-add">
         <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
       </span>
@@ -84,6 +80,10 @@ const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
 const position = ref(0)
 const productId = route.params.productPk
+
+function likeProduct(productId) {
+  store.dispatch('likeProduct',productId)
+}
 
 onMounted(() => {
   store.dispatch("fetchWoojooInfo", productId)

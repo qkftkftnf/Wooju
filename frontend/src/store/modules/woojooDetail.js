@@ -35,6 +35,16 @@ const WoojooDetail = {
         .catch((err) => console.log(err))
     },
 
+    likeProduct({ getters }, productId) {
+      console.log('like')
+      http.post('product/like',{
+        params: {
+          productId: productId
+        },
+          headers: {Authorization: getters.authHeader}
+      })
+        .catch((err) => console.log(err))
+    }
     // fetchWoojoo({ commit }) {
     //   http.get('/product',
     //     {
