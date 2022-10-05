@@ -117,7 +117,7 @@ store.dispatch('fetchProducts', searchInfo.value)
 .search-filter {
   margin: 30px 7px;
   padding: 15px;
-  width: calc(100vw - 54px);
+  width: calc(100vw - 44px);
   max-width: 450px;
   border-radius: 20px;
   background-color: var(--card-bg-color);
@@ -249,18 +249,17 @@ store.dispatch('fetchProducts', searchInfo.value)
   object-fit: cover;
 }
 
-.products-list .products-list-box .product-name {
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.products-list .products-list-box .product-alcohol {
-  font-weight: bold;
-}
-
-.products-list .products-list-box .product-alcohol {
+.products-list .products-list-box .content {
   font-size: 0.9rem;
 }
 
+.products-list .products-list-box .product-name {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.products-list .products-list-box .product-alcohol {
+  font-weight: bold;
+}
 </style>
