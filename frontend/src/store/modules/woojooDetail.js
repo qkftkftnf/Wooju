@@ -4,16 +4,19 @@ const WoojooDetail = {
   state: {
     // woojooReviews : [],
     woojooInfo : {},
+    isLike : false,
   },
   mutations: {
     // SET_WOOJOOREVIEWS: (state, woojooReviews) => (state.woojooReviews = woojooReviews),
     SET_WOOJOOINFO: (state, woojooInfo) => (state.woojooInfo = woojooInfo),
     // SET_WOOJOO: (state, woojoo) => (state.woojoo = woojoo),
+    SET_ISLIKE: (state, isLike) => (state.isLike = isLike),
   },
   getters: {
     // woojooReviews: (state) => state.woojooReviews,
     woojooInfo: (state) => state.woojooInfo,
     // woojoo: (state) => state.woojoo,
+    isLike: (state) => state.isLike,
   },
   actions: {
     // fetchWoojooReviews({ commit }) {
@@ -35,6 +38,22 @@ const WoojooDetail = {
         .catch((err) => console.log(err))
     },
 
+    likeProduct({ getters }, productId) {
+      console.log('like')
+      console.log(productId)
+      http.post('/product/like',{
+        headers: {Authorization: getters.authHeader},
+        params: {
+          'productlike': productId
+        },
+      })
+        .then(({data}) => {
+          console.log(data)
+          commit("SET_ISLIKE", true)
+          }
+        )
+        .catch((err) => console.log(err))
+    }
     // fetchWoojoo({ commit }) {
     //   http.get('/product',
     //     {

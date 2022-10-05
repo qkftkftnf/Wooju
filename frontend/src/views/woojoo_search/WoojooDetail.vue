@@ -9,16 +9,12 @@
       </div>
     </div> -->
     <div class="detail-header">
-      <span class="like">
-        <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
-      </span>
-      <div>
-        <img class="bg-box" :src="woojooInfo.object?.image" alt="">
-        
-      </div>
+
+      <img class="bg-box" @click="likeProduct(productId)" :src="woojooInfo.object?.image" alt="">
       <span class="like-add">
         <i class="fas fa-heart icon"></i>{{woojooInfo.object?.like_num}}
       </span>
+      
     </div>
     <HeaderView/>
     <div class="mypage-container" id="detail-container">
@@ -84,6 +80,15 @@ const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
 const position = ref(0)
 const productId = route.params.productPk
+
+const likeProduct = (a) => {
+  store.dispatch('likeProduct',a)
+}
+
+
+// function likeProduct(a) {
+//   store.dispatch('likeProduct',a)
+// }
 
 onMounted(() => {
   store.dispatch("fetchWoojooInfo", productId)

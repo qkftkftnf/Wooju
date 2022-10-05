@@ -172,9 +172,10 @@ public class UserController {
 	})
 	public ResponseEntity<? extends BaseResponseDto> surveyproductlist(@ApiIgnore Authentication authentication,
 			@RequestBody @ApiParam(value="설문 결과", required=true) SurveyRequestDto dto){
-		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		User user;
+		if(authentication == null)user=null;
 		UserInfo userDetails=(UserInfo) authentication.getDetails();
-		User user=userDetails.getUser();
+		user=userDetails.getUser();
 		
 		
 		Object obj=userService.getrecom(user, dto);
