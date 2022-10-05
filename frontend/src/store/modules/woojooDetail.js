@@ -37,7 +37,7 @@ const WoojooDetail = {
 
     likeProduct({ getters }, productId) {
       console.log('like')
-      http.post('product/like',{
+      http.post('/product/like',{
         params: {
           productId: productId
         },
