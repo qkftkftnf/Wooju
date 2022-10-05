@@ -8,7 +8,7 @@
               </div>
               <div class="review-writer">
                 <div class="review-nickname">{{review.nickname}}</div>
-                <div class="review-level">레벨 153</div>
+                <!-- <div class="review-level">레벨 153</div> -->
               </div>
             </div>
             <span class="review-date">{{review.time}}</span> 
@@ -27,10 +27,10 @@
             </el-carousel>
           </div>          
           <div class="review-content">
-            <div class="wooju">
+            <!-- <div class="wooju">
               <span class="wooju-name"> 제목 : </span>
-              {{review.title}}
-            </div>
+              {{review}}
+            </div> -->
             <div class="rate">
               <span class="wooju-star">별점  </span>
               <i class="fas fa-star star"></i> {{review.star}}

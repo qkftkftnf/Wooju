@@ -9,7 +9,7 @@ from recommend import get_taste, get_today
 def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None):
     products = db.query(Product)
 
-    if user_id:
+    if user_id != None:
         result = {}
         user = db.query(User).filter(User.id == user_id).first()
         result['taste'] = get_taste(user, products.filter(Product.type == '탁주'))

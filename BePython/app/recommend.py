@@ -9,33 +9,33 @@ import json
 categorys = {}
 
 def get_taste(user, products):
-    if user['type'] == '탁주':
+    if user.type == '탁주':
         target = [[
-            user['question1'],
-            user['question2'],
-            user['question3'],
-            user['question4'],
-            user['question5'],]]
+            user.question1,
+            user.question2,
+            user.question3,
+            user.question4,
+            user.question5,]]
         columns = ['sweet', 'weight', 'carbonic', 'plain', 'acidity']
 
-    elif user['type'] == '증류주':
+    elif user.type == '증류주':
         target = [[
-            user['question1'],
-            user['question2'],
-            user['question3'],
-            user['question4'],
-            user['question5'],]]
+            user.question1,
+            user.question2,
+            user.question3,
+            user.question4,
+            user.question5,]]
         columns = ['body', 'nutty', 'richness', 'spicy', 'flavor']
 
-    elif user['type'] == '약주, 과실주':
+    elif user.type == '약주, 과실주':
         target = [[
-            user['question1'],
-            user['question2'],
-            user['question3'],
-            user['question4'],
-            user['question5'],
-            user['question6'],
-            user['question6'],]]
+            user.question1,
+            user.question2,
+            user.question3,
+            user.question4,
+            user.question5,
+            user.question6,
+            user.question6,]]
         columns = ['sweet', 'carbonic', 'plain', 'acidity', 'body', 'tannin', 'bitter']
 
     product_df = pd.read_sql(products.statement, products.session.bind)
