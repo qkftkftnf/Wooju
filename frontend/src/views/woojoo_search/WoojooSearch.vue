@@ -115,9 +115,9 @@ store.dispatch('fetchProducts', searchInfo.value)
 
 <style>
 .search-filter {
-  margin-top: 30px;
+  margin: 30px 7px;
   padding: 15px;
-  width: 90vw;
+  width: calc(100vw - 54px);
   max-width: 450px;
   border-radius: 20px;
   background-color: var(--card-bg-color);
