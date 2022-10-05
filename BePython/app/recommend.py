@@ -1,10 +1,14 @@
 import pandas as pd
 import numpy as np
+import json
+
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sqlalchemy.orm import Session
+
 from schemas import ProductBase
-import json
+from models import Product, User
+
 
 categorys = {}
 
@@ -17,6 +21,8 @@ def get_taste(user, products):
             user.question4,
             user.question5,]]
         columns = ['sweet', 'weight', 'carbonic', 'plain', 'acidity']
+        products = products \
+            .filter((Product.type == '탁주') | (Product.type == '탁주 기타주류'))
 
     elif user.type == '증류주':
         target = [[
@@ -26,7 +32,9 @@ def get_taste(user, products):
             user.question4,
             user.question5,]]
         columns = ['body', 'nutty', 'richness', 'spicy', 'flavor']
-
+        products = products \
+            .filter((Product.type == '리큐르') | (Product.type == '증류식소주') | (Product.type == '일반증류주') | (Product.type == '증류주 기타주류'))
+    
     elif user.type == '약주, 과실주':
         target = [[
             user.question1,
@@ -37,6 +45,8 @@ def get_taste(user, products):
             user.question6,
             user.question6,]]
         columns = ['sweet', 'carbonic', 'plain', 'acidity', 'body', 'tannin', 'bitter']
+        products = products \
+            .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
 
     product_df = pd.read_sql(products.statement, products.session.bind)
     taste_data = product_df[columns]

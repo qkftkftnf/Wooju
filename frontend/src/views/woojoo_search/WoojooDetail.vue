@@ -85,6 +85,7 @@ const likeProduct = (a) => {
   store.dispatch('likeProduct',a)
 }
 
+
 // function likeProduct(a) {
 //   store.dispatch('likeProduct',a)
 // }
