@@ -18,6 +18,7 @@ import com.wooju.entity.Product;
 import com.wooju.entity.Review;
 import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
+import com.wooju.exception.DifferentUserException;
 import com.wooju.exception.LikeException;
 import com.wooju.exception.ProductNotFoundException;
 import com.wooju.exception.ReviewNotFoundException;
@@ -249,9 +250,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Transactional
 	public void deleteReview(User user, int id) throws Exception{
 		Optional<Review> reviewTemp= reviewRepository.findById(id);
-		if(!reviewTemp.isPresent()) throw new Exception();
+		if(!reviewTemp.isPresent()) throw new ReviewNotFoundException();
 		Review review = reviewTemp.get();
-		if(review.getUser().getId() != user.getId()) throw new Exception();
+		if(review.getUser().getId() != user.getId()) throw new DifferentUserException();
 		ArrayList<ReviewImg> list=reviewImgRepository.findByUserIdAndReviewId(user.getId(), id);
 		ArrayList<String> img=new ArrayList<>();
 		for(ReviewImg imgs:list) {
