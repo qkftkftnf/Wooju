@@ -22,6 +22,7 @@ import com.wooju.exception.DifferentUserException;
 import com.wooju.exception.LikeException;
 import com.wooju.exception.ProductNotFoundException;
 import com.wooju.exception.ReviewNotFoundException;
+import com.wooju.exception.UserNotFoundException;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
@@ -226,6 +227,7 @@ public class ReviewServiceImpl implements ReviewService{
 		Optional<Review> reviewTemp =reviewRepository.findById(dto.getId());
 		if(!reviewTemp.isPresent()) throw new ReviewNotFoundException();
 		Review review=reviewTemp.get();
+		if(review.getUser().getId() != user.getId()) throw new DifferentUserException();
 			review.setStar(dto.getStar());
 			review.setContent(dto.getContent());
 		reviewRepository.save(review);

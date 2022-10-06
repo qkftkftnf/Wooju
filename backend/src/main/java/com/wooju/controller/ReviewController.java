@@ -69,6 +69,19 @@ public class ReviewController {
 		return ResponseEntity.status(200).body(ReviewListResponseDto.of(200, "Success",list));
 	}
 	
+	@GetMapping("/{review_id}")
+	@ApiOperation(value = "리뷰 상세 조회", notes = "해당 리뷰의 상세 정보를 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 500, message = "서버 오류")
+    })
+	public ResponseEntity<? extends BaseResponseDto> getReviewDetail(
+			@PathVariable("review_id") int id) throws Exception {
+		
+		ReviewDto review = reviewService.getReviewDetail(id);
+		return ResponseEntity.status(200).body(ReviewDetailResponseDto.of(200, "Success", review));
+	}
+	
 	
 	@PostMapping("")
 	@ApiOperation(value="리뷰 작성", notes ="리뷰 작성")
@@ -88,17 +101,7 @@ public class ReviewController {
 		return ResponseEntity.status(200).body(CreateReviewResponseDto.of(200, "success",id));
 	}
 	
-	@GetMapping("/{review_id}")
-	@ApiOperation(value = "리뷰 상세 조회", notes = "해당 리뷰의 상세 정보를 조회한다.") 
-    @ApiResponses({
-        @ApiResponse(code = 200, message = "성공"),
-        @ApiResponse(code = 500, message = "서버 오류")
-    })
-	public ResponseEntity<? extends BaseResponseDto> getReviewDetail(@ApiIgnore Authentication authentication,
-			@PathVariable("review_id") int id) throws Exception {
-		ReviewDto review = reviewService.getReviewDetail(id);
-		return ResponseEntity.status(200).body(ReviewDetailResponseDto.of(200, "Success", review));
-	}
+	
 
 	@PutMapping("")
 	@ApiOperation(value = "리뷰 수정", notes = "해당 리뷰의  정보를 수정한다.") 

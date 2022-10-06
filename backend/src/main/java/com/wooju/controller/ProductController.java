@@ -48,7 +48,7 @@ public class ProductController {
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<? extends BaseResponseDto> productlist(@RequestBody @ApiParam(value="리스트 정보", required=true) ProductListRequestDto dto) throws Exception{
+	public ResponseEntity<? extends BaseResponseDto> productlist(@RequestBody @ApiParam(value="리스트 정보", required=true) ProductListRequestDto dto) {
 		 Object result=productService.getlist(dto);
 		return ResponseEntity.status(200).body(ProductListResponseDto.of(200, "Success",result));
 	}
@@ -59,22 +59,12 @@ public class ProductController {
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<? extends BaseResponseDto> productdetail(@PathVariable("product_id") int id) throws Exception{
+	public ResponseEntity<? extends BaseResponseDto> productdetail(@PathVariable("product_id") int id){
 		 Object result=productService.getdetail(id);
 		 ArrayList<ProductReviewDto> list=productService.getReviewList(id);
 		return ResponseEntity.status(200).body(ProductDetailResponseDto.of(200, "Success",result,list));
 	}
-	
-	@GetMapping("/search/{keyword}")
-	@ApiOperation(value="술 검색", notes ="술 검색하기")
-	@ApiResponses({
-		@ApiResponse(code = 200 , message="성공"),
-		@ApiResponse(code = 500 , message="서버오류")
-	})
-	public ResponseEntity<? extends BaseResponseDto> searchproduct(@PathVariable("keyword") String word) throws Exception{
-		 Object result=productService.serachList(word);
-		return ResponseEntity.status(200).body(ProductListResponseDto.of(200, "Success",result));
-	}
+
 	
 	@PostMapping("/like")
 	@ApiOperation(value="좋아요", notes ="술 좋아요")

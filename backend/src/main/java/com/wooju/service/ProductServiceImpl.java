@@ -129,7 +129,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public ArrayList<ProductReviewDto> getReviewList(int id) throws Exception {
+	public ArrayList<ProductReviewDto> getReviewList(int id) {
 		ArrayList<Review> reviewTemp= reviewRepository.findByProductId(id);
 		ArrayList<ProductReviewDto> list=new ArrayList<ProductReviewDto>();
 		
@@ -154,24 +154,6 @@ public class ProductServiceImpl implements ProductService{
 		return list;
 	}
 
-	@Override
-	public Object serachList(String word) {
-		WebClient webclient = WebClient.builder()
-				.baseUrl(address)
-				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-				.build();
-		
-		ResponseEntity<Object> result=webclient.get().
-				uri(uriBuilder-> uriBuilder
-					    .path("/search")
-						.queryParam("keyword",word)
-						.build())
-				.retrieve()
-				.toEntity(Object.class)
-				.block();
-		
-		return result.getBody();
-	}
 
 
 

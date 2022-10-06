@@ -109,7 +109,9 @@ public class UserServiceImpl implements UserService {
 			dto.getLikeList().add(info);
 		}
 		dto.setReviewList(new ArrayList<ReviewDto>());
-		for(Review review:user.getReviews()) {
+		int size=user.getReviews().size();
+		for(int i=size-1;i>=0;i--) {
+			Review review=user.getReviews().get(i);
 			ReviewDto info = ReviewDto.builder()
 						.id(review.getId())
 						.user_id(review.getUser().getId())
