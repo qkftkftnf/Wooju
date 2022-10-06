@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        톡톡 튀는 탄산처럼 매력적인 입맛을 가진 당신!
+        톡톡 튀는 탄산처럼<br/>매력적인 입맛을 가진 당신!
       </div>
     </div>
   </div>

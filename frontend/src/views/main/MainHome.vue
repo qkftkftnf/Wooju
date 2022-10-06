@@ -39,7 +39,7 @@
 
             <div class="bottles" v-else>
               <div class="bottle-card" v-for="product in recommendData.taste">
-                <div @click="linkToProduct(`${product.product_id}`)">
+                <div @click="linkToProduct(`${product.id}`)">
                   <div class="bottle-img">
                     <img :src="product.image" alt="bottle">
                   </div>

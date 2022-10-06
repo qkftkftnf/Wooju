@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        다양한 맛에 도전하는 걸 무서워하지 않고 즐기는 당신!
+        다양한 맛에 도전하는 것을<br/>무서워하지 않고 즐기는 당신!
       </div>
     </div>
   </div>

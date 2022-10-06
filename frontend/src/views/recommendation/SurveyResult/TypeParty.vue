@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        상큼 발랄, 톡톡 튀는 매력의 입맛을 가진 당신!
+        상큼 발랄,<br/>톡톡 튀는 매력의 입맛을 가진 당신!
       </div>
     </div>
   </div>

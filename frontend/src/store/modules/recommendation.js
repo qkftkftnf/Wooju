@@ -10,14 +10,17 @@ const recommendation = {
       award: [],
     },
     isSurveyed: false,
+    isRecommLoaded: false,
   },
   mutations: {
     SET_RECOMMENDATION: (state, recommendation) => (state.recommendation = recommendation),
     SET_IS_SURVEYED:(state, isSurveyed) => (state.isSurveyed = isSurveyed),
+    SET_IS_RECOMM_LOADED:(state, isRecommLoaded) => (state.isRecommLoaded = isRecommLoaded),
   },
   getters: {
     recommendation: (state) => state.recommendation,
     isSurveyed: (state) => state.isSurveyed,
+    isRecommLoaded: (state) => state.isRecommLoaded,
   },
   actions: {
     submitSurvey({ commit, getters }, surveyInfo) {
@@ -27,17 +30,16 @@ const recommendation = {
         {headers: { Authorization: getters.authHeader },
       })
       .then(({data}) => {
-        // console.log(data)
         commit("SET_IS_SURVEYED", true)
         commit("SET_RECOMMENDATION", data.obj)
         router.push({ 
-          name: "MyRecommendationMain",
-          // params: { articlePk: res.data },
+          name: "MyRecommendationResult",
         });
       })
       .catch((err) => console.log(err))
     },
     fetchRecommendationResult({ commit, getters }) {
+      commit("SET_IS_RECOMM_LOADED", false)
       if (getters.isLoggedIn) {
         http.post("/user/survey",
         {},
@@ -45,9 +47,9 @@ const recommendation = {
           headers: { Authorization: getters.authHeader },
         })
         .then(({ data }) => {
-          // console.log(data)
+          console.log(data)
           commit("SET_RECOMMENDATION", data.obj)
-          console.log(getters.recommendation)
+          commit("SET_IS_RECOMM_LOADED", true)
         })
         .catch((err) => console.log(err))
       }

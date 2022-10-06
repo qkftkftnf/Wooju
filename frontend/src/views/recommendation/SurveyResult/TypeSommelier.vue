@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        전통주를 대하는 입맛이 사뭇 남다른 당신!
+        전통주를 대하는 입맛이<br/>사뭇 남다른 당신!
       </div>
     </div>
   </div>

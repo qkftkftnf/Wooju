@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        술이 있는 곳이라면 나타날 것 같은 당신!
+        술이 있는 곳이라면<br/>어디든 나타날 것 같은 당신!
       </div>
     </div>
   </div>

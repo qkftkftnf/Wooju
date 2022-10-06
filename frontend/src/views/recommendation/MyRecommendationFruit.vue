@@ -155,10 +155,10 @@
         </div>
         <div class="question">
           <div class="ques-img-container">
-            <img src="@/assets/images/survey/company.png" alt="qest-img">
+            <img src="@/assets/images/survey/friday.png" alt="qest-img">
           </div>
           <div class="ask">
-            동기들과 후식으로 마실 것을 사려고 합니다.<br/>둘 중 어느 음료가 더 당기나요?
+            지치는 금요일,<br/>머리를 너무 많이 써서 먹을 게 생각납니다.<br/>무엇을 먹을까요?
           </div>
         </div>
         <div id="question5" class="options">
@@ -171,12 +171,12 @@
           </div>
           <div class="opt-content">
             <div class="left-content">
-              입안이 가벼워지는<br/>
-            <span>루이보스 차</span>
+              딱 알맞게 구워진 바삭한<br/>
+              <span>크림 치즈 베이글</span>
             </div>
             <div class="right-content">
-              부드럽게 넘어가는<br/>
-            <span>밀크 쉐이크</span>
+              한 조각만 먹어도 힘이 나는<br/>
+              <span>초코 케이크</span>
             </div>
           </div>
         </div>

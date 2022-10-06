@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        하나를 고를 때에도 자신만의 기준으로 맛을 평가하는 당신!
+        하나를 고를 때에도<br/>자신만의 기준으로 맛을 평가하는 당신!
       </div>
     </div>
   </div>

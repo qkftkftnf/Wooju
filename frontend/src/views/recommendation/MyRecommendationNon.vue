@@ -1,7 +1,7 @@
 <template>
   <!-- preferance -->
   <div class="rec-type rec-preferance">
-    <div class="title">
+    <div class="rec-title">
       당신의 취향에 딱 맞는 술
     </div>
 
@@ -14,7 +14,7 @@
 
   <!-- award -->
   <div class="rec-type rec-preferance">
-    <div class="title award-title">
+    <div class="rec-title award-title">
       아직 전통주에 대해 잘 모르겠다면,<br/>모두의 인정을 받은 술들은 어떤가요?
     </div>
     <div class="bottle-card" v-for="product in productData">

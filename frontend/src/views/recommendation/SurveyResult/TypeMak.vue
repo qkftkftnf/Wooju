@@ -14,7 +14,7 @@
 
     <div class="preferance">
       <div class="abst">
-        흥을 즐기고 진한 여운을 즐기는 당신!
+        흥을 즐기고<br/>진한 여운을 즐기는 당신!
       </div>
     </div>
   </div>

@@ -32,11 +32,24 @@
     </div>
   </div>
 
+
+  <div class="again-container rec-preferance">
+    <div class="again-content">
+      다시 취향을 알아보고 싶다면
+      <div class="survey-btn" @click="linkTo('MyRecommendationType')">
+        <div class="btn-box">취향 알아보러 가기 ></div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted ,computed } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const linkTo = (name) => router.push({ name: name })
 
 const store = useStore();
 const profileData = computed(() => store.getters.profile)

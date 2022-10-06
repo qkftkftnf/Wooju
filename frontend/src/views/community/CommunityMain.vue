@@ -39,7 +39,7 @@
                       </span>
                     </div>
                     <div class="card-content">
-                      <div class="wooju">
+                      <div class="wooju cl-ellipsis">
                         {{ review.product_name }}
                       </div>
                       <div class="rate">
@@ -85,7 +85,7 @@
                       </span>
                     </div>
                     <div class="card-content">
-                      <div class="wooju">
+                      <div class="wooju cl-ellipsis">
                         {{ review.product_name }}
                       </div>
                       <div class="rate">
@@ -131,7 +131,7 @@
                       </span>
                     </div>
                     <div class="card-content">
-                      <div class="wooju">
+                      <div class="wooju cl-ellipsis">
                         {{ review.product_name }}
                       </div>
                       <div class="rate">
@@ -177,7 +177,7 @@
                       </span>
                     </div>
                     <div class="card-content">
-                      <div class="wooju">
+                      <div class="wooju cl-ellipsis">
                         {{ review.product_name }}
                       </div>
                       <div class="rate">

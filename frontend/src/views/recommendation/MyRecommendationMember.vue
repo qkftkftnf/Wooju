@@ -19,15 +19,17 @@
     <!-- v-if surveyed -->
     <div class="bottles" v-else>
       <div class="bottle-card" v-for="product in recommendData.taste">
-        <div class="bottle-img">
-          <img :src="product.image" alt="bottle">
-        </div>
-        <div class="bottle-content">
-          <div class="bottle-title cl-ellipsis">
-            {{ product.name }}
+        <div @click="linkToProduct(`${product.id}`)">
+          <div class="bottle-img">
+            <img :src="product.image" alt="bottle">
           </div>
-          <div class="bottle-intro">
-            도수: {{ product.alcohol }}%
+          <div class="bottle-content">
+            <div class="bottle-title cl-ellipsis">
+              {{ product.name }}
+            </div>
+            <div class="bottle-intro">
+              도수: {{ product.alcohol }}%
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +38,7 @@
 
   <!-- life style -->
   <div class="rec-type rec-preferance">
-    <div class="title">
+    <div class="rec-title">
       당신의 오늘에 딱 맞는 술
     </div>
 
@@ -53,15 +55,17 @@
     <!-- v-if surveyed -->
     <div class="bottles" v-else>
       <div class="bottle-card" v-for="product in recommendData.today">
-        <div class="bottle-img">
-          <img :src="product.image" alt="bottle">
-        </div>
-        <div class="bottle-content">
-          <div class="bottle-title cl-ellipsis">
-            {{ product.name }}
+        <div @click="linkToProduct(`${product.id}`)">
+          <div class="bottle-img">
+            <img :src="product.image" alt="bottle">
           </div>
-          <div class="bottle-intro">
-            {{ product.alcohol }}%
+          <div class="bottle-content">
+            <div class="bottle-title cl-ellipsis">
+              {{ product.name }}
+            </div>
+            <div class="bottle-intro">
+              도수: {{ product.alcohol }}%
+            </div>
           </div>
         </div>
       </div>
@@ -70,20 +74,22 @@
 
   <!-- award -->
   <div class="rec-type rec-preferance">
-    <div class="title award-title">
+    <div class="rec-title award-title">
       아직 전통주에 대해 잘 모르겠다면,<br/>모두의 인정을 받은 술들은 어떤가요?
     </div>
     <div class="bottles">
       <div class="bottle-card" v-for="product in recommendData.award">
-        <div class="bottle-img">
-          <img :src="product.image" alt="bottle">
-        </div>
-        <div class="bottle-content">
-          <div class="bottle-title cl-ellipsis">
-            {{ product.name }}
+        <div @click="linkToProduct(`${product.id}`)">
+          <div class="bottle-img">
+            <img :src="product.image" alt="bottle">
           </div>
-          <div class="bottle-intro">
-            {{ product.alcohol }}%
+          <div class="bottle-content">
+            <div class="bottle-title cl-ellipsis">
+              {{ product.name }}
+            </div>
+            <div class="bottle-intro">
+              도수: {{ product.alcohol }}%
+            </div>
           </div>
         </div>
       </div>
@@ -102,6 +108,7 @@ import _ from 'lodash';
 
 const router = useRouter();
 const linkTo = (name) => router.push({ name: name })
+const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
 
 // vuex axios
 const store = useStore();

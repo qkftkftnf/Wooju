@@ -102,11 +102,11 @@
           <div class="opt-content">
             <div class="left-content">
               취한 느낌을 즐기는 거라고<br/>
-              <span>술은 취하려고 마시는 거지!</span>
+              <span>술은 취하려고<br/>마시는 거지!</span>
             </div>
             <div class="right-content">
               그 조명, 온도, 습도….<br/>
-              <span>술자리에서의 분위기가 좋아</span>
+              <span>술자리에서의<br/>분위기가 좋아</span>
             </div>
           </div>
         </div>
