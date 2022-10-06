@@ -59,7 +59,7 @@ async def read_products(
     isAward: bool = False,
     search: Union[str, None] = None
 ):
-    products = crud.get_products(db=db, types=types, alcohol=alcohol, isAward=isAward)
+    products = crud.get_products(db=db, types=types, alcohol=alcohol, isAward=isAward, search=search)
     return paginate(products)
 
 
@@ -87,7 +87,7 @@ async def recommend_products(
 
 
 @app.get("/fastapi/recommendation", tags=["data"], response_model=schemas.Recommendation)
-async def recommend_products_test1(
+async def recommend_products_nonmember(
     type: str,
     question1: int,
     question2: int,
