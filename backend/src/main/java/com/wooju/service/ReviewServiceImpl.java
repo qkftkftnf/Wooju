@@ -22,7 +22,6 @@ import com.wooju.exception.DifferentUserException;
 import com.wooju.exception.LikeException;
 import com.wooju.exception.ProductNotFoundException;
 import com.wooju.exception.ReviewNotFoundException;
-import com.wooju.exception.UserNotFoundException;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
@@ -408,6 +407,15 @@ public class ReviewServiceImpl implements ReviewService{
 			return null;
 		}
 		return list;
+	}
+	
+	@Override
+	public boolean getlikeCheck(int review_id,User user) throws Exception {
+		if(!reviewRepository.findById(review_id).isPresent()) throw new ReviewNotFoundException();
+		long num=likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
+		if(num==1)return true;
+		else if(num==0) return false;
+		else throw new LikeException();
 	}
 
 }
