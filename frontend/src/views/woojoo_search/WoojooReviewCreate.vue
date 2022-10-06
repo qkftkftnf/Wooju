@@ -95,7 +95,7 @@ const onFileChange = (image) => {
     document.getElementById("review-upload-input").value = "";
   } else {
     for (let index = 0; index < image.target.files.length; index++) {
-      // uploadImages.value.push(image.target.files[index])
+      uploadImages.value.push(image.target.files[index])
       eachThumbnail(index)
       getResized(image, index) 
     }
@@ -145,11 +145,11 @@ const getResized = (image, index) => {
 
       // append image in formData
       canvas.toBlob(function(blob) {
+        console.log("HEY", blob)
         imageData.append("file", blob)
       })
     }
   }
-  
 }
 
 const eachThumbnail = (index) => {
@@ -183,25 +183,33 @@ const rate = ref(0)
 const reviewTextarea = ref("")
 
 const onSubmit = () => {
-  // var imgData = new FormData()
-  
-  // uploadImages.value.forEach(function(img) {
-  //   imgData.append("file", img)
-  // })
 
-  const reviewData = {
-    product_id: productId,
-    star: rate.value,
-    content: reviewTextarea.value,
-    // file: imgData,
-    file: imageData
+  console.log(!!uploadImages.value[0])
+  var reviewInfo = {}
+  if (!!uploadImages.value[0]) {
+    console.log("WHY")
+    reviewInfo = {
+      product_id: productId,
+      star: rate.value,
+      content: reviewTextarea.value,
+      file: imageData,
+      flag: true,
+    }
+    store.dispatch('createReview', reviewInfo)
+  } else {
+    console.log("HEY")
+    // reviewInfo = {
+    //   product_id: productId,
+    //   star: rate.value,
+    //   content: reviewTextarea.value,
+    //   flag: false,
+    // }
+    alert("이미지를 1개 이상 첨부해주세요.")
   }
 
-  // for (let value of imgData.values()) {
+  // for (let value of imageData.values()) {
   //   console.log(value)
   // } 
-
-  store.dispatch('createReview', reviewData)
 };
 
 

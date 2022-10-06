@@ -23,11 +23,11 @@
           <img :src="product.image" alt="bottle">
         </div>
         <div class="bottle-content">
-          <div class="bottle-title">
+          <div class="bottle-title cl-ellipsis">
             {{ product.name }}
           </div>
           <div class="bottle-intro">
-            {{ product.alcohol }}% | {{ product.volume }}
+            {{ product.alcohol }}%
           </div>
         </div>
       </div>
@@ -57,11 +57,11 @@
           <img :src="product.image" alt="bottle">
         </div>
         <div class="bottle-content">
-          <div class="bottle-title">
+          <div class="bottle-title cl-ellipsis">
             {{ product.name }}
           </div>
           <div class="bottle-intro">
-            {{ product.alcohol }}% | {{ product.volume }}
+            {{ product.alcohol }}%
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
             {{ product.name }}
           </div>
           <div class="bottle-intro">
-            {{ product.alcohol }}% | {{ product.volume }}
+            {{ product.alcohol }}%
           </div>
         </div>
       </div>

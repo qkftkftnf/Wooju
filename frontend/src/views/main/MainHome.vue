@@ -44,11 +44,11 @@
                     <img :src="product.image" alt="bottle">
                   </div>
                   <div class="bottle-content">
-                    <div class="bottle-title">
+                    <div class="bottle-title cl-ellipsis">
                       {{ product.name }}
                     </div>
                     <div class="bottle-intro">
-                      도수: {{product.alcohol}}%<br/>용량: {{ product.volume }}
+                      도수: {{product.alcohol}}%
                     </div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@
                         </span>
                       </div>
                       <div class="card-content">
-                        <div class="wooju">
+                        <div class="wooju cl-ellipsis">
                           {{review.product_name}}
                         </div>
                         <div class="rate">

@@ -33,7 +33,14 @@
             {{ profileData.profile?.reviewList[postIdx].time }}
           </div>
           <div class="edit-btn" @click="linkToEdit(profileData.profile?.reviewList[postIdx].id)">
-            수정
+            <div class="btn-box">
+              수정
+            </div>
+          </div>
+          <div class="delete-btn" @click="linkToDelete(profileData.profile?.reviewList[postIdx].id)">
+            <div class="btn-box">
+              삭제
+            </div>
           </div>
         </div>
         
@@ -76,6 +83,10 @@ const route = useRoute();
 const store = useStore();
 const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
 const linkToEdit = (reviewPk) => router.push({ name: "WoojooReviewEdit", params: { reviewPk: reviewPk }})
+const linkToDelete = (reviewPk) => {
+  store.dispatch("deleteReview", reviewPk)
+}
+
 const reviewIdx = route.query.reviewIdx
 
 const profileData = computed(() => store.getters.profile)

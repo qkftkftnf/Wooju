@@ -58,6 +58,7 @@ class Product(Base):
 	makers = relationship("Maker",
 						secondary=product_maker,
 						back_populates="products")
+	shops = relationship("Shop", back_populates="product", order_by="Shop.price")
 
 
 class Food(Base):
@@ -103,3 +104,16 @@ class User(Base):
 	type = Column(VARCHAR(255), nullable=False)
 	gosu = Column(Boolean, nullable=False)
 	review_count = Column(BigInteger, nullable=True)
+
+
+class Shop(Base):
+	__tablename__ = 'shop'
+
+	id = Column(BigInteger, primary_key=True, autoincrement=True)
+	product_id = Column(BigInteger, ForeignKey("product.id"))
+	image = Column(VARCHAR(500), nullable=False)
+	mall_name = Column(VARCHAR(255), nullable=False)
+	name = Column(VARCHAR(255), nullable=False)
+	price = Column(BigInteger, nullable=False)
+	url = Column(VARCHAR(500), nullable=False)
+	product = relationship("Product", back_populates="shops")

@@ -27,7 +27,7 @@ const reviewCreate = {
         .catch((err) => console.log(err))
     },
     createReview({ getters }, reviewData) {
-      if (typeof reviewData.file.FormData != "undefined") {
+      if (reviewData.flag) {
         axios({
           method: "POST",
           url: "https://j7a304.p.ssafy.io/api/image/uploads",
@@ -73,7 +73,6 @@ const reviewCreate = {
       }
     },
     editReview({ getters }, reviewData) {
-      console.log(reviewData)
       if (reviewData.flag) {
         axios({
           method: "POST",
@@ -84,7 +83,6 @@ const reviewCreate = {
           data: reviewData.file,
         })
           .then(({ data }) => {
-            console.log(data)
             http.put("/review", {
               content: reviewData.content,
               img: data.imgs,
@@ -95,15 +93,17 @@ const reviewCreate = {
             })
             .then(({ data }) => {
               router.push({ 
-                name: "WoojooDetail",
-                params: { productPk: reviewData.product_id }
+                // name: "WoojooDetail",
+                // params: { productPk: reviewData.product_id }
+                name: "MyPageMain"
               })
             })
             .catch((err) => console.log(err))
         })
         .catch((err) => console.log(err))
       } else {
-        http.post("/review", {
+        console.log(reviewData.img)
+        http.put("/review", {
           content: reviewData.content,
           img: reviewData.img,
           id: reviewData.id,
@@ -119,6 +119,16 @@ const reviewCreate = {
         })
         .catch((err) => console.log(err))
       }
+    },
+    deleteReview({ getters }, reviewPk) {
+      http.delete(`/review/${reviewPk}`, {
+        headers: {Authorization: getters.authHeader}
+      })
+        .then((res) => {
+          // router.push({ name: "MyPageMain"})
+          location.reload()
+        })
+        .catch((err) => console.log(err))
     },
   },
 }

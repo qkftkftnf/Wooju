@@ -22,7 +22,6 @@ import com.wooju.exception.DifferentUserException;
 import com.wooju.exception.LikeException;
 import com.wooju.exception.ProductNotFoundException;
 import com.wooju.exception.ReviewNotFoundException;
-import com.wooju.exception.UserNotFoundException;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.LikeReviewRepository;
 import com.wooju.repository.ProductRepository;
@@ -232,9 +231,17 @@ public class ReviewServiceImpl implements ReviewService{
 			review.setContent(dto.getContent());
 		reviewRepository.save(review);
 		ArrayList<ReviewImg> list=reviewImgRepository.findByUserIdAndReviewId(user.getId(), review.getId());
+		ArrayList<String> inputimg=dto.getImg();
 		ArrayList<String> img=new ArrayList<>();
 		for(ReviewImg imgs:list) {
-			img.add(imgs.getImg());
+			int num=0;
+			for(String dtoimg: inputimg) {
+				if(imgs.getImg().equals(dtoimg)) {
+					num=1;
+					break;
+				}
+			}
+			if(num==0) img.add(imgs.getImg());
 		}
 		s3upload.deletefile(img);
 		reviewImgRepository.deleteByUserIdAndReviewId(user.getId(), review.getId());
@@ -400,6 +407,15 @@ public class ReviewServiceImpl implements ReviewService{
 			return null;
 		}
 		return list;
+	}
+	
+	@Override
+	public boolean getlikeCheck(int review_id,User user) throws Exception {
+		if(!reviewRepository.findById(review_id).isPresent()) throw new ReviewNotFoundException();
+		long num=likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
+		if(num==1)return true;
+		else if(num==0) return false;
+		else throw new LikeException();
 	}
 
 }

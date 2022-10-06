@@ -2,11 +2,11 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from  sqlalchemy.sql.expression import func
 
-from models import Product, User
+from models import Product, User, Shop
 from recommend import get_taste, get_today
 
 
-def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None):
+def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None, search: Optional[str]=None):
     products = db.query(Product)
 
     if user_id != None:
@@ -27,6 +27,9 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
                 tmp = tmp.union(set_filter(products, type))
             products = tmp
 
+        if search:
+            products = products.filter(Product.name.like(f"%{search}%"))
+
         products = products.order_by(Product.alcohol.desc())
         result = products.all()
     
@@ -34,7 +37,8 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
 
 
 def get_product(db: Session, product_id: int):
-    return db.query(Product).filter(Product.id == product_id).first()
+    product = db.query(Product).filter(Product.id == product_id).first()
+    return product
 
 
 def search_products(db: Session, keyword: str):

@@ -88,6 +88,7 @@ store.dispatch("fetchReview", reviewPk)
 const uploadImages = ref([])
 const maxLength = ref(3)
 var imageData = new FormData()
+const flag = ref(false)
 
 const onFileChange = (image) => {
   if (image.target.files.length > maxLength.value) {
@@ -96,6 +97,7 @@ const onFileChange = (image) => {
   } else {
     for (let index = 0; index < image.target.files.length; index++) {
       // uploadImages.value.push(image.target.files[index])
+      flag.value = true
       eachThumbnail(index)
       getResized(image, index) 
     }
@@ -147,6 +149,7 @@ const getResized = (image, index) => {
       canvas.toBlob(function(blob) {
         imageData.append("file", blob)
       })
+      console.log(imageData)
     }
   }
 }
@@ -180,13 +183,14 @@ const resetGallery = () => {
 // submit
 const onSubmit = () => {
   var reviewInfo = {}
-  if (uploadImages.value != []) {
+
+  if (flag.value) {
     reviewInfo = {
       id: reviewPk,
       star: reviewData.value.review.star,
       content: reviewData.value.review.content,
       file: imageData,
-      flag: true,
+      flag: flag.value,
     }
   } else {
     reviewInfo = {
@@ -194,7 +198,7 @@ const onSubmit = () => {
       star: reviewData.value.review.star,
       content: reviewData.value.review.content,
       img: reviewData.value.review.img,
-      flag: false,
+      flag: flag.value,
     }
   }
   store.dispatch('editReview', reviewInfo)
