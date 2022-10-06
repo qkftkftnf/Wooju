@@ -85,6 +85,9 @@ def search_products(db: Session, keyword: str):
 
 def get_recommendation(db: Session, user: object, keywords: Optional[str]=None):
     products = db.query(Product)
+    result = {'taste': [], 'today': [], 'usertype':{'type':0, 'analysis': {}}}
+    result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
+
     if user['type'] == '탁주':
         target = [[
             user['question1'],
@@ -120,14 +123,11 @@ def get_recommendation(db: Session, user: object, keywords: Optional[str]=None):
         typed_products = products \
             .filter((Product.type == '리큐르') | (Product.type == '증류식소주') | (Product.type == '일반증류주') | (Product.type == '증류주 기타주류'))
     else:
-        pass
-
+        return result
     
-    result = {}
     result['taste'] = get_taste(target, columns, typed_products)
-    result['today'] = []
-    result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
     result['usertype'] = get_usertype(user['type'], user['question1'], user['question2'], user['question3'], user['question4'], user['question5'], user['question6'])
+
     return result
 
 
