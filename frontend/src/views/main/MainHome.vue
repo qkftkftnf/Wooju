@@ -22,19 +22,26 @@
               <div class="category-title">
                 오늘의 추천
               </div>
-              <div class="more"> 
-                <!-- linkTo -->
-                더보기 <i class="fas fa-chevron-right"></i>
-              </div>
             </div>
             <div class="category-intro">
               오늘밤 취향 가득한 전통주 어떤가요?
             </div>
-            <div class="bottles">
-              <div class="bottle-card" v-for="product in productData">
+
+            <!-- v-if not surveyed -->
+            <div class="not-surveyed" v-if="_.isEmpty(recommendData.taste)">
+              <div class="not-surveyed-content">
+                아직 취향 조사를 하지 않으셨어요! <br/> 당신의 우주를 같이 알아볼까요?
+              </div>
+              <div class="survey-btn" @click="linkTo('MyRecommendationType')">
+                <div class="btn-box">취향 알아보러 가기 ></div>
+              </div>
+            </div>
+
+            <div class="bottles" v-else>
+              <div class="bottle-card" v-for="product in recommendData.taste">
                 <div @click="linkToProduct(`${product.product_id}`)">
                   <div class="bottle-img">
-                    <img src="@/assets/images/woojoo1.jpg" alt="bottle">
+                    <img :src="product.image" alt="bottle">
                   </div>
                   <div class="bottle-content">
                     <div class="bottle-title">
@@ -47,40 +54,6 @@
                 </div>
               </div>
             </div>
-
-
-              <!-- <el-scrollbar>
-                <div class="carousel-container">
-                  <div class="review-card" v-for="idx in 3">
-                    <div @click="linkToProduct(`${product.product_id}`)">
-                      <div class="image main-review-img">
-                        <img src="@/assets/images/profile_img_1.jpg" alt="reviewThumbnail">
-                        <span class="like">
-                          <i class="fas fa-heart heart"></i> product.like
-                        </span>
-                      </div>
-                      <div class="card-content">
-                        <div class="wooju">
-                          product.product_name
-                        </div>
-                        <div class="rate">
-                          product.도수
-                        </div>
-                        <div class="preview">
-                          product.용량
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="more-card review-card bs-none" @click="linkToCommunity('hotreview', 0)">
-                    <div class="more-btn">
-                      <span>
-                        더보기 <i class="fas fa-arrow-right"></i>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </el-scrollbar> -->
           </div>
         </div>
 
@@ -146,6 +119,7 @@ import MenuView from "@/views/common/MenuView.vue"
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import _ from 'lodash';
 
 const router = useRouter();
 const linkToCommunity = (category, post) => router.push({ name: "CommunityCategory", query: { name: category, post: post }})
@@ -153,6 +127,15 @@ const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params:
 
 // vuex axios
 const store = useStore();
+const isSurveyed = computed(() => store.getters.isSurveyed)
+const recommendData = computed(() => store.getters.recommendation);
+
+onMounted(() => {
+  if (!isSurveyed.value) {
+    store.dispatch("fetchRecommendationResult")
+  }
+})
+
 const reviews = computed(() => store.getters.reviews)
 
 store.dispatch("fetchAllReviews")
