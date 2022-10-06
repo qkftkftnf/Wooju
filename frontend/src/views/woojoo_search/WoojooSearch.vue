@@ -50,7 +50,7 @@
           <input type="checkbox" id="check-award" v-model="searchInfo.award" class="search-checkbox">
         </div>
         <div class="search-keyword">
-          <input type="text" v-model="searchInfo.search">
+          <input type="text" v-model="searchInfo.keyword">
           <button class="search-button" @click="searchProducts">검색</button>
         </div>
       </div>
@@ -97,9 +97,10 @@ const searchInfo = ref({
   page: 1,
   size: 10,
   types: [],
-  search: ""
+  keyword: ""
 })
 const searchProducts = () => {
+  console.log(searchInfo.value)
   store.dispatch('fetchProducts', searchInfo.value)
 }
 const changePage = (page) => {
