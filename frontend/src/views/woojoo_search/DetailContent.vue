@@ -21,10 +21,6 @@
       <span class="wooju-alcohol">용량 :  </span>
       <i class="alcohol"></i> {{woojooInfo.object?.volume}}
     </div>
-    <!-- <div class="rate">
-      <span class="wooju-star">별점 : </span>
-      <i class="fas fa-star star"></i> {{woojooInfo.object?.star}}
-    </div> -->
     <div class="rate">
       <span class="price">가격 :</span>
       {{woojooInfo.object?.price}}원
@@ -32,6 +28,11 @@
     <p class="detail-text">
       {{woojooInfo.object?.award}}
     </p>
+
+    <div class="graph">
+      <canvas id="productChart" width="250" height="250"></canvas>
+    </div>
+
     <div class="title">
       어울리는 음식
     </div>
@@ -56,6 +57,59 @@ import { ref, computed, onMounted } from "vue";
 
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
+
+
+onMounted(() => {
+
+  // rader chart
+  var ctx = document.getElementById('productChart').getContext('2d');
+
+  var myChart = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: [
+        '단맛',
+        '신맛',
+        '바디감',
+        '탄산',
+        '풍미',
+      ],
+      datasets: [{
+        label: ' ',
+        data: [
+          2,4,5,4,3
+        ],
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: true,
+      elements: {
+        line: {
+          borderWidth: 3
+        }
+      },
+      scale: {
+        ticks: {
+            beginAtZero: true,
+            max: 5,
+            min: 0,
+        }
+      },
+      legend: {
+        display: false
+      }
+    },
+  })
+})
+
 </script>
 
 <style>
@@ -83,12 +137,13 @@ const woojooInfo = computed(() => store.getters.woojooInfo);
 
 .title {
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
 .fitfood-container {
   display: flex;
+  margin-bottom: 50px;
   flex-flow: row;
 }
 

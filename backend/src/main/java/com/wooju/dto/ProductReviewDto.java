@@ -1,7 +1,7 @@
 package com.wooju.dto;
 
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,6 +21,12 @@ public class ProductReviewDto {
 	int id;
 	@ApiModelProperty(name="nickname")
 	String nickname;
+	@ApiModelProperty(name="user_img")
+	String user_img;
+	@ApiModelProperty(name="img")
+	ArrayList<String> img;
+	@ApiModelProperty(name="gosu")
+	boolean gosu;	
 	@ApiModelProperty(name="content")
 	String content;
 	@ApiModelProperty(name="time")
