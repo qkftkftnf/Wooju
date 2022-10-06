@@ -118,9 +118,13 @@ class ProductDetail(ProductBase):
     ingredient: Union[str, None] = None
 
 
+class UserType(BaseModel):
+    type: int
+    analysis: object
 
 
 class Recommendation(BaseModel):
     taste: Union[List[ProductBase], None] = None
     today: Union[List[ProductBase], None] = None
     award: List[ProductBase]
+    usertype: UserType
