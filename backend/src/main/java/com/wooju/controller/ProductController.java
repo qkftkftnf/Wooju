@@ -18,6 +18,7 @@ import com.wooju.dto.ProductReviewDto;
 import com.wooju.dto.request.ProductLikeRequestDto;
 import com.wooju.dto.request.ProductListRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
+import com.wooju.dto.response.LikeCheckResponseDto;
 import com.wooju.dto.response.ProductDetailResponseDto;
 import com.wooju.dto.response.ProductListResponseDto;
 import com.wooju.entity.User;
@@ -64,7 +65,27 @@ public class ProductController {
 		 ArrayList<ProductReviewDto> list=productService.getReviewList(id);
 		return ResponseEntity.status(200).body(ProductDetailResponseDto.of(200, "Success",result,list));
 	}
+	
+	@GetMapping("/likeCheck/{product_id}")
+	@ApiOperation(value="술 좋아요 체크", notes ="술좋아요 여부 확인하기")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<? extends BaseResponseDto> productlikeCheck(@ApiIgnore Authentication authentication,
+			@PathVariable("product_id") int id) throws Exception{
+		
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
+		User user=userDetails.getUser();
+		
+		boolean check=productService.getlikeCheck(id,user);
+		
 
+		return ResponseEntity.status(200).body(LikeCheckResponseDto.of(200, "Success",check));
+	}
+	
 	
 	@PostMapping("/like")
 	@ApiOperation(value="좋아요", notes ="술 좋아요")

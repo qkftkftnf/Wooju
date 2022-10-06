@@ -13,5 +13,6 @@ public interface ProductService {
 	Object getlist(ProductListRequestDto dto);
 	Object getdetail(int id);
 	ArrayList<ProductReviewDto> getReviewList(int id);
+	boolean getlikeCheck(int product_id,User user) throws Exception;
 
 }

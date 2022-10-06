@@ -87,6 +87,7 @@ public class ProductServiceImpl implements ProductService{
 						    .queryParam("isAward", dto.isAward())
 						    .queryParam("page", dto.getPage())
 						    .queryParam("size", dto.getSize())
+						    .queryParam("search",dto.getKeyword())
 						    .build())
 					.retrieve()
 					.toEntity(Object.class)
@@ -101,7 +102,7 @@ public class ProductServiceImpl implements ProductService{
 					    .queryParam("isAward", dto.isAward())
 					    .queryParam("page", dto.getPage())
 					    .queryParam("size", dto.getSize())
-					    .queryParam("keyword",dto.getKeyword())
+					    .queryParam("search",dto.getKeyword())
 					    .build())
 				.retrieve()
 				.toEntity(Object.class)
@@ -152,6 +153,15 @@ public class ProductServiceImpl implements ProductService{
 			list.add(dto);
 		}
 		return list;
+	}
+
+	@Override
+	public boolean getlikeCheck(int product_id,User user) throws Exception {
+		if(!productRepository.findById(product_id).isPresent()) throw new ProductNotFoundException();
+		long num=likeProductRepository.countByProductIdAndUserId(product_id, user.getId());
+		if(num==1)return true;
+		else if(num==0) return false;
+		else throw new LikeException();
 	}
 
 
