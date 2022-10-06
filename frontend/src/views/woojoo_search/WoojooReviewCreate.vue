@@ -183,8 +183,11 @@ const rate = ref(0)
 const reviewTextarea = ref("")
 
 const onSubmit = () => {
+
+  console.log(!!uploadImages.value[0])
   var reviewInfo = {}
-  if (uploadImages.value != []) {
+  if (!!uploadImages.value[0]) {
+    console.log("WHY")
     reviewInfo = {
       product_id: productId,
       star: rate.value,
@@ -192,19 +195,21 @@ const onSubmit = () => {
       file: imageData,
       flag: true,
     }
+    store.dispatch('createReview', reviewInfo)
   } else {
-    reviewInfo = {
-      product_id: productId,
-      star: rate.value,
-      content: reviewTextarea.value,
-      flag: false,
-    }
+    console.log("HEY")
+    // reviewInfo = {
+    //   product_id: productId,
+    //   star: rate.value,
+    //   content: reviewTextarea.value,
+    //   flag: false,
+    // }
+    alert("이미지를 1개 이상 첨부해주세요.")
   }
 
   // for (let value of imageData.values()) {
   //   console.log(value)
   // } 
-  store.dispatch('createReview', reviewInfo)
 };
 
 

@@ -83,7 +83,7 @@
             {{ product.name }}
           </div>
           <div class="bottle-intro">
-            {{ product.alcohol }}% | {{ product.volume }}
+            {{ product.alcohol }}%
           </div>
         </div>
       </div>
