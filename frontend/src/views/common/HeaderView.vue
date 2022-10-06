@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <img src="@/assets/images/logo.png" alt="logo" class="logo">
+    <img src="@/assets/images/logo-bg.png" alt="logo" class="logo">
     <ModeToggle/>
   </div>
 </template>

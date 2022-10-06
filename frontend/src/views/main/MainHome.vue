@@ -2,7 +2,7 @@
   <div class="tab-template container">
     <div class="tab-header">
       <div class="mainhome-logo">
-        <img src="@/assets/images/logo.png" alt="homelogo">
+        <img src="@/assets/images/logo-bg.png" alt="homelogo">
       </div>
       <div class="mode-toggle">
         <ModeToggle/>

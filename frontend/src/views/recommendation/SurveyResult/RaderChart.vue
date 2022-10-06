@@ -1,7 +1,7 @@
 <template>
-    <div class="graph">
-      <canvas id="myChart" width="250" height="250"></canvas>
-    </div>
+  <div class="graph">
+    <canvas id="myChart" width="250" height="250"></canvas>
+  </div>
 </template>
 
 <script setup>
@@ -55,5 +55,10 @@ onMounted(() => {
 </script>
 
 <style>
-  
+.graph {
+  width: 80vw;
+  max-width: 400px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
 </style>

@@ -469,7 +469,7 @@
 }
 
 .result-container .recommends span {
-  color: var(--main-color);
+  color: var(--text-highlight-color);
 }
 
 .result-container .recommends .result-intro {
