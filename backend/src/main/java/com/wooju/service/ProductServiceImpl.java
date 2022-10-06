@@ -18,12 +18,14 @@ import com.wooju.dto.request.ProductListRequestDto;
 import com.wooju.entity.LikeProduct;
 import com.wooju.entity.Product;
 import com.wooju.entity.Review;
+import com.wooju.entity.ReviewImg;
 import com.wooju.entity.User;
 import com.wooju.exception.LikeException;
 import com.wooju.exception.ProductNotFoundException;
 import com.wooju.exception.ReviewNotFoundException;
 import com.wooju.repository.LikeProductRepository;
 import com.wooju.repository.ProductRepository;
+import com.wooju.repository.ReviewImgRepository;
 import com.wooju.repository.ReviewRepository;
 
 @Service
@@ -37,6 +39,8 @@ public class ProductServiceImpl implements ProductService{
 	ProductRepository productRepository;
 	@Autowired
 	ReviewRepository reviewRepository;
+	@Autowired
+	ReviewImgRepository reviewImgRepository;
 	
 	@Override
 	@Transactional
@@ -132,12 +136,19 @@ public class ProductServiceImpl implements ProductService{
 		for(Review review:reviewTemp) {
 			ProductReviewDto dto= ProductReviewDto.builder()
 					.id(review.getId())
+					.user_img(review.getUser().getImg())
+					.gosu(review.getUser().isGosu())
 					.nickname(review.getUser().getNickname())
 					.content(review.getContent())
 					.star(review.getStar())
 					.time(review.getTime())
 					.like(review.getLike())
 					.build();
+			dto.setImg(new ArrayList<String>());
+			ArrayList<ReviewImg> imgs= reviewImgRepository.findByUserIdAndReviewId(review.getUser().getId(), review.getId());
+			for(ReviewImg img:imgs) {
+				dto.getImg().add(img.getImg());
+			}
 			list.add(dto);
 		}
 		return list;
