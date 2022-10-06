@@ -91,7 +91,9 @@ def get_usertype(user):
         'type': 0,
         'analysis': {
             'labels': columns,
-            'data': target[0]
+            'data': target[0],
+            'max': '',
+            'min': ''
         }
     }
 
