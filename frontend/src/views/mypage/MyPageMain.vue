@@ -84,18 +84,24 @@ import MyPagePreference from "@/views/mypage/MyPagePreference.vue"
 import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
 import MyPageReviews from "@/views/mypage/MyPageReviews.vue"
 import { ref, onMounted ,computed } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 
 // script
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 const profileData = computed(() => store.getters.profile)
 const linkTo = (name) => router.push({ name: name, })
+const reviewIdx = route.query.reviewIdx
 
 onMounted(() => {
   store.dispatch("fetchProfile")
+  if (!!reviewIdx) {
+    window.scrollTo(450, 450)
+    tabPosition('mypage-reviews')
+  }
 })
 
 

@@ -4,7 +4,7 @@
       <div class="mypage-review-card" v-for="(data, idx) in profileData.profile?.reviewList" @click="openModal(idx)">
         <div class="review-img">
           <img :src="data.img[0]" alt="" v-if="data.img[0]">
-          <img src="@/assets/image/nonpic.png" alt="" v-else>
+          <!-- <img src="@/assets/image/nonpic.png" alt="" v-else> -->
         </div>
         <div class="review-content">
           <div class="review-wooju">
@@ -32,7 +32,7 @@
           <div class="date">
             {{ profileData.profile?.reviewList[postIdx].time }}
           </div>
-          <div class="edit-btn">
+          <div class="edit-btn" @click="linkToEdit(profileData.profile?.reviewList[postIdx].id)">
             수정
           </div>
         </div>
@@ -67,18 +67,27 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useStore } from "vuex";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 const store = useStore();
 const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
+const linkToEdit = (reviewPk) => router.push({ name: "WoojooReviewEdit", params: { reviewPk: reviewPk }})
+const reviewIdx = route.query.reviewIdx
 
 const profileData = computed(() => store.getters.profile)
 
 const isOpen = ref(false)
 const postIdx = ref(0)
+
+onMounted(() => {
+  if (!!reviewIdx) {
+    openModal(reviewIdx)
+  }
+})
 
 const openModal = (idx) => {
   isOpen.value = true
@@ -97,9 +106,7 @@ const openFunc = () => {
 
 const closeFunc = () => {
   const telContainer = document.querySelector("#tel")
-  setTimeout(() => {
-    telContainer.style.display = "none"
-  }, 2000);
+  telContainer.style.display = "none" 
 }
 
 </script>
