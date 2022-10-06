@@ -1,12 +1,13 @@
 <template>
   <HeaderView/>
   <div class="login-container">
+    <div class="login-image"><img src="@/assets/images/community.png" alt=""></div>
     <div class="login-button-group">
-      <img class="login-button-image" :src="google" alt="login with google"
+      <p class="login-message">소셜 계정으로 쉽게 로그인하고<br/>우주를 즐겨보세요</p>
+      <img class="login-google" src="@/assets/images/login/google.png" alt="login with google"
         @click="loginPopup('google')" />
-      <img class="login-button-image" :src="naver" alt="login with naver"
+      <img class="login-naver" src="@/assets/images/login/naver.png" alt="login with naver"
         @click="loginPopup('naver')" />
-      <p class="login-message">소셜 계정으로 우-주에 로그인하세요!</p>
     </div>
   </div>
   <MenuView menuTab="my-page-menu"/>
@@ -15,8 +16,6 @@
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
 import MenuView from "@/views/common/MenuView.vue"
-import google from "@/assets/images/login/google.svg"
-import naver from "@/assets/images/login/naver.svg"
 import { useStore } from "vuex"
 import { useRouter } from "vue-router"
 
@@ -37,5 +36,25 @@ window.checkLogin = () => {
 const loginPopup = (path) => window.open(`/login/popup/${path}`, '_blank', )
 </script>
 
-<style>
+<style scoped>
+.login-image {
+  width: 80%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.login-google,
+.login-naver {
+  width: 70vw;
+  max-width: 350px;
+  border-radius: 10px;
+}
+
+.login-google {
+  border: 1px solid #4285F4;
+}
+
+.login-naver {
+  margin-top: 10px;
+  border: 1px solid #03c75a;
+}
 </style>

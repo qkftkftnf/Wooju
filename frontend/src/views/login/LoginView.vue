@@ -12,14 +12,15 @@
   background-color: var(--bg-color);
   display: flex;
   align-items: center;
-}
-
-.login-container .login-button-group {
-  padding-bottom: 15vh;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .login-container .login-message {
-  font-size: 1.4rem;
+  margin-bottom: 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 30px;
   text-transform: uppercase;
 }
 
@@ -32,5 +33,4 @@
 .login-container .login-button-image:active {
   filter: brightness(0.8);
 }
-
 </style>

@@ -34,30 +34,45 @@ const mypage = {
         .catch((err) => console.log(err))
     },
     profileEdit({ getters }, profileInfo) {
-      axios({
-        method: "POST",
-        url: "https://j7a304.p.ssafy.io/api/image/upload",
-        headers: {
-          Authorization: getters.authHeader,
-          "Content-Type": "multipart/form-data",
-        },
-        data: profileInfo.file,
-      })
-        .then(({ data }) => {
-          http.put("/user/profile", {
-            nickname: profileInfo.nickname,
-            img: data.img
-          }, {
-            headers: {Authorization: getters.authHeader}
-          })
+      if (profileInfo.flag) {
+        axios({
+          method: "POST",
+          url: "https://j7a304.p.ssafy.io/api/image/upload",
+          headers: {
+            Authorization: getters.authHeader,
+            "Content-Type": "multipart/form-data",
+          },
+          data: profileInfo.file,
+        })
           .then(({ data }) => {
-            router.push({
-              name: "MyPageMain",
+            http.put("/user/profile", {
+              nickname: profileInfo.nickname,
+              img: data.img
+            }, {
+              headers: {Authorization: getters.authHeader}
             })
+            .then(({ data }) => {
+              router.push({
+                name: "MyPageMain",
+              })
+            })
+            .catch((err) => console.log(err))
+        })
+        .catch((err) => console.log(err))
+      } else {
+        http.put("/user/profile", {
+          nickname: profileInfo.nickname,
+          img: profileInfo.img
+        }, {
+          headers: {Authorization: getters.authHeader}
+        })
+        .then(({ data }) => {
+          router.push({
+            name: "MyPageMain",
           })
-          .catch((err) => console.log(err))
-      })
-      .catch((err) => console.log(err))
+        })
+        .catch((err) => console.log(err))
+      }
     },
   },
 }
