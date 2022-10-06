@@ -12,7 +12,42 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
     if user_id != None:
         result = {}
         user = db.query(User).filter(User.id == user_id).first()
-        result['taste'] = get_taste(user, products)
+        if user.type == '탁주':
+            target = [[
+                user.question1,
+                user.question2,
+                user.question3,
+                user.question4,
+                user.question5,]]
+            columns = ['sweet', 'weight', 'carbonic', 'plain', 'acidity']
+            products = products \
+                .filter((Product.type == '탁주') | (Product.type == '탁주 기타주류'))
+
+        elif user.type == '증류주':
+            target = [[
+                user.question1,
+                user.question2,
+                user.question3,
+                user.question4,
+                user.question5,]]
+            columns = ['body', 'nutty', 'richness', 'spicy', 'flavor']
+            products = products \
+                .filter((Product.type == '리큐르') | (Product.type == '증류식소주') | (Product.type == '일반증류주') | (Product.type == '증류주 기타주류'))
+        
+        elif user.type == '약주, 과실주':
+            target = [[
+                user.question1,
+                user.question2,
+                user.question3,
+                user.question4,
+                user.question5,
+                user.question6,
+                user.question6,]]
+            columns = ['sweet', 'carbonic', 'plain', 'acidity', 'body', 'tannin', 'bitter']
+            products = products \
+                .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
+
+        result['taste'] = get_taste(target, columns, products)
         result['today'] = products.order_by(func.rand())[:3]
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
         result['usertype'] = get_usertype(user)
@@ -51,12 +86,37 @@ def search_products(db: Session, keyword: str):
 def get_recommendation(db: Session, user: object, keywords: Optional[str]=None):
     products = db.query(Product)
     if user['type'] == '탁주':
+        target = [[
+            user['question1'],
+            user['question2'],
+            user['question3'],
+            user['question4'],
+            user['question5'],]]
+        columns = ['sweet', 'weight', 'carbonic', 'plain', 'acidity']   
         typed_products = products \
             .filter((Product.type == '탁주') | (Product.type == '탁주 기타주류'))
+    
     elif user['type'] == '약주, 과실주':
+        target = [[
+            user['question1'],
+            user['question2'],
+            user['question3'],
+            user['question4'],
+            user['question5'],
+            user['question6'],
+            user['question6']]]
+        columns = ['sweet', 'carbonic', 'plain', 'acidity', 'body', 'tannin', 'bitter']
         typed_products = products \
             .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
+    
     elif user['type'] == '증류주':
+        target = [[
+            user['question1'],
+            user['question2'],
+            user['question3'],
+            user['question4'],
+            user['question5'],]]
+        columns = ['body', 'nutty', 'richness', 'spicy', 'flavor']
         typed_products = products \
             .filter((Product.type == '리큐르') | (Product.type == '증류식소주') | (Product.type == '일반증류주') | (Product.type == '증류주 기타주류'))
     else:
@@ -64,9 +124,10 @@ def get_recommendation(db: Session, user: object, keywords: Optional[str]=None):
 
     
     result = {}
-    result['taste'] = get_taste(user, typed_products)
-    result['today'] = get_today(keywords, products) if keywords else {}
+    result['taste'] = get_taste(target, columns, typed_products)
+    result['today'] = []
     result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
+    result['usertype'] = {'type': 0, 'analysis': {}}
     return result
 
 
