@@ -33,7 +33,7 @@
                 <div class="review-card" v-for="review, idx in reviewsData.dto?.hotreview">
                   <div @click="linkTo('hotreview', idx + 1)">
                     <div class="image">
-                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <img :src="review.img[0]" alt="reviewThumbnail" v-if="review.img[0]">
                       <span class="like">
                         <i class="fas fa-heart heart"></i> {{ review.like }}
                       </span>
@@ -79,7 +79,7 @@
                 <div class="review-card" v-for="review, idx in reviewsData.dto?.hotproductsreview">
                   <div @click="linkTo('Hotproductsreview', idx + 1)">
                     <div class="image">
-                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <img :src="review.img[0]" alt="reviewThumbnail" v-if="review.img[0]">
                       <span class="like">
                         <i class="fas fa-heart heart"></i> {{ review.like }}
                       </span>
@@ -125,7 +125,7 @@
                 <div class="review-card" v-for="review, idx in reviewsData.dto?.gosureview">
                   <div @click="linkTo('gosureview', idx + 1)">
                     <div class="image">
-                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <img :src="review.img[0]" alt="reviewThumbnail" v-if="review.img[0]">
                       <span class="like">
                         <i class="fas fa-heart heart"></i> {{ review.like }}
                       </span>
@@ -171,7 +171,7 @@
                 <div class="review-card" v-for="review, idx in reviewsData.dto?.recentreview">
                   <div @click="linkTo('recentreview', idx + 1)">
                     <div class="image">
-                      <img :src="review.img[0]" alt="reviewThumbnail">
+                      <img :src="review.img[0]" alt="reviewThumbnail" v-if="review.img[0]">
                       <span class="like">
                         <i class="fas fa-heart heart"></i> {{ review.like }}
                       </span>

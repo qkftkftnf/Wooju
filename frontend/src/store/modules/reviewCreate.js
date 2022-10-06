@@ -28,7 +28,6 @@ const reviewCreate = {
     },
     createReview({ getters }, reviewData) {
       if (reviewData.flag) {
-        console.log("existed")
         axios({
           method: "POST",
           url: "https://j7a304.p.ssafy.io/api/image/uploads",
@@ -74,7 +73,6 @@ const reviewCreate = {
       }
     },
     editReview({ getters }, reviewData) {
-      console.log(reviewData)
       if (reviewData.flag) {
         axios({
           method: "POST",
@@ -85,7 +83,6 @@ const reviewCreate = {
           data: reviewData.file,
         })
           .then(({ data }) => {
-            console.log(data)
             http.put("/review", {
               content: reviewData.content,
               img: data.imgs,
@@ -105,7 +102,8 @@ const reviewCreate = {
         })
         .catch((err) => console.log(err))
       } else {
-        http.post("/review", {
+        console.log(reviewData.img)
+        http.put("/review", {
           content: reviewData.content,
           img: reviewData.img,
           id: reviewData.id,
