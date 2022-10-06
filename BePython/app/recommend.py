@@ -39,10 +39,14 @@ def get_taste(target, columns, products):
         return []
 
 
-def get_today(keywords, products):
+def get_today(user, products):
     product_df = pd.read_sql(products.statement, products.session.bind)
 
-    target_data =  pd.DataFrame({'keyword': [keywords]})
+    keywords = set()
+    for product in user.products:
+        keywords |= set(product.keyword.split(', '))
+
+    target_data =  pd.DataFrame({'keyword': [', '.join(keywords)]})
     search_data = pd.concat([target_data, product_df], ignore_index = True)
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(search_data['keyword'].fillna(value=''))

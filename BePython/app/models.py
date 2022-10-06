@@ -10,6 +10,11 @@ product_maker = Table("product_maker", Base.metadata,
                        Column("product_id", ForeignKey("product.id"), primary_key=True),
                        Column("maker_id", ForeignKey("maker.id"), primary_key=True))
 
+like_product = Table("like_product", Base.metadata,
+                       Column("product_id", ForeignKey("product.id"), primary_key=True),
+                       Column("user_id", ForeignKey("user.id"), primary_key=True))
+
+
 class Product(Base):
 	__tablename__ = 'product'
 
@@ -58,6 +63,9 @@ class Product(Base):
 	makers = relationship("Maker",
 						secondary=product_maker,
 						back_populates="products")
+	users = relationship("User",
+						secondary=like_product,
+						back_populates="products")
 	shops = relationship("Shop", back_populates="product", order_by="Shop.price")
 
 
@@ -104,6 +112,9 @@ class User(Base):
 	type = Column(VARCHAR(255), nullable=False)
 	gosu = Column(Boolean, nullable=False)
 	review_count = Column(BigInteger, nullable=True)
+	products = relationship("Product",
+					secondary=like_product,
+					back_populates="users")
 
 
 class Shop(Base):

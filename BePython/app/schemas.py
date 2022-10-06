@@ -60,7 +60,7 @@ class ProductBase(BaseModel):
     
     class Config:
         orm_mode = True
-    
+
 
 class User(UserBase):
     email: str
