@@ -32,16 +32,16 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(LikeException.class)
     protected ResponseEntity<BaseResponseDto> handleLikeException(LikeException e) {
-        return ResponseEntity.status(405).body(BaseResponseDto.of(405, "like error"));
+        return ResponseEntity.status(405).body(BaseResponseDto.of(405, "Like Error"));
     }
 	
 	@ExceptionHandler(ExistUserException.class)
     protected ResponseEntity<BaseResponseDto> handleExistUserException(ExistUserException e) {
-        return ResponseEntity.status(404).body(BaseResponseDto.of(407, "user exist"));
+        return ResponseEntity.status(404).body(BaseResponseDto.of(407, "User Exist"));
     }
 	
 	@ExceptionHandler(DifferentUserException.class)
     protected ResponseEntity<BaseResponseDto> handleDifferentUserException(DifferentUserException e) {
-        return ResponseEntity.status(404).body(BaseResponseDto.of(408, "different user"));
+        return ResponseEntity.status(404).body(BaseResponseDto.of(408, "User Different"));
     }
 }

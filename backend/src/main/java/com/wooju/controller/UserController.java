@@ -91,6 +91,7 @@ public class UserController {
 	@ApiOperation(value="회원 정보", notes ="내 정보 확인")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
 	public ResponseEntity<? extends BaseResponseDto> myprofile(@ApiIgnore Authentication authentication) throws Exception{
@@ -108,6 +109,7 @@ public class UserController {
 	@ApiOperation(value="회원 정보",notes="내 정보 수정")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
 	public ResponseEntity<? extends BaseResponseDto> modifyprofile(@ApiIgnore Authentication authentication 
@@ -167,7 +169,6 @@ public class UserController {
 	@ApiOperation(value="기존에 있는 설문 조사 결과 받기",notes="기존에 있는 설문 정보 토대로 결과값 반환")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
-		@ApiResponse(code = 401 , message="부적절한 토큰"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
 	public ResponseEntity<? extends BaseResponseDto> surveyproductlist(@ApiIgnore Authentication authentication,
