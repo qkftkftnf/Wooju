@@ -44,8 +44,8 @@ const community = {
         review_id: reviewId,
       }, 
       { headers: 
-        // {Authorization: getters.authHeader},
-          {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
+        {Authorization: getters.authHeader},
+          // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
 
       })
         .then(({data}) => {
@@ -61,8 +61,8 @@ const community = {
       console.log('unlike')
       http.delete(`review/like/${reviewId}`, {
         headers: 
-        // {Authorization: getters.authHeader}
-        {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
+        {Authorization: getters.authHeader}
+        // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
       })
         .then(() => {
           commit("SET_ISLIKE_REVIEW", false)
@@ -74,8 +74,8 @@ const community = {
       console.log(getters.isLikeReview)
       http.get(`/review/likeCheck/${reviewId}`,
         { headers: 
-          // {Authorization: getters.authHeader},  
-          {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
+          {Authorization: getters.authHeader},  
+          // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
         })
         .then(({data}) => {
           console.log(data.likecheck)

@@ -43,8 +43,8 @@ const WoojooDetail = {
       console.log(getters.isLike)
       http.get(`/product/likeCheck/${productId}`,
         { headers: 
-          // {Authorization: getters.authHeader},  
-          {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
+          {Authorization: getters.authHeader},  
+          // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
         })
         .then(({data}) => {
           console.log(data.likecheck)
@@ -61,8 +61,8 @@ const WoojooDetail = {
         product_id: productId,
       }, {
         headers: 
-        // {Authorization: getters.authHeader},  
-        {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
+        {Authorization: getters.authHeader},  
+        // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
       })
         .then(({data}) => {
           console.log(data)
@@ -78,8 +78,8 @@ const WoojooDetail = {
       console.log('unlike')
       http.delete(`product/like/${productId}`, {
         headers: 
-        // {Authorization: getters.authHeader}
-        {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
+        {Authorization: getters.authHeader}
+        // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
       })
         .then(() => {
           commit("SET_ISLIKE", false)
