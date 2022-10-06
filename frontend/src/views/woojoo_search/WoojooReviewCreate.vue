@@ -14,7 +14,7 @@
   <div class="create-container">
     <div class="create-input">
       <div class="sool-name">
-        술 이름: <span>황금 보리 17.5%</span>
+        술 이름: <span>{{ woojooInfo.object?.name }}</span>
       </div>
       <div class="line"></div>
       <div class="sool-rate">
@@ -69,9 +69,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
-  
+import { useRouter, useRoute } from "vue-router";
+
+// axios
+const store = useStore()
+const route = useRoute()
+
+const productId = route.params.productPk
+const woojooInfo = computed(() => store.getters.woojooInfo);
+
+store.dispatch("fetchWoojooInfo", productId)
+
+
 
 // image upload
 const uploadImages = ref([])
@@ -170,7 +181,6 @@ const resetGallery = () => {
 // submit
 const rate = ref(0)
 const reviewTextarea = ref("")
-const store = useStore()
 
 const onSubmit = () => {
   // var imgData = new FormData()
@@ -180,7 +190,7 @@ const onSubmit = () => {
   // })
 
   const reviewData = {
-    product_id: 64,
+    product_id: productId,
     star: rate.value,
     content: reviewTextarea.value,
     // file: imgData,

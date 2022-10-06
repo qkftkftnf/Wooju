@@ -74,8 +74,8 @@
             <div class="category-carousel">
               <el-scrollbar>
                 <div class="carousel-container">
-                  <div class="review-card" v-for="review in reviews.dto?.hotreview">
-                    <div @click="linkToCommunity('hotreview', idx)">
+                  <div class="review-card" v-for="review, idx in reviews.dto?.hotreview">
+                    <div @click="linkToCommunity('hotreview', idx + 1)">
                       <div class="image main-review-img">
                         <img :src="review.img[0]" alt="reviewThumbnail">
                         <span class="like">
@@ -124,6 +124,7 @@ import _ from 'lodash';
 const router = useRouter();
 const linkToCommunity = (category, post) => router.push({ name: "CommunityCategory", query: { name: category, post: post }})
 const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
+const linkTo = (name) => router.push({ name: name })
 
 // vuex axios
 const store = useStore();

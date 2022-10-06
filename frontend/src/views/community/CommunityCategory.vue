@@ -5,10 +5,10 @@
       <div class="review-header">
         <div class="profile">
           <div class="profile-box">
-            <img class="profile-img" :src="reviewsData.review[firstPost].user_img" alt="">
+            <img class="profile-img" :src="reviewsData.review[firstPost]?.user_img" alt="">
           </div>
           <div class="review-writer">
-            <div class="review-nickname">{{ reviewsData.review[firstPost].user_nickname }}</div>
+            <div class="review-nickname">{{ reviewsData.review[firstPost]?.user_nickname }}</div>
           </div>
         </div>
         <span class="review-date">{{ reviewsData.review[firstPost]?.time }}</span> 
@@ -77,7 +77,7 @@
 
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 import { useStore } from "vuex";
@@ -97,8 +97,11 @@ const titles = {
 const reviewsData = computed(() => store.getters.reviews)
 const isCommunityLoaded = computed(() => store.getters.isCommunityLoaded)
 
-store.commit("SET_IS_COMMUNITY_LOADED", false)
-store.dispatch("fetchReviews", route.query.name)
+onMounted(() => {
+  store.commit("SET_IS_COMMUNITY_LOADED", false)
+  store.dispatch("fetchReviews", route.query.name)
+  console.log(reviewsData)
+})
 
 
 const title = titles[route.query.name]

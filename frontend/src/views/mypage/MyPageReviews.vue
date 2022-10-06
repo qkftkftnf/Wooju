@@ -3,7 +3,8 @@
     <div class="list-row">
       <div class="mypage-review-card" v-for="(data, idx) in profileData.profile?.reviewList" @click="openModal(idx)">
         <div class="review-img">
-          <img :src="data.img[0]" alt="pic">
+          <img :src="data.img[0]" alt="" v-if="data.img[0]">
+          <img src="@/assets/image/nonpic.png" alt="" v-else>
         </div>
         <div class="review-content">
           <div class="review-wooju">
@@ -46,7 +47,7 @@
           </div>
 
           <div class="review-stat">
-            <div class="wooju">
+            <div class="wooju" @click="linkToProduct(profileData.profile?.reviewList[postIdx].product_id)">
               술 이름: <span class="name">{{ profileData.profile?.reviewList[postIdx].product_name }}</span> >
             </div>
             <div class="rate">
@@ -68,8 +69,12 @@
 <script setup>
 import { ref, computed } from "vue"
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const store = useStore();
+const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
+
 const profileData = computed(() => store.getters.profile)
 
 const isOpen = ref(false)

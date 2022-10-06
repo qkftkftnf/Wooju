@@ -23,10 +23,6 @@
             <div class="category-title">
               핫 리뷰
             </div>
-            <div class="more"> 
-              <!-- linkTo -->
-              더보기 <i class="fas fa-chevron-right"></i>
-            </div>
           </div>
           <div class="category-intro">
             지금 하트를 많이 받은 리뷰를 만나보세요
@@ -72,10 +68,6 @@
           <div class="category-header">
             <div class="category-title">
               핫한 술 리뷰
-            </div>
-            <div class="more"> 
-              <!-- linkTo -->
-              더보기 <i class="fas fa-chevron-right"></i>
             </div>
           </div>
           <div class="category-intro">
@@ -123,10 +115,6 @@
             <div class="category-title">
               맛 고수 리뷰
             </div>
-            <div class="more"> 
-              <!-- linkTo -->
-              더보기 <i class="fas fa-chevron-right"></i>
-            </div>
           </div>
           <div class="category-intro">
             전통주를 사랑하는 맛 고수들의 풍부한 리뷰
@@ -173,13 +161,9 @@
             <div class="category-title">
               최신 리뷰
             </div>
-            <div class="more"> 
-              <!-- linkTo -->
-              더보기 <i class="fas fa-chevron-right"></i>
-            </div>
           </div>
           <div class="category-intro">
-            다른 사람들은 지금 무슨 술을 먹고 있는지 구경하세요
+            다른 사람들은 지금 무슨 술을 먹고 있을까요?
           </div>
           <div class="category-carousel">
             <el-scrollbar>
