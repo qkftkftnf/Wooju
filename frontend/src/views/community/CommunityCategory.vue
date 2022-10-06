@@ -9,7 +9,6 @@
           </div>
           <div class="review-writer">
             <div class="review-nickname">{{ reviewsData.review[firstPost].user_nickname }}</div>
-            <div class="review-level">레벨 153</div>
           </div>
         </div>
         <span class="review-date">{{ reviewsData.review[firstPost]?.time }}</span> 
@@ -22,10 +21,9 @@
         </el-carousel>
       </div>
       <div class="review-content">
-        <div class="wooju">
+        <div class="wooju" @click="linkToProduct(reviewsData.review[firstPost].product_id)">
           <span class="wooju-name">술 이름 : </span>
-          {{ reviewsData.review[firstPost]?.product_name }}
-          <i class="fas fa-chevron-right"></i>
+          {{ reviewsData.review[firstPost]?.product_name }} >
         </div>
         <div class="rate">
           <span class="wooju-star">별점  </span>
@@ -48,7 +46,6 @@
             </div>
             <div class="review-writer">
               <div class="review-nickname">{{ review.user_nickname }}</div>
-              <div class="review-level">레벨 153</div>
             </div>
           </div>
           <span class="review-date">{{ review.time }}</span> 
@@ -61,10 +58,9 @@
           </el-carousel>
         </div>
         <div class="review-content">
-          <div class="wooju">
+          <div class="wooju" @click="linkToProduct(review.product_id)">
             <span class="wooju-name">술 이름 : </span>
-            {{ review.product_name }} 
-            <i class="fas fa-chevron-right"></i>
+            {{ reviewsData.review[firstPost]?.product_name }} >
           </div>
           <div class="rate">
             <span class="wooju-star">별점  </span>
@@ -81,12 +77,16 @@
 
 <script setup>
 import HeaderView from "@/views/common/HeaderView.vue"
-import { ref, computed, onMounted } from "vue";
-import { useRoute } from 'vue-router'
+import { ref, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
 import { useStore } from "vuex";
 
 const store = useStore();
 const route = useRoute()
+const router = useRouter();
+const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
+
 const titles = {
   hotreview: "핫 리뷰",
   Hotproductsreview: "핫한 술 리뷰",

@@ -30,26 +30,44 @@
             <div class="category-intro">
               오늘밤 취향 가득한 전통주 어떤가요?
             </div>
-            <div class="category-carousel">
-              <el-scrollbar>
+            <div class="bottles">
+              <div class="bottle-card" v-for="product in productData">
+                <div @click="linkToProduct(`${product.product_id}`)">
+                  <div class="bottle-img">
+                    <img src="@/assets/images/woojoo1.jpg" alt="bottle">
+                  </div>
+                  <div class="bottle-content">
+                    <div class="bottle-title">
+                      {{ product.name }}
+                    </div>
+                    <div class="bottle-intro">
+                      도수: {{product.alcohol}}%<br/>용량: {{ product.volume }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+              <!-- <el-scrollbar>
                 <div class="carousel-container">
                   <div class="review-card" v-for="idx in 3">
-                    <div @click="linkToCommunity('hotreview', idx + 1)">
+                    <div @click="linkToProduct(`${product.product_id}`)">
                       <div class="image main-review-img">
                         <img src="@/assets/images/profile_img_1.jpg" alt="reviewThumbnail">
                         <span class="like">
-                          <i class="fas fa-heart heart"></i> review.like
+                          <i class="fas fa-heart heart"></i> product.like
                         </span>
                       </div>
                       <div class="card-content">
                         <div class="wooju">
-                          review.product_name
+                          product.product_name
                         </div>
                         <div class="rate">
-                          <i class="fas fa-star star"></i> review.star
+                          product.도수
                         </div>
                         <div class="preview">
-                          review.content
+                          product.용량
                         </div>
                       </div>
                     </div>
@@ -62,15 +80,11 @@
                     </div>
                   </div>
                 </div>
-              </el-scrollbar>
-            </div>
+              </el-scrollbar> -->
           </div>
-
-
         </div>
 
         <div class="home-corner search-corner">
-
           <div class="community-category">
             <div class="category-header">
               <div class="category-title">
@@ -87,23 +101,23 @@
             <div class="category-carousel">
               <el-scrollbar>
                 <div class="carousel-container">
-                  <div class="review-card" v-for="idx in 3">
-                    <div @click="linkToCommunity('hotreview', idx + 1)">
+                  <div class="review-card" v-for="review in reviews.dto?.hotreview">
+                    <div @click="linkToCommunity('hotreview', idx)">
                       <div class="image main-review-img">
-                        <img src="@/assets/images/profile_img_1.jpg" alt="reviewThumbnail">
+                        <img :src="review.img[0]" alt="reviewThumbnail">
                         <span class="like">
-                          <i class="fas fa-heart heart"></i> review.like
+                          <i class="fas fa-heart heart"></i> {{review.like}}
                         </span>
                       </div>
                       <div class="card-content">
                         <div class="wooju">
-                          review.product_name
+                          {{review.product_name}}
                         </div>
                         <div class="rate">
-                          <i class="fas fa-star star"></i> review.star
+                          <i class="fas fa-star star"></i> {{review.star}}
                         </div>
                         <div class="preview">
-                          review.content
+                          {{review.content}}
                         </div>
                       </div>
                     </div>
@@ -120,10 +134,8 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
   <MenuView menuTab="main-home-menu"/>
 </template>
@@ -136,16 +148,14 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const router = useRouter();
-const linkTo = (name) => router.push({ name: name })
 const linkToCommunity = (category, post) => router.push({ name: "CommunityCategory", query: { name: category, post: post }})
+const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
 
 // vuex axios
 const store = useStore();
-const reviewsData = computed(() => store.getters.reviews);
+const reviews = computed(() => store.getters.reviews)
 
-onMounted(() => {
-  store.dispatch("fetchAllReviews")
-})
+store.dispatch("fetchAllReviews")
 
 
 // header scroll event js
