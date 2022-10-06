@@ -40,10 +40,15 @@ const recommendation = {
     },
     fetchRecommendationResult({ commit, getters }) {
       commit("SET_IS_RECOMM_LOADED", false)
-      http.get("/user/survey")
+      var headers = {Authorization : ''}
+      if (getters.isLoggedIn) {
+        headers.Authorization = getters.authHeader
+      }
+      http.get("/user/survey", {'headers': headers})
         .then(({ data }) => {
           http.post("/user/survey",
-          data.dto)
+          data.dto,
+          {'headers': headers})
           .then(({ data }) => {
             commit("SET_RECOMMENDATION", data.obj)
             commit("SET_IS_RECOMM_LOADED", true)
