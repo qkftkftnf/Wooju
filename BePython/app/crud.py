@@ -2,8 +2,8 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from  sqlalchemy.sql.expression import func
 
-from models import Product, User
-from recommend import get_taste, get_today
+from models import Product, User, Shop
+from recommend import get_taste, get_today, get_usertype
 
 
 def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None, search: Optional[str]=None):
@@ -15,9 +15,9 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
         result['taste'] = get_taste(user, products)
         result['today'] = products.order_by(func.rand())[:3]
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
+        result['usertype'] = get_usertype(user)
 
     else:
-        print(search)
         products = products.filter(Product.alcohol < alcohol)
         if isAward:
             products = products.filter(Product.award)
@@ -38,7 +38,8 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
 
 
 def get_product(db: Session, product_id: int):
-    return db.query(Product).filter(Product.id == product_id).first()
+    product = db.query(Product).filter(Product.id == product_id).first()
+    return product
 
 
 def search_products(db: Session, keyword: str):

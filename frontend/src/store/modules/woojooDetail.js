@@ -29,7 +29,6 @@ const WoojooDetail = {
     //     .catch((err) => console.log(err))
     // },
     fetchWoojooInfo({ commit }, productId) {
-      console.log('-----2---')
       http.get(`/product/${productId}`)
         .then(({ data }) => {
           console.log(data)
@@ -38,9 +37,24 @@ const WoojooDetail = {
         .catch((err) => console.log(err))
     },
 
-    likeProduct({ getters }, productId) {
+    likeCheck({commit, getters}, productId) {
+      console.log('라이크 체크')
+      console.log(getters.isLike)
+      http.get(`/product/likeCheck/${productId}`,
+        { headers: {Authorization: getters.authHeader
+          },  
+        })
+        .then(({data}) => {
+          console.log(data.likecheck)
+          commit("SET_ISLIKE", data.likecheck)
+          console.log(getters.isLike)
+          }
+        )
+    },
+
+    likeProduct({ getters, commit }, productId) {
       console.log('like')
-      console.log(productId)
+      console.log(getters.isLike)
       http.post('/product/like', {
         product_id: productId,
       }, {
@@ -50,13 +64,23 @@ const WoojooDetail = {
         .then(({data}) => {
           console.log(data)
           commit("SET_ISLIKE", true)
+          this.$router.go()
           }
         )
         .catch((err) => console.log(err.message)
         )
     },
 
-    // deleteLikeProduct({getters}, productId)
+    unlikeProduct({getters, commit}, productId) {
+      console.log('unlike')
+      http.delete(`product/like/${productId}`, {
+        headers: {Authorization: getters.authHeader}
+      })
+        .then(() => {
+          commit("SET_ISLIKE", false)
+        })
+        .catch((err) => console.log(err))
+    }
 
     // {
     //   if (err.message === 'Request failed with status code 405'){

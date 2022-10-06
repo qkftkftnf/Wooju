@@ -18,5 +18,6 @@ public interface ReviewService {
 	void addLike(int review_id,User user) throws Exception;
 	void deleteLike(int review_id, User user) throws Exception;
 	ArrayList<ReviewDto> getmorelistPage(String value);
+	boolean getlikeCheck(int review_id,User user) throws Exception;
 
 }
