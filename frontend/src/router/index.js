@@ -145,8 +145,8 @@ const router = createRouter({
           component: WoojooSearch,
         },
         {
-          name: "WoojooReviewEdit",
-          path: ":reviewPk/review/create",
+          name: "WoojooReviewCreate",
+          path: ":productPk/review/create",
           component: WoojooReviewCreate,
         },
         {
@@ -179,12 +179,12 @@ const router = createRouter({
         },
       ],
     },
-   // path 수정 요망
-    {
-      name: "NonmemberView",
-      path: "/nonmember",
-      component: NonmemberView,
-    },
+  //  // path 수정 요망
+  //   {
+  //     name: "NonmemberView",
+  //     path: "/nonmember",
+  //     component: NonmemberView,
+  //   },
   ],
 });
 
