@@ -238,7 +238,6 @@ public class ReviewServiceImpl implements ReviewService{
 			int num=0;
 			for(String dtoimg: inputimg) {
 				if(imgs.getImg().equals(dtoimg)) {
-					System.out.println(123123);
 					num=1;
 					break;
 				}
