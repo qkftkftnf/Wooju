@@ -41,19 +41,33 @@ const WoojooDetail = {
     likeProduct({ getters }, productId) {
       console.log('like')
       console.log(productId)
-      http.post('/product/like',{
-        headers: {Authorization: getters.authHeader},
-        params: {
-          'productlike': productId
-        },
+      http.post('/product/like', {
+        product_id: productId,
+      }, {
+        headers: {Authorization: getters.authHeader
+      },  
       })
         .then(({data}) => {
           console.log(data)
           commit("SET_ISLIKE", true)
           }
         )
-        .catch((err) => console.log(err))
-    }
+        .catch((err) => console.log(err.message)
+        )
+    },
+
+    // deleteLikeProduct({getters}, productId)
+
+    // {
+    //   if (err.message === 'Request failed with status code 405'){
+    //     http.delete(`/product/like/${productId}`)
+    //     .then(({data})=> {
+    //     console.log(data)
+    // })
+    //   }
+    //   else{ console.log(err)}
+    // } 
+
     // fetchWoojoo({ commit }) {
     //   http.get('/product',
     //     {
