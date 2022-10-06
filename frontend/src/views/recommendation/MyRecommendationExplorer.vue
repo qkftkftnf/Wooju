@@ -11,7 +11,7 @@
       <span class="person-type prefer-type">
         탐험가
       </span>
-      <span class="end prefer-type">
+      <span class="type-end">
         형입니다.
       </span>
       <div class="type-image">

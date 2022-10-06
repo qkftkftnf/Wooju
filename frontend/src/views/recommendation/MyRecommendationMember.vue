@@ -27,7 +27,7 @@
             {{ product.name }}
           </div>
           <div class="bottle-intro">
-            {{ product.alcohol }}%
+            도수: {{ product.alcohol }}%
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
           <img :src="product.image" alt="bottle">
         </div>
         <div class="bottle-content">
-          <div class="bottle-title">
+          <div class="bottle-title cl-ellipsis">
             {{ product.name }}
           </div>
           <div class="bottle-intro">
