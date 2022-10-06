@@ -41,7 +41,10 @@ def get_taste(target, columns, products):
 
 def get_today(user, products):
     product_df = pd.read_sql(products.statement, products.session.bind)
-
+    
+    if len(user.products) <= 5:
+        return []
+        
     keywords = set()
     for product in user.products:
         keywords |= set(product.keyword.split(', '))
