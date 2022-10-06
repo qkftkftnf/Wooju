@@ -59,32 +59,32 @@ def get_today(keywords, products):
     return json.loads(result_json)
 
 
-def get_usertype(user):
-    if user.type == '탁주':
+def get_usertype(user_type, user_q1, user_q2, user_q3, user_q4, user_q5, user_q6):
+    if user_type == '탁주':
         target = [[
-            user.question1,
-            user.question2,
-            user.question3,
-            user.question4,
-            user.question5,]]
+            user_q1,
+            user_q2,
+            user_q3,
+            user_q4,
+            user_q5,]]
         columns = ['단맛', '바디감', '탄산', '담백함', '신맛']
 
-    elif user.type == '증류주':
+    elif user_type == '증류주':
         target = [[
-            user.question1,
-            user.question2,
-            user.question3,
-            user.question4,
-            user.question5,]]
+            user_q1,
+            user_q2,
+            user_q3,
+            user_q4,
+            user_q5,]]
         columns = ['바디감', '고소함', '풍부함', '자극적인 맛', '향긋함']
 
-    elif user.type == '약주, 과실주':
+    elif user_type == '약주, 과실주':
         target = [[
-            user.question1,
-            user.question2,
-            user.question4,
-            user.question5,
-            user.question6,]]
+            user_q1,
+            user_q2,
+            user_q4,
+            user_q5,
+            user_q6,]]
         columns = ['단맛', '탄산', '신맛', '바디감', '쓴맛']
 
     result = {
@@ -127,7 +127,7 @@ def get_usertype(user):
             else:
                 min_name += ', ' + columns[idx]
 
-    if user.type == '탁주':
+    if user_type == '탁주':
         type1 = (target[0][0]+target[0][1]+target[0][3]) / 3
         type4 = (target[0][2]+target[0][4]) / 2
         if type1 >= type4:
@@ -135,14 +135,14 @@ def get_usertype(user):
         else:
             result['type'] = 4
 
-    elif user.type == '약주, 과실주':
+    elif user_type == '약주, 과실주':
         type2 = (target[0][3]+target[0][4]) / 2
         type5 = (target[0][0]+target[0][1]+target[0][2]) / 3
         if type2 >= type5:
             result['type'] = 2
         else:
             result['type'] = 5
-    elif user.type == '증류주':
+    elif user_type == '증류주':
         type3 = (target[0][1]+target[0][2]) / 2
         type6 = (target[0][0]+target[0][3]+target[0][4]) / 3
         if type3 >= type6:

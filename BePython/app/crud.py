@@ -50,7 +50,7 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
         result['taste'] = get_taste(target, columns, products)
         result['today'] = products.order_by(func.rand())[:3]
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
-        result['usertype'] = get_usertype(user)
+        result['usertype'] = get_usertype(user.type, user.question1, user.question2, user.question3, user.question4, user.question5, user.question6)
 
     else:
         products = products.filter(Product.alcohol < alcohol)
@@ -127,7 +127,7 @@ def get_recommendation(db: Session, user: object, keywords: Optional[str]=None):
     result['taste'] = get_taste(target, columns, typed_products)
     result['today'] = []
     result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
-    result['usertype'] = {'type': 0, 'analysis': {}}
+    result['usertype'] = get_usertype(user['type'], user['question1'], user['question2'], user['question3'], user['question4'], user['question5'], user['question6'])
     return result
 
 
