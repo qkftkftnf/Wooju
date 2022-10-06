@@ -5,6 +5,7 @@ const WoojooDetail = {
     // woojooReviews : [],
     woojooInfo : {},
     isLike : false,
+    like_num :'',
   },
   mutations: {
     // SET_WOOJOOREVIEWS: (state, woojooReviews) => (state.woojooReviews = woojooReviews),
@@ -41,8 +42,9 @@ const WoojooDetail = {
       console.log('라이크 체크')
       console.log(getters.isLike)
       http.get(`/product/likeCheck/${productId}`,
-        { headers: {Authorization: getters.authHeader
-          },  
+        { headers: 
+          {Authorization: getters.authHeader},  
+          // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
         })
         .then(({data}) => {
           console.log(data.likecheck)
@@ -58,8 +60,9 @@ const WoojooDetail = {
       http.post('/product/like', {
         product_id: productId,
       }, {
-        headers: {Authorization: getters.authHeader
-      },  
+        headers: 
+        {Authorization: getters.authHeader},  
+        // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
       })
         .then(({data}) => {
           console.log(data)
@@ -74,7 +77,9 @@ const WoojooDetail = {
     unlikeProduct({getters, commit}, productId) {
       console.log('unlike')
       http.delete(`product/like/${productId}`, {
-        headers: {Authorization: getters.authHeader}
+        headers: 
+        {Authorization: getters.authHeader}
+        // {Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaXNzIjoid29vanUiLCJleHAiOjE2NjYzMTA5NDEsImlhdCI6MTY2NTAxNDk0MX0.mQbI8BNMjowD6Uu-WXulx65jyi2NfwXXmD0PA486w1IxOz8FQWtvBMKxwWC0dmU5STdoiOIG_uuGKNXAyybsOw'}
       })
         .then(() => {
           commit("SET_ISLIKE", false)
