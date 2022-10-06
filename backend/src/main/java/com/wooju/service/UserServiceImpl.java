@@ -207,7 +207,7 @@ public class UserServiceImpl implements UserService {
 		}else {
 			ResponseEntity<Object> result=webclient.get().
 					uri(uriBuilder-> uriBuilder
-						    .path("/recommendation/")
+						    .path("/recommendation")
 							.queryParam("type",dto.getType())
 							.queryParam("question1",dto.getQuestion1())
 							.queryParam("question2",dto.getQuestion2())
@@ -221,9 +221,6 @@ public class UserServiceImpl implements UserService {
 					.block();
 			return (result.getBody());
 		}
-		
-		
-		
 	}
 
 }
