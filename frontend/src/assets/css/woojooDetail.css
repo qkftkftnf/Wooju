@@ -40,18 +40,26 @@
 
 .detail-header .bg-box {
   width: 300px;
-  height: 300px;
+  height: 350px;
   position: absolute;
-  top: 115px;
+  overflow: hidden;
+  top: 75px;
   left: calc(50% - 150px);
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.08);
   box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, var(--shadow-percentage-03));
 }
 
+.detail-header .bg-box img {
+  max-width: 100%;
+  display: block; 
+  margin: 0px auto;
+  /* height: auto; */
+}
+
 .like-add {
   position: absolute;
-  bottom: 100px;
+  bottom: 90px;
   right: 60px;
   font-size: 1rem;
 }
