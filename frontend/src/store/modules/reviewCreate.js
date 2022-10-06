@@ -27,8 +27,7 @@ const reviewCreate = {
         .catch((err) => console.log(err))
     },
     createReview({ getters }, reviewData) {
-      console.log(typeof reviewData.file.FormData)
-      if (typeof reviewData.file.FormData != "undefined") {
+      if (reviewData.flag) {
         console.log("existed")
         axios({
           method: "POST",

@@ -147,6 +147,7 @@ const getResized = (image, index) => {
       canvas.toBlob(function(blob) {
         imageData.append("file", blob)
       })
+      console.log(imageData)
     }
   }
 }
