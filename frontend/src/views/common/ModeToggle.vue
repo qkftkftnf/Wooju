@@ -7,16 +7,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const toggleValue = ref(false);
+const toggleValue = ref(!sessionStorage.getItem('darkMode'));
 
-const toggleFunc = () => {
-  if (!toggleValue.value) {
-    // 다크모드
+const setDarkmode = (mode) => {
+  if (mode == 'dark') {
     document.querySelector('meta[name="theme-color"]').setAttribute('content',  '#091022')
 
-    toggleValue.value = !toggleValue.value
     document.documentElement.style.setProperty('--main-color', '#ffd524');
     document.documentElement.style.setProperty('--main-bg-color', '#1d222e'); // darker
     document.documentElement.style.setProperty('--main-header-color', '#1d222e');
@@ -38,10 +36,8 @@ const toggleFunc = () => {
     document.querySelector("#mode-icon").classList.remove('fa-moon')
 
   } else {
-    // 라이트모드
     document.querySelector('meta[name="theme-color"]').setAttribute('content',  '#FFD634')
 
-    toggleValue.value = !toggleValue.value
     document.documentElement.style.setProperty('--main-color', '#FFD634');    
     document.documentElement.style.setProperty('--main-bg-color', '#f9f9f9');
     document.documentElement.style.setProperty('--main-header-color', '#FFD634');
@@ -61,10 +57,31 @@ const toggleFunc = () => {
 
     document.querySelector("#mode-icon").classList.add('fa-moon')
     document.querySelector("#mode-icon").classList.remove('fa-sun')
+  }
 
+}
+
+const toggleFunc = () => {
+  if ( toggleValue.value ) {
+    // 다크모드
+    sessionStorage.setItem('darkMode', 'yes')
+
+    toggleValue.value = !toggleValue.value
+    setDarkmode('dark')
+  } else {
+    // 라이트모드
+    sessionStorage.setItem('darkMode', '')
+
+    toggleValue.value = !toggleValue.value
+    setDarkmode('light')
   }
 }
 
+onMounted(()=> {
+  if (!toggleValue.value) {
+    setDarkmode('dark')
+  }
+})
 </script>
 
 <style>
