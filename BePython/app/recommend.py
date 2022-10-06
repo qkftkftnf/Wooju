@@ -12,41 +12,7 @@ from models import Product, User
 
 categorys = {}
 
-def get_taste(user, products):
-    if user.type == '탁주':
-        target = [[
-            user.question1,
-            user.question2,
-            user.question3,
-            user.question4,
-            user.question5,]]
-        columns = ['sweet', 'weight', 'carbonic', 'plain', 'acidity']
-        products = products \
-            .filter((Product.type == '탁주') | (Product.type == '탁주 기타주류'))
-
-    elif user.type == '증류주':
-        target = [[
-            user.question1,
-            user.question2,
-            user.question3,
-            user.question4,
-            user.question5,]]
-        columns = ['body', 'nutty', 'richness', 'spicy', 'flavor']
-        products = products \
-            .filter((Product.type == '리큐르') | (Product.type == '증류식소주') | (Product.type == '일반증류주') | (Product.type == '증류주 기타주류'))
-    
-    elif user.type == '약주, 과실주':
-        target = [[
-            user.question1,
-            user.question2,
-            user.question3,
-            user.question4,
-            user.question5,
-            user.question6,
-            user.question6,]]
-        columns = ['sweet', 'carbonic', 'plain', 'acidity', 'body', 'tannin', 'bitter']
-        products = products \
-            .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
+def get_taste(target, columns, products):
 
     isSurveyed = True
 
@@ -185,11 +151,12 @@ def get_usertype(user):
     if (max_cnt == 5 or min_cnt == 5):
         if min_value > 2:
             result['type'] = 7
-            result['analysis']['content'] = '<div>당신은 이미 전통주의 달인입니다.</div>'
+            result['analysis']['max'] = '당신은 이미 전통주의 달인입니다.'
         
         else:
             result['type'] = 8
-            result['analysis']['content'] = '<div>아직까지는 전통주가 어려워요.</div>'
+            result['analysis']['min'] = '아직까지는 전통주가 어려워요.'
     else:
-        result['analysis']['content'] = '<div>' + max_name + '을 즐기고,</div><div>' + min_name + '을 낯설어 합니다.</div>'
+        result['analysis']['max'] = max_name + '을 즐기고,'
+        result['analysis']['min'] = min_name + '을 낯설어 합니다.'
     return result
