@@ -4,7 +4,7 @@
       <div class="mypage-review-card" v-for="(data, idx) in profileData.profile?.reviewList" @click="openModal(idx)">
         <div class="review-img">
           <img :src="data.img[0]" alt="" v-if="data.img[0]">
-          <img src="@/assets/image/nonpic.png" alt="" v-else>
+          <!-- <img src="@/assets/image/nonpic.png" alt="" v-else> -->
         </div>
         <div class="review-content">
           <div class="review-wooju">
@@ -32,7 +32,7 @@
           <div class="date">
             {{ profileData.profile?.reviewList[postIdx].time }}
           </div>
-          <div class="edit-btn">
+          <div class="edit-btn" @click="linkToEdit(profileData.profile?.reviewList[postIdx].id)">
             수정
           </div>
         </div>
@@ -74,6 +74,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const store = useStore();
 const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
+const linkToEdit = (reviewPk) => router.push({ name: "WoojooReviewEdit", params: { reviewPk: reviewPk }})
 
 const profileData = computed(() => store.getters.profile)
 

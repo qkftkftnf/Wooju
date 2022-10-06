@@ -11,10 +11,10 @@
     </div>
   </div>
   
-  <div class="create-container">
+  <div class="create-container" v-if="isReviewLoaded">
     <div class="create-input">
       <div class="sool-name">
-        술 이름: <span>{{ reviewData.review.product_id }}</span>
+        술 이름: <span>{{ reviewData.review.product_name }}</span>
       </div>
       <div class="line"></div>
       <div class="sool-rate">
@@ -36,13 +36,13 @@
       <div class="img-upload">
         <div class="thumbnail-box">
           <div class="thumbnail gallary-btn">
-            <img :src="reviewData.review.img[0]" alt="" class="thumb0">
+            <img :src="reviewData.review?.img[0]" alt="" class="thumb0">
           </div>
           <div class="thumbnail">
-            <img :src="reviewData.review.img[1]" alt="" class="thumb1">
+            <img :src="reviewData.review?.img[1]" alt="" class="thumb1">
           </div>
           <div class="thumbnail">
-            <img :src="reviewData.review.img[2]" alt="" class="thumb2">
+            <img :src="reviewData.review?.img[2]" alt="" class="thumb2">
           </div>
         </div>
         <div class="gallary" @click="openGallery">
@@ -69,24 +69,25 @@
 </template>
 
 <script setup>
-import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router"
 
 const route = useRoute()
 const store = useStore();
-const reviewPk = route.params.articlePk
+const reviewPk = route.params.reviewPk
 
-const reviewData = computed(() => store.getters.reviews);
+const reviewData = computed(() => store.getters.review);
+const isReviewLoaded = computed(() => store.getters.isReviewLoaded);
 
-onMounted(() => {
-  store.dispatch("fetchReview", reviewPk)
-})
+store.commit("SET_IS_REVIEW_LOADED", false)
+store.dispatch("fetchReview", reviewPk)
 
 
 // image upload
+const uploadImages = ref([])
 const maxLength = ref(3)
+var imageData = new FormData()
 
 const onFileChange = (image) => {
   if (image.target.files.length > maxLength.value) {
@@ -94,8 +95,58 @@ const onFileChange = (image) => {
     document.getElementById("review-upload-input").value = "";
   } else {
     for (let index = 0; index < image.target.files.length; index++) {
-      reviewData.value.review.img.push(image.target.files[index])
+      // uploadImages.value.push(image.target.files[index])
       eachThumbnail(index)
+      getResized(image, index) 
+    }
+  }
+}
+
+const getResized = (image, index) => {
+  const originalWidth = ref(0)
+  const originalHeight = ref(0)
+  const resizedWidth = ref(0)
+  const resizedHeight = ref(0)
+    
+  
+  const pic = image.target.files[index]
+  var reader = new FileReader()
+  reader.readAsDataURL(pic);
+  
+  // get size of image
+  reader.onload = function (e) {
+    var image = new Image();
+    image.src = e.target.result;
+    
+    image.onload = function() {
+      originalWidth.value = this.width
+      originalHeight.value = this.height
+      
+      if ( originalWidth.value > 500 && originalHeight.value > 500) {
+        if ( originalWidth.value > originalHeight.value ) {
+          resizedWidth.value = 500
+          resizedHeight.value = originalHeight.value * 500 / originalWidth.value
+        } else {
+          resizedHeight.value = 500
+          resizedWidth.value = originalWidth.value * 500 / originalHeight.value
+        }
+      } else {
+        resizedWidth.value = originalWidth.value
+        resizedHeight.value = originalHeight.value
+      }
+      
+      var canvas = document.createElement("canvas")
+      
+      canvas.width = resizedWidth.value
+      canvas.height = resizedHeight.value
+      
+      // draw resized image
+      canvas.getContext("2d").drawImage(image, 0, 0, resizedWidth.value, resizedHeight.value)
+
+      // append image in formData
+      canvas.toBlob(function(blob) {
+        imageData.append("file", blob)
+      })
     }
   }
 }
@@ -128,24 +179,26 @@ const resetGallery = () => {
 
 // submit
 const onSubmit = () => {
-  var imgData = new FormData()
-  
-  reviewData.value.review.img.forEach(function(img) {
-    imgData.append("file", img)
-  })
-
-  const reviewData = {
-    id: reviewPk,
-    star: rate.value,
-    title: reviewData.value.review.title,
-    content: reviewData.value.review.conntent,
-    img: reviewData.value.review.img
+  var reviewInfo = {}
+  if (uploadImages.value != []) {
+    reviewInfo = {
+      id: reviewPk,
+      star: reviewData.value.review.star,
+      content: reviewData.value.review.content,
+      file: imageData,
+      flag: true,
+    }
+  } else {
+    reviewInfo = {
+      id: reviewPk,
+      star: reviewData.value.review.star,
+      content: reviewData.value.review.content,
+      img: reviewData.value.review.img,
+      flag: false,
+    }
   }
-
-  store.dispatch('createReview', reviewData)
+  store.dispatch('editReview', reviewInfo)
 };
-
-
 
 
 </script>

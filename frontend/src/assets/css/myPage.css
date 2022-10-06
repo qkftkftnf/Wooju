@@ -279,7 +279,8 @@
 .likes-container .like-wooju {
   width: 40vw;
   max-width: 200px;
-  height: 240px;
+  height: 60vw;
+  max-height: 300px;
   border-radius: 20px;
   box-shadow: 1px 4px 4px 4px rgba(0, 0, 0, 0.03);
   background-color: var(--card-bg-color);
@@ -313,7 +314,7 @@
 }
 
 .like-wooju .introduction {
-  margin: 10px 20px;
+  margin: 8px 20px;
   width: 40vw;
   max-width: 200px;
   font-size: 0.9rem;

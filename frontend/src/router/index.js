@@ -12,6 +12,7 @@ import WoojooView from "../views/woojoo_search/WoojooView.vue"
 import WoojooSearch from "../views/woojoo_search/WoojooSearch.vue"
 import WoojooDetail from "../views/woojoo_search/WoojooDetail.vue"
 import WoojooReviewCreate from "../views/woojoo_search/WoojooReviewCreate.vue"
+import WoojooReviewEdit from "../views/woojoo_search/WoojooReviewEdit.vue"
 
 import MyPageView from "../views/mypage/MyPageView.vue";
 import MyPageMain from "../views/mypage/MyPageMain.vue";
@@ -144,9 +145,14 @@ const router = createRouter({
           component: WoojooSearch,
         },
         {
-          name: "WoojooReviewCreate",
-          path: ":productPk/review/create",
+          name: "WoojooReviewEdit",
+          path: ":reviewPk/review/create",
           component: WoojooReviewCreate,
+        },
+        {
+          name: "WoojooReviewEdit",
+          path: ":reviewPk/edit",
+          component: WoojooReviewEdit,
         },
         { 
           name: "WoojooDetail",
