@@ -27,10 +27,8 @@ const community = {
       http.get(`/review/more/${category}`)
         .then(({ data }) => {
           commit("SET_REVIEWS", data)
-          console.log("fin")
         })
         .then(() => {
-          console.log("true")
           commit("SET_IS_COMMUNITY_LOADED", true)
         })
         .catch((err) => console.log(err))

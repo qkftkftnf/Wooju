@@ -15,7 +15,7 @@
     
     <div class="inner-container">
       <div class="rec-container inner-section">
-        <div class="mt"></div>
+        <!-- <div class="mt"></div> -->
         <MyRecommendationMember v-if="isLoggedIn"/>
         <MyRecommendationNon v-if="!isLoggedIn"/>
       </div>
