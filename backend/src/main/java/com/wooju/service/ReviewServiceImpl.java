@@ -301,7 +301,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Transactional
 	public void deleteLike(int review_id, User user) throws Exception {
 		long check =likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
-		if(check != 0) throw new LikeException();
+		if(check == 0) throw new LikeException();
 		Optional<Review> review= reviewRepository.findById(review_id);
 		if(!review.isPresent()) throw new ReviewNotFoundException();
 		likeReviewRepository.deleteByReviewIdAndUserId(review_id, user.getId());
