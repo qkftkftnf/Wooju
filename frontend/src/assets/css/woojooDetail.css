@@ -67,6 +67,10 @@
   padding: 20px 20px 10px 10px;
 }
 
+.detail-content .graph {
+  margin: 60px 0 60px 0;
+}
+
 .detail-content .wooju {
   font-size: 1.7rem;
   font-weight: 600;
