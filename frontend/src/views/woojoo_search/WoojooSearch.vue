@@ -181,6 +181,10 @@ store.dispatch('fetchProducts', searchInfo.value)
   color: rgb(var(--text-color));
 }
 
+.search-alcohol .el-input-number--small {
+  width: 80px;
+}
+
 .search-alcohol div~div {
   margin-left: 5px;
 }

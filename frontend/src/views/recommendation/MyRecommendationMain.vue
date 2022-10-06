@@ -37,9 +37,13 @@ const linkTo = (name) => router.push({ name: name })
 // vuex axios
 const store = useStore();
 const isLoggedIn = computed(() => store.getters.isLoggedIn)
+const isSurveyed = computed(() => store.getters.isSurveyed)
 
 onMounted(() => {
-  store.dispatch("fetchAllReviews")
+  console.log(!isSurveyed.value)
+  if (!isSurveyed.value) {
+    store.dispatch("fetchRecommendationResult")
+  }
 })
 
 
