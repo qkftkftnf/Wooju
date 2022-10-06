@@ -1,16 +1,8 @@
 <template>
   <div class="tab-template detail-header-container">
-    <!-- <div class="mypage-header">
-      <div class="header-nick">
-        닉네임스토리
-      </div>
-      <div class="mode-toggle">
-        <ModeToggle/>
-      </div>
-    </div> -->
     <div class="detail-header">
       <!-- @load="resize(this)" -->
-      <div>
+      <div class="bg-box">
         <img @click="likeProduct(productId)" :src="woojooInfo.object?.image" alt="" >
       </div>
       <span class="like-add">
