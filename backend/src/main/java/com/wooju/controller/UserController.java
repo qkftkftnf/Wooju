@@ -175,9 +175,10 @@ public class UserController {
 			@RequestBody @ApiParam(value="설문 결과", required=true) SurveyRequestDto dto){
 		User user;
 		if(authentication == null)user=null;
-		UserInfo userDetails=(UserInfo) authentication.getDetails();
-		user=userDetails.getUser();
-		
+		else {
+			UserInfo userDetails=(UserInfo) authentication.getDetails();
+			user=userDetails.getUser();
+		}
 		
 		Object obj=userService.getrecom(user, dto);
 		
