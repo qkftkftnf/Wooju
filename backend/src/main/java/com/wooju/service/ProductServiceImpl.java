@@ -155,6 +155,15 @@ public class ProductServiceImpl implements ProductService{
 		return list;
 	}
 
+	@Override
+	public boolean getlikeCheck(int product_id,User user) throws Exception {
+		if(!productRepository.findById(product_id).isPresent()) throw new ProductNotFoundException();
+		long num=likeProductRepository.countByProductIdAndUserId(product_id, user.getId());
+		if(num==1)return true;
+		else if(num==0) return false;
+		else throw new LikeException();
+	}
+
 
 
 
