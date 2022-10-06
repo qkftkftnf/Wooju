@@ -18,6 +18,9 @@
           <el-carousel-item v-for="image in reviewsData.review[firstPost]?.img">
             <img :src="image" alt="pic" class="review-detail-img">
           </el-carousel-item>
+          <span class="like">
+            <i class="fas fa-heart icon" @click="likeReview(reviewsData.review[firstPost].id)"></i> {{reviewsData.review[firstPost].like}}
+          </span>           
         </el-carousel>
       </div>
       <div class="review-content">
@@ -55,6 +58,9 @@
             <el-carousel-item v-for="image in review.img">
               <img :src="image" alt="pic" class="review-detail-img">
             </el-carousel-item>
+            <span class="like">
+              <i class="fas fa-heart icon" @click="likeReview(review.id)"></i> {{review.like}}
+            </span>   
           </el-carousel>
         </div>
         <div class="review-content">
@@ -79,7 +85,6 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, computed, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
-
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -111,6 +116,22 @@ if (route.query.post == 0) {
   showAll.value = true
 } else {
   firstPost.value = route.query.post - 1
+}
+
+const isLikeReview = computed(() => store.getters.isLikeReview);
+
+function likeReview(reviewId) {
+  console.log(store.getters.isLikeReview)
+  store.dispatch('likeCheckReview', reviewId)
+  if (store.getters.isLikeReview === false) {
+    console.log('좋아요 누름')
+    store.dispatch('likeReview', reviewId)
+    // router.go()
+  } else if (store.getters.isLikeReview === true) {
+    console.log('싫어요')
+    store.dispatch('unlikeReview', reviewId)
+    // router.go()
+  }
 }
 
 </script>

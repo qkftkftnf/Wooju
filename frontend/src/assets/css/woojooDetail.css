@@ -70,9 +70,13 @@
 }
 
 /* woojoo-detail-content tab */
+.detail-container {
+  margin: 30px 0 60px 0;
+}
+
 .detail-content {
   text-align: left;
-  padding: 20px 20px 10px 10px;
+  padding: 0px 20px 10px 10px;
 }
 
 .detail-content .graph {
@@ -119,7 +123,7 @@
 
 .detail-content .detail-text {
   margin: 20px 0px 20px 10px;
-  font-size: 1.2rem;    
+  font-size: 1rem;    
 }
 
 /* main tab */

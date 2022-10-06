@@ -25,7 +25,7 @@
                 <img :src="review_pic" alt="">
               </el-carousel-item>
               <span class="like">
-                <i class="fas fa-heart icon"></i> review
+                <i class="fas fa-heart icon" @click="likeReview(review.id)"></i> {{review.like}}
               </span>              
             </el-carousel>
           </div>          
@@ -61,6 +61,21 @@ const reviewsData = computed(() => store.getters.reviews);
 onMounted(() => {
   store.dispatch("fetchAllReviews")
 })
+
+// const isLikeReview = computed(() => store.getters.isLikeReview);
+// function likeReview(ReviewId) {
+//   console.log(store.getters.isLikeReview)
+//   if (store.getters.isLikeReview === false) {
+//     console.log('좋아요 누름')
+//     store.dispatch('likeReview', reviewId)
+//     router.go()
+//   } else if (store.getters.isLikeReview === true) {
+//     console.log('싫어요')
+//     store.dispatch('unlikeReview', reviewId)
+//     router.go()
+//   }
+// }
+
 </script>
 
 <style>

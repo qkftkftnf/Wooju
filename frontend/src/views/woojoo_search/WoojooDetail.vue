@@ -77,10 +77,6 @@ const productId = route.params.productPk
 // const likeList = computed(() => store.getters.profile.likeList)
 const isLike = computed(() => store.getters.isLike);
 
-// const likeProduct = (a) => {
-//   store.dispatch('likeProduct',a)
-// }
-
 onMounted(() => {
   store.dispatch('likeCheck', productId)
   store.dispatch("fetchWoojooInfo", productId)
@@ -109,7 +105,7 @@ onMounted(() => {
 function likeProduct(productId) {
   console.log(store.getters.isLike)
   if (store.getters.isLike === false) {
-    console.log('좋아요')
+    console.log('좋아요 누름')
     store.dispatch('likeProduct', productId)
     router.go()
   } else if (store.getters.isLike === true) {

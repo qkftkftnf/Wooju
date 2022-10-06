@@ -3,30 +3,44 @@
    
   </div> -->
   <div class="detail-content">
+    <div class="wooju">
+      {{woojooInfo.object?.name}}
+    </div>
     <div class="woojoo-text">
       "{{woojooInfo.object?.subtext}}"
     </div>
     <!-- <div>
       <img class="content-img" :src="woojooInfo.object?.image" alt="">
     </div> -->
-    <div class="wooju">
-      <span class="wooju-name">술 이름 : </span>
-      {{woojooInfo.object?.name}}
-    </div>
-    <div class="degree">
-      <span class="wooju-alcohol">도수 :  </span>
-      <i class="alcohol"></i> {{woojooInfo.object?.alcohol}}%
-    </div>
-    <div class="degree">
-      <span class="wooju-alcohol">용량 :  </span>
-      <i class="alcohol"></i> {{woojooInfo.object?.volume}}
-    </div>
-    <div class="rate">
-      <span class="price">가격 :</span>
-      {{woojooInfo.object?.price}}원
+    <div class="detail-container">
+      <!-- <div class="wooju">
+        <span class="wooju-name">술 이름 : </span>
+        {{woojooInfo.object?.name}}
+      </div> -->
+      <div class="degree">
+        <span class="wooju-alcohol">도수 :  </span>
+        <i class="alcohol"></i> {{woojooInfo.object?.alcohol}}%
+      </div>
+      <div class="degree">
+        <span class="wooju-alcohol">용량 :  </span>
+        <i class="alcohol"></i> {{woojooInfo.object?.volume}}
+      </div>
+      <div class="rate">
+        <span class="price">가격 :</span>
+        {{woojooInfo.object?.price}}원
+      </div>
     </div>
     <p class="detail-text">
       {{woojooInfo.object?.award}}
+    </p>
+    <p class="detail-text">
+      {{woojooInfo.object?.anju_note}}
+    </p>
+    <p class="detail-text">
+      {{woojooInfo.object?.other_note}}
+    </p>
+    <p class="detail-text">
+      {{woojooInfo.object?.taste_note}}
     </p>
 
     <div class="graph">
