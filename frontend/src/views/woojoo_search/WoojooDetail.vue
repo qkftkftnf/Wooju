@@ -69,18 +69,54 @@ import { useStore } from "vuex";
 const router = useRouter();
 const route = useRoute()
 // const linkTo = () => router.push({ name: "", params: { }})
-
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
+// const likeNum = computed(()=> store.getters.woojooInfo.object.like_num);
 const position = ref(0)
 const productId = route.params.productPk
+// const likeList = computed(() => store.getters.profile.likeList)
+const isLike = computed(() => store.getters.isLike);
 
 // const likeProduct = (a) => {
 //   store.dispatch('likeProduct',a)
 // }
 
+onMounted(() => {
+  store.dispatch('likeCheck', productId)
+  store.dispatch("fetchWoojooInfo", productId)
+  const mypageTabs = document.querySelector("#detail-container")
+  window.onscroll = function() {scrollTabMenu()};
+  function scrollTabMenu() {
+    position.value = mypageTabs.getBoundingClientRect().top
+
+    if (position.value <= 120) {
+      // document.querySelector(".mypage-header .header-nick").style.top = "0"
+      // document.querySelector(".mypage-header .header-nick").style.fontSize = "1.2rem"
+      document.querySelector(".scroll-false").style.display = "none"
+    } else {
+      // document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
+      // document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
+      document.querySelector(".detail-header .bg-box").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .profile-pic").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .level").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .email").style.opacity = `${(position.value - 350) / 160}`
+      // document.querySelector(".mypage-profile .edit-profile").style.opacity = `${(position.value - 350) / 160}`
+      document.querySelector(".scroll-false").style.display = "block"
+    }
+  }
+})
+
 function likeProduct(productId) {
-  store.dispatch('likeProduct', productId)
+  console.log(store.getters.isLike)
+  if (store.getters.isLike === false) {
+    console.log('좋아요')
+    store.dispatch('likeProduct', productId)
+    router.go()
+  } else if (store.getters.isLike === true) {
+    console.log('싫어요')
+    store.dispatch('unlikeProduct', productId)
+    router.go()
+  }
 }
 
 function resize(img){
@@ -113,31 +149,6 @@ function resize(img){
 // function likeProduct(a) {
 //   store.dispatch('likeProduct',a)
 // }
-
-onMounted(() => {
-  store.dispatch("fetchWoojooInfo", productId)
-  const mypageTabs = document.querySelector("#detail-container")
-  window.onscroll = function() {scrollTabMenu()};
-  function scrollTabMenu() {
-    position.value = mypageTabs.getBoundingClientRect().top
-
-    if (position.value <= 120) {
-      // document.querySelector(".mypage-header .header-nick").style.top = "0"
-      // document.querySelector(".mypage-header .header-nick").style.fontSize = "1.2rem"
-      document.querySelector(".scroll-false").style.display = "none"
-    } else {
-      // document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
-      // document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
-      document.querySelector(".detail-header .bg-box").style.opacity = `${(position.value - 350) / 160}`
-      // document.querySelector(".mypage-profile .profile-pic").style.opacity = `${(position.value - 350) / 160}`
-      // document.querySelector(".mypage-profile .level").style.opacity = `${(position.value - 350) / 160}`
-      // document.querySelector(".mypage-profile .email").style.opacity = `${(position.value - 350) / 160}`
-      // document.querySelector(".mypage-profile .edit-profile").style.opacity = `${(position.value - 350) / 160}`
-      document.querySelector(".scroll-false").style.display = "block"
-    }
-  }
-
-})
 
 function tabPosition(tabName) {
   if (window.innerWidth >= 500) {
