@@ -74,7 +74,7 @@
       아직 전통주에 대해 잘 모르겠다면,<br/>모두의 인정을 받은 술들은 어떤가요?
     </div>
     <div class="bottles">
-      <div class="bottle-card" v-for="product in recommendData.taste">
+      <div class="bottle-card" v-for="product in recommendData.award">
         <div class="bottle-img">
           <img :src="product.image" alt="bottle">
         </div>
