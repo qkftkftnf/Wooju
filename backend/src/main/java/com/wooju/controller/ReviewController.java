@@ -22,6 +22,7 @@ import com.wooju.dto.request.ReviewLikeRequestDto;
 import com.wooju.dto.request.ReviewRequestDto;
 import com.wooju.dto.response.BaseResponseDto;
 import com.wooju.dto.response.CreateReviewResponseDto;
+import com.wooju.dto.response.LikeCheckResponseDto;
 import com.wooju.dto.response.ReviewDetailResponseDto;
 import com.wooju.dto.response.ReviewListResponseDto;
 import com.wooju.dto.response.ReviewMainResponseDto;
@@ -137,6 +138,27 @@ public class ReviewController {
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
 	
+	@GetMapping("/likeCheck/{review_id}")
+	@ApiOperation(value="리뷰 좋아요 체크", notes ="리뷰 좋아요 여부 확인하기")
+	@ApiResponses({
+		@ApiResponse(code = 200 , message="성공"),
+		@ApiResponse(code = 401 , message="부적절한 토큰"),
+		@ApiResponse(code = 500 , message="서버오류")
+	})
+	public ResponseEntity<? extends BaseResponseDto> reviewlikeCheck(@ApiIgnore Authentication authentication,
+			@PathVariable("review_id") int id) throws Exception{
+		
+		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
+		UserInfo userDetails=(UserInfo) authentication.getDetails();
+		User user=userDetails.getUser();
+		
+		boolean check=reviewService.getlikeCheck(id,user);
+		
+
+		return ResponseEntity.status(200).body(LikeCheckResponseDto.of(200, "Success",check));
+	}
+	
+	
 	@PostMapping("/like")
 	@ApiOperation(value="좋아요", notes ="술 좋아요")
 	@ApiResponses({
@@ -170,4 +192,5 @@ public class ReviewController {
 		reviewService.deleteLike(id,user);
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
+	
 }
