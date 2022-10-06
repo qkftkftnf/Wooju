@@ -48,18 +48,29 @@ def get_taste(user, products):
         products = products \
             .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
 
-    product_df = pd.read_sql(products.statement, products.session.bind)
-    taste_data = product_df[columns]
+    isSurveyed = True
 
-    sim_scores = list(enumerate(cosine_similarity(target, taste_data)[0]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[:10]
+    for question in target[0]:
+        if question == -1:
+            isSurveyed = False
+            break
 
-    sool_indices = [idx[0] for idx in sim_scores]
-    result = product_df.iloc[sool_indices].sample(3)
+    if isSurveyed:        
+        product_df = pd.read_sql(products.statement, products.session.bind)
+        taste_data = product_df[columns]
 
-    result_json = result.to_json(orient="records")
-    return json.loads(result_json)
+        sim_scores = list(enumerate(cosine_similarity(target, taste_data)[0]))
+        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+        sim_scores = sim_scores[:10]
+
+        sool_indices = [idx[0] for idx in sim_scores]
+        result = product_df.iloc[sool_indices].sample(3)
+
+        result_json = result.to_json(orient="records")
+        return json.loads(result_json)
+        
+    else:
+        return {}
 
 
 def get_today(keywords, products):
