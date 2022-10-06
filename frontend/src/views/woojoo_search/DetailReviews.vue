@@ -1,9 +1,15 @@
 <template>
   <!-- <span>{{woojooInfo.list}}</span> -->
   <div class="button-container">
-    <button class="review-button" @click="goToReviewCreate(woojooInfo.object.id)">
+    <button v-if="isLoggedIn" class="review-button" @click="goToReviewCreate(woojooInfo.object.id)">
       리뷰 작성하기
     </button>
+    <div class="toLogin" v-if="!isLoggedIn">
+      리뷰를 보시려면 로그인을 해주세요
+    </div>
+    <div class="login">
+      <div class="login-btn" @click="linkTo('LoginBase')">로그인</div>
+    </div>
   </div>
     <div class="review-body bs-card-03" v-for="review in woojooInfo.list">
           <div class="review-header">
@@ -54,6 +60,8 @@ import { useStore } from "vuex";
 const router = useRouter();
 // // const linkTo = () => router.push({ name: "", params: { }})
 const store = useStore();
+const linkTo = (name) => router.push({ name: name })
+const isLoggedIn = computed(() => store.getters.isLoggedIn)
 const woojooInfo = computed(() => store.getters.woojooInfo);
 // const reviewId = woojooInfo.object
 
@@ -65,6 +73,14 @@ const goToReviewCreate = (productId) => {
 // })
 </script>
 <style>
+.toLogin {
+  margin: 100px 50px 0px 40px;
+  opacity: 0.7;
+  height: 90px;
+  font-size: 1.1rem;
+  line-height: 29px;
+}
+
 .button-container {
   
 }
@@ -75,5 +91,22 @@ const goToReviewCreate = (productId) => {
   margin-top: 30px;
   border: 0ch;
   border-radius: 25px;
+}
+
+.button-container .login {
+  margin: 60px 0 20px 0;
+  width: 100%;
+  height: 30px;
+}
+
+.button-container .login .login-btn {
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 15px;
+  background-color: var(--main-color);
+  color: #000;
 }
 </style>
