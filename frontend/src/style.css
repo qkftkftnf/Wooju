@@ -89,6 +89,7 @@ body {
 
 .cl-ellipsis {
   display: block;
+  margin: 0 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

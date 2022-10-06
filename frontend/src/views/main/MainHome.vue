@@ -63,10 +63,6 @@
               <div class="category-title">
                 핫 리뷰
               </div>
-              <div class="more"> 
-                <!-- linkTo -->
-                더보기 <i class="fas fa-chevron-right"></i>
-              </div>
             </div>
             <div class="category-intro">
               지금 마시고 싶은 전통주를 찾고 있다면?
@@ -107,6 +103,24 @@
             </div>
           </div>
         </div>
+
+
+        <!-- product search -->
+        <div class="home-corner search-corner">
+          <div class="corner-img-box">
+            <img src="@/assets/images/home/search.png" alt="" class="corner-img">
+          </div>
+          <div class="home-content search-intro">
+            전통주의 상세 정보부터 최저가까지<br/>한눈에 알고 싶은 여러분에게
+            <span>전통주 검색 기능도 누려보세요</span>
+          </div>
+          <div class="btn-box">
+            <div class="togo-btn" @click="linkTo('WoojooSearch')">
+              전통주 검색하기 >
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -176,11 +190,11 @@ onMounted(() => {
   background-color: transparent;
 }
 
-.main-review-img img {
+/* .main-review-img img {
   object-fit: contain !important;
   object-position: center;
 
-}
+} */
 
 .togo-btn span {
   font-weight: 400;

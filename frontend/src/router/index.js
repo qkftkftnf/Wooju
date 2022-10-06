@@ -24,10 +24,7 @@ import MyRecommendationType from "../views/recommendation/MyRecommendationType.v
 import MyRecommendationTak from "../views/recommendation/MyRecommendationTak.vue";
 import MyRecommendationFruit from "../views/recommendation/MyRecommendationFruit.vue";
 import MyRecommendationSoju from "../views/recommendation/MyRecommendationSoju.vue";
-import MyRecommendationLover from "../views/recommendation/MyRecommendationLover.vue";
-import MyRecommendationExplorer from "../views/recommendation/MyRecommendationExplorer.vue";
-
-import NonmemberView from "../views/common/NonmemberView.vue";
+import MyRecommendationResult from "../views/recommendation/MyRecommendationResult.vue";
 
 import LoginView from "../views/login/LoginView.vue";
 import LoginBase from "../views/login/LoginBase.vue";
@@ -104,14 +101,9 @@ const router = createRouter({
           component: MyRecommendationSoju,
         },
         {
-          name: "MyRecommendationLover",
-          path: "result/lover",
-          component: MyRecommendationLover,
-        },
-        {
-          name: "MyRecommendationExplorer",
-          path: "result/explorer",
-          component: MyRecommendationExplorer,
+          name: "MyRecommendationResult",
+          path: "result",
+          component: MyRecommendationResult,
         },
       ],
     },
