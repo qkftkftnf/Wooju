@@ -23,18 +23,10 @@ const recommendation = {
     submitSurvey({ commit, getters }, surveyInfo) {
       console.log(surveyInfo)
       http.put("/user/survey", 
-        {dto: {
-          type: surveyInfo.type,
-          question1: surveyInfo.question1,
-          question2: surveyInfo.question2,
-          question3: surveyInfo.question3,
-          question4: surveyInfo.question4,
-          question5: surveyInfo.question5,
-          question6: surveyInfo.question6,
-        }},
+        surveyInfo,
         {headers: { Authorization: getters.authHeader },
       })
-      .then((data) => {
+      .then(({data}) => {
         // console.log(data)
         commit("SET_IS_SURVEYED", true)
         commit("SET_RECOMMENDATION", data.obj)
@@ -48,12 +40,12 @@ const recommendation = {
     fetchRecommendationResult({ commit, getters }) {
       if (getters.isLoggedIn) {
         http.post("/user/survey",
-        {dto: {}},
+        {},
         {
           headers: { Authorization: getters.authHeader },
         })
         .then(({ data }) => {
-          console.log(data)
+          // console.log(data)
           commit("SET_RECOMMENDATION", data.obj)
           console.log(getters.recommendation)
         })
