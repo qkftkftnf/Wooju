@@ -177,7 +177,6 @@ def get_usertype(user):
     elif user.type == '증류주':
         type3 = (target[0][1]+target[0][2]) / 2
         type6 = (target[0][0]+target[0][3]+target[0][4]) / 3
-        print(type3, type6)
         if type3 >= type6:
             result['type'] = 3
         else:
@@ -186,13 +185,11 @@ def get_usertype(user):
     if (max_cnt == 5 or min_cnt == 5):
         if min_value > 2:
             result['type'] = 7
-            result['analysis']['max'] = '당신은 이미 전통주의 달인입니다.'
+            result['analysis']['content'] = '<div>당신은 이미 전통주의 달인입니다.</div>'
         
         else:
             result['type'] = 8
-            result['analysis']['min'] = '아직까지는 전통주가 어려워요.'
+            result['analysis']['content'] = '<div>아직까지는 전통주가 어려워요.</div>'
     else:
-        result['analysis']['max'] = max_name + '을 즐기고,'
-        result['analysis']['min'] = min_name + '을 낯설어 합니다.'
-
+        result['analysis']['content'] = '<div>' + max_name + '을 즐기고,</div><div>' + min_name + '을 낯설어 합니다.</div>'
     return result
