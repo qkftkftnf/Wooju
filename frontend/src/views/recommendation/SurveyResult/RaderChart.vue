@@ -59,6 +59,6 @@ onMounted(() => {
   width: 80vw;
   max-width: 400px;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #fff;
 }
 </style>

@@ -36,7 +36,7 @@
         <div class="search-alcohol">
           <div class="alcohol">
             도수
-            <el-input-number size="small" v-model="searchInfo.alcohol" :min="0" :max="100" />
+            <el-input-number size="small" v-model="searchInfo.alcohol" :min="3" :max="54" />
             <!-- <el-slider v-model="searchInfo.alcohol" tooltip-class="search-tooltip" :max="50" /> -->
           </div>
           <div class="text">
