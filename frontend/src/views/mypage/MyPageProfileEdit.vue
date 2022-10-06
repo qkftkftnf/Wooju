@@ -53,6 +53,7 @@ onMounted(() => {
 // image upload  
 const uploadImage = ref([])
 var imageData = new FormData()
+const flag = ref(false)
 
 const openGallery = () => {
   document.querySelector("#pic-upload-input").click()
@@ -60,6 +61,7 @@ const openGallery = () => {
 
 const onFileChange = (image) => {
   // uploadImage.value.push(image.target.files[0])
+  flag.value = true
   getResized(image, 0)
   getThumbnail()
 }
@@ -133,8 +135,9 @@ const onSubmit = () => {
   // file.append("file", uploadImage.value[0])
       
   const profileInfo = {
-    // file: file,
+    flag: flag.value,
     file: imageData,
+    img: profileData.value.profile.img,
     nickname: profileData.value.profile.nickname,
   }
 

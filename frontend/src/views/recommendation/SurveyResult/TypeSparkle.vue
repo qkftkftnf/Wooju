@@ -9,7 +9,7 @@
       형입니다.
     </span>
     <div class="type-image">
-      <img src="@/assets/images/type/sparkle.jpg" alt="like-soju">
+      <img src="@/assets/images/type/sparkle.png" alt="like-soju">
     </div>
 
     <div class="preferance">

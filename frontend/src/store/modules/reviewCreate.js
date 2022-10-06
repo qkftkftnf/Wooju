@@ -102,7 +102,6 @@ const reviewCreate = {
         })
         .catch((err) => console.log(err))
       } else {
-        console.log(reviewData.img)
         http.put("/review", {
           content: reviewData.content,
           img: reviewData.img,
