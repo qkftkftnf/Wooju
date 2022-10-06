@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.wooju.dto.response.BaseResponseDto;
+import com.wooju.exception.DifferentUserException;
 import com.wooju.exception.ExistUserException;
 import com.wooju.exception.LikeException;
 import com.wooju.exception.ProductNotFoundException;
@@ -16,17 +17,17 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(UserNotFoundException.class)
     protected ResponseEntity<BaseResponseDto> handleUserNotFoundException(UserNotFoundException e) {
-        return ResponseEntity.status(404).body(BaseResponseDto.of(404, "User Not Found"));
+        return ResponseEntity.status(403).body(BaseResponseDto.of(403, "User Not Found"));
     }
 
 	@ExceptionHandler(ReviewNotFoundException.class)
     protected ResponseEntity<BaseResponseDto> handleReviewNotFoundException(ReviewNotFoundException e) {
-        return ResponseEntity.status(404).body(BaseResponseDto.of(404, "Review Not Found"));
+        return ResponseEntity.status(403).body(BaseResponseDto.of(402, "Review Not Found"));
     }
 	
 	@ExceptionHandler(ProductNotFoundException.class)
     protected ResponseEntity<BaseResponseDto> handleProductNotFoundException(ProductNotFoundException e) {
-        return ResponseEntity.status(404).body(BaseResponseDto.of(404, "Product Not Found"));
+        return ResponseEntity.status(403).body(BaseResponseDto.of(406, "Product Not Found"));
     }
 	
 	@ExceptionHandler(LikeException.class)
@@ -36,7 +37,11 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(ExistUserException.class)
     protected ResponseEntity<BaseResponseDto> handleExistUserException(ExistUserException e) {
-        return ResponseEntity.status(404).body(BaseResponseDto.of(404, "user exist"));
+        return ResponseEntity.status(404).body(BaseResponseDto.of(407, "user exist"));
     }
 	
+	@ExceptionHandler(DifferentUserException.class)
+    protected ResponseEntity<BaseResponseDto> handleDifferentUserException(DifferentUserException e) {
+        return ResponseEntity.status(404).body(BaseResponseDto.of(408, "different user"));
+    }
 }
