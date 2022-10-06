@@ -1,40 +1,63 @@
 <template>
   <!-- preferance -->
   <div class="rec-type rec-preferance">
-    <div class="rec-title">
+    <div class="title">
       당신의 취향에 딱 맞는 술
     </div>
 
-    <div class="not-surveyed-content">
-      아직 전통주와 친하지 않다면, <br/> 잠깐의 테스트로 같이 알아볼까요?
+    <!-- v-if not surveyed -->
+    <div class="not-surveyed" v-if="_.isEmpty(recommendData.taste)">
+      <div class="not-surveyed-content">
+        아직 취향 조사를 하지 않으셨어요! <br/> 당신의 우주를 같이 알아볼까요?
+      </div>
+      <div class="survey-btn" @click="linkTo('MyRecommendationType')">
+        <div class="btn-box">취향 알아보러 가기 ></div>
+      </div>
     </div>
-    <div class="survey-btn" @click="linkTo('MyRecommendationType')">
-      <div class="btn-box">취향 테스트 해보기 ></div>
+
+    <!-- v-if surveyed -->
+    <div class="bottles" v-else>
+      <div class="bottle-card" v-for="product in recommendData.taste">
+        <div @click="linkToProduct(`${product.id}`)">
+          <div class="bottle-img">
+            <img :src="product.image" alt="bottle">
+          </div>
+          <div class="bottle-content">
+            <div class="bottle-title cl-ellipsis">
+              {{ product.name }}
+            </div>
+            <div class="bottle-intro">
+              도수: {{ product.alcohol }}%
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
   <!-- award -->
   <div class="rec-type rec-preferance">
     <div class="rec-title award-title">
       아직 전통주에 대해 잘 모르겠다면,<br/>모두의 인정을 받은 술들은 어떤가요?
     </div>
-    <div class="bottle-card" v-for="product in productData">
-      <div @click="linkToProduct(`${product.product_id}`)">
-        <div class="bottle-img">
-          <img src="@/assets/images/woojoo1.jpg" alt="bottle">
-        </div>
-        <div class="bottle-content">
-          <div class="bottle-title">
-            {{ product.name }}
+    <div class="bottles">
+      <div class="bottle-card" v-for="product in recommendData.award">
+        <div @click="linkToProduct(`${product.id}`)">
+          <div class="bottle-img">
+            <img :src="product.image" alt="bottle">
           </div>
-          <div class="bottle-intro">
-            도수: {{product.alcohol}}%<br/>용량: {{ product.volume }}
+          <div class="bottle-content">
+            <div class="bottle-title cl-ellipsis">
+              {{ product.name }}
+            </div>
+            <div class="bottle-intro">
+              도수: {{ product.alcohol }}%
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 </template>
 
 <script setup>
@@ -42,17 +65,15 @@ import ModeToggle from "@/views/common/ModeToggle.vue"
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import _ from 'lodash';
 
 const router = useRouter();
 const linkTo = (name) => router.push({ name: name })
+const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
 
 // vuex axios
 const store = useStore();
-const reviewsData = computed(() => store.getters.reviews);
-
-onMounted(() => {
-  store.dispatch("fetchAllReviews")
-})
+const recommendData = computed(() => store.getters.recommendation);
 
 // header scroll event js
 const position = ref(0)
@@ -86,13 +107,5 @@ onMounted(() => {
   max-width: 500px;
   height: 60px;
   background-color: transparent;
-}
-
-.fake img {
-width: 50% !important;
-}
-
-.fake2 img {
-  width: 100% !important;
 }
 </style>
