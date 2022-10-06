@@ -35,6 +35,18 @@ class UserBase(BaseModel):
     nickname: str
 
 
+class Shop(BaseModel):
+    id: int
+    image: str
+    mall_name: str
+    name: str
+    price: int
+    url: str
+
+    class Config:
+        orm_mode = True
+
+
 class ProductBase(BaseModel):
     id: int
     name: str
@@ -74,6 +86,7 @@ class ProductDetail(ProductBase):
     award: Union[str, None] = None
     foods: List[Food]
     makers: List[Maker]
+    shops: List[Shop]
 
     acidity: int
     weight: int
@@ -103,6 +116,8 @@ class ProductDetail(ProductBase):
 
     distinction: Union[str, None] = None
     ingredient: Union[str, None] = None
+
+
 
 
 class Recommendation(BaseModel):
