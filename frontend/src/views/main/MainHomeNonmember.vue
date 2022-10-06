@@ -15,6 +15,8 @@
     <div class="inner-container mainhome-container">
       <div class="rec-container inner-section">
         <div class="mt"></div>
+
+        <!-- recommendation -->
         <div class="home-corner recommendation-corner">
           <div class="corner-img-box">
             <img src="@/assets/images/home/recommendation.png" alt="" class="corner-img">
@@ -29,22 +31,8 @@
             </div>
           </div>
         </div>
-
-        <div class="home-corner community-corner">
-          <div class="corner-img-box">
-            <img src="@/assets/images/home/community.png" alt="" class="corner-img">
-          </div>
-          <div class="home-content com-intro">
-            전통주에 대해 더 많은 이야기를<br/>나누고 싶은 여러분에게
-            <span>커뮤니티에서<br/>다양한 우주들을 만나보세요</span>
-          </div>
-          <div class="btn-box">
-            <div class="togo-btn" @click="linkTo('CommunityMain')">
-              커뮤니티 둘러보기 >
-            </div>
-          </div>
-        </div>
-
+        
+        <!-- product search -->
         <div class="home-corner search-corner">
           <div class="corner-img-box">
             <img src="@/assets/images/home/search.png" alt="" class="corner-img">
@@ -60,6 +48,23 @@
           </div>
         </div>
 
+        <!-- community -->
+        <div class="home-corner community-corner">
+          <div class="corner-img-box">
+            <img src="@/assets/images/home/community.png" alt="" class="corner-img">
+          </div>  
+          <div class="home-content com-intro">
+            전통주에 대해 더 많은 이야기를<br/>나누고 싶은 여러분에게
+            <span>커뮤니티에서<br/>다양한 우주들을 만나보세요</span>
+          </div>
+          <div class="btn-box">
+            <div class="togo-btn" @click="linkTo('CommunityMain')">
+              커뮤니티 둘러보기 >
+            </div>
+          </div>  
+        </div>  
+
+        <!-- signup -->
         <div class="home-corner signup-corner">
           <div class="corner-img-box">
             <img src="@/assets/images/home/signup.png" alt="" class="corner-img">

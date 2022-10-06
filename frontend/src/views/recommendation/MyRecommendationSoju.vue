@@ -189,7 +189,7 @@
       <div class="last-img">
         <img src="@/assets/images/survey/last.png" alt="last">
       </div>
-      <div class="submit-btn" @click="linkTo('MyRecommendationLover')">
+      <div class="submit-btn" @click="SubmitSurvey">
         나의 술 취향은?
       </div>
     </div>

@@ -28,7 +28,7 @@ window.checkLogin = () => {
   console.log(token)
   if (!!token) {
     store.dispatch('saveToken', token)
-    router.push({ name: 'CommunityMain' })
+    router.push({ name: 'MainHome' })
   } else {
     alert('로그인 실패')
   }

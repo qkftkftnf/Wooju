@@ -187,7 +187,7 @@
       <div class="last-img">
         <img src="@/assets/images/survey/last.png" alt="last">
       </div>
-      <div class="submit-btn" @click="linkTo('MyRecommendationExplorer')">
+      <div class="submit-btn" @click="SubmitSurvey">
         나의 술 취향은?
       </div>
     </div>
@@ -198,6 +198,9 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex"
+
+const store = useStore()
 
 onMounted (() => {
   window.scrollTo(0, 0)

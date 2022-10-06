@@ -5,22 +5,25 @@ import router from "../../router";
 const recommendation = {
   state: {
     recommendation: {
-      taste: {},
-      today: {},
-      award: {},
-    }
+      taste: [],
+      today: [],
+      award: [],
+    },
+    isSurveyed: false,
   },
   mutations: {
-    SET_RECOMMENDATION: (state, recommendation) => (state.survey = recommendation)
+    SET_RECOMMENDATION: (state, recommendation) => (state.recommendation = recommendation),
+    SET_IS_SURVEYED:(state, isSurveyed) => (state.isSurveyed = isSurveyed),
   },
   getters: {
     recommendation: (state) => state.recommendation,
+    isSurveyed: (state) => state.isSurveyed,
   },
   actions: {
-    submitSurvey({ getters }, surveyInfo) {
-      axios.get("https://j7a304.p.ssafy.io/fastapi/test", {
-        headers: {Authorization: getters.authHeader},
-        params: {
+    submitSurvey({ commit, getters }, surveyInfo) {
+      console.log(surveyInfo)
+      http.put("/user/survey", 
+        {dto: {
           type: surveyInfo.type,
           question1: surveyInfo.question1,
           question2: surveyInfo.question2,
@@ -28,16 +31,34 @@ const recommendation = {
           question4: surveyInfo.question4,
           question5: surveyInfo.question5,
           question6: surveyInfo.question6,
-        }})
-      .then(({ data }) => {
+        }},
+        {headers: { Authorization: getters.authHeader },
+      })
+      .then((data) => {
+        // console.log(data)
+        commit("SET_IS_SURVEYED", true)
+        commit("SET_RECOMMENDATION", data.obj)
         router.push({ 
-          name: "MyRecommendationResult",
+          name: "MyRecommendationMain",
           // params: { articlePk: res.data },
         });
       })
+      .catch((err) => console.log(err))
     },
-    fetchRecommendationResult({ commit }) {
-      // http.get
+    fetchRecommendationResult({ commit, getters }) {
+      if (getters.isLoggedIn) {
+        http.post("/user/survey",
+        {dto: {}},
+        {
+          headers: { Authorization: getters.authHeader },
+        })
+        .then(({ data }) => {
+          console.log(data)
+          commit("SET_RECOMMENDATION", data.obj)
+          console.log(getters.recommendation)
+        })
+        .catch((err) => console.log(err))
+      }
     }
   },
 }

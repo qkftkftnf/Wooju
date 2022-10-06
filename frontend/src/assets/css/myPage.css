@@ -286,6 +286,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .likes-container .like-wooju:nth-child(2n) {
@@ -302,6 +303,7 @@
   max-width: 200px;
   height: 40vw;
   max-height: 200px;
+  margin: 0;
 }
 
 .like-wooju .wooju-img img {
