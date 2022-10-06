@@ -40,7 +40,7 @@
           <!-- tab2 -->
           <div class="tab-section mypage-likes">
             <el-scrollbar>
-              <MyPageLikes/>
+              <ShopLinks/>
             </el-scrollbar>
           </div>
           <!-- tab3 -->
@@ -61,7 +61,7 @@
 import HeaderView from "@/views/common/HeaderView.vue"
 import DetailContent from "@/views/woojoo_search/DetailContent.vue"
 import DetailReviews from "@/views/woojoo_search/DetailReviews.vue"
-import MyPageLikes from "@/views/mypage/MyPageLikes.vue"
+import ShopLinks from "@/views/woojoo_search/ShopLinks.vue"
 import { ref, computed, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";

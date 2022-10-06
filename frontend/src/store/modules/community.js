@@ -54,7 +54,7 @@ const community = {
         this.$router.go()
       }
       )
-      .catch((err) => console.log(err.message)
+      .catch((err) => console.log(err)
       )
     },
 

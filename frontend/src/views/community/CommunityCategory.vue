@@ -121,6 +121,7 @@ if (route.query.post == 0) {
 const isLikeReview = computed(() => store.getters.isLikeReview);
 
 function likeReview(reviewId) {
+  console.log(reviewId)
   console.log(store.getters.isLikeReview)
   store.dispatch('likeCheckReview', reviewId)
   if (store.getters.isLikeReview === false) {

@@ -90,19 +90,19 @@
 }
 
 .detail-content .wooju .wooju-name {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 200;
   color: #a4a4a4;
 }
 
 .detail-content .degree .wooju-alcohol {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 200;
   color: #a4a4a4;
 }
 
 .detail-content .degree {
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   margin: 20px 0px 20px 10px;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .detail-content .rate .wooju-star {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 200;
   color: #a4a4a4;
 }
