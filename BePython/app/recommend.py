@@ -68,9 +68,9 @@ def get_taste(user, products):
 
         result_json = result.to_json(orient="records")
         return json.loads(result_json)
-        
+
     else:
-        return {}
+        return []
 
 
 def get_today(keywords, products):

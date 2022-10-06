@@ -5,9 +5,9 @@ import router from "../../router";
 const recommendation = {
   state: {
     recommendation: {
-      taste: {},
-      today: {},
-      award: {},
+      taste: [],
+      today: [],
+      award: [],
     },
     isSurveyed: false,
   },
