@@ -1,7 +1,7 @@
 <template>
   <!-- preferance -->
   <div class="rec-type rec-preferance">
-    <div class="title">
+    <div class="rec-title">
       당신의 취향에 딱 맞는 술
     </div>
 
