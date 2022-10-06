@@ -9,6 +9,7 @@
           </div>
           <div class="review-writer">
             <div class="review-nickname">{{ reviewsData.review[firstPost]?.user_nickname }}</div>
+            <div class="review-gosu" v-if="reviewsData.review[firstPost]?.gosu"><i class="fas fa-award gosu"></i> 맛고수</div>
           </div>
         </div>
         <span class="review-date">{{ reviewsData.review[firstPost]?.time }}</span> 
@@ -49,6 +50,7 @@
             </div>
             <div class="review-writer">
               <div class="review-nickname">{{ review.user_nickname }}</div>
+              <div class="review-gosu" v-if="review.gosu"><i class="fas fa-award gosu"></i> 맛고수</div>
             </div>
           </div>
           <span class="review-date">{{ review.time }}</span> 

@@ -40,7 +40,6 @@ const isLoggedIn = computed(() => store.getters.isLoggedIn)
 const isSurveyed = computed(() => store.getters.isSurveyed)
 
 onMounted(() => {
-  console.log(!isSurveyed.value)
   if (!isSurveyed.value) {
     store.dispatch("fetchRecommendationResult")
   }
