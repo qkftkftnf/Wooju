@@ -37,6 +37,7 @@ const linkTo = (name) => router.push({ name: name })
   background-color: var(--main-bg-color);
   display: flex;
   flex-direction: column;
+  justify-content: center
 }
 
 .nonmember-container .illustration {

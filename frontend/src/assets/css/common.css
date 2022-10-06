@@ -122,8 +122,8 @@ img {
 }
 
 .header-container .logo {
-  width: 100px;
-  margin-top: 13.5px;
+  margin: 0 auto;
+  width: 150px;
 }
 
 #mode-icon {

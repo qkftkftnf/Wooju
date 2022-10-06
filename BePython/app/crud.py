@@ -6,7 +6,7 @@ from models import Product, User
 from recommend import get_taste, get_today
 
 
-def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None):
+def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[float]=None, isAward: Optional[bool]=None, user_id: Optional[int]=None, search: Optional[str]=None):
     products = db.query(Product)
 
     if user_id != None:
@@ -17,6 +17,7 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
 
     else:
+        print(search)
         products = products.filter(Product.alcohol < alcohol)
         if isAward:
             products = products.filter(Product.award)
@@ -26,6 +27,9 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
             for type in types[1:]:
                 tmp = tmp.union(set_filter(products, type))
             products = tmp
+
+        if search:
+            products = products.filter(Product.name.like(f"%{search}%"))
 
         products = products.order_by(Product.alcohol.desc())
         result = products.all()
