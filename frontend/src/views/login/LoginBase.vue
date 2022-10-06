@@ -38,15 +38,16 @@ const loginPopup = (path) => window.open(`/login/popup/${path}`, '_blank', )
 
 <style scoped>
 .login-image {
-  width: 80%;
+  width: 60%;
   border-radius: 20px;
   overflow: hidden;
 }
+
 .login-google,
 .login-naver {
-  width: 70vw;
-  max-width: 350px;
-  border-radius: 10px;
+  width: 55vw;
+  max-width: 250px;
+  border-radius: 15px;
 }
 
 .login-google {

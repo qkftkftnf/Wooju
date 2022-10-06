@@ -67,14 +67,26 @@
 .review-body .review-header .review-writer {
   margin: 0;
   margin-left: 10px;
+  height: 50px;
   flex-flow:column;
   text-align: left;
-  line-height: 50px;
 }
 
 .review-writer .review-nickname {
   font-size: 1.1rem;
   font-weight: 600;
+  height: 25px;
+  line-height: 25px;
+}
+
+.review-writer .review-gosu {
+  height: 25px;
+  line-height: 25px;
+  font-size: 0.8rem;
+}
+
+.review-writer .gosu {
+  color: rgb(6, 155, 110);
 }
 
 .review-body .review-header .review-date {
@@ -87,7 +99,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 50px;
 }
 
 .review-content {

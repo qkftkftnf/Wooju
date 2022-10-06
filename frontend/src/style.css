@@ -95,3 +95,6 @@ body {
   text-overflow: ellipsis;
 }
 
+.el-pagination {
+ justify-content: center; 
+}
