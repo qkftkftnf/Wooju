@@ -56,7 +56,7 @@
 - 커뮤니케이션 : Mattermost
 - 디자인 : Figma
 - OS : Windows 10
-- DB : MySQL 8.0.22
+- DB : MySQL 5.7.39
 - AWS Cloud EC2
 - Ubuntu 20.04.2 LTS
 - Docker 20.10.18
