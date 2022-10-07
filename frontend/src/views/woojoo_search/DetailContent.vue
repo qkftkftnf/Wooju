@@ -6,16 +6,46 @@
     <div class="wooju">
       {{woojooInfo.object?.name}}
     </div>
+
+
+
+    <div class="detail-container">
+      <div class="degree">
+        <span class="wooju-alcohol">종류 :</span>
+        {{woojooInfo.object?.type }}
+      </div>
+      <div class="degree">
+        <span class="wooju-alcohol">도수 :  </span>
+        <i class="alcohol"></i> {{woojooInfo.object?.alcohol}}%
+      </div>
+      <div class="degree">
+        <span class="wooju-alcohol">용량 :  </span>
+        <i class="alcohol"></i> {{woojooInfo.object?.volume }}
+      </div>
+      <div class="degree">
+        <span class="wooju-alcohol">양조장 :</span>
+        {{woojooInfo.object?.makers[0].name }}
+      </div>
+    </div>
+
+    <div class="line-0"></div>
+
+    <p class="detail-text award-text">
+      <p class="award-intro">수상내역</p>
+      {{woojooInfo.object?.award}}
+    </p>
+   
+
+
+    <div class="line"><hr/></div>
+
     <div class="woojoo-text">
       "{{woojooInfo.object?.subtext}}"
     </div>
-    <p class="detail-text">
-      {{woojooInfo.object?.award}}
-    </p>
     <!-- <div>
       <img class="content-img" :src="woojooInfo.object?.image" alt="">
     </div> -->
-    <div class="graph">
+    <div class="product-graph graph">
       <canvas id="productChart" width="250" height="250"></canvas>
     </div>
     <p class="detail-text">
@@ -24,7 +54,7 @@
     <p class="detail-text">
       {{woojooInfo.object?.taste_note}}
     </p>
-    <div class="detail-container">
+    <!-- <div class="detail-container">
       <div class="degree">
         <span class="wooju-alcohol">도수 :  </span>
         <i class="alcohol"></i> {{woojooInfo.object?.alcohol}}%
@@ -38,13 +68,17 @@
         {{woojooInfo.object?.price}}원
       </div>
     </div>
+ -->
+
+
+ <div class="line-2"><hr/></div>
 
     <div class="fitfood">
-      <div class="title">
+      <div class="fit-title">
         어울리는 음식
       </div>
       <p class="detail-text anju-note">
-        {{woojooInfo.object?.anju_note}}
+        {{woojooInfo.object?.anju_note}}!
       </p>
       <div class="fitfood-container">
         <div v-for="food in woojooInfo.object?.foods">
@@ -163,7 +197,7 @@ onMounted(() => {
 
 .fitfood-container {
   display: flex;
-  margin-bottom: 50px;
+  margin-bottom: 120px;
   flex-flow: row;
 }
 
