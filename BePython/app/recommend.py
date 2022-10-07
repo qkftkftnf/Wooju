@@ -13,33 +13,34 @@ from models import Product, User
 categorys = {}
 
 def get_taste(target, columns, products):
-
-    isSurveyed = True
-
     for question in target[0]:
         if question == -1:
-            isSurveyed = False
-            break
+            return []
 
-    if isSurveyed:        
-        product_df = pd.read_sql(products.statement, products.session.bind)
+    product_df = pd.read_sql(products.statement, products.session.bind)
+    taste_data = product_df[columns]
+
+    sim_scores = list(enumerate(cosine_similarity(target, taste_data)[0]))
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[:10]
+
+    sool_indices = [idx[0] for idx in sim_scores]
+    result = product_df.iloc[sool_indices].sample(3)
+
+    result_json = result.to_json(orient="records")
+    return json.loads(result_json)
+
+
+def get_today(user, target, columns, products):
+    def get_taste_score(target, columns):
+        for question in target[0]:
+            if question == -1:
+                return {}
         taste_data = product_df[columns]
 
-        sim_scores = list(enumerate(cosine_similarity(target, taste_data)[0]))
-        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-        sim_scores = sim_scores[:10]
+        taste_scores = dict(enumerate(cosine_similarity(target, taste_data)[0]))
+        return taste_scores
 
-        sool_indices = [idx[0] for idx in sim_scores]
-        result = product_df.iloc[sool_indices].sample(3)
-
-        result_json = result.to_json(orient="records")
-        return json.loads(result_json)
-
-    else:
-        return []
-
-
-def get_today(user, products):
     product_df = pd.read_sql(products.statement, products.session.bind)
     
     if len(user.products) <= 5:
@@ -55,9 +56,14 @@ def get_today(user, products):
     tfidf_matrix = tfidf.fit_transform(search_data['keyword'].fillna(value=''))
 
     cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
-    sim_scores = list(enumerate(cosine_sim[0]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:11]
+    taste_score = get_taste_score(target, columns)
+    sim_scores = dict(enumerate(cosine_sim[0]))
+
+    for key, value in taste_score.items():
+        sim_scores[key] += value
+
+    sim_scores = sorted(sim_scores.items(), key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[:10]
 
     sool_indices = [idx[0] for idx in sim_scores]
     result = product_df.iloc[sool_indices].sample(3)

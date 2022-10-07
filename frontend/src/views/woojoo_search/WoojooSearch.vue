@@ -50,8 +50,13 @@
           <input type="checkbox" id="check-award" v-model="searchInfo.award" class="search-checkbox">
         </div>
         <div class="search-keyword">
-          <input type="text" v-model="searchInfo.keyword">
-          <button class="search-button" @click="searchProducts">검색</button>
+          <el-input
+            v-model="searchInfo.keyword"
+            placeholder="검색어를 입력하세요"
+          />
+          <el-button @click="searchProducts">검색</el-button>
+          <!-- <input type="text" v-model="searchInfo.keyword">
+          <button class="search-button" @click="searchProducts">검색</button> -->
         </div>
       </div>
     </div>
@@ -67,9 +72,10 @@
           </div>
           <div class="content">
             <p class="product-name">{{ product.name }}</p>
-            <p>도수: {{ product.alcohol }}%</p>
-            <p>용량: {{ product.volume }}</p>
-            <p class="product-price">가격: {{ product.price }}원</p>
+            <p>{{ product.alcohol }}% | {{ product.volume }} </p>
+            <!-- <p>도수: {{ product.alcohol }}%</p>
+            <p>용량: {{ product.volume }}</p> -->
+            <!-- <p class="product-price">가격: {{ product.price }}원</p> -->
           </div>
         </div>
       </div>
@@ -121,7 +127,7 @@ store.dispatch('fetchProducts', searchInfo.value)
   width: calc(100vw - 44px);
   max-width: 450px;
   border-radius: 20px;
-  background-color: var(--card-bg-color);
+  /* background-color: var(--card-bg-color); */
   box-shadow: 0px 0px 4px 6px rgba(0, 0, 0, var(--shadow-percentage-03));
 }
 
@@ -241,7 +247,7 @@ store.dispatch('fetchProducts', searchInfo.value)
 
 .products-list .products-list-box {
   width: min(170px, 40vw);
-  height: 350px;
+  height: 300px;
   padding: 5px;
   margin: 10px 0px 10px 0px;
   text-align: left;
@@ -252,19 +258,30 @@ store.dispatch('fetchProducts', searchInfo.value)
   max-width: 170px;
   height: 220px;
   object-fit: cover;
+  box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, var(--shadow-percentage-04));
 }
 
 .products-list .products-list-box .content {
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .products-list .products-list-box .product-name {
+  margin-top: 10px;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .products-list .products-list-box .product-alcohol {
   font-weight: bold;
 }
+
+.article-create .create-title .el-input__wrapper {
+  height: 40px;
+  padding: 0 11px;
+  border: none;
+  box-shadow: 0 0 0 0 ;
+}
+
 </style>

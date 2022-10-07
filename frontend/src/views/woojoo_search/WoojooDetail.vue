@@ -92,12 +92,12 @@ onMounted(() => {
     } else {
       // document.querySelector(".mypage-header .header-nick").style.top = `${240 * ((position.value - 120) / 390)}px`
       // document.querySelector(".mypage-header .header-nick").style.fontSize = `${1.5 - 0.3 * (1- (position.value - 120) / 390)}rem`
-      document.querySelector(".detail-header .bg-box").style.opacity = `${(position.value - 350) / 160}`
+      document.querySelector(".detail-header .bg-box").style.opacity = `${(position.value - 200) / 80}`
       // document.querySelector(".mypage-profile .profile-pic").style.opacity = `${(position.value - 350) / 160}`
       // document.querySelector(".mypage-profile .level").style.opacity = `${(position.value - 350) / 160}`
       // document.querySelector(".mypage-profile .email").style.opacity = `${(position.value - 350) / 160}`
       // document.querySelector(".mypage-profile .edit-profile").style.opacity = `${(position.value - 350) / 160}`
-      document.querySelector(".scroll-false").style.display = "block"
+      document.querySelector(".scroll-false").style.display = "none"
     }
   }
 })

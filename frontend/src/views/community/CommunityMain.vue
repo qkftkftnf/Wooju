@@ -92,7 +92,7 @@
                         <i class="fas fa-star star"></i> {{ review.star }}
                       </div>
                       <div class="preview">
-                        {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                        {{ review.content }}
                       </div>
                     </div>
                   </div>
@@ -138,7 +138,7 @@
                         <i class="fas fa-star star"></i> {{ review.star }}
                       </div>
                       <div class="preview">
-                        {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                        {{ review.content }}
                       </div>
                     </div>
                   </div>
@@ -184,7 +184,7 @@
                         <i class="fas fa-star star"></i> {{ review.star }}
                       </div>
                       <div class="preview">
-                        {{ review.content }} 님들 이거 진짜 개맛있어요 저번에 시음회에서 먹었었는데 처음 맛보는 술이었음
+                        {{ review.content }}
                       </div>
                     </div>
                   </div>
