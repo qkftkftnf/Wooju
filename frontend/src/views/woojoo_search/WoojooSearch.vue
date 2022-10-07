@@ -50,8 +50,13 @@
           <input type="checkbox" id="check-award" v-model="searchInfo.award" class="search-checkbox">
         </div>
         <div class="search-keyword">
-          <input type="text" v-model="searchInfo.keyword">
-          <button class="search-button" @click="searchProducts">검색</button>
+          <el-input
+            v-model="searchInfo.keyword"
+            placeholder="검색어를 입력하세요"
+          />
+          <el-button @click="searchProducts">검색</el-button>
+          <!-- <input type="text" v-model="searchInfo.keyword">
+          <button class="search-button" @click="searchProducts">검색</button> -->
         </div>
       </div>
     </div>
@@ -271,4 +276,12 @@ store.dispatch('fetchProducts', searchInfo.value)
 .products-list .products-list-box .product-alcohol {
   font-weight: bold;
 }
+
+.article-create .create-title .el-input__wrapper {
+  height: 40px;
+  padding: 0 11px;
+  border: none;
+  box-shadow: 0 0 0 0 ;
+}
+
 </style>
