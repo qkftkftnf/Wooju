@@ -107,7 +107,6 @@ const isCommunityLoaded = computed(() => store.getters.isCommunityLoaded)
 onMounted(() => {
   store.commit("SET_IS_COMMUNITY_LOADED", false)
   store.dispatch("fetchReviews", route.query.name)
-  console.log(reviewsData)
 })
 
 

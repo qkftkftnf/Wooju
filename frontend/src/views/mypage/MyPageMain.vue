@@ -17,8 +17,8 @@
           <i class="fas fa-cog"></i>
         </div>
       </div>
-      <div class="level">
-        lv.8
+      <div class="level" v-if="profileData.profile?.gosu">
+        <i class="fas fa-award gosu"></i> 맛고수
       </div>
       <div class="email">
         {{ profileData.profile?.email }}
