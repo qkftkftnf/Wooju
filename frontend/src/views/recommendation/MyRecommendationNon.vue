@@ -8,7 +8,7 @@
     <!-- v-if not surveyed -->
     <div class="not-surveyed" v-if="_.isEmpty(recommendData.taste)">
       <div class="not-surveyed-content">
-        아직 취향 조사를 하지 않으셨어요! <br/> 당신의 우주를 같이 알아볼까요?
+        아직 전통주와 친하지 않다면, <br/> 잠깐의 테스트로 같이 알아볼까요?
       </div>
       <div class="survey-btn" @click="linkTo('MyRecommendationType')">
         <div class="btn-box">취향 알아보러 가기 ></div>
