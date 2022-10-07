@@ -48,7 +48,8 @@ def get_today(user, target, columns, products):
         
     keywords = set()
     for product in user.products:
-        keywords |= set(product.keyword.split(', '))
+        if product.keyword:
+            keywords |= set(product.keyword.split(', '))
 
     target_data =  pd.DataFrame({'keyword': [', '.join(keywords)]})
     search_data = pd.concat([target_data, product_df], ignore_index = True)
