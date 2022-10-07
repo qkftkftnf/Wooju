@@ -185,7 +185,7 @@ public class ReviewServiceImpl implements ReviewService{
 				
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
-		if(count>5) user.setGosu(true);
+		if(count>10) user.setGosu(true);
 		count=reviewRepository.countByProductId(dto.getProduct_id());
 		product.setReview((int)count);
 		
@@ -273,7 +273,7 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewRepository.deleteById(id);
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
-		if(count<=5) user.setGosu(false);
+		if(count<=10) user.setGosu(false);
 		count=reviewRepository.countByProductId(review.getProduct().getId());
 		Product product=productRepository.findById(review.getProduct().getId()).get();
 		product.setReview((int)count);
