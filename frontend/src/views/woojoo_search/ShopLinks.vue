@@ -1,6 +1,6 @@
 <template>
   <div class="likes-container mypage-inner">
-    <div class="shop-container" v-for="shop in woojooInfo.object?.shops">
+    <div class="shop-container"  @click="openShop(shop.url)" v-for="shop in woojooInfo.object?.shops">
       <div class="shop-img-container">
         <div class="shop-img">
           <img class="shop-img" :src="shop.image" alt="">
@@ -14,7 +14,7 @@
           가격 : {{shop.price}} 원
         </div>
         <div class="shop-link">
-          <span @click="window.open(`${shop.url}`)">바로가기 ></span>
+          <span>바로가기 ></span>
         </div> 
         <!-- <div class="introduction">
           <div class="product-title">
@@ -41,6 +41,11 @@ import { useStore } from "vuex";
 const store = useStore();
 const woojooInfo = computed(() => store.getters.woojooInfo);
 
+const openShop = (url) => {
+  console.log(url)
+  window.open(url)
+}
+
 </script> 
 
 <style>
@@ -49,7 +54,7 @@ const woojooInfo = computed(() => store.getters.woojooInfo);
   align-items: center;
 }
 .shop-container {
-  margin: 10px 10px 10px 0px;
+  margin-bottom: 10px;
   background-color: var(--card-bg-color);
   border-radius: 25px;
   box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
