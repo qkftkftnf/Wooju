@@ -8,7 +8,7 @@
 
 ## 기획 배경
 
-개개인의 취향에 맞춘 전통주 추천 서비스
+사용자 개인의 취향에 맞춘 전통주 추천 서비스
 
 커뮤니티를 통한 전통주 리뷰 및 소통 공간 제공
 
@@ -103,7 +103,18 @@
 - element-plus 2.2.9
 
 
+### 배포 가이드
 
+-------
+
+[링크](https://lab.ssafy.com/s07-bigdata-recom-sub2/S07P22A304/-/blob/dev/exec/%EC%84%9C%EC%9A%B8_3%EB%B0%98_A304_%EB%B9%8C%EB%93%9C%20%EB%B0%8F%20%EB%B0%B0%ED%8F%AC%EB%AC%B8%EC%84%9C.pdf)
+
+
+### 외부 서비스 사용 문서
+
+------
+
+[링크](https://lab.ssafy.com/s07-bigdata-recom-sub2/S07P22A304/-/blob/dev/exec/%EC%84%9C%EC%9A%B8_3%EB%B0%98_A304_%EC%99%B8%EB%B6%80%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%82%AC%EC%9A%A9%EB%AC%B8%EC%84%9C.pdf)
 
 
 ---
