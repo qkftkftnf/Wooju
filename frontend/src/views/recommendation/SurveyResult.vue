@@ -1,19 +1,19 @@
 <template>
   <div class="result-container">
     <div class="result-title">
-      <span class="nick">당신의 전통주 취향</span>은<br/>
+      <span class="nick">당신의 전통주 취향</span>은<br />
     </div>
 
-    <TypeMak v-if="recommData.usertype?.type == 1"/>
-    <TypeSommelier v-if="recommData.usertype?.type == 2"/>
-    <TypeExpert v-if="recommData.usertype?.type == 3"/>
-    <TypeSparkle v-if="recommData.usertype?.type == 4"/>
-    <TypeParty v-if="recommData.usertype?.type == 5"/>
-    <TypeWizard v-if="recommData.usertype?.type == 6"/>
-    <TypeExplorer v-if="recommData.usertype?.type == 7"/>
-    <TypeCritics v-if="recommData.usertype?.type == 8"/>
+    <TypeMak v-if="recommData.usertype?.type == 1" />
+    <TypeSommelier v-if="recommData.usertype?.type == 2" />
+    <TypeExpert v-if="recommData.usertype?.type == 3" />
+    <TypeSparkle v-if="recommData.usertype?.type == 4" />
+    <TypeParty v-if="recommData.usertype?.type == 5" />
+    <TypeWizard v-if="recommData.usertype?.type == 6" />
+    <TypeExplorer v-if="recommData.usertype?.type == 7" />
+    <TypeCritics v-if="recommData.usertype?.type == 8" />
 
-    <RaderChart v-if="isRecommLoaded" :analysis="recommData.usertype?.analysis"/>
+    <RaderChart v-if="isRecommLoaded" :analysis="recommData.usertype?.analysis" />
 
     <div class="preferance">
       <div class="sweet flavor" id="analysis-content">
@@ -62,7 +62,7 @@ import TypeExpert from './SurveyResult/TypeExpert.vue';
 import TypeWizard from './SurveyResult/TypeWizard.vue';
 import RaderChart from "./SurveyResult/RaderChart.vue"
 
-import { ref, onMounted ,computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
@@ -70,18 +70,20 @@ import { useRouter } from "vue-router";
 const store = useStore();
 const recommData = computed(() => store.getters.recommendation)
 const isRecommLoaded = computed(() => store.getters.isRecommLoaded)
+const isSurveyed = computed(() => store.getters.isSurveyed)
 
 const router = useRouter();
-const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk }})
+const linkToProduct = (productPk) => router.push({ name: "WoojooDetail", params: { productPk: productPk } })
 
 
 onMounted(() => {
   store.commit("SET_IS_RECOMM_LOADED", false)
-  store.dispatch("fetchRecommendationResult")
+  if (!isSurveyed.value) {
+    store.dispatch("fetchRecommendationResult")
+  }
 })
 
 </script>
 
 <style>
-  
 </style>
