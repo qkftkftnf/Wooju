@@ -103,13 +103,19 @@ const getResized = (image, index) => {
       originalWidth.value = this.width
       originalHeight.value = this.height
       
-      if ( originalWidth.value > originalHeight.value ) {
-        resizedWidth.value = 500
-        resizedHeight.value = originalHeight.value * 500 / originalWidth.value
+      if ( originalWidth.value > 500 && originalHeight.value > 500) {
+        if ( originalWidth.value > originalHeight.value ) {
+          resizedWidth.value = 500
+          resizedHeight.value = originalHeight.value * 500 / originalWidth.value
+        } else {
+          resizedHeight.value = 500
+          resizedWidth.value = originalWidth.value * 500 / originalHeight.value
+        }
       } else {
-        originalHeight.value = 500
-        resizedWidth.value = resizedWidth.value * 500 / originalHeight.value
+        resizedWidth.value = originalWidth.value
+        resizedHeight.value = originalHeight.value
       }
+
       var canvas = document.createElement("canvas")
 
       canvas.width = resizedWidth.value

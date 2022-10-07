@@ -145,7 +145,6 @@ const getResized = (image, index) => {
 
       // append image in formData
       canvas.toBlob(function(blob) {
-        console.log("HEY", blob)
         imageData.append("file", blob)
       })
     }
@@ -170,7 +169,7 @@ const openGallery = () => {
 
 const resetGallery = () => {
   uploadImages.value = []
-  console.log(uploadImages.value)
+
   for (let index = 0; index < 3; index++) {
     document.querySelector(`.thumb${index}`).src = "";
    
