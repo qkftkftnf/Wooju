@@ -48,7 +48,7 @@ def get_products(db: Session, types: Optional[List]=None, alcohol: Optional[floa
                 .filter((Product.type == '약주') | (Product.type == '약청주 기타주류') | (Product.type == '과실주') | (Product.type == '과실주 기타주류') | (Product.type == '청주'))
 
         result['taste'] = get_taste(target, columns, products)
-        result['today'] = get_today(user, products)
+        result['today'] = get_today(user, target, columns, products)
         result['award'] = products.filter(Product.award).order_by(func.rand())[:3]
         result['usertype'] = get_usertype(user.type, user.question1, user.question2, user.question3, user.question4, user.question5, user.question6)
 
