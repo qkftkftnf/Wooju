@@ -8,10 +8,10 @@
     <!-- v-if not surveyed -->
     <div class="not-surveyed" v-if="_.isEmpty(recommendData.today)">
       <div class="not-surveyed-content">
-        당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요.
+        아직 좋아요 수가 부족해요!<br/>좋아요를 더 많이 누르면 우주가 추천해드릴게요.
       </div>
-      <div class="survey-btn life-style-btn" @click="linkTo('MyRecommendationType')">
-        <div class="btn-box">오늘의 라이프 스타일은? ></div>
+      <div class="survey-btn life-style-btn" @click="linkTo('WoojooSearch')">
+        <div class="btn-box">좋아요 누르러 가기 ></div>
       </div>
     </div>
 
