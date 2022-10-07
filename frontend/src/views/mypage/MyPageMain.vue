@@ -17,16 +17,13 @@
           <i class="fas fa-cog"></i>
         </div>
       </div>
-      <div class="level">
-        lv.8
+      <div class="level" v-if="profileData.profile?.gosu">
+        <i class="fas fa-award gosu"></i> 맛고수
       </div>
       <div class="email">
         {{ profileData.profile?.email }}
       </div>
-      <div class="logout">
-        <i class="fas fa-sign-out-alt"></i>
-      </div>
-      <div class="logout">
+      <div class="logout" @click="logout()">
         <i class="fas fa-sign-out-alt"></i>
       </div>
     </div>
@@ -95,6 +92,10 @@ const store = useStore();
 const profileData = computed(() => store.getters.profile)
 const linkTo = (name) => router.push({ name: name, })
 const reviewIdx = route.query.reviewIdx
+
+const logout = () => {  
+  store.dispatch("logout")
+}
 
 onMounted(() => {
   store.dispatch("fetchProfile")

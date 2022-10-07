@@ -176,14 +176,14 @@ public class ReviewController {
 		return ResponseEntity.status(200).body(BaseResponseDto.of(200, "Success"));
 	}
 	
-	@DeleteMapping("/like/{product_id}")
+	@DeleteMapping("/like/{review_id}")
 	@ApiOperation(value="좋아요 취소", notes ="술 좋아요 취소")
 	@ApiResponses({
 		@ApiResponse(code = 200 , message="성공"),
 		@ApiResponse(code = 401 , message="부적절한 토큰"),
 		@ApiResponse(code = 500 , message="서버오류")
 	})
-	public ResponseEntity<BaseResponseDto> deletelike(@PathVariable("product_id") int id,
+	public ResponseEntity<BaseResponseDto> deletelike(@PathVariable("review_id") int id,
 			@ApiIgnore Authentication authentication) throws Exception{
 		if(authentication == null) return ResponseEntity.status(401).body(BaseResponseDto.of(401,"failed"));
 		UserInfo userDetails=(UserInfo) authentication.getDetails();

@@ -2,13 +2,14 @@ import http from "@/api/index.js"
 
 const community = {
   state: {
-    reviews: {review: []},
+    reviews: {review: [{}, {}, {},]},
     review: {},
     isCommunityLoaded: false,
     isLikeReview: false,
   },
   mutations: {
     SET_REVIEWS: (state, reviews) => (state.reviews = reviews),
+    SET_REVIEW: (state, review) => (state.review = review),
     SET_IS_COMMUNITY_LOADED: (state, isCommunityLoaded) => (state.isCommunityLoaded = isCommunityLoaded),
     SET_ISLIKE_REVIEW: (state, isLikeReview) => (state.isLikeReview = isLikeReview),
   },
@@ -25,11 +26,12 @@ const community = {
         })
         .catch((err) => console.log(err))
     },
-    fetchReviews({ commit }, category) {
+    fetchReviews({ commit }, fetchInfo) {
       commit("SET_IS_COMMUNITY_LOADED", false)
-      http.get(`/review/more/${category}`)
+      http.get(`/review/more/${fetchInfo.category}`)
         .then(({ data }) => {
           commit("SET_REVIEWS", data)
+          commit("SET_REVIEW", data.review[fetchInfo.post - 1])
         })
         .then(() => {
           commit("SET_IS_COMMUNITY_LOADED", true)

@@ -1,4 +1,39 @@
 <template>
+  <!-- life style -->
+  <div class="rec-type rec-preferance">
+    <div class="rec-title">
+      당신의 오늘에 딱 맞는 술
+    </div>
+
+    <!-- v-if not surveyed -->
+    <div class="not-surveyed" v-if="_.isEmpty(recommendData.today)">
+      <div class="not-surveyed-content">
+        당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요.
+      </div>
+      <div class="survey-btn life-style-btn" @click="linkTo('MyRecommendationType')">
+        <div class="btn-box">오늘의 라이프 스타일은? ></div>
+      </div>
+    </div>
+
+    <!-- v-if surveyed -->
+    <div class="bottles" v-else>
+      <div class="bottle-card" v-for="product in recommendData.today">
+        <div @click="linkToProduct(`${product.id}`)">
+          <div class="bottle-img">
+            <img :src="product.image" alt="bottle">
+          </div>
+          <div class="bottle-content">
+            <div class="bottle-title cl-ellipsis">
+              {{ product.name }}
+            </div>
+            <div class="bottle-intro">
+              도수: {{ product.alcohol }}%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- preferance -->
   <div class="rec-type rec-preferance">
@@ -19,42 +54,6 @@
     <!-- v-if surveyed -->
     <div class="bottles" v-else>
       <div class="bottle-card" v-for="product in recommendData.taste">
-        <div @click="linkToProduct(`${product.id}`)">
-          <div class="bottle-img">
-            <img :src="product.image" alt="bottle">
-          </div>
-          <div class="bottle-content">
-            <div class="bottle-title cl-ellipsis">
-              {{ product.name }}
-            </div>
-            <div class="bottle-intro">
-              도수: {{ product.alcohol }}%
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- life style -->
-  <div class="rec-type rec-preferance">
-    <div class="rec-title">
-      당신의 오늘에 딱 맞는 술
-    </div>
-
-    <!-- v-if not surveyed -->
-    <div class="not-surveyed" v-if="_.isEmpty(recommendData.today)">
-      <div class="not-surveyed-content">
-        당신의 라이프 스타일을 알려주세요! <br/> 우주가 추천해드릴게요.
-      </div>
-      <div class="survey-btn life-style-btn" @click="linkTo('MyRecommendationType')">
-        <div class="btn-box">오늘의 라이프 스타일은? ></div>
-      </div>
-    </div>
-
-    <!-- v-if surveyed -->
-    <div class="bottles" v-else>
-      <div class="bottle-card" v-for="product in recommendData.today">
         <div @click="linkToProduct(`${product.id}`)">
           <div class="bottle-img">
             <img :src="product.image" alt="bottle">
@@ -116,11 +115,6 @@ const recommendData = computed(() => store.getters.recommendation);
 
 onMounted(() => {
 })
-
-// whether surveyed
-const preference = ref(false)
-const lifestyle = ref(false)
-
 
 // header scroll event js
 const position = ref(0)

@@ -67,6 +67,7 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_id(review.getUser().getId())
 						.user_nickname(review.getUser().getNickname())
 						.user_img(review.getUser().getImg())
+						.gosu(review.getUser().isGosu())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.content(review.getContent())
@@ -90,6 +91,7 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_id(review.getUser().getId())
 						.user_nickname(review.getUser().getNickname())
 						.user_img(review.getUser().getImg())
+						.gosu(review.getUser().isGosu())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.content(review.getContent())
@@ -116,6 +118,7 @@ public class ReviewServiceImpl implements ReviewService{
 					.user_id(review.getUser().getId())
 					.user_nickname(review.getUser().getNickname())
 					.user_img(review.getUser().getImg())
+					.gosu(review.getUser().isGosu())
 					.product_id(review.getProduct().getId())
 					.product_name(review.getProduct().getName())
 					.content(review.getContent())
@@ -140,6 +143,7 @@ public class ReviewServiceImpl implements ReviewService{
 					.user_id(review.getUser().getId())
 					.user_nickname(review.getUser().getNickname())
 					.user_img(review.getUser().getImg())
+					.gosu(review.getUser().isGosu())
 					.product_id(review.getProduct().getId())
 					.product_name(review.getProduct().getName())
 					.content(review.getContent())
@@ -185,7 +189,7 @@ public class ReviewServiceImpl implements ReviewService{
 				
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
-		if(count>5) user.setGosu(true);
+		if(count>10) user.setGosu(true);
 		count=reviewRepository.countByProductId(dto.getProduct_id());
 		product.setReview((int)count);
 		
@@ -205,6 +209,7 @@ public class ReviewServiceImpl implements ReviewService{
 				.user_id(review.getUser().getId())
 				.user_nickname(review.getUser().getNickname())
 				.user_img(review.getUser().getImg())
+				.gosu(review.getUser().isGosu())
 				.product_id(review.getProduct().getId())
 				.product_name(review.getProduct().getName())
 				.content(review.getContent())
@@ -273,7 +278,7 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewRepository.deleteById(id);
 		long count =reviewRepository.countByUserId(user.getId());
 		user.setReview_count((int)count);
-		if(count<=5) user.setGosu(false);
+		if(count<=10) user.setGosu(false);
 		count=reviewRepository.countByProductId(review.getProduct().getId());
 		Product product=productRepository.findById(review.getProduct().getId()).get();
 		product.setReview((int)count);
@@ -301,7 +306,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Transactional
 	public void deleteLike(int review_id, User user) throws Exception {
 		long check =likeReviewRepository.countByReviewIdAndUserId(review_id, user.getId());
-		if(check != 0) throw new LikeException();
+		if(check == 0) throw new LikeException();
 		Optional<Review> review= reviewRepository.findById(review_id);
 		if(!review.isPresent()) throw new ReviewNotFoundException();
 		likeReviewRepository.deleteByReviewIdAndUserId(review_id, user.getId());
@@ -320,6 +325,7 @@ public class ReviewServiceImpl implements ReviewService{
 							.user_id(review.getUser().getId())
 							.user_nickname(review.getUser().getNickname())
 							.user_img(review.getUser().getImg())
+							.gosu(review.getUser().isGosu())
 							.product_id(review.getProduct().getId())
 							.product_name(review.getProduct().getName())
 							.content(review.getContent())
@@ -342,6 +348,7 @@ public class ReviewServiceImpl implements ReviewService{
 							.user_id(review.getUser().getId())
 							.user_nickname(review.getUser().getNickname())
 							.user_img(review.getUser().getImg())
+							.gosu(review.getUser().isGosu())
 							.product_id(review.getProduct().getId())
 							.product_name(review.getProduct().getName())
 							.content(review.getContent())
@@ -364,6 +371,7 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_id(review.getUser().getId())
 						.user_nickname(review.getUser().getNickname())
 						.user_img(review.getUser().getImg())
+						.gosu(review.getUser().isGosu())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.content(review.getContent())
@@ -389,6 +397,7 @@ public class ReviewServiceImpl implements ReviewService{
 						.user_id(review.getUser().getId())
 						.user_nickname(review.getUser().getNickname())
 						.user_img(review.getUser().getImg())
+						.gosu(review.getUser().isGosu())
 						.product_id(review.getProduct().getId())
 						.product_name(review.getProduct().getName())
 						.content(review.getContent())
