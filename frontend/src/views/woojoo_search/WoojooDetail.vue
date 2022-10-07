@@ -78,6 +78,7 @@ const productId = route.params.productPk
 const isLike = computed(() => store.getters.isLike);
 
 onMounted(() => {
+  window.scrollTo(0, 0)
   store.dispatch('likeCheck', productId)
   store.dispatch("fetchWoojooInfo", productId)
   const mypageTabs = document.querySelector("#detail-container")
