@@ -182,7 +182,7 @@ onMounted(() => {
 
 </script>
 
-<style>
+<style scoped>
 .mt {
   width: 100%;
   max-width: 500px;
@@ -200,5 +200,26 @@ onMounted(() => {
   font-weight: 400;
   font-size: 1rem;
 }
+
+
+.not-surveyed .survey-btn {
+  margin-top: 20px;
+  padding-bottom: 100px;
+  height: 50px;
+  font-weight: 600;
+}
+
+.not-surveyed .survey-btn .btn-box {
+  margin: 0 auto;
+  width: 220px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--main-color);
+  box-shadow: 2px 2px 9px 2px rgba(0, 0, 0, var(--shadow-percentage-03));
+}
+
 
 </style>
